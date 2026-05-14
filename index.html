@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roadmap — Engenharia da Computação</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="hero-tag">v3 · Validado com roadmap.sh + OSSU + CS50</p>
+      <h1>Roadmap Completo<br><span class="hero-accent">Engenharia da Computação</span></h1>
+      <p class="hero-sub">IA · ML · Full-Stack · DevOps · DevSecOps · Cyber Security · Bancos de Dados · Robótica · Liderança</p>
+      <p class="hero-desc">Cada item tem: o que estudar · termos de busca prontos · 3 livros por tópico</p>
+    </div>
+  </header>
+
+  <div class="container">
+    <div id="stats" class="stats-bar"></div>
+
+    <div class="search-wrap">
+      <input type="text" id="search" placeholder="🔍 Buscar qualquer tópico, item, livro ou termo..." autocomplete="off">
+    </div>
+
+    <div id="search-results" class="search-results" style="display:none"></div>
+    <div id="roadmap"></div>
+
+    <div class="tip-box">
+      <strong>💡 Como usar este roadmap:</strong><br>
+      1. Comece pelo 🟢 Iniciante, <strong>na ordem</strong> — cada área depende da anterior.<br>
+      2. Clique nos níveis → áreas → tópicos → itens pra expandir os detalhes.<br>
+      3. Em cada item, leia "O que estudar" e copie os "Termos de busca" pro Google/YouTube.<br>
+      4. Use os 3 livros por tópico como referência de aprofundamento.<br>
+      5. Só avance de nível quando se sentir confortável com ~80% dos itens.<br>
+      6. Use a barra de busca pra pular direto pra qualquer assunto.
+    </div>
+  </div>
+
+  <footer>
+    <p>Feito pra Kaio · <a href="https://github.com" target="_blank">Suba no GitHub Pages</a> · Dados de roadmap.sh, OSSU, CS50</p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
