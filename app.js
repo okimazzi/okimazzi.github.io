@@ -100,7 +100,7 @@
           itemDetail.style.display = 'none';
           itemDetail.innerHTML = `
             <strong>📖 O que estudar:</strong> ${item.d}
-            <div class="search-terms">🔍 Termos de busca: ${item.s}</div>
+            <div class="search-terms">🔍 Termos de busca:<br>${item.s.split('|').map(t=>'• '+t.trim()).join('<br>')}</div>
           `;
 
           itemBtn.addEventListener('click', () => toggle(itemBtn, itemDetail));
