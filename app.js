@@ -115,11 +115,71 @@
         areaContent.appendChild(topicDiv);
       });
 
+      // Action bar: projects + quiz at AREA level
+      const areaKey = area.name.replace(/^[^\w\s]+\s*/u, '').trim();
+      const hasProjects = typeof PROJECTS !== 'undefined' && Object.keys(PROJECTS).find(k => areaKey.includes(k) || k.includes(areaKey));
+      const quizKey = typeof QUIZZES !== 'undefined' && Object.keys(QUIZZES).find(k => areaKey.includes(k) || k.includes(areaKey));
+
+      if (hasProjects || quizKey) {
+        const actionBar = document.createElement('div');
+        actionBar.className = 'area-actions';
+
+        if (hasProjects) {
+          const projData = PROJECTS[hasProjects];
+          // Basic project
+          const basicBtn = document.createElement('button');
+          basicBtn.className = 'project-btn project-basic';
+          basicBtn.textContent = projData.basic.title;
+          basicBtn.addEventListener('click', (e) => { e.stopPropagation(); openProject(projData.basic); });
+          actionBar.appendChild(basicBtn);
+
+          // Advanced project
+          const advBtn = document.createElement('button');
+          advBtn.className = 'project-btn project-advanced';
+          advBtn.textContent = projData.advanced.title;
+          advBtn.addEventListener('click', (e) => { e.stopPropagation(); openProject(projData.advanced); });
+          actionBar.appendChild(advBtn);
+        }
+
+        if (quizKey) {
+          const quizBtn = document.createElement('button');
+          quizBtn.className = 'quiz-btn';
+          quizBtn.textContent = '📝 Fazer Prova';
+          quizBtn.addEventListener('click', (e) => { e.stopPropagation(); openQuiz(quizKey); });
+          actionBar.appendChild(quizBtn);
+        }
+
+        areaContent.appendChild(actionBar);
+      }
+
       areaBtn.addEventListener('click', () => toggle(areaBtn, areaContent));
       areaDiv.appendChild(areaBtn);
       areaDiv.appendChild(areaContent);
       content.appendChild(areaDiv);
     });
+
+    // FINAL EXAM + PROJECT for levels that have them
+    if (typeof FINAL_LEVEL !== 'undefined' && FINAL_LEVEL[level.css]) {
+      const finalData = FINAL_LEVEL[level.css];
+      const levelNames = {green:'Iniciante',yellow:'Intermediário',orange:'Avançado',red:'Muito Avançado',blue:'Academia',purple:'Carreira'};
+      const levelLabel = levelNames[level.css] || level.name;
+      const finalBar = document.createElement('div');
+      finalBar.className = 'final-actions';
+
+      const projBtn = document.createElement('button');
+      projBtn.className = 'final-btn final-project';
+      projBtn.textContent = '🏆 Projeto Final — ' + levelLabel;
+      projBtn.addEventListener('click', (e) => { e.stopPropagation(); openProject(finalData.project); });
+      finalBar.appendChild(projBtn);
+
+      const examBtn = document.createElement('button');
+      examBtn.className = 'final-btn final-exam';
+      examBtn.textContent = '🎓 Prova Final — ' + levelLabel;
+      examBtn.addEventListener('click', (e) => { e.stopPropagation(); openQuiz('__FINAL_' + level.css.toUpperCase() + '__'); });
+      finalBar.appendChild(examBtn);
+
+      content.appendChild(finalBar);
+    }
 
     btn.addEventListener('click', () => toggle(btn, content));
     section.appendChild(btn);
@@ -199,3 +259,109 @@
     return text.replace(regex, '<mark style="background:rgba(96,165,250,0.25);color:#fff;border-radius:2px;padding:0 2px">$1</mark>');
   }
 })();
+
+// ============================================================
+// QUIZ SYSTEM
+// ============================================================
+function openQuiz(topicName) {
+  const questions = QUIZZES[topicName];
+  if (!questions) return;
+
+  const isFinal = topicName === '__FINAL_INICIANTE__';
+  const total = questions.length;
+  const minPass = Math.ceil(total * 0.8);
+  const displayName = isFinal ? 'Prova Final — Iniciante' : topicName;
+
+  // Create modal
+  const overlay = document.createElement('div');
+  overlay.className = 'quiz-overlay';
+  
+  const modal = document.createElement('div');
+  modal.className = 'quiz-modal';
+  
+  let html = `<h2>${isFinal ? '🎓' : '📝'} ${displayName}</h2>
+    <p class="quiz-info">${total} perguntas • Mínimo 80% (${minPass}/${total}) para aprovação • Não mostra quais errou</p>
+    <form id="quizForm">`;
+  
+  questions.forEach((q, i) => {
+    html += `<div class="quiz-question">
+      <p class="quiz-q"><strong>${i+1}.</strong> ${q.q}</p>`;
+    q.o.forEach((opt, oi) => {
+      html += `<label class="quiz-option">
+        <input type="radio" name="q${i}" value="${oi}" required>
+        <span>${opt}</span>
+      </label>`;
+    });
+    html += `</div>`;
+  });
+  
+  html += `<div class="quiz-actions">
+    <button type="submit" class="quiz-submit">✅ Corrigir Prova</button>
+    <button type="button" class="quiz-close" onclick="this.closest('.quiz-overlay').remove()">❌ Cancelar</button>
+  </div></form>`;
+  
+  modal.innerHTML = html;
+  overlay.appendChild(modal);
+  document.body.appendChild(overlay);
+  
+  // Handle submit
+  document.getElementById('quizForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    let correct = 0;
+    questions.forEach((q, i) => {
+      const selected = this.querySelector(`input[name="q${i}"]:checked`);
+      if (selected && parseInt(selected.value) === q.a) correct++;
+    });
+    
+    const pct = Math.round(correct / total * 100);
+    const passed = pct >= 80;
+    
+    modal.innerHTML = `
+      <div class="quiz-result ${passed ? 'quiz-pass' : 'quiz-fail'}">
+        <h2>${passed ? '🎉 APROVADO!' : '❌ REPROVADO'}</h2>
+        <div class="quiz-score">${correct}/${total}</div>
+        <div class="quiz-pct">${pct}%</div>
+        <p>${passed 
+          ? (isFinal ? 'Parabéns! Você completou o nível Iniciante! Hora de avançar para o Intermediário!' : 'Parabéns! Você domina esta área. Siga para a próxima!')
+          : `Você precisa de pelo menos 80% (${minPass}/${total}). Revise o conteúdo e tente novamente!`}</p>
+        <button class="quiz-close-btn" onclick="this.closest('.quiz-overlay').remove()">Fechar</button>
+      </div>`;
+  });
+  
+  // Close on overlay click
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) overlay.remove();
+  });
+}
+
+// ============================================================
+// PROJECT MODAL
+// ============================================================
+function openProject(proj) {
+  const overlay = document.createElement('div');
+  overlay.className = 'quiz-overlay';
+  
+  const modal = document.createElement('div');
+  modal.className = 'quiz-modal project-modal';
+  
+  modal.innerHTML = `
+    <h2>${proj.title}</h2>
+    <div class="project-section">
+      <strong>📋 Descrição do Projeto:</strong>
+      <p>${proj.desc}</p>
+    </div>
+    <div class="project-section">
+      <strong>📦 Entregável:</strong>
+      <p>${proj.deliverable}</p>
+    </div>
+    <div class="quiz-actions">
+      <button class="quiz-close-btn" onclick="this.closest('.quiz-overlay').remove()">Fechar</button>
+    </div>`;
+  
+  overlay.appendChild(modal);
+  document.body.appendChild(overlay);
+  
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) overlay.remove();
+  });
+}
