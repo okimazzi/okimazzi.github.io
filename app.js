@@ -1,367 +1,131 @@
-// app.js — Roadmap renderer (pure JS, no framework)
+// app.js — Roadmap with progress, themes, search links, filters
 (function(){
-  const $ = s => document.querySelector(s);
-  const roadmap = $('#roadmap');
-  const statsEl = $('#stats');
-  const searchInput = $('#search');
-  const searchResults = $('#search-results');
+const $=s=>document.querySelector(s);
+const roadmap=$('#roadmap'),statsEl=$('#stats'),searchInput=$('#search'),searchResults=$('#search-results');
+const SK='roadmap_progress',QK='roadmap_quizzes',TK='roadmap_theme';
+function gP(){try{return JSON.parse(localStorage.getItem(SK))||{}}catch(e){return{}}}
+function sP(d){localStorage.setItem(SK,JSON.stringify(d))}
+function gQ(){try{return JSON.parse(localStorage.getItem(QK))||{}}catch(e){return{}}}
+function sQ(d){localStorage.setItem(QK,JSON.stringify(d))}
+function mid(lc,an,tn,ii){return lc+'::'+an.substring(0,20)+'::'+tn.substring(0,20)+'::'+ii}
+function initTheme(){if(localStorage.getItem(TK)==='light')document.body.classList.add('light-mode')}
+initTheme();
+window.toggleTheme=function(){document.body.classList.toggle('light-mode');localStorage.setItem(TK,document.body.classList.contains('light-mode')?'light':'dark');const b=$('#theme-toggle');if(b)b.textContent=document.body.classList.contains('light-mode')?'🌙 Escuro':'☀️ Claro'};
+let tI=0,tT=0,tA=0,tB=new Set();
+ROADMAP.forEach(l=>{l.areas.forEach(a=>{tA++;a.topics.forEach(t=>{tT++;t.books.forEach(b=>tB.add(b));t.items.forEach(()=>tI++)})})});
+function gSC(){const p=gP();return Object.keys(p).filter(k=>p[k]).length}
+function rS(){const s=gSC(),pc=tI>0?Math.round(s/tI*100):0;
+statsEl.innerHTML=`<div class="stat-card"><div class="stat-num">${ROADMAP.length}</div><div class="stat-label">Níveis</div></div><div class="stat-card"><div class="stat-num">${tA}</div><div class="stat-label">Áreas</div></div><div class="stat-card"><div class="stat-num">${tT}</div><div class="stat-label">Tópicos</div></div><div class="stat-card"><div class="stat-num">${tI}</div><div class="stat-label">Itens</div></div><div class="stat-card"><div class="stat-num">${tB.size}</div><div class="stat-label">Livros</div></div><div class="stat-card stat-progress"><div class="stat-num">${s}/${tI}</div><div class="stat-label">Estudados (${pc}%)</div><div class="progress-bar-mini"><div class="progress-fill-mini" style="width:${pc}%"></div></div></div>`}
+rS();
+function eT(it){const l=it.d.length+it.w.length;if(it.w.includes('🎯'))return'~10min';if(l>500)return'~4h';if(l>300)return'~2h';return'~1h'}
+function mSL(s){return s.split('|').map(t=>{const tr=t.trim();if(!tr)return'';const yt='https://www.youtube.com/results?search_query='+encodeURIComponent(tr);const gg='https://www.google.com/search?q='+encodeURIComponent(tr);return`<div class="search-term-row"><span class="search-term-text">• ${tr}</span><a href="${yt}" target="_blank" rel="noopener" class="search-link yt-link">▶ YouTube</a><a href="${gg}" target="_blank" rel="noopener" class="search-link gg-link">🔍 Google</a></div>`}).join('')}
+function tog(b,c){const o=c.style.display==='block';c.style.display=o?'none':'block';b.classList.toggle('open',!o);const a=b.querySelector('.arrow')||b.querySelector('.item-toggle');if(a)a.textContent=o?'▸':'▾'}
+function cPB(s,t){const p=t>0?Math.round(s/t*100):0;const d=document.createElement('div');d.className='progress-bar-wrap';d.innerHTML=`<div class="progress-bar"><div class="progress-fill" style="width:${p}%"></div></div><span class="progress-text">${s}/${t} (${p}%)</span>`;return d}
+function cS(lc,an,tn,ic){const p=gP();let c=0;for(let i=0;i<ic;i++)if(p[mid(lc,an,tn,i)])c++;return c}
+let cF='all';
+function aF(){const p=gP();document.querySelectorAll('.item[data-item-id]').forEach(el=>{const id=el.dataset.itemId;const s=p[id];if(cF==='all')el.style.display='';else if(cF==='studied')el.style.display=s?'':'none';else if(cF==='not-studied')el.style.display=s?'none':''})}
+window.setFilter=function(f){cF=f;aF();document.querySelectorAll('.filter-btn').forEach(b=>b.classList.toggle('active',b.dataset.filter===f))};
+window.resetProgress=function(){if(confirm('Apagar todo progresso (itens estudados e quizzes)?')){localStorage.removeItem(SK);localStorage.removeItem(QK);location.reload()}};
 
-  // Count all items
-  let totalItems = 0, totalTopics = 0, totalAreas = 0, totalBooks = new Set();
-  ROADMAP.forEach(level => {
-    level.areas.forEach(area => {
-      totalAreas++;
-      area.topics.forEach(topic => {
-        totalTopics++;
-        topic.books.forEach(b => totalBooks.add(b));
-        topic.items.forEach(() => totalItems++);
-      });
-    });
-  });
+ROADMAP.forEach(level=>{
+const sec=document.createElement('div');sec.className='level';
+const btn=document.createElement('button');btn.className=`level-btn ${level.css}`;
+btn.innerHTML=`<div><div class="level-name">${level.name} <span class="arrow">▸</span></div><div class="level-meta">${level.time} · ${level.areas.length} áreas</div><div class="level-desc">${level.desc||''}</div></div>`;
+const cont=document.createElement('div');cont.className='level-content';cont.style.display='none';
 
-  // Render stats
-  statsEl.innerHTML = `
-    <div class="stat-card"><div class="stat-num">${ROADMAP.length}</div><div class="stat-label">Niveis</div></div>
-    <div class="stat-card"><div class="stat-num">${totalAreas}</div><div class="stat-label">Areas</div></div>
-    <div class="stat-card"><div class="stat-num">${totalTopics}</div><div class="stat-label">Topicos</div></div>
-    <div class="stat-card"><div class="stat-num">${totalItems}</div><div class="stat-label">Itens</div></div>
-    <div class="stat-card"><div class="stat-num">${totalBooks.size}</div><div class="stat-label">Livros</div></div>
-  `;
+level.areas.forEach(area=>{
+const aD=document.createElement('div');aD.className='area';
+const aIC=area.topics.reduce((s,t)=>s+t.items.length,0);
+const aB=document.createElement('button');aB.className='area-btn';
+aB.innerHTML=`<span>${area.name}</span><span class="area-meta">${area.topics.length} tópicos · ${aIC} itens <span class="arrow">▸</span></span>`;
+const aC=document.createElement('div');aC.className='area-content';aC.style.display='none';
 
-  // Toggle helper
-  function toggle(btn, content) {
-    const open = content.style.display === 'block';
-    content.style.display = open ? 'none' : 'block';
-    btn.classList.toggle('open', !open);
-    const arrow = btn.querySelector('.arrow') || btn.querySelector('.item-toggle');
-    if (arrow) arrow.textContent = open ? '▸' : '▾';
-  }
+area.topics.forEach(topic=>{
+const tD=document.createElement('div');tD.className='topic';
+const tB=document.createElement('button');tB.className='topic-btn';
+tB.innerHTML=`<span>${topic.name}</span><span class="topic-meta">${topic.items.length} itens <span class="arrow">▸</span></span>`;
+const tC=document.createElement('div');tC.className='topic-content';tC.style.display='none';
 
-  // Render levels
-  ROADMAP.forEach(level => {
-    const section = document.createElement('div');
-    section.className = 'level';
+const st=cS(level.css,area.name,topic.name,topic.items.length);
+const pb=cPB(st,topic.items.length);pb.className+=' topic-progress';tC.appendChild(pb);
 
-    const btn = document.createElement('button');
-    btn.className = `level-btn ${level.css}`;
-    btn.innerHTML = `
-      <div>
-        <div class="level-name">${level.name} <span class="arrow">▸</span></div>
-        <div class="level-meta">${level.time} · ${level.areas.length} areas</div>
-        <div class="level-desc">${level.desc}</div>
-      </div>
-    `;
+const bb=document.createElement('div');bb.className='books-box';
+bb.innerHTML=`<strong>📚 Livros recomendados:</strong>`+topic.books.map(b=>`<div class="book-item">• ${b}</div>`).join('');
+tC.appendChild(bb);
 
-    const content = document.createElement('div');
-    content.className = 'level-content';
-    content.style.display = 'none';
+topic.items.forEach((item,idx)=>{
+const iid=mid(level.css,area.name,topic.name,idx);
+const pr=gP();const iS=pr[iid];
+const iD=document.createElement('div');iD.className='item'+(iS?' item-studied':'');iD.dataset.itemId=iid;
+const tm=eT(item);
+const iB=document.createElement('button');iB.className='item-btn';
+iB.innerHTML=`<span><span class="item-check" title="Marcar como estudado">${iS?'✅':'⬜'}</span><span class="item-text">${item.w}</span></span><span class="item-right"><span class="item-time">${tm}</span><span class="item-toggle">▸</span></span>`;
 
-    level.areas.forEach(area => {
-      const areaDiv = document.createElement('div');
-      areaDiv.className = 'area';
+const chk=iB.querySelector('.item-check');
+chk.addEventListener('click',e=>{e.stopPropagation();const p=gP();p[iid]=!p[iid];sP(p);chk.textContent=p[iid]?'✅':'⬜';iD.classList.toggle('item-studied',p[iid]);rS();
+const ns=cS(level.css,area.name,topic.name,topic.items.length);const bar=tC.querySelector('.progress-fill');const txt=tC.querySelector('.progress-text');
+if(bar)bar.style.width=Math.round(ns/topic.items.length*100)+'%';if(txt)txt.textContent=ns+'/'+topic.items.length+' ('+Math.round(ns/topic.items.length*100)+'%)'});
 
-      const areaItemCount = area.topics.reduce((s, t) => s + t.items.length, 0);
-      const areaBtn = document.createElement('button');
-      areaBtn.className = 'area-btn';
-      areaBtn.innerHTML = `<span>${area.name}</span><span class="area-meta">${area.topics.length} topicos · ${areaItemCount} itens <span class="arrow">▸</span></span>`;
+const det=document.createElement('div');det.className='item-detail';det.style.display='none';
+det.innerHTML=`<div class="item-desc"><strong>📖 O que estudar:</strong><div class="desc-bullets">${item.d.replace(/\n/g,'<br>')}</div></div><div class="search-terms"><strong>🔍 Termos de busca:</strong>${mSL(item.s)}</div>`;
 
-      const areaContent = document.createElement('div');
-      areaContent.className = 'area-content';
-      areaContent.style.display = 'none';
+iB.addEventListener('click',e=>{if(e.target.closest('.item-check'))return;tog(iB,det)});
+iD.appendChild(iB);iD.appendChild(det);tC.appendChild(iD)});
 
-      area.topics.forEach(topic => {
-        const topicDiv = document.createElement('div');
-        topicDiv.className = 'topic';
+tB.addEventListener('click',()=>tog(tB,tC));tD.appendChild(tB);tD.appendChild(tC);aC.appendChild(tD)});
 
-        const topicBtn = document.createElement('button');
-        topicBtn.className = 'topic-btn';
-        topicBtn.innerHTML = `<span>${topic.name}</span><span class="topic-meta">${topic.items.length} itens <span class="arrow">▸</span></span>`;
+const aK=area.name.replace(/^[^\w\s]+\s*/u,'').trim();
+const hP=typeof PROJECTS!=='undefined'&&Object.keys(PROJECTS).find(k=>aK.includes(k)||k.includes(aK));
+const qK=typeof QUIZZES!=='undefined'&&Object.keys(QUIZZES).find(k=>aK.includes(k)||k.includes(aK));
+if(hP||qK){const ab=document.createElement('div');ab.className='area-actions';
+if(hP){const pd=PROJECTS[hP];
+const bb=document.createElement('button');bb.className='project-btn project-basic';bb.textContent=pd.basic.title;bb.addEventListener('click',e=>{e.stopPropagation();openProject(pd.basic)});ab.appendChild(bb);
+const ab2=document.createElement('button');ab2.className='project-btn project-advanced';ab2.textContent=pd.advanced.title;ab2.addEventListener('click',e=>{e.stopPropagation();openProject(pd.advanced)});ab.appendChild(ab2)}
+if(qK){const qr=gQ();const r=qr[qK];const qb=document.createElement('button');qb.className='quiz-btn'+(r&&r.passed?' quiz-passed':'');
+qb.textContent=r?(r.passed?'✅ Aprovado ('+r.score+'/'+r.total+')':'❌ ('+r.score+'/'+r.total+') Tentar novamente'):'📝 Fazer Prova';
+qb.addEventListener('click',e=>{e.stopPropagation();openQuiz(qK)});ab.appendChild(qb)}
+aC.appendChild(ab)}
 
-        const topicContent = document.createElement('div');
-        topicContent.className = 'topic-content';
-        topicContent.style.display = 'none';
+aB.addEventListener('click',()=>tog(aB,aC));aD.appendChild(aB);aD.appendChild(aC);cont.appendChild(aD)});
 
-        // Books box
-        const booksBox = document.createElement('div');
-        booksBox.className = 'books-box';
-        booksBox.innerHTML = `<strong>📚 Livros recomendados:</strong>` + topic.books.map(b => `<div class="book-item">• ${b}</div>`).join('');
-        topicContent.appendChild(booksBox);
+if(typeof FINAL_LEVEL!=='undefined'&&FINAL_LEVEL[level.css]){
+const fd=FINAL_LEVEL[level.css];const ln={green:'Iniciante',yellow:'Intermediário',orange:'Avançado',red:'Muito Avançado',blue:'Academia',purple:'Carreira'};const ll=ln[level.css]||level.name;
+const fb=document.createElement('div');fb.className='final-actions';
+const pb2=document.createElement('button');pb2.className='final-btn final-project';pb2.textContent='🏆 Projeto Final — '+ll;pb2.addEventListener('click',e=>{e.stopPropagation();openProject(fd.project)});fb.appendChild(pb2);
+const fk='__FINAL_'+level.css.toUpperCase()+'__';const qr=gQ();const fr=qr[fk];
+const eb=document.createElement('button');eb.className='final-btn final-exam'+(fr&&fr.passed?' quiz-passed':'');
+eb.textContent=fr?(fr.passed?'🎓 ✅ Aprovado ('+fr.score+'/'+fr.total+')':'🎓 ❌ Tentar novamente'):'🎓 Prova Final — '+ll;
+eb.addEventListener('click',e=>{e.stopPropagation();openQuiz(fk)});fb.appendChild(eb);
+cont.appendChild(fb)}
 
-        topic.items.forEach(item => {
-          const itemDiv = document.createElement('div');
-          itemDiv.className = 'item';
+btn.addEventListener('click',()=>tog(btn,cont));sec.appendChild(btn);sec.appendChild(cont);roadmap.appendChild(sec)});
 
-          const itemBtn = document.createElement('button');
-          itemBtn.className = 'item-btn';
-          itemBtn.innerHTML = `<span><span class="item-arrow-icon">→</span>${item.w}</span><span class="item-toggle">▸</span>`;
-
-          const itemDetail = document.createElement('div');
-          itemDetail.className = 'item-detail';
-          itemDetail.style.display = 'none';
-          itemDetail.innerHTML = `
-            <div class="item-desc"><strong>📖 O que estudar:</strong><div class="desc-bullets">${item.d.replace(/\n/g,'<br>')}</div></div>
-            <div class="search-terms">🔍 Termos de busca:<br>${item.s.split('|').map(t=>'• '+t.trim()).join('<br>')}</div>
-          `;
-
-          itemBtn.addEventListener('click', () => toggle(itemBtn, itemDetail));
-          itemDiv.appendChild(itemBtn);
-          itemDiv.appendChild(itemDetail);
-          topicContent.appendChild(itemDiv);
-        });
-
-        topicBtn.addEventListener('click', () => toggle(topicBtn, topicContent));
-        topicDiv.appendChild(topicBtn);
-        topicDiv.appendChild(topicContent);
-        areaContent.appendChild(topicDiv);
-      });
-
-      // Action bar: projects + quiz at AREA level
-      const areaKey = area.name.replace(/^[^\w\s]+\s*/u, '').trim();
-      const hasProjects = typeof PROJECTS !== 'undefined' && Object.keys(PROJECTS).find(k => areaKey.includes(k) || k.includes(areaKey));
-      const quizKey = typeof QUIZZES !== 'undefined' && Object.keys(QUIZZES).find(k => areaKey.includes(k) || k.includes(areaKey));
-
-      if (hasProjects || quizKey) {
-        const actionBar = document.createElement('div');
-        actionBar.className = 'area-actions';
-
-        if (hasProjects) {
-          const projData = PROJECTS[hasProjects];
-          // Basic project
-          const basicBtn = document.createElement('button');
-          basicBtn.className = 'project-btn project-basic';
-          basicBtn.textContent = projData.basic.title;
-          basicBtn.addEventListener('click', (e) => { e.stopPropagation(); openProject(projData.basic); });
-          actionBar.appendChild(basicBtn);
-
-          // Advanced project
-          const advBtn = document.createElement('button');
-          advBtn.className = 'project-btn project-advanced';
-          advBtn.textContent = projData.advanced.title;
-          advBtn.addEventListener('click', (e) => { e.stopPropagation(); openProject(projData.advanced); });
-          actionBar.appendChild(advBtn);
-        }
-
-        if (quizKey) {
-          const quizBtn = document.createElement('button');
-          quizBtn.className = 'quiz-btn';
-          quizBtn.textContent = '📝 Fazer Prova';
-          quizBtn.addEventListener('click', (e) => { e.stopPropagation(); openQuiz(quizKey); });
-          actionBar.appendChild(quizBtn);
-        }
-
-        areaContent.appendChild(actionBar);
-      }
-
-      areaBtn.addEventListener('click', () => toggle(areaBtn, areaContent));
-      areaDiv.appendChild(areaBtn);
-      areaDiv.appendChild(areaContent);
-      content.appendChild(areaDiv);
-    });
-
-    // FINAL EXAM + PROJECT for levels that have them
-    if (typeof FINAL_LEVEL !== 'undefined' && FINAL_LEVEL[level.css]) {
-      const finalData = FINAL_LEVEL[level.css];
-      const levelNames = {green:'Iniciante',yellow:'Intermediário',orange:'Avançado',red:'Muito Avançado',blue:'Academia',purple:'Carreira'};
-      const levelLabel = levelNames[level.css] || level.name;
-      const finalBar = document.createElement('div');
-      finalBar.className = 'final-actions';
-
-      const projBtn = document.createElement('button');
-      projBtn.className = 'final-btn final-project';
-      projBtn.textContent = '🏆 Projeto Final — ' + levelLabel;
-      projBtn.addEventListener('click', (e) => { e.stopPropagation(); openProject(finalData.project); });
-      finalBar.appendChild(projBtn);
-
-      const examBtn = document.createElement('button');
-      examBtn.className = 'final-btn final-exam';
-      examBtn.textContent = '🎓 Prova Final — ' + levelLabel;
-      examBtn.addEventListener('click', (e) => { e.stopPropagation(); openQuiz('__FINAL_' + level.css.toUpperCase() + '__'); });
-      finalBar.appendChild(examBtn);
-
-      content.appendChild(finalBar);
-    }
-
-    btn.addEventListener('click', () => toggle(btn, content));
-    section.appendChild(btn);
-    section.appendChild(content);
-    roadmap.appendChild(section);
-  });
-
-  // Search
-  let debounce;
-  searchInput.addEventListener('input', function() {
-    clearTimeout(debounce);
-    debounce = setTimeout(() => doSearch(this.value.trim()), 200);
-  });
-
-  function doSearch(q) {
-    if (q.length < 2) {
-      searchResults.style.display = 'none';
-      roadmap.style.display = 'block';
-      return;
-    }
-    const lower = q.toLowerCase();
-    const results = [];
-
-    ROADMAP.forEach(level => {
-      level.areas.forEach(area => {
-        area.topics.forEach(topic => {
-          // Search in books
-          topic.books.forEach(book => {
-            if (book.toLowerCase().includes(lower)) {
-              results.push({
-                path: `${level.name} > ${area.name} > ${topic.name}`,
-                title: `📚 ${book}`,
-                detail: `Livro recomendado no topico "${topic.name}"`,
-                search: ''
-              });
-            }
-          });
-          // Search in items
-          topic.items.forEach(item => {
-            const match = item.w.toLowerCase().includes(lower)
-              || item.d.toLowerCase().includes(lower)
-              || item.s.toLowerCase().includes(lower);
-            if (match) {
-              results.push({
-                path: `${level.name} > ${area.name} > ${topic.name}`,
-                title: item.w,
-                detail: item.d,
-                search: item.s
-              });
-            }
-          });
-        });
-      });
-    });
-
-    if (results.length === 0) {
-      searchResults.innerHTML = `<div class="sr-count">Nenhum resultado para "${q}"</div>`;
-    } else {
-      const shown = results.slice(0, 20);
-      searchResults.innerHTML = `<div class="sr-count">${results.length} resultado${results.length > 1 ? 's' : ''} para "${q}"${results.length > 20 ? ' (mostrando 20)' : ''}</div>`
-        + shown.map(r => `
-          <div class="sr-item">
-            <div class="sr-path">${r.path}</div>
-            <div class="sr-title">${highlight(r.title, lower)}</div>
-            <div class="sr-detail">${highlight(r.detail.replace(/\n/g,'<br>'), lower)}</div>
-            ${r.search ? `<div class="sr-search">🔍 ${highlight(r.search, lower)}</div>` : ''}
-          </div>
-        `).join('');
-    }
-    searchResults.style.display = 'block';
-    roadmap.style.display = 'none';
-  }
-
-  function highlight(text, term) {
-    if (!term) return text;
-    const regex = new RegExp(`(${term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
-    return text.replace(regex, '<mark style="background:rgba(96,165,250,0.25);color:#fff;border-radius:2px;padding:0 2px">$1</mark>');
-  }
+let db;searchInput.addEventListener('input',function(){clearTimeout(db);db=setTimeout(()=>doS(this.value.trim()),200)});
+function doS(q){if(q.length<2){searchResults.style.display='none';roadmap.style.display='block';return}
+const l=q.toLowerCase();const res=[];
+ROADMAP.forEach(lv=>{lv.areas.forEach(a=>{a.topics.forEach(t=>{
+t.books.forEach(b=>{if(b.toLowerCase().includes(l))res.push({path:`${lv.name} > ${a.name} > ${t.name}`,title:`📚 ${b}`,detail:`Livro no tópico "${t.name}"`,search:''})});
+t.items.forEach(it=>{if((it.w+it.d+it.s).toLowerCase().includes(l))res.push({path:`${lv.name} > ${a.name} > ${t.name}`,title:it.w,detail:it.d,search:it.s})})})})});
+if(!res.length){searchResults.innerHTML=`<div class="sr-count">Nenhum resultado para "${q}"</div>`}else{
+const sh=res.slice(0,20);searchResults.innerHTML=`<div class="sr-count">${res.length} resultado${res.length>1?'s':''} para "${q}"${res.length>20?' (mostrando 20)':''}</div>`+sh.map(r=>`<div class="sr-item"><div class="sr-path">${r.path}</div><div class="sr-title">${hl(r.title,l)}</div><div class="sr-detail">${hl(r.detail.replace(/\n/g,'<br>'),l)}</div>${r.search?`<div class="sr-search">${mSL(r.search)}</div>`:''}</div>`).join('')}
+searchResults.style.display='block';roadmap.style.display='none'}
+function hl(t,q){if(!q)return t;return t.replace(new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`,'gi'),'<mark>$1</mark>')}
 })();
 
-// ============================================================
-// QUIZ SYSTEM
-// ============================================================
-function openQuiz(topicName) {
-  const questions = QUIZZES[topicName];
-  if (!questions) return;
+function openQuiz(tn){const qs=QUIZZES[tn];if(!qs)return;const iF=tn.startsWith('__FINAL_');const tot=qs.length;const mp=Math.ceil(tot*0.8);
+const ln={GREEN:'Iniciante',YELLOW:'Intermediário',ORANGE:'Avançado',RED:'Muito Avançado',BLUE:'Academia',PURPLE:'Carreira'};
+const dn=iF?'Prova Final — '+(ln[tn.replace('__FINAL_','').replace('__','')]||tn):tn;
+const ov=document.createElement('div');ov.className='quiz-overlay';const mo=document.createElement('div');mo.className='quiz-modal';
+let h=`<h2>${iF?'🎓':'📝'} ${dn}</h2><p class="quiz-info">${tot} perguntas · 80% (${mp}/${tot}) para aprovação</p><form id="quizForm">`;
+qs.forEach((q,i)=>{h+=`<div class="quiz-question"><p class="quiz-q"><strong>${i+1}.</strong> ${q.q}</p>`;q.o.forEach((o,oi)=>{h+=`<label class="quiz-option"><input type="radio" name="q${i}" value="${oi}" required><span>${o}</span></label>`});h+=`</div>`});
+h+=`<div class="quiz-actions"><button type="submit" class="quiz-submit">✅ Corrigir</button><button type="button" class="quiz-close" onclick="this.closest('.quiz-overlay').remove()">❌ Cancelar</button></div></form>`;
+mo.innerHTML=h;ov.appendChild(mo);document.body.appendChild(ov);
+document.getElementById('quizForm').addEventListener('submit',function(e){e.preventDefault();let c=0;qs.forEach((q,i)=>{const s=this.querySelector(`input[name="q${i}"]:checked`);if(s&&parseInt(s.value)===q.a)c++});
+const pc=Math.round(c/tot*100);const pa=pc>=80;
+try{const r=JSON.parse(localStorage.getItem('roadmap_quizzes')||'{}');r[tn]={score:c,total:tot,pct:pc,passed:pa,date:new Date().toISOString().split('T')[0]};localStorage.setItem('roadmap_quizzes',JSON.stringify(r))}catch(e){}
+mo.innerHTML=`<div class="quiz-result ${pa?'quiz-pass':'quiz-fail'}"><h2>${pa?'🎉 APROVADO!':'❌ REPROVADO'}</h2><div class="quiz-score">${c}/${tot}</div><div class="quiz-pct">${pc}%</div><p>${pa?'Parabéns! Resultado salvo.':'Precisa de 80% ('+mp+'/'+tot+'). Revise e tente novamente!'}</p><button class="quiz-close-btn" onclick="this.closest('.quiz-overlay').remove();location.reload();">Fechar</button></div>`});
+ov.addEventListener('click',e=>{if(e.target===ov)ov.remove()})}
 
-  const isFinal = topicName === '__FINAL_INICIANTE__';
-  const total = questions.length;
-  const minPass = Math.ceil(total * 0.8);
-  const displayName = isFinal ? 'Prova Final — Iniciante' : topicName;
-
-  // Create modal
-  const overlay = document.createElement('div');
-  overlay.className = 'quiz-overlay';
-  
-  const modal = document.createElement('div');
-  modal.className = 'quiz-modal';
-  
-  let html = `<h2>${isFinal ? '🎓' : '📝'} ${displayName}</h2>
-    <p class="quiz-info">${total} perguntas • Mínimo 80% (${minPass}/${total}) para aprovação • Não mostra quais errou</p>
-    <form id="quizForm">`;
-  
-  questions.forEach((q, i) => {
-    html += `<div class="quiz-question">
-      <p class="quiz-q"><strong>${i+1}.</strong> ${q.q}</p>`;
-    q.o.forEach((opt, oi) => {
-      html += `<label class="quiz-option">
-        <input type="radio" name="q${i}" value="${oi}" required>
-        <span>${opt}</span>
-      </label>`;
-    });
-    html += `</div>`;
-  });
-  
-  html += `<div class="quiz-actions">
-    <button type="submit" class="quiz-submit">✅ Corrigir Prova</button>
-    <button type="button" class="quiz-close" onclick="this.closest('.quiz-overlay').remove()">❌ Cancelar</button>
-  </div></form>`;
-  
-  modal.innerHTML = html;
-  overlay.appendChild(modal);
-  document.body.appendChild(overlay);
-  
-  // Handle submit
-  document.getElementById('quizForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    let correct = 0;
-    questions.forEach((q, i) => {
-      const selected = this.querySelector(`input[name="q${i}"]:checked`);
-      if (selected && parseInt(selected.value) === q.a) correct++;
-    });
-    
-    const pct = Math.round(correct / total * 100);
-    const passed = pct >= 80;
-    
-    modal.innerHTML = `
-      <div class="quiz-result ${passed ? 'quiz-pass' : 'quiz-fail'}">
-        <h2>${passed ? '🎉 APROVADO!' : '❌ REPROVADO'}</h2>
-        <div class="quiz-score">${correct}/${total}</div>
-        <div class="quiz-pct">${pct}%</div>
-        <p>${passed 
-          ? (isFinal ? 'Parabéns! Você completou o nível Iniciante! Hora de avançar para o Intermediário!' : 'Parabéns! Você domina esta área. Siga para a próxima!')
-          : `Você precisa de pelo menos 80% (${minPass}/${total}). Revise o conteúdo e tente novamente!`}</p>
-        <button class="quiz-close-btn" onclick="this.closest('.quiz-overlay').remove()">Fechar</button>
-      </div>`;
-  });
-  
-  // Close on overlay click
-  overlay.addEventListener('click', (e) => {
-    if (e.target === overlay) overlay.remove();
-  });
-}
-
-// ============================================================
-// PROJECT MODAL
-// ============================================================
-function openProject(proj) {
-  const overlay = document.createElement('div');
-  overlay.className = 'quiz-overlay';
-  
-  const modal = document.createElement('div');
-  modal.className = 'quiz-modal project-modal';
-  
-  modal.innerHTML = `
-    <h2>${proj.title}</h2>
-    <div class="project-section">
-      <strong>📋 Descrição do Projeto:</strong>
-      <p>${proj.desc}</p>
-    </div>
-    <div class="project-section">
-      <strong>📦 Entregável:</strong>
-      <p>${proj.deliverable}</p>
-    </div>
-    <div class="quiz-actions">
-      <button class="quiz-close-btn" onclick="this.closest('.quiz-overlay').remove()">Fechar</button>
-    </div>`;
-  
-  overlay.appendChild(modal);
-  document.body.appendChild(overlay);
-  
-  overlay.addEventListener('click', (e) => {
-    if (e.target === overlay) overlay.remove();
-  });
-}
+function openProject(p){const ov=document.createElement('div');ov.className='quiz-overlay';const mo=document.createElement('div');mo.className='quiz-modal project-modal';
+mo.innerHTML=`<h2>${p.title}</h2><div class="project-section"><strong>📋 Descrição:</strong><p>${p.desc.replace(/\n/g,'<br>')}</p></div><div class="project-section"><strong>📦 Entregável:</strong><p>${p.deliverable}</p></div><div class="quiz-actions"><button class="quiz-close-btn" onclick="this.closest('.quiz-overlay').remove()">Fechar</button></div>`;
+ov.appendChild(mo);document.body.appendChild(ov);ov.addEventListener('click',e=>{if(e.target===ov)ov.remove()})}

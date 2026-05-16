@@ -161,7 +161,7 @@ PROJECTS["DevSecOps & Seguranca"] = {
 };
 
 PROJECTS["Ethical Hacking: Web & Redes"] = {
-  basic:{title:"🟢 Pentest Completo do OWASP Juice Shop",desc:"Execute pentest completo no Juice Shop: reconnaissance (nmap, whatweb), exploração (SQLi, XSS, CSRF, SSRF, IDOR). Para cada vulnerabilidade: evidência, impacto (CVSS), reprodução e recomendação. Escreva relatório profissional seguindo template de pentest.",deliverable:"Relatório de pentest com 10+ vulnerabilidades, evidências, CVSS scoring e recomendações"},
+  basic:{title:"🟢 Lab de Vulnerabilidades Web (DVWA/Juice Shop)",desc:"Configure ambiente de prática: instale DVWA ou Juice Shop em Docker. Para 5 tipos de vulnerabilidade (SQL Injection, XSS refletido, XSS armazenado, CSRF, IDOR), faça: 1) entenda a vulnerabilidade, 2) explore no nível fácil, 3) explore no nível médio, 4) documente como funciona e como corrigir. Use Burp Suite Community para interceptar requests. Escreva writeup para cada vulnerabilidade.",deliverable:"5 writeups de vulnerabilidades web com screenshots, passos de reprodução, explicação técnica e recomendação de correção"},
   advanced:{title:"🔴 Rede Vulnerável + Lateral Movement Lab",desc:"Monte lab com 3+ VMs (atacante Kali + 2 alvos Windows/Linux). Execute: network scanning, exploitation de serviço vulnerável, privilege escalation, credential dumping, lateral movement para segunda máquina. Documente kill chain completa com evidências.",deliverable:"Lab de 3+ VMs, kill chain documentada, evidências de cada fase e relatório com mitigações"}
 };
 
@@ -183,11 +183,6 @@ PROJECTS["MLOps & Producao"] = {
 PROJECTS["Pesquisa & Fronteira"] = {
   basic:{title:"🟢 Agente de RL para Jogo (Gymnasium)",desc:"Treine agente de reinforcement learning para jogar ambiente do Gymnasium (CartPole, LunarLander ou Atari). Implemente DQN do zero em PyTorch. Compare com PPO do Stable-Baselines3. Visualize: reward curve, policy learned, vídeo do agente jogando.",deliverable:"Notebook com DQN do zero, comparação com PPO, gráficos de treino e vídeo do agente"},
   advanced:{title:"🔴 Circuito Quântico: Algoritmo de Deutsch-Jozsa em Qiskit",desc:"Implemente algoritmo de Deutsch-Jozsa em Qiskit: construa circuito com portas Hadamard, oracles constante e balanceado, medição. Execute no simulador e em hardware real da IBM Quantum. Compare resultados. Explique passo a passo com diagramas de circuito e vetores de estado.",deliverable:"Notebook Qiskit com circuito, execução em simulador e hardware real, diagramas e explicação pedagógica"}
-};
-
-PROJECTS["Ethical Hacking: Cloud, Defesa & Carreira"] = {
-  basic:{title:"🟢 Lab de Forense Digital Completo",desc:"Monte lab de forense: adquira imagem de disco (dd/FTK Imager), analise com Autopsy (timeline, file carving, deleted files), faça memory dump e analise com Volatility (processos, DLLs, conexões). Analise PCAP com Wireshark. Escreva relatório forense com chain of custody.",deliverable:"Relatório forense completo com análise de disco, memória e rede, timeline unificada e chain of custody"},
-  advanced:{title:"🔴 Cloud Pentest + Incident Response Simulado",desc:"Monte ambiente cloud vulnerável (CloudGoat/flAWS). Execute: enumeração IAM, escalação de privilégios, exfiltração de S3, IMDS exploitation. Depois atue como blue team: detecte os ataques via CloudTrail logs, construa IOCs, execute incident response (containment, eradication, recovery). Escreva relatório dual (red + blue).",deliverable:"Relatório dual red/blue team com exploits, detecção, IOCs, incident response e recomendações de hardening"}
 };
 
 PROJECTS["Escrita e Metodologia Cientifica"] = {
@@ -213,11 +208,6 @@ PROJECTS["Doutorado"] = {
 PROJECTS["Ferramentas e Recursos Academicos"] = {
   basic:{title:"🟢 Setup Acadêmico Completo",desc:"Configure ambiente de pesquisa: Overleaf com template de conferência (ACM/IEEE), Zotero com 20+ papers organizados em coleções, ORCID configurado, perfil Google Scholar criado, Jupyter Notebook com análise reproduzível de dataset público. Documente workflow em README.",deliverable:"Ambiente configurado: Overleaf, Zotero com 20+ papers, ORCID, Google Scholar e notebook reproduzível"},
   advanced:{title:"🔴 Pipeline de Pesquisa Reproduzível",desc:"Construa pipeline de pesquisa reproduzível completo: repo Git com código, DVC para dados, Makefile/Snakemake para pipeline, Docker para ambiente, Jupyter notebooks com análise, LaTeX para paper, CI que roda experimentos e gera figuras. Qualquer pessoa clona e reproduz.",deliverable:"Repositório Git com pipeline reproduzível: Docker, DVC, Make, notebooks, LaTeX e CI completo"}
-};
-
-PROJECTS["Desenvolvimento de Carreira Tech"] = {
-  basic:{title:"🟢 Plano de Estudo Pessoal de 12 Meses",desc:"Crie roadmap pessoal de estudo: auto-avaliação de skills (heatmap), definir 3 objetivos de carreira, mapear gaps, selecionar recursos (cursos, livros, projetos) por trimestre. Use spaced repetition (Anki) para conceitos. Revisão mensal de progresso. Documente publicamente.",deliverable:"Roadmap pessoal de 12 meses com heatmap de skills, recursos por trimestre e sistema de revisão"},
-  advanced:{title:"🔴 Portfolio Profissional Completo",desc:"Construa presença profissional completa: GitHub com 5+ projetos showcasing diferentes habilidades, site pessoal (blog técnico com 3+ artigos), LinkedIn otimizado, README de perfil, contribuição a open source (3+ PRs merged), writeup de CTF ou artigo técnico publicado.",deliverable:"GitHub com 5+ projetos, site pessoal com blog, LinkedIn otimizado, contribuições open source e artigo técnico"}
 };
 
 PROJECTS["Lideranca & Gestao"] = {
@@ -273,5 +263,25 @@ PROJECTS["Go (Golang)"] = {
 PROJECTS["Fisica & Quimica"] = {
   basic:{title:"🟢 Simulações de Física em Python",desc:"Crie um Jupyter Notebook com 5 simulações de física usando Python + matplotlib: 1) lançamento oblíquo (trajetória parabólica com diferentes ângulos), 2) circuito RC (carga/descarga do capacitor com gráfico exponencial), 3) ondas estacionárias (animação com matplotlib.animation), 4) Lei de Ohm interativa (variar V e R, mostrar I), 5) espectro eletromagnético (visualização das frequências). Cada simulação com: equações, código comentado, gráfico e explicação do fenômeno.",deliverable:"Jupyter Notebook com 5 simulações de física, gráficos animados matplotlib e equações explicadas"},
   advanced:{title:"🔴 Simulador de Circuito Elétrico em Python",desc:"Construa um simulador de circuitos DC em Python (pode usar tkinter para interface gráfica ou Jupyter widgets). O usuário define componentes (fonte de tensão, resistores em série/paralelo) e o programa calcula: corrente em cada ramo (Kirchhoff), tensão em cada componente, potência dissipada. Valide com exemplos do livro. Visualize o circuito como grafo com networkx. Inclua pelo menos 5 circuitos de exemplo pré-configurados.",deliverable:"Simulador Python de circuitos DC com interface, cálculos de Kirchhoff, visualização e 5 exemplos"}
+};
+
+PROJECTS["Forense Digital & Cloud Security"] = {
+  basic:{title:"🟢 Lab de Forense de Disco + Cloud Enumeration",desc:"Monte lab de forense: adquira imagem de disco (dd/FTK Imager de VM preparada), analise com Autopsy (timeline, file carving, deleted files, browser history). Em paralelo, configure ambiente cloud vulnerável (flAWS.cloud ou CloudGoat) e faça enumeração: listar buckets S3 públicos, verificar policies IAM, encontrar credenciais expostas. Documente com chain of custody e screenshots.",deliverable:"Relatório de forense de disco com timeline + enumeração de cloud com achados, chain of custody e evidências"},
+  advanced:{title:"🔴 Incident Response Simulado: Ataque Cloud + Forense",desc:"Simule incidente completo: configure CloudGoat, execute ataque (escalação IAM, exfiltração S3), depois atue como blue team. Use CloudTrail logs para reconstruir timeline do ataque, identifique IOCs, execute containment (revogar credenciais, isolar recursos). Faça aquisição forense do disco da instância comprometida, analise com Autopsy. Escreva relatório de incident response completo.",deliverable:"Relatório de IR com timeline de ataque via CloudTrail, análise forense de disco, IOCs e recomendações de remediação"}
+};
+
+PROJECTS["Seguranca Defensiva, Forense Avancada & Blue Team"] = {
+  basic:{title:"🟢 Lab de Memory Forensics + Network Analysis",desc:"Faça dump de memória de VM infectada (com malware de treinamento) usando WinPmem/LiME. Analise com Volatility 3: liste processos (pslist/psscan), encontre processos ocultos, extraia DLLs suspeitas, verifique conexões de rede (netscan). Em paralelo, capture PCAP com tcpdump e analise com Wireshark: identifique C2 communication, DNS tunneling, data exfiltration. Correlacione achados memória + rede.",deliverable:"Relatório com análise de memória (Volatility) + rede (Wireshark), processos maliciosos identificados e correlação de evidências"},
+  advanced:{title:"🔴 SOC Analyst Simulation: Threat Hunting + DFIR",desc:"Monte mini-SOC: configure ELK Stack (Elasticsearch + Logstash + Kibana) para ingestão de logs. Injete logs de ataque simulado (Atomic Red Team ou CALDERA). Execute threat hunting: crie hipóteses, busque IOCs nos logs, identifique TTPs (MITRE ATT&CK). Quando encontrar evidência de comprometimento, execute DFIR completo: memory dump + disk image + network capture. Escreva relatório dual: threat hunting report + incident response report.",deliverable:"Mini-SOC com ELK, threat hunting report com TTPs mapeados ao MITRE ATT&CK, e relatório DFIR completo"}
+};
+
+PROJECTS["Aprendizado & Preparacao de Carreira"] = {
+  basic:{title:"🟢 Plano de Estudo Pessoal de 12 Meses",desc:"Crie roadmap pessoal: auto-avaliação de skills (heatmap), definir 3 objetivos de carreira, mapear gaps, selecionar recursos (cursos, livros, projetos) por trimestre. Use spaced repetition (Anki) para conceitos. Revisão mensal de progresso. Documente publicamente.",deliverable:"Roadmap pessoal de 12 meses com heatmap de skills, recursos por trimestre e sistema de revisão"},
+  advanced:{title:"🔴 Portfolio Profissional Completo",desc:"Construa presença profissional completa: GitHub com 5+ projetos showcasing diferentes habilidades, site pessoal (blog técnico com 3+ artigos), LinkedIn otimizado, README de perfil, contribuição a open source (3+ PRs merged), writeup de CTF ou artigo técnico publicado.",deliverable:"GitHub com 5+ projetos, site pessoal com blog, LinkedIn otimizado, contribuições open source e artigo técnico"}
+};
+
+PROJECTS["Trilhas, Crescimento & Transicoes"] = {
+  basic:{title:"🟢 Mapeamento de Trilha de Carreira",desc:"Pesquise e documente 3 trilhas de carreira em tech que te interessam (ex: backend dev, security engineer, ML engineer). Para cada: perfil do profissional, skills necessários, ferramentas/linguagens, certificações relevantes, faixa salarial (Brasil e exterior), como é o dia a dia, como começar. Entreviste (ou pesquise depoimentos de) 1 profissional de cada trilha.",deliverable:"Documento com 3 trilhas mapeadas, skills, salários, certificações e depoimentos/pesquisas de profissionais"},
+  advanced:{title:"🔴 Plano de Transição com Evidências",desc:"Escolha uma transição de carreira (ex: dev → security, dev → ML, academia → indústria). Crie plano detalhado: gap analysis (o que já sabe vs o que precisa), cronograma de 6 meses com milestones, 3 projetos que demonstram a nova skill, certificação target, networking plan. Execute pelo menos o primeiro milestone e documente resultados.",deliverable:"Plano de transição com gap analysis, cronograma, primeiro milestone executado e evidências de progresso"}
 };
 
