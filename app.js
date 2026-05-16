@@ -99,7 +99,7 @@
           itemDetail.className = 'item-detail';
           itemDetail.style.display = 'none';
           itemDetail.innerHTML = `
-            <strong>📖 O que estudar:</strong> ${item.d}
+            <div class="item-desc"><strong>📖 O que estudar:</strong><div class="desc-bullets">${item.d.replace(/\n/g,'<br>')}</div></div>
             <div class="search-terms">🔍 Termos de busca:<br>${item.s.split('|').map(t=>'• '+t.trim()).join('<br>')}</div>
           `;
 
@@ -244,7 +244,7 @@
           <div class="sr-item">
             <div class="sr-path">${r.path}</div>
             <div class="sr-title">${highlight(r.title, lower)}</div>
-            <div class="sr-detail">${highlight(r.detail, lower)}</div>
+            <div class="sr-detail">${highlight(r.detail.replace(/\n/g,'<br>'), lower)}</div>
             ${r.search ? `<div class="sr-search">🔍 ${highlight(r.search, lower)}</div>` : ''}
           </div>
         `).join('');

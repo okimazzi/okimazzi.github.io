@@ -583,3 +583,8 @@ footer {
 }
 .final-project { border-left: 4px solid #4ade80; }
 .final-exam { border-left: 4px solid #60a5fa; }
+
+/* Bullet point descriptions */
+.item-desc { margin-bottom: 0.8rem; }
+.desc-bullets { margin-top: 0.4rem; padding-left: 0.2rem; line-height: 1.7; }
+.desc-bullets br + br { display: none; }
