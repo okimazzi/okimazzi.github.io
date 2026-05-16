@@ -1,118 +1,47 @@
-// projects.js — 2 projetos por área do Iniciante (básico + avançado)
-const PROJECTS = {
+const PROJECTS = {};
 
-"Fundamentos de Computacao": {
-  basic: {
-    title: "🟢 Simulador de Binário",
-    desc: "Crie uma página HTML simples onde o usuário digita um número decimal e vê a conversão para binário, octal e hexadecimal passo a passo. Mostre visualmente cada bit ligado/desligado com quadradinhos coloridos. Use só HTML, CSS e JavaScript puro.",
-    deliverable: "Página web interativa com input, conversão ao vivo e visualização de bits"
-  },
-  advanced: {
-    title: "🔴 Simulador de CPU (Fetch-Decode-Execute)",
-    desc: "Construa um simulador visual de CPU simplificada em JavaScript. Ela deve ter registradores (A, B, PC), memória de 16 posições e suportar pelo menos 5 instruções (LOAD, STORE, ADD, SUB, HALT). O usuário escreve um programa em assembly simplificado, clica 'step' e vê o ciclo Fetch→Decode→Execute animado, com destaque nos registradores e memória que mudam.",
-    deliverable: "App web com editor de assembly, visualização de registradores/memória e execução passo a passo"
-  }
-},
-
-"Sistemas Operacionais & Terminal": {
-  basic: {
-    title: "🟢 Cheat Sheet Interativa de Terminal",
-    desc: "Crie um site estático com os 50 comandos Linux mais usados, organizados por categoria (navegação, arquivos, processos, rede, permissões). Cada comando deve ter: sintaxe, exemplo real, e explicação. Adicione busca por filtro e um modo 'quiz' que mostra a descrição e você tenta adivinhar o comando.",
-    deliverable: "Site estático com busca, categorias colapsáveis e modo quiz"
-  },
-  advanced: {
-    title: "🔴 Automatize seu Setup com Dotfiles",
-    desc: "Crie um repositório GitHub de dotfiles completo: .bashrc/.zshrc com aliases úteis, .gitconfig personalizado, script install.sh que detecta o SO (Ubuntu/Fedora/macOS) e instala automaticamente suas ferramentas favoritas (vim, tmux, curl, git, python, node). Inclua um README explicando cada decisão. O script deve ser idempotente (rodar múltiplas vezes sem quebrar).",
-    deliverable: "Repositório GitHub com dotfiles, install.sh multiplataforma e README documentado"
-  }
-},
-
-"Logica de Programacao com Python": {
-  basic: {
-    title: "🟢 Gerenciador de Tarefas CLI",
-    desc: "Crie um app de terminal em Python para gerenciar tarefas. Funcionalidades: adicionar tarefa (com prioridade alta/média/baixa), listar (com filtro por prioridade e status), marcar como concluída, deletar, e salvar/carregar de um arquivo JSON. Use funções organizadas, tratamento de erros, e docstrings.",
-    deliverable: "Script Python funcional com persistência em JSON e menu interativo no terminal"
-  },
-  advanced: {
-    title: "🔴 Web Scraper + Dashboard de Dados",
-    desc: "Escolha um site público (ex: tabela de rankings, preços, clima) e crie um scraper com requests + BeautifulSoup que coleta dados automaticamente. Salve em CSV com timestamp. Depois, crie um segundo script que lê os CSVs e gera gráficos com matplotlib (tendência ao longo do tempo, comparações). Documente tudo em um README com instruções para agendar via cron.",
-    deliverable: "2 scripts Python (scraper + visualizador), CSVs de exemplo, gráficos gerados e README"
-  }
-},
-
-"Matematica Fundamental": {
-  basic: {
-    title: "🟢 Calculadora de Cálculo Visual",
-    desc: "Crie uma página web com JavaScript que plota funções matemáticas (usando Canvas ou uma lib como Chart.js). O usuário digita f(x) = x², 3*sin(x), etc. e vê o gráfico. Adicione funcionalidades: mostrar reta tangente em um ponto (derivada numérica), calcular área sob a curva por aproximação (soma de Riemann) com retângulos visíveis.",
-    deliverable: "App web com plot de funções, reta tangente interativa e visualização de Riemann"
-  },
-  advanced: {
-    title: "🔴 Artigo: Onde a Matemática Aparece na Computação",
-    desc: "Escreva um artigo técnico (2000+ palavras) conectando cada área da matemática que você estudou a aplicações reais em computação. Exemplos: álgebra linear em gráficos 3D e ML, probabilidade em algoritmos randomizados, cálculo em redes neurais (backpropagation), discreta em criptografia. Inclua diagramas, exemplos com código Python curtos, e referências. Publique no GitHub como Markdown ou em um blog pessoal.",
-    deliverable: "Artigo Markdown com diagramas, trechos de código e referências, publicado no GitHub"
-  }
-},
-
-"Fisica & Quimica p/ Engenharia": {
-  basic: {
-    title: "🟢 Simulador de Cinemática 2D",
-    desc: "Crie uma animação web (Canvas/JS) de lançamento oblíquo. O usuário define velocidade inicial e ângulo, clica 'lançar' e vê a trajetória parabólica animada com: posição atual, velocidade (decomposta em vx e vy), altura máxima e alcance. Mostre as equações usadas ao lado da simulação.",
-    deliverable: "App web com animação de projétil, controles de input e painel de equações ao vivo"
-  },
-  advanced: {
-    title: "🔴 Simulador de Circuito Elétrico",
-    desc: "Construa um simulador de circuitos DC simples em JavaScript. O usuário arrasta componentes (fonte, resistor, LED, capacitor) para montar um circuito em série ou paralelo. O app calcula corrente, tensão em cada componente (Lei de Ohm, Kirchhoff) e mostra os valores. Bônus: destaque em vermelho se algum componente receber mais corrente que o permitido.",
-    deliverable: "App web interativa com drag-and-drop de componentes e cálculo automático do circuito"
-  }
-},
-
-"Web, Git & Ferramentas": {
-  basic: {
-    title: "🟢 Portfólio Pessoal no GitHub Pages",
-    desc: "Crie seu site pessoal com HTML, CSS e JS. Deve ter: hero section com seu nome e área de interesse, seção 'sobre', seção de projetos (cards com imagem, título e link), seção de skills com barra de progresso visual, e formulário de contato (pode ser link para email). Totalmente responsivo (mobile-first). Deploy no GitHub Pages.",
-    deliverable: "Site ao vivo no GitHub Pages, responsivo, com pelo menos 3 seções e design original"
-  },
-  advanced: {
-    title: "🔴 CLI Tool com Git Hooks e CI/CD",
-    desc: "Crie uma ferramenta CLI em JavaScript (Node.js) ou Python que faça algo útil (ex: renomear arquivos em lote, gerar relatório de commits do Git, converter Markdown para HTML). Configure: pre-commit hook que roda linter, GitHub Actions que roda testes automaticamente a cada push, e publica release automática com versionamento semântico. README completo com badges.",
-    deliverable: "Repositório com CLI funcional, testes, pre-commit hook, GitHub Actions CI/CD e README com badges"
-  }
-},
-
-"Banco de Dados Introducao": {
-  basic: {
-    title: "🟢 Livraria SQL: Modelagem e Queries",
-    desc: "Modele um banco de dados para uma livraria: tabelas para livros, autores, categorias, clientes e vendas (com relacionamentos 1:N e N:N). Desenhe o diagrama ER no dbdiagram.io. Depois, escreva um arquivo .sql com: CREATE TABLE, INSERT de dados de exemplo (20+ registros), e 15 queries progressivas (SELECT simples, JOINs, GROUP BY, HAVING, subqueries, CTEs).",
-    deliverable: "Diagrama ER + arquivo .sql com schema, dados e 15 queries comentadas"
-  },
-  advanced: {
-    title: "🔴 App Full CRUD com SQLite + Python",
-    desc: "Crie um sistema de gerenciamento de inventário CLI em Python usando SQLite. Funcionalidades: adicionar/editar/deletar produtos (com categoria, preço, quantidade), busca com filtros, relatório de estoque baixo, histórico de alterações (tabela de auditoria com triggers), e exportação para CSV. Use classes para organizar o código (DAO pattern).",
-    deliverable: "App Python funcional com SQLite, CRUD completo, triggers de auditoria e exportação CSV"
-  }
-},
-
-"Eletronica & Hardware": {
-  basic: {
-    title: "🟢 Simulador de Portas Lógicas",
-    desc: "Crie uma página web interativa onde o usuário escolhe uma porta lógica (AND, OR, NOT, NAND, NOR, XOR), define as entradas (0 ou 1) e vê a saída com animação visual (LEDs acendendo). Inclua uma seção que monta circuitos combinando 2-3 portas em sequência e mostra a tabela verdade resultante automaticamente.",
-    deliverable: "App web com portas lógicas visuais, combinação de portas e geração de tabela verdade"
-  },
-  advanced: {
-    title: "🔴 Artigo: Do Transistor ao Processador",
-    desc: "Escreva um artigo técnico ilustrado (2000+ palavras) explicando a jornada do transistor até a CPU: como transistores formam portas lógicas, como portas formam somadores e flip-flops, como flip-flops formam registradores e memória, e como tudo se junta em uma ALU e unidade de controle. Use diagramas em cada nível. Inclua uma seção sobre a Lei de Moore e limites físicos atuais (3nm, quântica). Publique no GitHub.",
-    deliverable: "Artigo Markdown com diagramas em cada camada de abstração, publicado no GitHub"
-  }
-}
-
+PROJECTS["Fundamentos de Computacao"] = {
+  basic:{title:"🟢 Mapa Mental Interativo: Como Computadores Funcionam",desc:"Crie um documento visual (pode ser Markdown com diagramas, Google Slides, ou Canva) explicando tudo que aprendeu sobre fundamentos. Inclua: diagrama do ciclo fetch-decode-execute, tabela de conversão binário-decimal-hexadecimal com exemplos, diagrama de hierarquia de memória (registradores→cache→RAM→SSD), mapa da internet (cliente→DNS→servidor→resposta) e tabela verdade das portas lógicas. Tudo com suas palavras — ensinar é a melhor forma de aprender.",deliverable:"Documento visual com 5+ diagramas próprios cobrindo binário, hardware, CPU, internet e lógica booleana"},
+  advanced:{title:"🔴 Pesquisa: Como um Processador Moderno Funciona",desc:"Pesquise e escreva um relatório técnico (2000+ palavras) aprofundando o que estudou: escolha um processador real (ex: Apple M3, AMD Ryzen 9, Intel Core i9) e descreva sua arquitetura. Inclua: quantos cores/threads, clock speed, tamanho dos caches L1/L2/L3, pipeline, tecnologia de fabricação (nm). Compare com um processador de 10 anos atrás. Explique o que ISA ele usa (ARM vs x86). Use fontes reais (AnandTech, WikiChip, datasheet oficial). Inclua diagramas de bloco.",deliverable:"Relatório técnico com análise de processador real, comparação histórica, diagramas e 5+ fontes citadas"}
 };
 
-// ============================================================
-// INTERMEDIÁRIO — 15 áreas × 2 projetos (básico + avançado)
-// ============================================================
+PROJECTS["Sistemas Operacionais & Terminal"] = {
+  basic:{title:"🟢 Cheat Sheet Interativa de Terminal",desc:"Crie um site estático com os 50 comandos Linux mais usados, organizados por categoria (navegação, arquivos, processos, rede, permissões). Cada comando deve ter: sintaxe, exemplo real, e explicação. Adicione busca por filtro e um modo 'quiz' que mostra a descrição e você tenta adivinhar o comando.",deliverable:"Site estático com busca, categorias colapsáveis e modo quiz"},
+  advanced:{title:"🔴 Automatize seu Setup com Dotfiles",desc:"Crie um repositório GitHub de dotfiles completo: .bashrc/.zshrc com aliases úteis, .gitconfig personalizado, script install.sh que detecta o SO (Ubuntu/Fedora/macOS) e instala automaticamente suas ferramentas favoritas (vim, tmux, curl, git, python, node). Inclua um README explicando cada decisão. O script deve ser idempotente (rodar múltiplas vezes sem quebrar).",deliverable:"Repositório GitHub com dotfiles, install.sh multiplataforma e README documentado"}
+};
+
+PROJECTS["Logica de Programacao com Python"] = {
+  basic:{title:"🟢 Gerenciador de Tarefas CLI",desc:"Crie um app de terminal em Python para gerenciar tarefas. Funcionalidades: adicionar tarefa (com prioridade alta/média/baixa), listar (com filtro por prioridade e status), marcar como concluída, deletar, e salvar/carregar de um arquivo JSON. Use funções organizadas, tratamento de erros, e docstrings.",deliverable:"Script Python funcional com persistência em JSON e menu interativo no terminal"},
+  advanced:{title:"🔴 Web Scraper + Dashboard de Dados",desc:"Escolha um site público (ex: tabela de rankings, preços, clima) e crie um scraper com requests + BeautifulSoup que coleta dados automaticamente. Salve em CSV com timestamp. Depois, crie um segundo script que lê os CSVs e gera gráficos com matplotlib (tendência ao longo do tempo, comparações). Documente tudo em um README com instruções para agendar via cron.",deliverable:"2 scripts Python (scraper + visualizador), CSVs de exemplo, gráficos gerados e README"}
+};
+
+PROJECTS["Matematica Fundamental"] = {
+  basic:{title:"🟢 Caderno de Exercícios Resolvidos em Python",desc:"Crie um Jupyter Notebook com 30+ exercícios resolvidos de matemática usando Python: 10 de álgebra/pré-cálculo (resolver equações com sympy), 5 de matemática discreta (grafos com networkx, contagem), 5 de probabilidade (simulação de Monte Carlo com random), 5 de cálculo (derivadas e integrais com sympy, gráficos com matplotlib) e 5 de álgebra linear (matrizes com numpy). Cada exercício com: enunciado, resolução passo a passo e gráfico quando aplicável.",deliverable:"Jupyter Notebook com 30+ exercícios resolvidos, gráficos matplotlib e código Python comentado"},
+  advanced:{title:"🔴 Artigo: Onde a Matemática Aparece na Computação",desc:"Escreva um artigo técnico (2000+ palavras) conectando cada área da matemática que você estudou a aplicações reais em computação. Exemplos: álgebra linear em gráficos 3D e ML, cálculo em otimização e redes neurais, probabilidade em criptografia e IA, grafos em redes sociais e roteamento, lógica em compiladores e verificação formal. Para cada conexão, inclua um exemplo de código Python simples demonstrando. Mínimo 6 áreas conectadas com exemplos práticos.",deliverable:"Artigo Markdown com 6+ conexões matemática↔computação, exemplos de código Python e referências"}
+};
+
+PROJECTS["Fisica & Quimica p/ Engenharia"] = {
+  basic:{title:"🟢 Simulador de Cinemática 2D",desc:"Crie uma animação web (Canvas/JS) de lançamento oblíquo. O usuário define velocidade inicial e ângulo, clica 'lançar' e vê a trajetória parabólica animada com: posição atual, velocidade (decomposta em vx e vy), altura máxima e alcance. Mostre as equações usadas ao lado da simulação.",deliverable:"App web com animação de projétil, controles de input e painel de equações ao vivo"},
+  advanced:{title:"🔴 Simulador de Circuito Elétrico",desc:"Construa um simulador de circuitos DC simples em JavaScript. O usuário arrasta componentes (fonte, resistor, LED, capacitor) para montar um circuito em série ou paralelo. O app calcula corrente, tensão em cada componente (Lei de Ohm, Kirchhoff) e mostra os valores. Bônus: destaque em vermelho se algum componente receber mais corrente que o permitido.",deliverable:"App web interativa com drag-and-drop de componentes e cálculo automático do circuito"}
+};
+
+PROJECTS["Web, Git & Ferramentas"] = {
+  basic:{title:"🟢 Portfólio Pessoal no GitHub Pages",desc:"Crie seu site pessoal com HTML, CSS e JS. Deve ter: hero section com seu nome e área de interesse, seção 'sobre', seção de projetos (cards com imagem, título e link), seção de skills com barra de progresso visual, e formulário de contato (pode ser link para email). Totalmente responsivo (mobile-first). Deploy no GitHub Pages.",deliverable:"Site ao vivo no GitHub Pages, responsivo, com pelo menos 3 seções e design original"},
+  advanced:{title:"🔴 CLI Tool com Git Hooks e CI/CD",desc:"Crie uma ferramenta CLI em JavaScript (Node.js) ou Python que faça algo útil (ex: renomear arquivos em lote, gerar relatório de commits do Git, converter Markdown para HTML). Configure: pre-commit hook que roda linter, GitHub Actions que roda testes automaticamente a cada push, e publica release automática com versionamento semântico. README completo com badges.",deliverable:"Repositório com CLI funcional, testes, pre-commit hook, GitHub Actions CI/CD e README com badges"}
+};
+
+PROJECTS["Banco de Dados Introducao"] = {
+  basic:{title:"🟢 Livraria SQL: Modelagem e Queries",desc:"Modele um banco de dados para uma livraria: tabelas para livros, autores, categorias, clientes e vendas (com relacionamentos 1:N e N:N). Desenhe o diagrama ER no dbdiagram.io. Depois, escreva um arquivo .sql com: CREATE TABLE, INSERT de dados de exemplo (20+ registros), e 15 queries progressivas (SELECT simples, JOINs, GROUP BY, HAVING, subqueries, CTEs).",deliverable:"Diagrama ER + arquivo .sql com schema, dados e 15 queries comentadas"},
+  advanced:{title:"🔴 App Full CRUD com SQLite + Python",desc:"Crie um sistema de gerenciamento de inventário CLI em Python usando SQLite. Funcionalidades: adicionar/editar/deletar produtos (com categoria, preço, quantidade), busca com filtros, relatório de estoque baixo, histórico de alterações (tabela de auditoria com triggers), e exportação para CSV. Use classes para organizar o código (DAO pattern).",deliverable:"App Python funcional com SQLite, CRUD completo, triggers de auditoria e exportação CSV"}
+};
+
+PROJECTS["Eletronica & Hardware"] = {
+  basic:{title:"🟢 Simulador de Portas Lógicas em Python",desc:"Crie um programa Python que simula portas lógicas: o usuário escolhe a porta (AND, OR, NOT, NAND, NOR, XOR), define entradas (0 ou 1) e vê a saída. Implemente usando funções Python puras (sem bibliotecas). Adicione: modo tabela verdade completa, modo quiz (gera inputs aleatórios, usuário tenta adivinhar saída), simplificador de expressão booleana simples. Extra: simule um somador completo de 4 bits usando suas portas.",deliverable:"Programa Python com simulação de 6 portas lógicas, tabela verdade, modo quiz e somador de 4 bits"},
+  advanced:{title:"🔴 Artigo: Do Transistor ao Processador",desc:"Escreva um artigo técnico ilustrado (2000+ palavras) explicando a jornada do transistor até a CPU: como transistores formam portas lógicas, como portas formam somadores e flip-flops, como flip-flops formam registradores e memória, como tudo junto forma uma CPU simples. Inclua diagramas feitos por você (pode ser draw.io, Canva ou papel escaneado): diagrama de transistor NAND, somador completo, flip-flop D, registrador de 4 bits, e diagrama de CPU simplificada.",deliverable:"Artigo técnico com 5+ diagramas próprios explicando transistor→portas→CPU, com referências"}
+};
 
 PROJECTS["Estruturas de Dados & Algoritmos"] = {
-  basic: {title:"🟢 Visualizador de Algoritmos de Ordenação",desc:"Crie uma página web que anima Bubble Sort, Merge Sort e Quick Sort passo a passo. O usuário escolhe o algoritmo, tamanho do array e velocidade. Barras coloridas representam valores, e cada swap/comparação é animada. Mostre contador de comparações e tempo.",deliverable:"App web com animação de 3+ algoritmos, controles de velocidade e contadores de operações"},
+  basic:{title:"🟢 Visualizador de Algoritmos de Ordenação",desc:"Crie uma página web que anima Bubble Sort, Merge Sort e Quick Sort passo a passo. O usuário escolhe o algoritmo, tamanho do array e velocidade. Barras coloridas representam valores, e cada swap/comparação é animada. Mostre contador de comparações e tempo.",deliverable:"App web com animação de 3+ algoritmos, controles de velocidade e contadores de operações"},
   advanced:{title:"🔴 Resolvedor de Labirintos com BFS/DFS/A*",desc:"Construa app web onde o usuário desenha labirintos clicando em células (paredes/caminhos). Implemente BFS, DFS e A* para encontrar o caminho. Anime a exploração (células visitadas em azul, caminho final em verde). Compare performance dos 3 algoritmos (nós visitados, tempo).",deliverable:"App web interativa com editor de labirinto, 3 algoritmos animados e painel de comparação"}
 };
 
@@ -186,10 +115,6 @@ PROJECTS["Embarcados, Hardware & Automacao"] = {
   advanced:{title:"🔴 Robô Seguidor de Linha com PID em FPGA",desc:"Projete seguidor de linha: sensores IR leem a linha, lógica PID implementada em VHDL/Verilog no FPGA (ou Arduino se não tiver FPGA), motores DC com ponte H. Documente: esquemático, código HDL/C, tuning do PID (Kp, Ki, Kd), vídeo funcionando e análise de performance.",deliverable:"Robô funcional com PID, código HDL, esquemático, vídeo demonstrativo e relatório técnico"}
 };
 
-// ============================================================
-// AVANÇADO — 11 áreas × 2 projetos (básico + avançado)
-// ============================================================
-
 PROJECTS["Arquitetura de Software"] = {
   basic:{title:"🟢 Design de Sistema: URL Shortener",desc:"Projete e implemente um encurtador de URL completo: API REST, geração de hash único, redirecionamento, analytics (cliques por dia/região). Documente decisões de design: cache (Redis), banco (PostgreSQL), rate limiting. Escreva System Design Document com diagramas de arquitetura.",deliverable:"App deployada com API, Redis cache, analytics e System Design Document com diagramas"},
   advanced:{title:"🔴 Clone Simplificado do Twitter com Microsserviços",desc:"Projete sistema distribuído com 3+ microsserviços: User Service, Tweet Service, Timeline Service. Comunicação via events (Kafka/RabbitMQ). API Gateway com rate limiting. Documente: CAP tradeoffs, sharding strategy, caching layers, read/write paths. Load test com k6.",deliverable:"Monorepo com 3+ microsserviços, message broker, API gateway, load tests e design document completo"}
@@ -245,10 +170,6 @@ PROJECTS["Robotica, IoT & Automacao Avancada"] = {
   advanced:{title:"🔴 Sistema IoT Industrial com Digital Twin",desc:"Construa sistema IoT de monitoramento industrial: sensores ESP32 medem vibração e temperatura de motor, enviam via MQTT para gateway, pipeline processa e alimenta digital twin 3D (Three.js ou Unity). Dashboard com alertas preditivos (anomaly detection com ML). OPC UA para integração.",deliverable:"Hardware IoT, pipeline MQTT, digital twin 3D, ML para anomalias e dashboard com alertas"}
 };
 
-// ============================================================
-// MUITO AVANÇADO — 4 áreas × 2 projetos (básico + avançado)
-// ============================================================
-
 PROJECTS["Sistemas Distribuidos"] = {
   basic:{title:"🟢 Key-Value Store Distribuído",desc:"Implemente key-value store distribuído em Python/Go: 3 nós, consistent hashing para particionamento, replicação com quorum (W=2, R=2, N=3). Cliente faz GET/PUT via HTTP. Simule falha de nó e demonstre que sistema continua funcionando. Visualize o hash ring.",deliverable:"KV store com 3 nós, consistent hashing, replicação quorum, tolerância a falhas e visualização do ring"},
   advanced:{title:"🔴 Implementação de Raft Consensus",desc:"Implemente protocolo Raft do zero: leader election com timeouts aleatórios, log replication, safety, membership changes. Teste com 5 nós simulados. Injete falhas (kill leader, network partition) e demonstre que consenso se mantém. Visualize estado de cada nó em tempo real.",deliverable:"Implementação completa de Raft, test suite com fault injection, visualização de estados e paper review"}
@@ -268,10 +189,6 @@ PROJECTS["Ethical Hacking: Cloud, Defesa & Carreira"] = {
   basic:{title:"🟢 Lab de Forense Digital Completo",desc:"Monte lab de forense: adquira imagem de disco (dd/FTK Imager), analise com Autopsy (timeline, file carving, deleted files), faça memory dump e analise com Volatility (processos, DLLs, conexões). Analise PCAP com Wireshark. Escreva relatório forense com chain of custody.",deliverable:"Relatório forense completo com análise de disco, memória e rede, timeline unificada e chain of custody"},
   advanced:{title:"🔴 Cloud Pentest + Incident Response Simulado",desc:"Monte ambiente cloud vulnerável (CloudGoat/flAWS). Execute: enumeração IAM, escalação de privilégios, exfiltração de S3, IMDS exploitation. Depois atue como blue team: detecte os ataques via CloudTrail logs, construa IOCs, execute incident response (containment, eradication, recovery). Escreva relatório dual (red + blue).",deliverable:"Relatório dual red/blue team com exploits, detecção, IOCs, incident response e recomendações de hardening"}
 };
-
-// ============================================================
-// ACADEMIA & PESQUISA — 5 áreas × 2 projetos
-// ============================================================
 
 PROJECTS["Escrita e Metodologia Cientifica"] = {
   basic:{title:"🟢 Revisão Sistemática Mini (5 papers)",desc:"Escolha tema em computação. Defina pergunta de pesquisa, critérios de inclusão/exclusão. Busque em Google Scholar e ACM/IEEE. Selecione 5 papers, extraia dados em tabela comparativa (abordagem, dataset, resultados). Escreva relatório em LaTeX com BibTeX seguindo template de conferência.",deliverable:"Relatório LaTeX com revisão de 5 papers, tabela comparativa, BibTeX e análise de gaps"},
@@ -297,10 +214,6 @@ PROJECTS["Ferramentas e Recursos Academicos"] = {
   basic:{title:"🟢 Setup Acadêmico Completo",desc:"Configure ambiente de pesquisa: Overleaf com template de conferência (ACM/IEEE), Zotero com 20+ papers organizados em coleções, ORCID configurado, perfil Google Scholar criado, Jupyter Notebook com análise reproduzível de dataset público. Documente workflow em README.",deliverable:"Ambiente configurado: Overleaf, Zotero com 20+ papers, ORCID, Google Scholar e notebook reproduzível"},
   advanced:{title:"🔴 Pipeline de Pesquisa Reproduzível",desc:"Construa pipeline de pesquisa reproduzível completo: repo Git com código, DVC para dados, Makefile/Snakemake para pipeline, Docker para ambiente, Jupyter notebooks com análise, LaTeX para paper, CI que roda experimentos e gera figuras. Qualquer pessoa clona e reproduz.",deliverable:"Repositório Git com pipeline reproduzível: Docker, DVC, Make, notebooks, LaTeX e CI completo"}
 };
-
-// ============================================================
-// CARREIRA & LIDERANÇA — 6 áreas × 2 projetos
-// ============================================================
 
 PROJECTS["Desenvolvimento de Carreira Tech"] = {
   basic:{title:"🟢 Plano de Estudo Pessoal de 12 Meses",desc:"Crie roadmap pessoal de estudo: auto-avaliação de skills (heatmap), definir 3 objetivos de carreira, mapear gaps, selecionar recursos (cursos, livros, projetos) por trimestre. Use spaced repetition (Anki) para conceitos. Revisão mensal de progresso. Documente publicamente.",deliverable:"Roadmap pessoal de 12 meses com heatmap de skills, recursos por trimestre e sistema de revisão"},
@@ -332,47 +245,33 @@ PROJECTS["Estrategia, Negocio & Empreendedorismo"] = {
   advanced:{title:"🔴 Pitch Deck de Startup Técnica",desc:"Crie pitch deck completo para startup de tecnologia: problema, solução, produto demo, mercado (TAM/SAM/SOM), modelo de negócio, traction, time, competidores, financials (projeção 3 anos), ask. Inclua protótipo funcional. Apresente para 3 pessoas e itere.",deliverable:"Pitch deck de 12-15 slides, protótipo funcional, projeção financeira e feedback de 3 apresentações"}
 };
 
-// ============================================================
-// INTERMEDIÁRIO — Redes de Computadores (nova área)
-// ============================================================
-
 PROJECTS["Redes de Computadores"] = {
   basic:{title:"🟢 Lab de Redes: Subnetting + Análise de Pacotes",desc:"Configure rede virtual no Packet Tracer ou GNS3: 3 sub-redes (/24, /25, /26) interligadas por roteador. Configure DHCP, DNS local e firewall com regras. Capture tráfego com Wireshark e analise: identifique handshake TCP, queries DNS, headers HTTP. Documente cada camada OSI vista nos pacotes.",deliverable:"Lab virtual com 3 sub-redes, capturas Wireshark anotadas mostrando cada camada OSI e relatório de análise de pacotes"},
   advanced:{title:"🔴 Rede Corporativa Simulada com VLANs, VPN e Monitoramento",desc:"Projete rede corporativa completa no GNS3/EVE-NG: 4 VLANs (RH, Dev, Servidores, Guest), inter-VLAN routing, NAT para internet, firewall com regras por VLAN, VPN site-to-site (IPSec), servidor DHCP e DNS. Configure Nagios/Zabbix para monitoramento. Documente topologia, tabelas de roteamento, regras de firewall e diagrama de rede.",deliverable:"Rede simulada com VLANs, VPN, firewall, monitoramento, diagrama de topologia e documentação completa"}
 };
-
-// ============================================================
-// INTERMEDIÁRIO — Arquitetura de Computadores (nova área)
-// ============================================================
 
 PROJECTS["Arquitetura de Computadores"] = {
   basic:{title:"🟢 Simulador de CPU Pipeline em Python",desc:"Implemente simulador de CPU com pipeline de 5 estágios (IF/ID/EX/MEM/WB). Carregue programa em assembly simplificado (ADD, SUB, LW, SW, BEQ). Visualize: estado de cada estágio por ciclo, detecte data hazards, implemente forwarding e stalls. Mostre CPI final e compare pipeline vs single-cycle.",deliverable:"Simulador Python com visualização ciclo-a-ciclo do pipeline, detecção de hazards, forwarding e comparação de CPI"},
   advanced:{title:"🔴 Processador RISC-V Simplificado em Verilog/VHDL",desc:"Projete processador RISC-V (RV32I subset) em HDL: datapath com ALU, register file, memória, unidade de controle. Implemente 10+ instruções (ADD, SUB, AND, OR, LW, SW, BEQ, JAL). Simule no Vivado/Icarus Verilog. Opcional: sintetize em FPGA. Documente diagrama de blocos, tabela de controle e testbench.",deliverable:"Processador RISC-V em HDL com 10+ instruções, testbench, simulação funcional e documentação do datapath"}
 };
 
-// ============================================================
-// INTERMEDIÁRIO — Sinais e Sistemas (nova área)
-// ============================================================
-
 PROJECTS["Sinais e Sistemas"] = {
   basic:{title:"🟢 Analisador de Espectro de Áudio em Tempo Real",desc:"Construa analisador que captura áudio do microfone, aplica FFT e mostra espectro de frequências em tempo real. Use Python (pyaudio + numpy + matplotlib) ou web (Web Audio API + Canvas). Identifique frequências dominantes (nota musical). Adicione filtro passa-baixa interativo que o usuário ajusta.",deliverable:"App com visualização de espectro em tempo real, identificação de notas musicais e filtro ajustável"},
   advanced:{title:"🔴 Processador de Sinais: Filtros e Compressão de Áudio",desc:"Implemente do zero em Python: filtro FIR e IIR (passa-baixa, passa-alta), aplique em áudio real. Visualize resposta em frequência e espectrograma antes/depois. Implemente compressão de áudio simplificada: DCT, quantização, reconstrução. Compare qualidade (SNR) em diferentes taxas de compressão. Documente a matemática.",deliverable:"Notebook com filtros FIR/IIR implementados do zero, espectrogramas, compressor de áudio com análise de SNR e documentação matemática"}
 };
 
-// ============================================================
-// INTERMEDIÁRIO — Java & Ecossistema JVM (nova área)
-// ============================================================
-
 PROJECTS["Java & Ecossistema JVM"] = {
   basic:{title:"🟢 API REST com Spring Boot + JPA",desc:"Construa API REST completa com Spring Boot: CRUD de entidades (ex: e-commerce com produtos, categorias, pedidos). Use Spring Data JPA com PostgreSQL, validação com Bean Validation, DTOs, tratamento de erros global (@ControllerAdvice). Testes com JUnit 5 + Mockito. Swagger/OpenAPI para documentação. Docker Compose para banco.",deliverable:"API Spring Boot com JPA, PostgreSQL, Swagger, testes unitários/integração, Docker Compose e README com instruções"},
-  advanced:{title:"🔴 Microsserviço com Spring Cloud e Mensageria",desc:"Construa 2 microsserviços Spring Boot comunicando via RabbitMQ/Kafka: Order Service e Notification Service. Implemente: service discovery (Eureka ou K8s), circuit breaker (Resilience4j), distributed tracing (Micrometer + Zipkin), Spring Security com JWT. Deploy com Docker Compose. Monitore com Actuator + Prometheus.",deliverable:"2 microsserviços Spring Boot com mensageria, circuit breaker, tracing, JWT auth, Docker Compose e monitoring"}
+  advanced:{title:"🔴 Microsserviço com Spring Boot: API + Workers + Monitoring",desc:"Construa sistema com 2 microsserviços Spring Boot comunicando via REST e filas (Spring AMQP com RabbitMQ — ensinado como conceito em Eng. Software). Order Service: CRUD de pedidos com JPA, validação, JWT auth com Spring Security. Notification Service: consome eventos de novos pedidos e envia (simula) notificações. Inclua: circuit breaker com Resilience4j (fallback quando Notification está down), health checks com Actuator, métricas com Micrometer, Docker Compose para subir tudo, testes com JUnit 5 + Mockito + TestContainers.",deliverable:"2 microsserviços Spring Boot com RabbitMQ, circuit breaker, JWT auth, Docker Compose, Actuator e testes"}
 };
-
-// ============================================================
-// INTERMEDIÁRIO — Go (Golang) (nova área)
-// ============================================================
 
 PROJECTS["Go (Golang)"] = {
   basic:{title:"🟢 CLI Tool em Go: Gerenciador de Tarefas",desc:"Construa CLI de gerenciamento de tarefas em Go usando Cobra: add, list, done, delete. Persistência em JSON local. Formatação com cores (lipgloss/charm). Testes com go test. Cross-compile para Linux, Mac e Windows. Publique no GitHub com goreleaser para binários automáticos.",deliverable:"CLI Go funcional com Cobra, persistência JSON, testes, binários cross-platform e release automatizado"},
   advanced:{title:"🔴 API Concorrente em Go com Worker Pool",desc:"Construa API REST em Go (Gin/Echo) que processa jobs assíncronos: recebe request, enfileira em channel, worker pool de goroutines processa em paralelo, retorna status via polling ou WebSocket. Use context para timeout/cancelamento, pprof para profiling, race detector nos testes. Redis para fila persistente. Deploy com Docker (imagem scratch < 10MB).",deliverable:"API Go com worker pool, channels, Redis queue, WebSocket, profiling pprof, Docker scratch image e load test com k6"}
 };
+
+PROJECTS["Fisica & Quimica"] = {
+  basic:{title:"🟢 Simulações de Física em Python",desc:"Crie um Jupyter Notebook com 5 simulações de física usando Python + matplotlib: 1) lançamento oblíquo (trajetória parabólica com diferentes ângulos), 2) circuito RC (carga/descarga do capacitor com gráfico exponencial), 3) ondas estacionárias (animação com matplotlib.animation), 4) Lei de Ohm interativa (variar V e R, mostrar I), 5) espectro eletromagnético (visualização das frequências). Cada simulação com: equações, código comentado, gráfico e explicação do fenômeno.",deliverable:"Jupyter Notebook com 5 simulações de física, gráficos animados matplotlib e equações explicadas"},
+  advanced:{title:"🔴 Simulador de Circuito Elétrico em Python",desc:"Construa um simulador de circuitos DC em Python (pode usar tkinter para interface gráfica ou Jupyter widgets). O usuário define componentes (fonte de tensão, resistores em série/paralelo) e o programa calcula: corrente em cada ramo (Kirchhoff), tensão em cada componente, potência dissipada. Valide com exemplos do livro. Visualize o circuito como grafo com networkx. Inclua pelo menos 5 circuitos de exemplo pré-configurados.",deliverable:"Simulador Python de circuitos DC com interface, cálculos de Kirchhoff, visualização e 5 exemplos"}
+};
+
