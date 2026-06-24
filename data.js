@@ -713,6 +713,51 @@ const ROADMAP = [
                 "d": "• O que é: Criar ferramenta de terminal: conversor de unidades, gerador de senhas, organizador de arquivos..\n• Conceitos-chave: argparse (built-in) ou click (mais elegante).. Publicar no PyPI = portfolio.. Exercita: modulos, CLI, empacotamento.\n• O que estudar: CLI tool com argparse ou click (ferramenta de terminal propria)."
               }
             ]
+          },
+          {
+            "name": "Criando Jogos com Python",
+            "books": [
+              "Invent Your Own Computer Games with Python — Al Sweigart",
+              "Making Games with Python & Pygame — Al Sweigart",
+              "The Art of Game Design (intro) — Jesse Schell"
+            ],
+            "items": [
+              {
+                "w": "🎯 Por que criar jogos pra aprender a programar?",
+                "s": "por que criar jogos python | aprender programação com jogos | pygame iniciante | game dev iniciante",
+                "d": "• Jogos são o projeto mais motivador pra fixar lógica de programação\n• Você usa TUDO: variáveis, loops, condições, funções, estruturas de dados\n• Feedback imediato e divertido — você VÊ seu código virar algo jogável\n• Porta de entrada pro mundo de game design e desenvolvimento de jogos"
+              },
+              {
+                "w": "O que torna um jogo divertido: regras, objetivo, desafio, feedback (intro a game design)",
+                "s": "game design básico | o que torna jogo divertido | regras objetivo desafio | game design iniciante",
+                "d": "• Todo jogo tem: objetivo, regras, desafio e feedback (você sabe se está indo bem)\n• Diversão vem do equilíbrio: nem fácil demais (tédio) nem difícil demais (frustração)\n• Decisões interessantes: o jogador deve ter escolhas que importam\n• Mesmo um jogo de texto simples aplica esses princípios"
+              },
+              {
+                "w": "Jogos de texto: lógica de jogo, loop principal, estado, entrada do jogador",
+                "s": "jogo de texto python | text game loop | game state python | jogo terminal python",
+                "d": "• Comece sem gráficos: jogo de adivinhação, forca, quiz, RPG de texto\n• Game loop: repetir 'mostrar estado → ler input → atualizar → checar fim'\n• Estado do jogo: variáveis que guardam vida, pontos, posição, inventário\n• input() e print() bastam — foco na lógica, que é o que importa no início"
+              },
+              {
+                "w": "Pygame: instalar, criar janela, game loop, desenhar formas e imagens",
+                "s": "pygame tutorial | pygame setup | pygame game loop | pygame draw",
+                "d": "• Pygame: biblioteca pra fazer jogos 2D com gráficos em Python\n• Estrutura: inicializar, criar janela, loop (eventos→atualizar→desenhar→flip)\n• Desenhar: retângulos, círculos, carregar imagens (sprites), texto na tela\n• Controlar FPS com clock pra o jogo rodar na mesma velocidade em qualquer PC"
+              },
+              {
+                "w": "Movimento, input e colisão simples em Pygame",
+                "s": "pygame movimento | pygame input teclado | pygame colisão | pygame rect collision",
+                "d": "• Ler teclado/mouse pelos eventos do Pygame pra mover o jogador\n• Movimento: atualizar posição (x, y) a cada frame; usar velocidade\n• Colisão simples: retângulos (Rect.colliderect) pra detectar batidas\n• Resposta à colisão: parar, perder vida, coletar item, fim de jogo"
+              },
+              {
+                "w": "Primeiro jogo 2D completo: Pong, Snake ou Flappy clone",
+                "s": "primeiro jogo pygame | pong python | snake python | jogo 2d completo iniciante",
+                "d": "• Faça um jogo COMPLETO e pequeno do início ao fim (mais vale terminar que ser grande)\n• Pong: duas raquetes, bola que quica, placar. Snake: cobra cresce, comida, game over\n• Estrutura: tela inicial → jogo → game over → reiniciar\n• Terminar um jogo simples ensina mais que começar dez complexos"
+              },
+              {
+                "w": "Deixando o jogo gostoso: som, pontuação, telas e polish no seu primeiro jogo",
+                "s": "polish primeiro jogo | pygame som pontuação | feedback jogo iniciante | juice jogo simples",
+                "d": "• Pequenos detalhes fazem o jogo parecer profissional: som ao pular/coletar/perder\n• Pontuação na tela, recorde, tela de game over com 'aperte R pra reiniciar'\n• Feedback visual: piscar ao tomar dano, partícula simples ao coletar\n• Esse 'tempero' (juice) é o que separa um protótipo de um jogo divertido"
+              }
+            ]
           }
         ]
       },
@@ -3065,6 +3110,26 @@ const ROADMAP = [
                 "w": "Property-based testing: Hypothesis (Python), fast-check (JS) — gerar inputs aleatórios automaticamente",
                 "s": "Propertybased testing explicação português | property-based testing tutorial | propertybased testing explained for beginners | Propertybased testing examples and practice",
                 "d": "• O que é: Em vez de escrever casos manualmente, define propriedades (ex: sort(x) sempre ordenado) e framework gera milhares de inputs..\n• Conceitos-chave: Encontra edge cases.\n• O que estudar: Hypothesis (Python), fast-check (JS) — gerar inputs aleatórios automaticamente."
+              },
+              {
+                "w": "Property-based testing: testar propriedades com inputs gerados (Hypothesis, QuickCheck)",
+                "s": "property-based testing | Hypothesis Python testing | QuickCheck | property testing tutorial",
+                "d": "• Em vez de exemplos fixos, você define PROPRIEDADES que devem valer pra qualquer input\n• A ferramenta gera centenas de inputs aleatórios e tenta quebrar a propriedade\n• Ex: 'reverter duas vezes = lista original' pra qualquer lista\n• Hypothesis (Python), QuickCheck (Haskell), fast-check (JS). Encontra edge cases que você não pensaria"
+              },
+              {
+                "w": "Mutation testing: medir qualidade dos testes introduzindo bugs propositais",
+                "s": "mutation testing | mutation testing tutorial | mutmut Stryker | test quality mutation",
+                "d": "• Cobertura diz quais linhas rodaram, NÃO se os testes detectam bugs\n• Mutation testing: introduz pequenos bugs (mutantes) e checa se os testes pegam\n• Se um mutante 'sobrevive', seus testes têm um buraco\n• Ferramentas: mutmut/cosmic-ray (Python), Stryker (JS), PIT (Java)"
+              },
+              {
+                "w": "Fuzzing: alimentar inputs aleatórios/malformados pra achar crashes e vulnerabilidades",
+                "s": "fuzzing tutorial | fuzz testing | AFL libFuzzer | security fuzzing",
+                "d": "• Fuzzing: bombardear o programa com inputs inesperados pra causar crashes\n• Coverage-guided (AFL, libFuzzer): usa cobertura pra gerar inputs mais eficazes\n• Acha bugs de memória, parsing, edge cases — muito usado em segurança\n• Diferente de property testing: foco em robustez/crashes, não correção lógica"
+              },
+              {
+                "w": "Estratégia de testes: pirâmide de testes, test doubles, quando testar o quê",
+                "s": "test pyramid | test strategy | mocks stubs fakes | testing strategy software",
+                "d": "• Pirâmide: muitos testes unitários (rápidos), menos de integração, pouquíssimos E2E (lentos)\n• Test doubles: mock (verifica interação), stub (retorna valor fixo), fake (implementação leve)\n• Antipadrão: 'cone de sorvete' (muito E2E, pouco unitário) = lento e frágil\n• Testar comportamento, não implementação — testes não devem quebrar a cada refactor"
               }
             ]
           },
@@ -3547,6 +3612,46 @@ const ROADMAP = [
                 "d": "• ASK: varia amplitude (0=nada, 1=onda). Simples mas sensível a ruído\n• FSK: varia frequência (0=freq baixa, 1=freq alta). Mais robusto (usado em Bluetooth)\n• PSK: varia fase (0=0°, 1=180°). Mais eficiente em bandwidth\n• QAM: combina amplitude+fase (WiFi, 4G). 256-QAM = 8 bits por símbolo"
               }
             ]
+          },
+          {
+            "name": "Programação de Áudio e DSP Aplicado",
+            "books": [
+              "The Audio Programming Book — Richard Boulanger & Victor Lazzarini",
+              "Designing Audio Effect Plugins in C++ — Will Pirkle",
+              "Hack Audio: An Introduction to Computer Programming and Digital Signal Processing — Eric Tarr"
+            ],
+            "items": [
+              {
+                "w": "🎯 Por que estudar Programação de Áudio e DSP Aplicado?",
+                "s": "por que audio programming | DSP aplicado carreira | audio dev | music technology programming",
+                "d": "• Áudio é DSP na prática: a teoria de Sinais vira som que você ouve\n• Mercado: plugins de áudio (VST), apps de música, jogos, telecom, assistentes de voz\n• Conecta matemática (Fourier) com criatividade (síntese, efeitos)\n• Base pra music tech, áudio em games e processamento de voz"
+              },
+              {
+                "w": "Áudio digital na prática: sample rate, bit depth, buffers, callback de áudio em tempo real",
+                "s": "digital audio programming | sample rate bit depth | audio buffer callback | real-time audio",
+                "d": "• Som digital: amostras por segundo (44.1kHz) e bits por amostra (16/24-bit)\n• Buffer: bloco de amostras processado por vez; menor = menos latência, mais CPU\n• Callback de áudio: função chamada pelo sistema pra preencher o buffer — não pode travar!\n• Regra de ouro: nada de alocação/IO dentro do callback de áudio"
+              },
+              {
+                "w": "Síntese sonora: osciladores, envelopes (ADSR), modulação (FM, AM), subtrativa",
+                "s": "sound synthesis | oscillators ADSR envelope | FM synthesis | subtractive synthesis",
+                "d": "• Osciladores: senoide, quadrada, dente de serra — formas de onda básicas\n• ADSR: envelope Attack-Decay-Sustain-Release molda o volume no tempo\n• Síntese subtrativa: oscilador rico + filtro que remove harmônicos\n• Síntese FM: um oscilador modula a frequência de outro (sons metálicos, sinos)"
+              },
+              {
+                "w": "Efeitos de áudio: delay, reverb, filtros (low/high/band-pass), distorção, compressão",
+                "s": "audio effects DSP | delay reverb filter | audio compressor | distortion effect DSP",
+                "d": "• Delay: buffer circular que repete o sinal com atraso (eco)\n• Reverb: simula reflexões de um ambiente (muitos delays + difusão)\n• Filtros: IIR/FIR pra cortar frequências (a teoria de Sinais aplicada)\n• Compressão dinâmica: reduz diferença entre alto e baixo (controle de ganho)"
+              },
+              {
+                "w": "Plugins de áudio: formato VST/AU, JUCE framework, processar áudio em DAWs",
+                "s": "VST plugin development | JUCE framework | audio plugin C++ | AU plugin tutorial",
+                "d": "• VST/AU: formatos de plugin que rodam dentro de DAWs (Ableton, FL, Logic)\n• JUCE: framework C++ padrão pra criar plugins multiplataforma com UI\n• Estrutura: processBlock recebe buffer de áudio, aplica DSP, devolve\n• Mercado real: vender plugins é um negócio viável pra devs de áudio"
+              },
+              {
+                "w": "Análise de áudio: FFT na prática, espectrograma, detecção de pitch, MFCC",
+                "s": "audio analysis FFT | spectrogram | pitch detection | MFCC audio features",
+                "d": "• FFT: transforma sinal do tempo pra frequência (a base de tudo em análise)\n• Espectrograma: FFT ao longo do tempo — visualizar como o som evolui\n• Detecção de pitch: achar a frequência fundamental (afinadores, transcrição)\n• MFCC: features que representam timbre — usadas em reconhecimento de voz e TinyML"
+              }
+            ]
           }
         ]
       },
@@ -3946,7 +4051,7 @@ const ROADMAP = [
         ]
       },
       {
-        "name": "🎮 Computacao Grafica (Intro)",
+        "name": "🎮 Computação Gráfica & Game Design",
         "topics": [
           {
             "name": "Fundamentos de CG",
@@ -4075,6 +4180,151 @@ const ROADMAP = [
                 "w": "Shadow mapping: projetar sombras em tempo real, shadow map, cascaded shadows",
                 "s": "shadow mapping tutorial | real-time shadows | shadow map technique | cascaded shadow maps",
                 "d": "• Ideia: renderizar cena do ponto de vista da luz (depth map), depois comparar\n• Se pixel está mais longe que o depth map → está na sombra\n• Cascaded: dividir frustum em cascatas pra sombras de alta qualidade em cenas grandes\n• Problemas: peter-panning, shadow acne — resolvidos com bias e normal offset"
+              },
+              {
+                "w": "Sistemas de animação: skeletal, tweening/easing, máquinas de estado de animação, IK",
+                "s": "sistema de animação jogo | skeletal animation | tweening easing | animation state machine | inverse kinematics",
+                "d": "• Animação por sprites (2D) vs esqueletal (rig de ossos, reaproveita animações)\n• Tweening e easing: interpolar entre estados com curvas (não linear = mais natural)\n• Máquina de estados de animação: idle→correr→pular→cair com transições\n• Inverse kinematics (IK): pés se ajustam ao terreno, mãos alcançam objetos"
+              }
+            ]
+          },
+          {
+            "name": "Game Design: Teoria e Mecânicas",
+            "books": [
+              "The Art of Game Design: A Book of Lenses — Jesse Schell",
+              "Game Design Workshop — Tracy Fullerton",
+              "A Theory of Fun for Game Design — Raph Koster"
+            ],
+            "items": [
+              {
+                "w": "Pilares do game design: mecânicas, dinâmicas, estética (MDA) e o loop de diversão",
+                "s": "MDA framework | mechanics dynamics aesthetics | game design pillars | core loop diversão",
+                "d": "• MDA: Mechanics (regras) → Dynamics (o que emerge em jogo) → Aesthetics (a emoção)\n• Designer projeta mecânicas; jogador vive a estética. A dinâmica nasce no meio\n• Core loop: o ciclo que o jogador repete (explorar→lutar→melhorar→repetir)\n• Pensar nos 3 níveis evita focar só em regras e esquecer a experiência"
+              },
+              {
+                "w": "Tipos de diversão e motivação: as 8 'lentes', flow, jogadores Bartle (explorador, conquistador)",
+                "s": "tipos de diversão jogos | flow game design | Bartle player types | motivação jogador",
+                "d": "• Diversão tem tipos: desafio, descoberta, expressão, social, narrativa, fantasia\n• Flow: equilíbrio entre desafio e habilidade (nem tédio, nem ansiedade)\n• Bartle: jogadores são killers, achievers, explorers, socializers — projete pra vários\n• Entender a motivação do jogador guia que mecânicas criar"
+              },
+              {
+                "w": "Game feel e juiciness: feedback, screen shake, partículas, timing, 'game juice'",
+                "s": "game feel | juiciness | game juice | feedback jogo | screen shake",
+                "d": "• Game feel: a sensação tátil de controlar (peso, resposta, impacto)\n• Juiciness: feedback exagerado (shake, partículas, som, squash & stretch)\n• Detalhes de 'justiça': coyote time, input buffering fazem o controle parecer justo\n• Um jogo simples com ótimo game feel supera um complexo e travado"
+              },
+              {
+                "w": "Curva de dificuldade e pacing: ensinar, desafiar, dar descanso, picos e vales",
+                "s": "curva de dificuldade jogo | game pacing | dificuldade progressiva | tutorial design",
+                "d": "• Dificuldade deve crescer junto com a habilidade do jogador (manter o flow)\n• Pacing: alternar tensão (combate, chefe) e descanso (exploração, história)\n• Introduzir mecânicas uma de cada vez, em ambiente seguro, antes de combinar\n• Picos e vales evitam tanto o tédio quanto a exaustão"
+              },
+              {
+                "w": "Sistemas e economia de jogo: recursos, fontes e drenos, progressão, loops de recompensa",
+                "s": "economia de jogo | game systems design | progressão recompensa | resource sources sinks",
+                "d": "• Economia: fontes (ganhar ouro) e drenos (gastar) — desequilíbrio causa inflação\n• Progressão: dar senso de avanço (poder, conteúdo, habilidade desbloqueada)\n• Loops de recompensa: curto (pontos), médio (level up), longo (final, prestígio)\n• Você sente isso em MTG (curva de mana) e Pokémon TCG na prática"
+              },
+              {
+                "w": "Balanceamento: simetria vs assimetria, dominância, números, ajuste por playtesting",
+                "s": "balanceamento de jogos | game balance | playtesting | simétrico assimétrico",
+                "d": "• Balancear = garantir que escolhas/estratégias sejam viáveis (nada dominante demais)\n• Simétrico (xadrez) vs assimétrico (facções diferentes) — cada um com seus desafios\n• Comece com números no papel/planilha, depois ajuste com dados reais\n• Playtesting é insubstituível: o que jogadores fazem > o que o designer imagina"
+              },
+              {
+                "w": "Psicologia do jogador e design ético: motivação intrínseca, dark patterns, ética do engajamento",
+                "s": "psicologia do jogador | self-determination theory games | dark patterns jogos | design ético jogo",
+                "d": "• Motivação intrínseca (autonomia, competência, relação — SDT) sustenta engajamento saudável\n• Motivação extrínseca (recompensas) funciona, mas vicia se mal usada\n• Dark patterns: loot boxes, FOMO, grind artificial — manipulam em vez de divertir\n• Design ético: respeitar o tempo e o dinheiro do jogador é escolha de design (e de valores)"
+              },
+              {
+                "w": "Design de combate, movimento e controles: verbos do jogador, moveset, esquema de controle",
+                "s": "design de combate | movement design | control scheme | game verbs moveset",
+                "d": "• 'Verbos': o que o jogador PODE fazer (pular, atirar, agarrar) define o jogo\n• Moveset: profundidade vem de poucas ações que combinam, não de muitos botões\n• Esquema de controle: mapeamento intuitivo, acessível, consistente\n• Diferente de game feel (a sensação): aqui é a DECISÃO de quais ações existem"
+              }
+            ]
+          },
+          {
+            "name": "Design de Níveis, Narrativa e Estética",
+            "books": [
+              "Level Up! The Guide to Great Video Game Design — Scott Rogers",
+              "An Architectural Approach to Level Design — Christopher Totten",
+              "The Ultimate Guide to Video Game Writing and Design — Flint Dille"
+            ],
+            "items": [
+              {
+                "w": "Level design: ensinar sem tutorial, guiar o olhar, ritmo, affordances no ambiente",
+                "s": "level design | guiar jogador | environmental storytelling | affordances jogo",
+                "d": "• O nível ensina mecânicas pela estrutura, não por texto ('design is the tutorial')\n• Guiar o olhar: luz, cor, linhas, landmarks levam o jogador sem segurar a mão\n• Ritmo do nível: alternar combate, exploração, puzzle, descanso\n• Affordances: o ambiente comunica o que é possível (plataforma parece pisável)"
+              },
+              {
+                "w": "Narrativa em jogos: storytelling ambiental, ludonarrativa, escolhas, ritmo da história",
+                "s": "narrativa em jogos | ludonarrativa | environmental storytelling | game writing",
+                "d": "• Jogos contam história de formas únicas: ambiente, gameplay, escolhas, não só cutscenes\n• Dissonância ludonarrativa: quando a história contradiz a jogabilidade (evitar)\n• Storytelling ambiental: o cenário conta o que aconteceu (sem texto)\n• Escolhas e consequências dão agência — o jogador é coautor da história"
+              },
+              {
+                "w": "Game art e direção visual: estilo, paleta, leitura visual, pixel art vs 3D, coerência",
+                "s": "game art | direção de arte jogo | pixel art | paleta de cores jogo | leitura visual",
+                "d": "• Estilo coeso vale mais que realismo: pixel art, low-poly, flat — escolha e mantenha\n• Leitura visual: jogador deve distinguir rápido o que é interativo, perigo, coletável\n• Paleta de cores guia emoção e foco (cor de destaque pro importante)\n• Conecta com Computação Gráfica: shaders, iluminação, composição"
+              },
+              {
+                "w": "Áudio em jogos: SFX, música, áudio adaptativo, feedback sonoro, importância do som",
+                "s": "áudio em jogos | game audio | música adaptativa | sound design jogo",
+                "d": "• Som dá metade da imersão: SFX (pulo, dano, coleta) e música (atmosfera)\n• Áudio adaptativo: a música reage ao gameplay (combate intensifica) — conecta com DSP\n• Feedback sonoro: confirma ações e comunica estado (vida baixa, inimigo perto)\n• Som ruim quebra a experiência mais rápido que gráfico mediano"
+              },
+              {
+                "w": "UX e UI de jogos: HUD, menus, onboarding, acessibilidade, clareza",
+                "s": "UX de jogos | game UI design | HUD design | acessibilidade em jogos",
+                "d": "• UI de jogo: HUD limpo (vida, recursos) sem poluir a tela nem distrair\n• Onboarding: ensinar a jogar sem manual, no ritmo do jogador\n• Acessibilidade: opções de daltonismo, legendas, remapear controles, dificuldade\n• Clareza acima de tudo: o jogador nunca deve ficar perdido sem querer"
+              },
+              {
+                "w": "Gêneros e prototipagem: conhecer gêneros, MVP de jogo, paper prototyping, game jams",
+                "s": "gêneros de jogos | prototipagem de jogos | paper prototype | game jam",
+                "d": "• Conhecer gêneros (plataforma, puzzle, RPG, roguelike, deckbuilder) acelera o design\n• Prototipar rápido: testar a mecânica central antes de investir em arte\n• Paper prototyping: testar regras no papel/cartas (você conhece de MTG/TCG)\n• Game jams (Ludum Dare, GMTK): a melhor forma de praticar e TERMINAR jogos"
+              },
+              {
+                "w": "Sistemas de diálogo e narrativa ramificada: dialogue trees, quests, escolhas e consequências",
+                "s": "sistema de diálogo | dialogue tree | branching narrative | quest design | escolhas consequências",
+                "d": "• Dialogue trees: ramificações de conversa; estado que lembra o que foi dito\n• Narrativa ramificada: escolhas que mudam a história (e o custo de produção disso)\n• Quest design: estrutura, objetivos claros, recompensa, ritmo\n• Ilusão de escolha vs consequência real — quando cada uma vale a pena"
+              },
+              {
+                "w": "Acessibilidade em jogos (aprofundado): assist modes, opções de dificuldade, daltonismo, legendas",
+                "s": "acessibilidade em jogos | assist mode | game accessibility | colorblind legendas remapear",
+                "d": "• Acessibilidade amplia o público e é responsabilidade do designer\n• Visual: daltonismo (não depender só de cor), tamanho de texto, alto contraste\n• Motora: remapear controles, reduzir inputs simultâneos, assist modes\n• Auditiva/cognitiva: legendas, indicadores visuais de som, opções de dificuldade granular"
+              },
+              {
+                "w": "Design para mobile e touch: controles touch, sessões curtas, uma mão, free-to-play",
+                "s": "mobile game design | touch controls | one-handed game | sessão curta mobile | F2P design",
+                "d": "• Touch não tem botões físicos: gestos, zonas de toque, evitar precisão fina\n• Sessões curtas: design pra jogar em 2-5 minutos (transporte, fila)\n• One-handed e portrait: ergonomia da mão no celular\n• F2P mobile: monetização, retenção e a linha tênue com dark patterns"
+              }
+            ]
+          },
+          {
+            "name": "Design de Tabuleiro, Cartas e Sistemas Emergentes",
+            "books": [
+              "Characteristics of Games — George Skaff Elias, Richard Garfield & K. Robert Gutschera",
+              "Your Turn! The Guide to Great Tabletop Game Design — Scott Rogers",
+              "Building Blocks of Tabletop Game Design — Geoffrey Engelstein & Isaac Shalev"
+            ],
+            "items": [
+              {
+                "w": "Design de jogos de tabuleiro: componentes, turnos, interação entre jogadores, condição de vitória",
+                "s": "design jogo de tabuleiro | board game design | mecânicas tabuleiro | turn structure board game",
+                "d": "• Jogos analógicos ensinam design puro — sem código pra esconder problemas de regra\n• Componentes (peças, dados, tabuleiro), estrutura de turnos, ações disponíveis\n• Interação: direta (conflito) vs indireta (corrida, área), e o quanto um jogador afeta o outro\n• Condição de vitória clara molda toda a estratégia do jogo"
+              },
+              {
+                "w": "Design de jogos de cartas e deckbuilding: você conhece de MTG e Pokémon TCG",
+                "s": "design jogo de cartas | deckbuilding mechanics | card game design | Magic Pokémon TCG design",
+                "d": "• Jogos de carta: economia de recursos, curva (você sente isso na mana de MTG), sinergia\n• Deckbuilding como mecânica: construir o baralho É parte do jogo (Dominion, Slay the Spire)\n• Design de cartas: poder vs custo, palavras-chave reutilizáveis, espaço de design\n• Balancear cartas individuais E o metagame que emerge delas"
+              },
+              {
+                "w": "Aleatoriedade vs habilidade: sorte controlada, variância, mitigação de azar",
+                "s": "aleatoriedade em jogos | luck vs skill | variância jogo | randomness mitigation",
+                "d": "• Sorte adiciona tensão e rejogabilidade, mas demais frustra (sensação de não ter controle)\n• Input randomness (antes da decisão, ex: cartas na mão) vs output randomness (após, ex: dado de ataque)\n• Mitigação: mulligan, escolher entre opções aleatórias, lei dos grandes números\n• Equilibrar sorte e habilidade define o público (casual vs competitivo)"
+              },
+              {
+                "w": "Sistemas emergentes: regras simples que geram complexidade e profundidade",
+                "s": "sistemas emergentes jogos | emergent gameplay | feedback loops design | regras simples profundidade",
+                "d": "• Profundidade emerge da interação de regras simples, não de muitas regras complexas\n• 'Fácil de aprender, difícil de dominar' — Go, xadrez, Tetris\n• Feedback loops: positivo (rico fica mais rico — pode desbalancear) e negativo (catch-up)\n• Espaço de possibilidades: quantas situações interessantes as regras criam"
+              },
+              {
+                "w": "Prototipagem de tabuleiro e cartas: testar no papel rápido e barato",
+                "s": "paper prototyping | protótipo jogo tabuleiro | playtest cartas | prototipagem rápida jogo",
+                "d": "• Tabuleiro/cartas se prototipam em minutos com papel, post-its e canetas\n• Testar a mecânica central antes de investir em arte ou regras finais\n• Iterar rápido: jogar, anotar o que trava, ajustar regra, jogar de novo\n• Vale pra jogos digitais também: prototipar a regra no papel economiza código"
               }
             ]
           }
@@ -5040,6 +5290,21 @@ const ROADMAP = [
                 "w": "PID control: conceito e implementacao basica",
                 "s": "control conceito implementacao explained | PID control explicação português | pid control tutorial completo | PID control examples and practice",
                 "d": "• O que é: P: proporcional ao erro (reage)..\n• Conceitos-chave: I: integral do erro (corrige steady-state).. D: derivada do erro (amortece).. Tuning: Ziegler-Nichols.. Usado em equilibrio de robos, termostatos.\n• O que estudar: conceito e implementacao basica."
+              },
+              {
+                "w": "TinyML: rodar modelos de ML em microcontroladores, TensorFlow Lite Micro, quantização",
+                "s": "TinyML tutorial | TensorFlow Lite Micro | machine learning microcontroller | edge ML Arduino",
+                "d": "• TinyML: inferência de ML em devices com KB de RAM (Arduino, ESP32), sem nuvem\n• Modelo treinado no PC, quantizado pra INT8, convertido pra TFLite Micro\n• Casos: detecção de palavra-chave ('Hey'), gestos, anomalia em vibração, som\n• Vantagem: privacidade (dado não sai), latência baixa, funciona offline"
+              },
+              {
+                "w": "Edge Impulse e pipeline TinyML: coletar dados, treinar, deployar no microcontrolador",
+                "s": "Edge Impulse tutorial | TinyML pipeline | embedded ML deployment | sensor data ML",
+                "d": "• Edge Impulse: plataforma que cobre o fluxo TinyML (coleta→treino→deploy)\n• Pipeline: coletar dados do sensor → extrair features → treinar → exportar firmware\n• DSP + ML: features de áudio (MFCC) ou de movimento (acelerômetro) antes do modelo\n• Resultado: biblioteca C++ pra incluir no seu sketch Arduino/ESP32"
+              },
+              {
+                "w": "Inferência otimizada em embarcados: memória, latência, energia, operadores suportados",
+                "s": "embedded ML optimization | quantization microcontroller | model size memory constraints | TFLite operators",
+                "d": "• Restrições: RAM (KB), flash limitado, sem FPU em alguns chips, bateria\n• Quantização INT8 é quase obrigatória; modelo precisa caber na flash\n• Nem todo operador de rede é suportado em TFLite Micro — projetar com isso em mente\n• Medir: tempo de inferência, pico de RAM, consumo — trade-offs reais"
               }
             ]
           },
@@ -5449,6 +5714,61 @@ const ROADMAP = [
                 "w": "Contrastive learning: SimCLR, self-supervised, aprender representações sem labels",
                 "s": "contrastive learning SimCLR tutorial | self-supervised learning | representation learning | SimCLR CLIP training",
                 "d": "• Ideia: duas 'views' da mesma imagem devem ter representações similares, de imagens diferentes → distantes\n• SimCLR: data augmentation → encoder → projection → contrastive loss\n• Self-supervised: não precisa de labels humanos (dados são o próprio supervisor)\n• CLIP: contrastive entre texto e imagem — entende relação sem supervision explícita"
+              },
+              {
+                "w": "Tokenização: word/subword/BPE, vocabulário, como texto vira números pro modelo",
+                "s": "tokenization NLP | BPE byte pair encoding | subword tokenization | WordPiece SentencePiece",
+                "d": "• Modelos não leem texto, leem IDs de tokens. Tokenizer mapeia texto↔IDs\n• Word-level: vocabulário gigante, problema com palavras raras\n• Subword (BPE, WordPiece): quebra palavras raras em pedaços conhecidos ('tokeniza'→'token'+'iza')\n• Vocabulário típico: 30k-100k tokens. Afeta tamanho do modelo e custo"
+              },
+              {
+                "w": "Named Entity Recognition (NER): extrair pessoas, lugares, datas de texto",
+                "s": "named entity recognition NER | NER tutorial spaCy | entity extraction NLP | sequence labeling",
+                "d": "• NER: identificar e classificar entidades (PESSOA, LOCAL, ORG, DATA, VALOR)\n• Abordagem: sequence labeling (BIO tagging) — cada token recebe um rótulo\n• spaCy oferece NER pronto; fine-tuning de BERT dá resultados melhores\n• Aplicações: extração de informação, anonimização, busca semântica"
+              },
+              {
+                "w": "Pipeline de NLP: limpeza, normalização, stop words, lematização, embeddings",
+                "s": "NLP pipeline | text preprocessing | lemmatization stemming | text normalization NLP",
+                "d": "• Pipeline clássico: tokenizar → normalizar (lowercase) → remover stop words → lematizar\n• Lematização: reduz palavra à forma base ('correndo'→'correr'); melhor que stemming\n• Embeddings: representar palavras como vetores (Word2Vec, GloVe, ou contextuais do BERT)\n• Pipelines modernos com LLMs pulam muito disso, mas a base ainda importa"
+              },
+              {
+                "w": "Análise de sentimento e classificação de texto: do clássico (TF-IDF) ao fine-tuning de BERT",
+                "s": "sentiment analysis | text classification BERT | TF-IDF classification | fine-tune BERT text",
+                "d": "• Clássico: TF-IDF + regressão logística/SVM — rápido, interpretável, baseline forte\n• Moderno: fine-tuning de BERT/transformer pra a tarefa específica\n• Sentimento: positivo/negativo/neutro. Classificação: spam, tópico, intenção\n• Métricas: accuracy, F1 (importante com classes desbalanceadas)"
+              }
+            ]
+          },
+          {
+            "name": "Visão Computacional",
+            "books": [
+              "Computer Vision: Algorithms and Applications — Richard Szeliski",
+              "Deep Learning for Vision Systems — Mohamed Elgendy",
+              "Programming Computer Vision with Python — Jan Erik Solem"
+            ],
+            "items": [
+              {
+                "w": "OpenCV: manipulação de imagem, filtros, detecção de bordas, transformações — CV clássica",
+                "s": "OpenCV tutorial | computer vision OpenCV Python | image processing OpenCV | edge detection Canny",
+                "d": "• OpenCV: biblioteca padrão de visão. Ler/escrever imagem, espaços de cor (BGR/HSV/grayscale)\n• Filtros: blur, sharpen, threshold, morfologia (erosão/dilatação)\n• Bordas: Canny, Sobel. Contornos: encontrar e desenhar formas\n• Tudo isso é CV 'clássica' — antes/complementar ao deep learning"
+              },
+              {
+                "w": "Detecção de objetos: YOLO, R-CNN, bounding boxes, mAP — encontrar e localizar objetos",
+                "s": "object detection YOLO | R-CNN Faster R-CNN | bounding box detection | mAP metric object detection",
+                "d": "• Classificação diz 'o que'; detecção diz 'o que E onde' (bounding boxes)\n• YOLO: rápido, single-shot, bom pra tempo real. R-CNN family: mais preciso, mais lento\n• Métrica: mAP (mean Average Precision) com IoU threshold\n• Aplicações: carros autônomos, contagem, vigilância, AR"
+              },
+              {
+                "w": "Segmentação: semântica vs instância, U-Net, Mask R-CNN — classificar cada pixel",
+                "s": "image segmentation | semantic vs instance segmentation | U-Net Mask R-CNN | pixel classification",
+                "d": "• Semântica: cada pixel recebe uma classe (céu, estrada, pessoa) sem separar indivíduos\n• Instância: separa objetos individuais (pessoa 1, pessoa 2)\n• U-Net: arquitetura encoder-decoder, popular em imagem médica\n• Mask R-CNN: detecção + máscara por objeto"
+              },
+              {
+                "w": "Transfer learning em visão: usar modelos pré-treinados (ResNet, EfficientNet) e fine-tuning",
+                "s": "transfer learning computer vision | pretrained CNN fine-tuning | ResNet EfficientNet | ImageNet pretrained",
+                "d": "• Raramente treina-se do zero: parte-se de modelo pré-treinado no ImageNet\n• Feature extraction: congela o backbone, treina só a cabeça pro seu problema\n• Fine-tuning: descongela camadas finais e ajusta com learning rate baixo\n• Economiza dados e compute — funciona com centenas de imagens em vez de milhões"
+              },
+              {
+                "w": "Vision Transformers (ViT): aplicar arquitetura transformer a imagens, patches, CLIP",
+                "s": "Vision Transformer ViT | ViT vs CNN | CLIP image | transformer for images",
+                "d": "• ViT: divide imagem em patches, trata como sequência (como tokens de texto)\n• Compete/supera CNNs com dados suficientes; menos viés indutivo\n• CLIP: treina imagem+texto juntos, permite classificação zero-shot por descrição\n• Base de modelos multimodais modernos (geração imagem-texto)"
               }
             ]
           }
@@ -5549,6 +5869,26 @@ const ROADMAP = [
                 "w": "Observabilidade LLM: Langfuse, Arize, tracing de chains, monitorar qualidade em produção",
                 "s": "Langfuse LLM observability | Arize ML monitoring | LLM tracing production | LLM quality monitoring",
                 "d": "• Langfuse: open-source, trace cada chamada de LLM (input, output, latência, custo, modelo)\n• Arize: monitora embedding drift, data quality, model performance ao longo do tempo\n• Métricas: latência p95, custo/request, user satisfaction (thumbs up/down), error rate\n• Alertas: degradação de qualidade, spike de custo, aumento de respostas tóxicas"
+              },
+              {
+                "w": "Prompt engineering como disciplina: zero-shot, few-shot, role prompting, delimitadores",
+                "s": "prompt engineering techniques | few-shot prompting | zero-shot prompt | role prompting",
+                "d": "• Zero-shot: só a instrução. Few-shot: dar exemplos no prompt melhora muito o resultado\n• Role prompting: 'você é um revisor de código sênior' molda o comportamento\n• Delimitadores (```, XML tags) separam instrução de dados e reduzem injeção\n• Especificidade vence: dizer formato, tom, tamanho explicitamente"
+              },
+              {
+                "w": "Chain-of-thought e raciocínio: fazer o modelo 'pensar' passo a passo, self-consistency",
+                "s": "chain of thought prompting | CoT reasoning LLM | self-consistency | step by step reasoning",
+                "d": "• Chain-of-thought: pedir 'pense passo a passo' melhora tarefas de raciocínio/matemática\n• O modelo expõe o raciocínio antes da resposta → menos erros\n• Self-consistency: gerar várias cadeias e votar na resposta mais comum\n• Trade-off: mais tokens = mais custo e latência"
+              },
+              {
+                "w": "Templates e versionamento de prompts: tratar prompts como código, testar e versionar",
+                "s": "prompt templates | prompt versioning | prompt management | LangChain prompt template",
+                "d": "• Prompts em produção devem ser versionados (Git), não hardcoded espalhados\n• Templates com variáveis: separar a estrutura do conteúdo dinâmico\n• A/B testar versões de prompt e medir qualidade (não confiar no 'parece melhor')\n• Ferramentas: LangChain PromptTemplate, PromptLayer, Langfuse prompts"
+              },
+              {
+                "w": "Avaliação de prompts e outputs: como medir se um prompt é bom (eval sets, LLM-as-judge)",
+                "s": "prompt evaluation | LLM eval | LLM as judge | prompt testing metrics",
+                "d": "• Sem medição você só tem 'achismo'. Crie um eval set (inputs + saída esperada)\n• Métricas: exact match, similaridade semântica, regras (contém X, formato Y)\n• LLM-as-judge: usar um LLM pra avaliar a saída de outro (com rubrica clara)\n• Rodar evals a cada mudança de prompt/modelo evita regressões silenciosas"
               }
             ]
           },
@@ -5824,6 +6164,31 @@ const ROADMAP = [
                 "w": "Database security: Row Level Security, encryption at rest/transit, audit logging",
                 "s": "PostgreSQL Row Level Security | database encryption | audit logging pg_audit",
                 "d": "• RLS: políticas por usuário. Encryption: TDE ou full disk. Transit: SSL obrigatório\n• pg_audit: loga queries, quem executou, quando"
+              },
+              {
+                "w": "Storage engine: como o banco guarda dados em disco — heap, páginas, tuplas, TOAST no PostgreSQL",
+                "s": "database storage engine | PostgreSQL heap pages | how databases store data | TOAST PostgreSQL",
+                "d": "• Dados ficam em páginas de 8KB no disco. Cada página guarda várias tuplas (linhas)\n• Heap: armazenamento desordenado; o índice aponta pra localização física (TID)\n• TOAST: valores grandes (texto/JSON) são comprimidos e guardados fora da página\n• Entender isso explica por que UPDATE cria nova tupla (MVCC) e por que VACUUM importa"
+              },
+              {
+                "w": "B-tree vs LSM-tree: as duas grandes famílias de índice e por que cada banco escolhe uma",
+                "s": "B-tree vs LSM-tree | database index structures | LSM tree RocksDB | B-tree database internals",
+                "d": "• B-tree: balanceada, ótima pra leitura e range queries (PostgreSQL, MySQL InnoDB)\n• LSM-tree: escreve em memória, faz flush sequencial pra disco (Cassandra, RocksDB, LevelDB)\n• LSM: escrita rápida, leitura precisa checar vários níveis (compaction junta)\n• Trade-off: B-tree = read-optimized; LSM = write-optimized"
+              },
+              {
+                "w": "Write-Ahead Log (WAL): como o banco garante durabilidade e recupera de crash",
+                "s": "write-ahead log WAL | database durability WAL | PostgreSQL WAL internals | crash recovery database",
+                "d": "• WAL: toda mudança é escrita no log ANTES de aplicar nos dados (durabilidade do ACID)\n• Crash recovery: ao reiniciar, reaplica o WAL pra recuperar transações confirmadas\n• Base de replicação (streaming) e point-in-time recovery\n• checkpoint: ponto onde dados são sincronizados e WAL antigo pode ser descartado"
+              },
+              {
+                "w": "Query planner e otimizador: como o banco decide o plano de execução, estatísticas, custo",
+                "s": "query planner optimizer | how query optimizer works | PostgreSQL planner statistics | cost-based optimization",
+                "d": "• O planner gera vários planos possíveis e escolhe o de menor custo estimado\n• Usa estatísticas (ANALYZE): cardinalidade, distribuição de valores, n_distinct\n• Decisões: qual índice usar, ordem de JOINs, nested loop vs hash join vs merge join\n• Estatísticas desatualizadas → planos ruins; daí a importância do autovacuum/analyze"
+              },
+              {
+                "w": "MVCC: controle de concorrência multiversão — como leituras não bloqueiam escritas",
+                "s": "MVCC database | multiversion concurrency control | PostgreSQL MVCC | snapshot isolation",
+                "d": "• Cada transação vê um snapshot consistente dos dados (versão no tempo)\n• UPDATE não sobrescreve: cria nova versão da tupla, marca a antiga como morta\n• Leituras não bloqueiam escritas e vice-versa (diferente de lock pessimista)\n• Tuplas mortas acumulam → VACUUM as recolhe. Explica bloat de tabela"
               }
             ]
           },
@@ -6324,6 +6689,11 @@ const ROADMAP = [
                 "w": "Security champions: cultura de segurança, treinamento de devs, gamification, security office hours",
                 "s": "Security champions explicação português | security champions tutorial | security champions explained for beginners | Security champions examples and practice",
                 "d": "• O que é: Cada time tem um security champion: dev que advoga por segurança, revisa PRs críticos, faz treinamentos e conecta time ao security team.\n• O que estudar: cultura de segurança, treinamento de devs, gamification, security office hours."
+              },
+              {
+                "w": "Zero Trust Architecture: 'nunca confie, sempre verifique', identidade, microsegmentação",
+                "s": "zero trust architecture | zero trust security | never trust always verify | microsegmentation BeyondCorp",
+                "d": "• Zero Trust: abandona o modelo de 'perímetro confiável' — nada é confiável por padrão\n• Toda requisição é autenticada, autorizada e criptografada, mesmo dentro da rede\n• Pilares: identidade forte (MFA), least privilege, microsegmentação, verificação contínua\n• Modelos de referência: Google BeyondCorp, NIST 800-207 — padrão moderno de segurança corporativa"
               }
             ]
           }
@@ -6869,6 +7239,311 @@ const ROADMAP = [
                 "w": "Browser forensics: Chrome/Firefox artifacts, cache, IndexedDB, extensões",
                 "s": "browser forensics Chrome Firefox | browser artifacts | web browser investigation",
                 "d": "• Chrome: History, Cookies, Login Data em SQLite\n• Cache: páginas visitadas mesmo após deletar history\n• Extensões maliciosas: permissão total, analisar manifest.json"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "🥽 AR/VR/XR & Computação Espacial",
+        "topics": [
+          {
+            "name": "Fundamentos de Realidade Estendida",
+            "books": [
+              "Augmented Reality: Principles and Practice — Dieter Schmalstieg & Tobias Höllerer",
+              "Understanding Virtual Reality — William Sherman & Alan Craig",
+              "Practical Augmented Reality — Steve Aukstakalnis"
+            ],
+            "items": [
+              {
+                "w": "🎯 Por que estudar AR/VR/XR & Computação Espacial?",
+                "s": "por que realidade virtual aumentada | XR carreira | spatial computing future | AR VR mercado",
+                "d": "• XR (AR+VR+MR) é a próxima fronteira de interface humano-computador\n• Mercado: games, treinamento, saúde, indústria, varejo, Apple Vision Pro/Meta Quest\n• Usa tudo que você aprendeu: CG, geometria 3D, física, otimização\n• Habilidade rara e valorizada — poucos dominam de verdade"
+              },
+              {
+                "w": "Conceitos de XR: AR vs VR vs MR, graus de liberdade (3DoF/6DoF), presença, motion sickness",
+                "s": "AR vs VR vs MR | degrees of freedom 6DoF | presence VR | motion sickness VR causes",
+                "d": "• AR: sobrepõe digital no real. VR: imersão total. MR: digital interage com o real\n• 3DoF: só rotação (girar a cabeça). 6DoF: rotação + posição (andar no espaço)\n• Presença: sensação de 'estar lá' — o objetivo da VR\n• Motion sickness: descompasso entre o que se vê e o que o corpo sente; FPS alto e baixa latência ajudam"
+              },
+              {
+                "w": "Tracking e sensores: inside-out vs outside-in, SLAM, IMU, eye/hand tracking",
+                "s": "SLAM tracking AR | inside-out tracking | IMU VR | hand tracking eye tracking",
+                "d": "• Outside-in: câmeras externas rastreiam o headset (preciso, mas fixo)\n• Inside-out: câmeras no headset mapeiam o ambiente (portátil — Quest, Vision Pro)\n• SLAM: localização e mapeamento simultâneos — base do inside-out e do AR\n• IMU (acelerômetro+giroscópio) pra rotação rápida; eye/hand tracking pra interação natural"
+              },
+              {
+                "w": "Renderização estéreo e performance: dois olhos, foveated rendering, frame timing, latência",
+                "s": "stereo rendering VR | foveated rendering | VR performance optimization | motion-to-photon latency",
+                "d": "• VR renderiza DUAS imagens (uma por olho) — dobra o custo de renderização\n• Frame rate alto é obrigatório (72-120 FPS); frame perdido causa enjoo\n• Foveated rendering: alta resolução só onde o olho olha (usa eye tracking)\n• Métrica crítica: motion-to-photon latency (< 20ms)"
+              }
+            ]
+          },
+          {
+            "name": "Desenvolvimento XR na Prática",
+            "books": [
+              "Unity AR & VR by Tutorials — raywenderlich.com",
+              "Learning Virtual Reality — Tony Parisi",
+              "WebXR: Building Immersive Experiences — vários (docs MDN WebXR)"
+            ],
+            "items": [
+              {
+                "w": "WebXR: experiências imersivas no navegador com Three.js, sem instalar app",
+                "s": "WebXR tutorial | WebXR Three.js | browser VR AR | immersive web",
+                "d": "• WebXR: API do navegador pra AR/VR — roda em headset e celular sem instalar nada\n• Integra com Three.js (que você já viu em CG) pra renderizar a cena 3D\n• Sessão immersive-vr ou immersive-ar; controllers via input sources\n• Ótimo ponto de entrada: barreira baixa, deploy fácil (é só uma URL)"
+              },
+              {
+                "w": "AR mobile: ARKit (iOS) e ARCore (Android), plane detection, anchors, oclusão",
+                "s": "ARKit ARCore tutorial | mobile AR development | plane detection anchors | AR occlusion",
+                "d": "• ARKit (Apple) e ARCore (Google): frameworks de AR pra celular\n• Plane detection: achar chão/mesa pra ancorar objetos virtuais\n• Anchors: fixar conteúdo no mundo real de forma estável\n• Oclusão: objetos reais escondendo virtuais (realismo) usando depth"
+              },
+              {
+                "w": "Game engines pra XR: Unity XR Toolkit e Unreal — interação, teleporte, grab",
+                "s": "Unity XR Toolkit | Unreal VR development | XR interaction toolkit | VR locomotion teleport",
+                "d": "• Unity (XR Interaction Toolkit) e Unreal são os caminhos profissionais pra XR\n• Interações: grab/throw de objetos, botões 3D, UI no espaço\n• Locomoção: teleporte (reduz enjoo) vs movimento suave\n• Reaproveita conhecimento de game engine (que você verá em Game Design)"
+              },
+              {
+                "w": "Design de UX espacial: ergonomia, conforto, affordances 3D, acessibilidade em XR",
+                "s": "spatial UX design | VR UX best practices | XR ergonomics comfort | VR accessibility",
+                "d": "• UX em 3D é diferente: profundidade, escala, campo de visão, fadiga de braço ('gorilla arm')\n• Conforto: evitar movimento forçado da câmera, dar pontos de referência\n• Affordances: objetos devem parecer interativos (highlight, física)\n• Acessibilidade: opções pra sentados, daltonismo, legendas espaciais"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "💹 Finanças Quantitativas & Fintech",
+        "topics": [
+          {
+            "name": "Fundamentos Quant e Dados Financeiros",
+            "books": [
+              "Python for Finance — Yves Hilpisch",
+              "Quantitative Trading — Ernest Chan",
+              "Advances in Financial Machine Learning — Marcos López de Prado"
+            ],
+            "items": [
+              {
+                "w": "🎯 Por que estudar Finanças Quantitativas & Fintech?",
+                "s": "por que finanças quantitativas | quant finance carreira | fintech programming | algo trading career",
+                "d": "• Combina programação, matemática e mercado — uma das áreas mais bem pagas de tech\n• Fintech é gigante no Brasil (Nubank, PicPay, etc) e cresce mundialmente\n• Usa Python, estatística, dados e ML — tudo que você já estudou\n• Aplicável a projetos pessoais: você já constrói um app de finanças"
+              },
+              {
+                "w": "Dados financeiros: séries temporais, OHLCV, retornos, APIs (yfinance), limpeza",
+                "s": "financial time series | OHLCV data | stock returns calculation | yfinance API",
+                "d": "• Dados de mercado: Open/High/Low/Close/Volume por período (OHLCV)\n• Retornos: simples vs log-retornos; por que log-retornos somam no tempo\n• Fontes: yfinance, Alpha Vantage, B3 pra ações brasileiras\n• Limpeza: ajustar dividendos/splits, lidar com gaps e feriados"
+              },
+              {
+                "w": "Estatística de mercado: volatilidade, correlação, distribuições, risco (VaR)",
+                "s": "market volatility | financial correlation | Value at Risk VaR | return distributions finance",
+                "d": "• Volatilidade: desvio-padrão dos retornos — medida central de risco\n• Correlação entre ativos: base de diversificação de portfólio\n• Retornos NÃO são normais: caudas gordas, eventos extremos mais comuns que o esperado\n• VaR (Value at Risk): perda máxima esperada com dado nível de confiança"
+              },
+              {
+                "w": "Teoria de portfólio: Markowitz, fronteira eficiente, Sharpe ratio, diversificação",
+                "s": "Markowitz portfolio theory | efficient frontier | Sharpe ratio | portfolio optimization Python",
+                "d": "• Markowitz: otimizar retorno vs risco escolhendo pesos dos ativos\n• Fronteira eficiente: melhores portfólios pra cada nível de risco\n• Sharpe ratio: retorno por unidade de risco — métrica padrão de comparação\n• Diversificação reduz risco sem sacrificar retorno (o 'almoço grátis')"
+              }
+            ]
+          },
+          {
+            "name": "Estratégias, Backtesting e Risco",
+            "books": [
+              "Algorithmic Trading — Ernest Chan",
+              "Machine Learning for Algorithmic Trading — Stefan Jansen",
+              "Trading and Exchanges — Larry Harris"
+            ],
+            "items": [
+              {
+                "w": "Estratégias quantitativas: mean reversion, momentum, pairs trading, fatores",
+                "s": "quantitative trading strategies | mean reversion momentum | pairs trading | factor investing",
+                "d": "• Mean reversion: apostar que preço volta à média (vender alto, comprar baixo)\n• Momentum: apostar que tendência continua (comprar o que sobe)\n• Pairs trading: explorar divergência entre dois ativos correlacionados\n• Fatores: value, size, quality — características que explicam retornos"
+              },
+              {
+                "w": "Backtesting: testar estratégia em dados históricos, evitar overfitting e look-ahead bias",
+                "s": "backtesting trading strategy | backtrader vectorbt | look-ahead bias | overfitting backtest",
+                "d": "• Backtesting: simular a estratégia no passado pra estimar performance\n• Armadilhas: look-ahead bias (usar dado do futuro), survivorship bias, overfitting\n• Ferramentas: backtrader, vectorbt, zipline\n• Regra de ouro: out-of-sample testing — separar dados de teste que você nunca otimizou"
+              },
+              {
+                "w": "ML aplicado a finanças: previsão, feature engineering financeiro, cuidados específicos",
+                "s": "machine learning finance | financial feature engineering | ML trading pitfalls | time series ML finance",
+                "d": "• ML em finanças é traiçoeiro: sinal fraco, muito ruído, não-estacionariedade\n• Feature engineering: indicadores técnicos, dados fundamentais, sentimento\n• Cuidado: time series precisa de validação especial (walk-forward, não shuffle)\n• López de Prado: a maioria dos backtests de ML é falsa por data leakage"
+              },
+              {
+                "w": "Gestão de risco e execução: position sizing, stop loss, drawdown, custos de transação",
+                "s": "position sizing | risk management trading | maximum drawdown | transaction costs slippage",
+                "d": "• Position sizing: quanto alocar por trade (Kelly criterion, risco fixo)\n• Drawdown: maior queda do pico — o que realmente quebra traders\n• Stop loss e gestão de risco importam mais que a estratégia de entrada\n• Custos reais: spread, slippage, taxas — muitas estratégias morrem aqui"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "🎲 Game Design & Desenvolvimento",
+        "topics": [
+          {
+            "name": "Tópicos Avançados de Game Dev",
+            "books": [
+              "Game Engine Architecture — Jason Gregory",
+              "Game Programming Patterns — Robert Nystrom",
+              "Real-Time Rendering — Akenine-Möller, Haines & Hoffman"
+            ],
+            "items": [
+              {
+                "w": "🎯 Por que estudar Game Design & Desenvolvimento Avançado?",
+                "s": "por que game dev avançado | game engine architecture | jogos profissionais | game dev carreira",
+                "d": "• Aqui você vai além de fazer jogos: entende como engines funcionam por dentro\n• Tópicos de quem trabalha na indústria: performance, multiplayer robusto, live ops\n• Pré-requisito: você já domina design (CG & Game Design) e fez jogos 2D\n• Foco no que diferencia hobby de produção profissional de jogos"
+              },
+              {
+                "w": "Arquitetura de game engine: game loop avançado, subsistemas, gerência de memória, data-oriented design",
+                "s": "game engine architecture | data-oriented design games | engine subsystems | memory management games",
+                "d": "• Engine moderna: loop, renderer, física, áudio, input, cena — subsistemas coordenados\n• Data-oriented design: organizar dados pra cache (performance), além do ECS\n• Gerência de memória: pools, arenas — evitar GC/alloc em runtime (frame budget)\n• Entender a engine por dentro torna você um dev de jogos muito melhor"
+              },
+              {
+                "w": "Otimização e performance: profiling, frame budget, batching, LOD, draw calls",
+                "s": "otimização de jogos | game performance | frame budget | draw calls batching LOD",
+                "d": "• Frame budget: a 60 FPS você tem ~16ms por frame pra tudo — medir é essencial\n• Profiling: achar gargalos (CPU vs GPU) antes de otimizar (não chutar)\n• Batching e instancing: reduzir draw calls; LOD: menos detalhe ao longe\n• Conecta com Computação Gráfica: pipeline de renderização e shaders"
+              },
+              {
+                "w": "IA de jogos: máquinas de estado, behavior trees, pathfinding (A*), steering",
+                "s": "game AI | behavior trees | pathfinding A* | NPC AI steering",
+                "d": "• IA de jogo é sobre comportamento crível, não 'inteligência' real\n• Máquinas de estado e behavior trees: organizar decisões de NPCs\n• Pathfinding: A* pra navegar mapas (você viu A*/grafos em algoritmos)\n• Steering behaviors: perseguir, fugir, patrulhar, evitar obstáculos"
+              },
+              {
+                "w": "Multiplayer robusto: arquitetura de servidor, sincronização de estado, rollback, anti-cheat",
+                "s": "multiplayer architecture | netcode rollback | state synchronization | game anti-cheat",
+                "d": "• Além do básico: servidores dedicados, salas, matchmaking, escala\n• Sincronização: lockstep determinístico vs state sync com interpolação\n• Rollback netcode: padrão de jogos de luta (reverter e reprocessar)\n• Anti-cheat: servidor autoritativo, validação, detecção de anomalias"
+              },
+              {
+                "w": "Live ops e games como serviço: telemetria, eventos, conteúdo contínuo, retenção, monetização ética",
+                "s": "live ops games | games as a service | game telemetry | player retention | ética monetização",
+                "d": "• Jogos modernos evoluem após o lançamento: eventos, temporadas, conteúdo novo\n• Telemetria: medir comportamento real pra decidir balanceamento e conteúdo\n• Retenção: loops de engajamento de curto/médio/longo prazo\n• Monetização ética: evitar dark patterns predatórios; respeitar o jogador"
+              },
+              {
+                "w": "Ferramentas e pipeline de produção: editor de níveis, asset pipeline, build, version control pra jogos",
+                "s": "game tooling | asset pipeline | level editor | game build pipeline | git games",
+                "d": "• Times de jogo constroem ferramentas: editores de nível, importadores de asset\n• Asset pipeline: do arte/áudio bruto ao formato otimizado do jogo\n• Build e deploy pra múltiplas plataformas; version control com arquivos grandes (LFS)\n• Boas ferramentas multiplicam a produtividade do time"
+              }
+            ]
+          },
+          {
+            "name": "Desenvolvimento de Jogos na Prática",
+            "books": [
+              "Game Programming Patterns — Robert Nystrom",
+              "Godot Engine Game Development — vários (docs Godot)",
+              "Unity in Action — Joe Hocking"
+            ],
+            "items": [
+              {
+                "w": "Game engines: Godot, Unity, Unreal — quando usar cada, scene tree, nodes, componentes",
+                "s": "game engine comparison | Godot vs Unity vs Unreal | which game engine | game engine basics",
+                "d": "• Godot: leve, open source, ótimo pra 2D e indie (GDScript parecido com Python)\n• Unity: padrão da indústria, C#, enorme ecossistema, mobile/multiplataforma\n• Unreal: AAA, C++/Blueprints, gráficos de ponta\n• Conceito comum: árvore de cena com nodes/objetos e componentes"
+              },
+              {
+                "w": "Game loop e arquitetura: update/render, delta time, fixed timestep, state machines",
+                "s": "game loop | delta time | fixed timestep | game state machine",
+                "d": "• Game loop: input → update → render, repetido a cada frame\n• Delta time: multiplicar movimento pelo tempo do frame (independência de FPS)\n• Fixed timestep: física em passo fixo pra determinismo e estabilidade\n• State machines: gerenciar estados (menu, jogando, pausado, game over)"
+              },
+              {
+                "w": "Física e colisão em jogos: AABB, detecção e resposta, rigidbody, raycasting",
+                "s": "game physics | collision detection AABB | rigidbody physics | raycasting games",
+                "d": "• Colisão: AABB (caixas alinhadas) é simples e rápido pra 2D\n• Detecção (houve colisão?) vs resposta (o que fazer — parar, quicar, dano)\n• Rigidbody: deixar o motor de física simular (gravidade, forças)\n• Raycasting: lançar raio pra detectar (tiro, linha de visão, seleção)"
+              },
+              {
+                "w": "Padrões de programação de jogos: component/ECS, object pooling, observer, command",
+                "s": "game programming patterns | ECS entity component system | object pooling | game design patterns",
+                "d": "• ECS (Entity-Component-System): composição sobre herança — flexível e performático\n• Object pooling: reusar objetos (balas, inimigos) em vez de criar/destruir (evita GC)\n• Observer: eventos (jogador morreu → atualizar UI, tocar som) desacoplados\n• Command: encapsular ações (undo, replay, input remapping)"
+              },
+              {
+                "w": "Áudio e arte em jogos: sprites, tilesets, animação, SFX, música adaptativa",
+                "s": "game art | sprite animation | tilemap | game audio | adaptive music games",
+                "d": "• Sprites e tilesets pra 2D; spritesheets e animação por frames\n• Som: SFX dão feedback (pulo, dano, coleta); música cria atmosfera\n• Áudio adaptativo: música reage ao gameplay (conecta com DSP/áudio)\n• Mesmo programadores devem entender o básico de arte/áudio pra protótipos"
+              },
+              {
+                "w": "Multiplayer e netcode: client-server vs P2P, latência, predição, autoridade",
+                "s": "game netcode | multiplayer game programming | client-server games | lag compensation",
+                "d": "• Multiplayer é difícil: latência, sincronização, trapaça\n• Client-server (servidor autoritativo) evita cheating; P2P é mais simples mas inseguro\n• Client-side prediction + reconciliation escondem a latência\n• Você sente isso jogando FFXIV: lag, rollback, autoridade do servidor"
+              },
+              {
+                "w": "Publicar e monetizar: itch.io, Steam, lojas mobile, modelos (premium, F2P, DLC)",
+                "s": "publish indie game | itch.io Steam | game monetization | free to play model",
+                "d": "• itch.io: ótimo pra indie e game jams (barreira baixa). Steam pra alcance maior\n• Lojas mobile (Google Play, App Store) têm processo e taxas próprios\n• Modelos: premium (paga uma vez), F2P (microtransações), DLC, assinatura\n• Game jams (Ludum Dare, GMTK) são a melhor forma de praticar e terminar jogos"
+              },
+              {
+                "w": "Save systems e serialização: salvar/carregar estado, slots, evitar corrupção",
+                "s": "save system jogo | serialização jogo | salvar carregar jogo | save corruption",
+                "d": "• Serializar o estado do jogo (JSON, binário) pra disco e carregar de volta\n• Slots de save, autosave, e o que salvar (progresso, inventário, posição)\n• Versionamento de save: jogos atualizam; saves antigos precisam migrar\n• Evitar corrupção: escrever em arquivo temp e renomear (write atômico)"
+              }
+            ]
+          },
+          {
+            "name": "Geração Procedural de Conteúdo (PCG)",
+            "books": [
+              "Procedural Generation in Game Design — Tanya Short & Tarn Adams",
+              "Procedural Content Generation in Games — Noor Shaker, Julian Togelius & Mark Nelson",
+              "Texturing & Modeling: A Procedural Approach — David Ebert et al."
+            ],
+            "items": [
+              {
+                "w": "Ruído procedural: Perlin e Simplex noise — base de terreno, texturas e variação natural",
+                "s": "perlin noise | simplex noise | ruído procedural | procedural noise terrain",
+                "d": "• Ruído gera valores 'aleatórios mas suaves' — natural, não caótico\n• Perlin/Simplex: base de terreno, nuvens, texturas, variação orgânica\n• Octaves (somar ruídos em escalas) criam detalhe fractal\n• Seed: mesma semente = mesmo resultado (reprodutível, compartilhável)"
+              },
+              {
+                "w": "Geração de dungeons e labirintos: BSP, drunkard walk, autômatos celulares",
+                "s": "geração de dungeon | maze generation | BSP dungeon | cellular automata cave | drunkard walk",
+                "d": "• BSP (binary space partitioning): dividir espaço em salas conectadas\n• Drunkard walk: caminhada aleatória que 'cava' corredores\n• Autômatos celulares: gerar cavernas orgânicas (regras de vizinhança)\n• Garantir conectividade: todo lugar alcançável (usa grafos/BFS que você já viu)"
+              },
+              {
+                "w": "Design de roguelikes: PCG como mecânica, run-based, permadeath, rejogabilidade",
+                "s": "design roguelike | run-based game | permadeath | replayability PCG",
+                "d": "• Roguelike: cada partida é gerada — rejogabilidade infinita\n• PCG vira mecânica central, não só economia de produção\n• Permadeath + progressão meta (desbloqueios) equilibram frustração e avanço\n• Curadoria: PCG puro pode ser injusto; misturar com conteúdo desenhado à mão"
+              },
+              {
+                "w": "Wave Function Collapse e geração por constraints: montar mundos a partir de regras",
+                "s": "wave function collapse | WFC algorithm | constraint-based generation | tile-based PCG",
+                "d": "• WFC: gera padrões coerentes a partir de tiles e regras de adjacência\n• Inspirado em colapso quântico: cada célula 'colapsa' pro tile compatível\n• Ótimo pra mapas tile-based, níveis, texturas que parecem desenhados à mão\n• Constraint solving: o conteúdo respeita regras que você define"
+              },
+              {
+                "w": "Geração de mundos e terreno: heightmaps, biomas, open world procedural",
+                "s": "geração de mundo | terrain generation | heightmap | biomas procedural | open world generation",
+                "d": "• Heightmap: ruído vira altura do terreno (montanhas, vales)\n• Biomas: combinar ruídos (altitude, umidade, temperatura) pra definir regiões\n• Open world procedural: Minecraft, No Man's Sky — mundos infinitos por seed\n• Trade-off: variedade procedural vs coerência e 'mão de designer'"
+              }
+            ]
+          },
+          {
+            "name": "Produção, Lançamento e Comunidade",
+            "books": [
+              "Blood, Sweat, and Pixels — Jason Schreier",
+              "The Game Production Toolbox — Heather Maxwell Chandler",
+              "A Practical Guide to Indie Game Marketing — Joel Dreskin"
+            ],
+            "items": [
+              {
+                "w": "Gestão de escopo: o maior matador de projetos indie — cortar pra terminar",
+                "s": "gestão de escopo jogo | scope management indie | scope creep | terminar jogo indie",
+                "d": "• Escopo grande demais é o que mais mata jogos indie (nunca terminam)\n• Definir o núcleo: o que é essencial vs 'seria legal ter' (cortar sem dó)\n• 'Faça um jogo pequeno e termine' vale mais que um épico inacabado\n• Vertical slice antes de produção em massa pra validar o escopo"
+              },
+              {
+                "w": "Vertical slice e milestones: do protótipo ao gold, fases de produção de jogo",
+                "s": "vertical slice | game milestones | game production phases | alpha beta gold",
+                "d": "• Protótipo (a mecânica funciona?) → vertical slice (uma fatia polida e jogável)\n• Marcos: pre-production, production, alpha (features completas), beta (polish), gold\n• Vertical slice prova a visão e ajuda a estimar o resto do projeto\n• Produção é iterativa: construir, testar, ajustar — não cascata"
+              },
+              {
+                "w": "Metodologia de playtesting: como rodar testes, observar, coletar métricas e feedback",
+                "s": "metodologia playtesting | como rodar playtest | game metrics telemetry | feedback qualitativo jogo",
+                "d": "• Observe calado: onde o jogador trava, o que ele tenta, onde desiste\n• Não pergunte 'gostou?' — pergunte o que fez, sentiu, esperava\n• Métricas (telemetria): onde morrem, quanto tempo em cada nível, taxa de conclusão\n• Combinar qualitativo (observação) e quantitativo (dados) pra decidir mudanças"
+              },
+              {
+                "w": "Marketing indie: wishlists, demo, página da Steam, trailer, press kit",
+                "s": "marketing jogo indie | steam wishlist | game trailer | press kit | demo steam",
+                "d": "• Wishlists na Steam são a métrica-chave pré-lançamento (impulsionam o launch)\n• Página da loja e trailer vendem o jogo em segundos — capriche nos primeiros 8s\n• Demo (ex: Next Fest) e press kit (assets, gifs, info) facilitam cobertura\n• Marketing começa cedo, não no lançamento — construir audiência ao longo do dev"
+              },
+              {
+                "w": "Construir comunidade: devlog, Discord, redes sociais, early access",
+                "s": "comunidade de jogo | devlog | discord jogo | early access | community building games",
+                "d": "• Devlogs (YouTube, Twitter/X, Reddit) mostram o progresso e criam audiência\n• Discord: comunidade fiel que testa, dá feedback e divulga boca a boca\n• Early access: lançar incompleto pra fundos e feedback (com expectativas claras)\n• Comunidade engajada é o maior ativo de um indie no longo prazo"
+              },
+              {
+                "w": "Postmortems: aprender com jogos lançados, sucessos e fracassos",
+                "s": "postmortem jogo | game postmortem | aprender com lançamento | gamasutra postmortem",
+                "d": "• Postmortem: análise honesta do que deu certo e errado após lançar\n• Ler postmortems alheios (GDC, antigos Gamasutra) acelera seu aprendizado\n• Documentar suas próprias decisões e resultados torna o próximo projeto melhor\n• Falhas bem analisadas ensinam mais que sucessos não examinados"
               }
             ]
           }
@@ -9071,6 +9746,76 @@ const ROADMAP = [
                 "w": "Go-to-market: como lançar produto, canais de aquisição, primeiros clientes, growth loops",
                 "s": "go-to-market strategy | customer acquisition channels | first customers startup | growth loops",
                 "d": "• GTM: estratégia de como levar produto ao mercado e adquirir clientes\n• Canais: content marketing, ads, vendas, parcerias, product-led, community\n• Primeiros clientes: founder-led sales, early adopters, nichos específicos\n• Growth loop: mecanismo onde uso gera mais uso (referral, conteúdo, network effects)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "🌍 Open Source na Prática",
+        "topics": [
+          {
+            "name": "Contribuindo com Projetos Open Source",
+            "books": [
+              "Open Source for the Real World — vários (Open Source Guides do GitHub)",
+              "Producing Open Source Software — Karl Fogel",
+              "The Cathedral and the Bazaar — Eric S. Raymond"
+            ],
+            "items": [
+              {
+                "w": "🎯 Por que estudar Open Source na Prática?",
+                "s": "por que contribuir open source | open source carreira | benefícios open source | contribuir github",
+                "d": "• Open source é portfólio público real — recrutadores veem seu código e colaboração\n• Aprende lendo código de projetos maduros, com revisão de devs experientes\n• Networking, reputação e até oportunidades de trabalho vêm de contribuições\n• Retribui às ferramentas que você usa todo dia"
+              },
+              {
+                "w": "Achando o primeiro projeto: good first issues, projetos que você usa, escopo realista",
+                "s": "good first issue | first open source contribution | how to start contributing | beginner friendly repos",
+                "d": "• Comece por ferramentas que VOCÊ usa — você entende o problema e o valor\n• Labels 'good first issue' e 'help wanted' marcam tarefas pra iniciantes\n• Evite projetos gigantes/abandonados no começo; prefira ativos e acolhedores\n• Escopo pequeno primeiro: doc, typo, teste, bug pequeno — ganhe contexto"
+              },
+              {
+                "w": "Lendo codebases grandes: navegar, entender arquitetura, rodar localmente, debugar",
+                "s": "reading large codebase | understand open source project | navigate codebase | run project locally",
+                "d": "• Não leia tudo: comece pelo README, CONTRIBUTING, estrutura de pastas\n• Rode o projeto localmente e os testes — entenda o fluxo principal\n• Siga uma feature do início ao fim (entry point → lógica → saída)\n• Use o debugger e busca (grep/IDE) pra rastrear; leia PRs antigos pra contexto"
+              },
+              {
+                "w": "Issues e comunicação: escrever bug report, reproduzir, discutir antes de codar",
+                "s": "writing bug report | open source communication | issue etiquette | reproduce bug",
+                "d": "• Bom bug report: passos pra reproduzir, esperado vs obtido, ambiente, versão\n• Comente na issue ANTES de fazer um PR grande — alinhe a abordagem com mantenedores\n• Seja claro, conciso e respeitoso; mantenedores são voluntários\n• 'Posso trabalhar nisso?' evita esforço duplicado e PR rejeitado"
+              }
+            ]
+          },
+          {
+            "name": "Workflow, Comunidade e Mantendo Projetos",
+            "books": [
+              "GitHub Flow & Pull Requests — docs GitHub",
+              "Working in Public — Nadia Eghbal",
+              "Forge Your Future with Open Source — VM (Vicky) Brasseur"
+            ],
+            "items": [
+              {
+                "w": "Workflow de PR: fork, branch, commits claros, abrir PR, responder a review",
+                "s": "pull request workflow | fork branch PR | open source git workflow | code review response",
+                "d": "• Fluxo: fork → clone → branch → commit → push → abrir Pull Request\n• Commits claros e atômicos; mensagem que explica o porquê, não só o quê\n• Siga o CONTRIBUTING: estilo de código, testes, formato de commit\n• Code review: responda com humildade, faça as mudanças, não leve pro pessoal"
+              },
+              {
+                "w": "Licenças open source: MIT, Apache, GPL, copyleft vs permissiva, o que cada permite",
+                "s": "open source licenses | MIT vs GPL vs Apache | copyleft permissive | choosing a license",
+                "d": "• Permissivas (MIT, Apache): use quase à vontade, inclusive em código fechado\n• Copyleft (GPL): derivados devem ser open source também (vírus-copyleft)\n• Apache 2.0: permissiva + proteção de patente\n• Importa pra usar dependências legalmente e pra licenciar seu próprio projeto"
+              },
+              {
+                "w": "Git avançado pra colaboração: rebase, resolver conflitos, squash, manter fork sincronizado",
+                "s": "git rebase | resolve merge conflict | squash commits | sync fork upstream",
+                "d": "• Rebase: reaplicar commits sobre a base atualizada (histórico linear e limpo)\n• Resolver conflitos: entender ambos os lados, não só aceitar um cegamente\n• Squash: juntar vários commits em um antes de mergear (histórico legível)\n• Manter fork sincronizado com upstream (git remote add upstream + fetch/rebase)"
+              },
+              {
+                "w": "Mantendo seu próprio projeto: README, docs, CI, issues, releases, versionamento semântico",
+                "s": "maintain open source project | good README | semantic versioning | open source CI",
+                "d": "• README que vende: o que é, por que, como instalar/usar, exemplos\n• CONTRIBUTING e CODE_OF_CONDUCT pra receber contribuições saudáveis\n• CI (GitHub Actions) rodando testes/lint a cada PR\n• SemVer (MAJOR.MINOR.PATCH) e releases/changelog pra usuários confiarem"
+              },
+              {
+                "w": "Comunidade e sustentabilidade: lidar com burnout, dizer não, governança, sponsorship",
+                "s": "open source sustainability | maintainer burnout | open source governance | github sponsors",
+                "d": "• Manter projeto popular cansa: muitas issues, demandas, pouco reconhecimento\n• Está ok dizer não a features fora do escopo; defina o propósito do projeto\n• Governança: como decisões são tomadas quando o projeto cresce\n• Sponsorship (GitHub Sponsors, Open Collective) ajuda a sustentar o trabalho"
               }
             ]
           }

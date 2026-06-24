@@ -2,10 +2,9 @@
 (function(){
 const $=s=>document.querySelector(s);
 const roadmap=$('#roadmap'),statsEl=$('#stats'),searchInput=$('#search'),searchResults=$('#search-results');
-const SK='roadmap_progress',QK='roadmap_quizzes',TK='roadmap_theme',BK='roadmap_badges';
+const SK='roadmap_progress',TK='roadmap_theme',BK='roadmap_badges';
 function gP(){try{return JSON.parse(localStorage.getItem(SK))||{}}catch(e){return{}}}
 function sP(d){localStorage.setItem(SK,JSON.stringify(d))}
-function gQ(){try{return JSON.parse(localStorage.getItem(QK))||{}}catch(e){return{}}}
 function gB(){try{return JSON.parse(localStorage.getItem(BK))||{}}catch(e){return{}}}
 function sB(d){localStorage.setItem(BK,JSON.stringify(d))}
 function mid(lc,an,tn,ii){return lc+'::'+an.substring(0,20)+'::'+tn.substring(0,20)+'::'+ii}
@@ -200,11 +199,11 @@ function aF(){
   expandForFilter();
 }
 window.setFilter=function(f){cF=f;aF();document.querySelectorAll('.filter-btn').forEach(b=>{const on=b.dataset.filter===f;b.classList.toggle('active',on);b.setAttribute('aria-pressed',on?'true':'false')})};
-window.resetProgress=function(){if(confirm('Apagar todo progresso (itens estudados, quizzes e badges)?')){localStorage.removeItem(SK);localStorage.removeItem(QK);localStorage.removeItem(BK);localStorage.removeItem('roadmap_levels_done');location.reload()}};
+window.resetProgress=function(){if(confirm('Apagar todo progresso (itens estudados e badges)?')){localStorage.removeItem(SK);localStorage.removeItem(BK);localStorage.removeItem('roadmap_levels_done');localStorage.removeItem('roadmap_quizzes');location.reload()}};
 
 // Export/Import
 window.exportProgress=function(){
-  const data={progress:gP(),quizzes:gQ(),badges:gB(),date:new Date().toISOString()};
+  const data={progress:gP(),badges:gB(),date:new Date().toISOString()};
   const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
   const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='roadmap-progress-'+new Date().toISOString().split('T')[0]+'.json';a.click();
 };
@@ -213,7 +212,6 @@ window.importProgress=function(){
   input.onchange=function(e){const f=e.target.files[0];if(!f)return;const reader=new FileReader();
     reader.onload=function(ev){try{const data=JSON.parse(ev.target.result);
       if(data.progress){localStorage.setItem(SK,JSON.stringify(data.progress))}
-      if(data.quizzes){localStorage.setItem(QK,JSON.stringify(data.quizzes))}
       if(data.badges){localStorage.setItem(BK,JSON.stringify(data.badges))}
       alert('Progresso importado! Recarregando...');location.reload();
     }catch(err){alert('Arquivo inválido')}};reader.readAsText(f)};input.click();
@@ -294,25 +292,17 @@ tB.addEventListener('click',()=>tog(tB,tC));tD.appendChild(tB);tD.appendChild(tC
 
 const aK2=area.name.replace(/^[^\w\s]+\s*/u,'').trim();
 const hP=typeof PROJECTS!=='undefined'&&Object.keys(PROJECTS).find(k=>aK2.includes(k)||k.includes(aK2));
-const qK=typeof QUIZZES!=='undefined'&&Object.keys(QUIZZES).find(k=>aK2.includes(k)||k.includes(aK2));
-if(hP||qK){const ab=document.createElement('div');ab.className='area-actions';
-if(hP){const pd=PROJECTS[hP];
+if(hP){const ab=document.createElement('div');ab.className='area-actions';
+const pd=PROJECTS[hP];
 const bb2=document.createElement('button');bb2.className='project-btn project-basic';bb2.textContent=pd.basic.title;bb2.addEventListener('click',e=>{e.stopPropagation();openProject(pd.basic)});ab.appendChild(bb2);
-const ab2=document.createElement('button');ab2.className='project-btn project-advanced';ab2.textContent=pd.advanced.title;ab2.addEventListener('click',e=>{e.stopPropagation();openProject(pd.advanced)});ab.appendChild(ab2)}
-if(qK){const qr=gQ();const r=qr[qK];const qb=document.createElement('button');qb.className='quiz-btn'+(r&&r.passed?' quiz-passed':'');
-qb.textContent=r?(r.passed?'✅ Aprovado ('+r.score+'/'+r.total+')':'❌ ('+r.score+'/'+r.total+') Tentar novamente'):'📝 Fazer Prova';
-qb.addEventListener('click',e=>{e.stopPropagation();openQuiz(qK)});ab.appendChild(qb)}
+const ab2=document.createElement('button');ab2.className='project-btn project-advanced';ab2.textContent=pd.advanced.title;ab2.addEventListener('click',e=>{e.stopPropagation();openProject(pd.advanced)});ab.appendChild(ab2);
 aC.appendChild(ab)}
 aB.addEventListener('click',()=>tog(aB,aC));aD.appendChild(aB);aD.appendChild(aC);cont.appendChild(aD)});
 
 if(typeof FINAL_LEVEL!=='undefined'&&FINAL_LEVEL[level.css]){
 const fd=FINAL_LEVEL[level.css];const ln={green:'Iniciante',yellow:'Intermediário',orange:'Avançado',red:'Muito Avançado',blue:'Academia',purple:'Carreira'};const ll=ln[level.css]||level.name;
 const fb=document.createElement('div');fb.className='final-actions';
-const pb2=document.createElement('button');pb2.className='final-btn final-project';pb2.textContent='🏆 Projeto Final — '+ll;pb2.addEventListener('click',e=>{e.stopPropagation();openProject(fd.project)});fb.appendChild(pb2);
-const fk='__FINAL_'+level.css.toUpperCase()+'__';const qr=gQ();const fr=qr[fk];
-const eb=document.createElement('button');eb.className='final-btn final-exam'+(fr&&fr.passed?' quiz-passed':'');
-eb.textContent=fr?(fr.passed?'🎓 ✅ Aprovado ('+fr.score+'/'+fr.total+')':'🎓 ❌ Tentar novamente'):'🎓 Prova Final — '+ll;
-eb.addEventListener('click',e=>{e.stopPropagation();openQuiz(fk)});fb.appendChild(eb);
+const pb2=document.createElement('button');pb2.className='final-btn final-project';pb2.textContent='🏆 Desafio Final — '+ll;pb2.addEventListener('click',e=>{e.stopPropagation();openProject(fd.project)});fb.appendChild(pb2);
 cont.appendChild(fb)}
 btn.addEventListener('click',()=>tog(btn,cont));sec.appendChild(btn);sec.appendChild(cont);roadmap.appendChild(sec)});
 
@@ -352,23 +342,6 @@ if(toolbar&&typeof IntersectionObserver!=='undefined'){
   obs.observe(probe);
 }
 })();
-
-// Quiz
-function openQuiz(tn){const qs=QUIZZES[tn];if(!qs)return;const iF=tn.startsWith('__FINAL_');const tot=qs.length;const mp=Math.ceil(tot*0.8);
-const ln={GREEN:'Iniciante',YELLOW:'Intermediário',ORANGE:'Avançado',RED:'Muito Avançado',BLUE:'Academia',PURPLE:'Carreira'};
-const dn=iF?'Prova Final — '+(ln[tn.replace('__FINAL_','').replace('__','')]||tn):tn;
-const ov=document.createElement('div');ov.className='quiz-overlay';const mo=document.createElement('div');mo.className='quiz-modal';
-let h=`<h2>${iF?'🎓':'📝'} ${esc(dn)}</h2><p class="quiz-info">${tot} perguntas · 80% (${mp}/${tot}) para aprovação</p><form id="quizForm">`;
-qs.forEach((q,i)=>{h+=`<div class="quiz-question"><p class="quiz-q"><strong>${i+1}.</strong> ${esc(q.q)}</p>`;q.o.forEach((o,oi)=>{h+=`<label class="quiz-option"><input type="radio" name="q${i}" value="${oi}" required><span>${esc(o)}</span></label>`});h+=`</div>`});
-h+=`<div class="quiz-actions"><button type="submit" class="quiz-submit">✅ Corrigir</button><button type="button" class="quiz-close" onclick="this.closest('.quiz-overlay').remove()">❌ Cancelar</button></div></form>`;
-mo.innerHTML=h;ov.appendChild(mo);document.body.appendChild(ov);
-mo.setAttribute('role','dialog');mo.setAttribute('aria-modal','true');
-const firstInput=mo.querySelector('input,button');if(firstInput)firstInput.focus();
-document.getElementById('quizForm').addEventListener('submit',function(e){e.preventDefault();let c=0;qs.forEach((q,i)=>{const s=this.querySelector(`input[name="q${i}"]:checked`);if(s&&parseInt(s.value)===q.a)c++});
-const pc=Math.round(c/tot*100);const pa=pc>=80;
-try{const r=JSON.parse(localStorage.getItem('roadmap_quizzes')||'{}');r[tn]={score:c,total:tot,pct:pc,passed:pa,date:new Date().toISOString().split('T')[0]};localStorage.setItem('roadmap_quizzes',JSON.stringify(r))}catch(e){}
-mo.innerHTML=`<div class="quiz-result ${pa?'quiz-pass':'quiz-fail'}"><h2>${pa?'🎉 APROVADO!':'❌ REPROVADO'}</h2><div class="quiz-score">${c}/${tot}</div><div class="quiz-pct">${pc}%</div><p>${pa?'Parabéns! Resultado salvo.':'Precisa de 80% ('+mp+'/'+tot+'). Revise e tente novamente!'}</p><button class="quiz-close-btn" onclick="this.closest('.quiz-overlay').remove();location.reload();">Fechar</button></div>`});
-ov.addEventListener('click',e=>{if(e.target===ov)ov.remove()})}
 
 // Project
 function openProject(p){const ov=document.createElement('div');ov.className='quiz-overlay';const mo=document.createElement('div');mo.className='quiz-modal project-modal';
