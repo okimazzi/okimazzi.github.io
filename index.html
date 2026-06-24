@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Roadmap Completo — Engenharia da Computação</title>
-  <meta name="description" content="Roadmap completo de Engenharia da Computação: do iniciante ao avançado. 1419 itens, 960 perguntas, 120 projetos. IA, ML, Full-Stack, DevOps, Segurança, Robótica e mais.">
+  <meta name="description" content="Roadmap completo de Engenharia da Computação: do iniciante ao avançado. 1415 itens, 960 perguntas, 120 projetos. IA, ML, Full-Stack, DevOps, Segurança, Robótica e mais.">
   <meta property="og:title" content="Roadmap Completo — Engenharia da Computação">
-  <meta property="og:description" content="Do zero ao avançado: 56 áreas, 1419 itens, quizzes e projetos práticos.">
+  <meta property="og:description" content="Do zero ao avançado: 56 áreas, 1415 itens, quizzes e projetos práticos.">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,7 +16,7 @@
 <body>
   <header class="hero">
     <div class="hero-inner">
-      <p class="hero-tag">v6 · 56 áreas · 1419 itens · 960 perguntas · 120 projetos</p>
+      <p class="hero-tag">v6 · 56 áreas · 1415 itens · 960 perguntas · 120 projetos</p>
       <h1>Roadmap Completo<br><span class="hero-accent">Engenharia da Computação</span></h1>
     </div>
   </header>
@@ -27,10 +27,10 @@
     <div class="toolbar">
       <button id="theme-toggle" onclick="toggleTheme()">☀️ Claro</button>
       <button class="study-btn" onclick="studyOfDay()">📚 Estudo do Dia</button>
-      <div class="filter-group">
-        <button class="filter-btn active" data-filter="all" onclick="setFilter('all')">Todos</button>
-        <button class="filter-btn" data-filter="not-studied" onclick="setFilter('not-studied')">⬜ Não estudados</button>
-        <button class="filter-btn" data-filter="studied" onclick="setFilter('studied')">✅ Estudados</button>
+      <div class="filter-group" role="group" aria-label="Filtrar itens">
+        <button class="filter-btn active" data-filter="all" aria-pressed="true" onclick="setFilter('all')">Todos</button>
+        <button class="filter-btn" data-filter="not-studied" aria-pressed="false" onclick="setFilter('not-studied')">⬜ Não estudados</button>
+        <button class="filter-btn" data-filter="studied" aria-pressed="false" onclick="setFilter('studied')">✅ Estudados</button>
       </div>
       <div class="toolbar-right">
         <button class="export-btn" onclick="exportProgress()" title="Exportar progresso">📥 Exportar</button>
@@ -90,10 +90,10 @@
 
   <footer><p>Roadmap Eng. Computação · Progresso salvo no navegador · <kbd>D</kbd> Estudo do dia · <kbd>T</kbd> Tema · <kbd>/</kbd> Buscar</p></footer>
 
-  <script src="data.js"></script>
-  <script src="quizzes.js"></script>
-  <script src="projects.js"></script>
-  <script src="final.js"></script>
-  <script src="app.js"></script>
+  <script defer src="data.js"></script>
+  <script defer src="quizzes.js"></script>
+  <script defer src="projects.js"></script>
+  <script defer src="final.js"></script>
+  <script defer src="app.js"></script>
 </body>
 </html>

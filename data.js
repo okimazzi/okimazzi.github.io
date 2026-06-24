@@ -3157,11 +3157,6 @@ const ROADMAP = [
                 "d": "• O que é: Reducao: transformar problema A em problema B..\n• Conceitos-chave: Se B e facil e A reduz a B → A tambem e facil.. Se A e dificil e A reduz a B → B tambem e dificil.. Cook-Levin: SAT e NP-completo.. Pra provar NP-completo: reduzir SAT (ou outro NP-completo) ao seu problema.. Ferramenta fundamental em teoria.\n• O que estudar: provar que problema A e tao dificil quanto B."
               },
               {
-                "w": "Classes de complexidade: P, NP, NP-hard, NP-complete, co-NP, PSPACE — hierarquia e exemplos",
-                "s": "Classes de complexidade explicação português | P NP NP-hard NP-complete tutorial | classes de complexidade explained for beginners | Classes de complexidade examples and practice",
-                "d": "• O que é: P: resolvível em tempo polinomial..\n• Conceitos-chave: NP: verificável em tempo polinomial.. NP-completo: os mais difíceis de NP (SAT, TSP).. P=NP? problema aberto.\n• O que estudar: P, NP, NP-hard, NP-complete, co-NP, PSPACE — hierarquia e exemplos."
-              },
-              {
                 "w": "Reduções: provar NP-completude reduzindo problema conhecido (SAT) para novo problema",
                 "s": "NP-completeness proof tutorial | polynomial reduction tutorial | redues explained for beginners | redues explicação em português",
                 "d": "• O que é: Para provar que problema X é NP-completo: mostrar que está em NP e reduzir SAT (ou outro NP-completo) para X em tempo polinomial.\n• O que estudar: provar NP-completude reduzindo problema conhecido (SAT) para novo problema."
@@ -6171,11 +6166,6 @@ const ROADMAP = [
                 "d": "• Free tier: AWS/GCP/Azure oferecem serviços gratuitos limitados (750h EC2/mês primeiro ano)\n• Reserved: compromisso 1-3 anos = até 72% desconto. Spot: até 90% desconto mas pode ser interrompido\n• Cost Explorer: visualizar gastos por serviço/tag. Budgets: alertar antes de estourar"
               },
               {
-                "w": "Service mesh: Istio, Linkerd — traffic management, mTLS, observability entre microsserviços",
-                "s": "service mesh Istio Linkerd | Istio tutorial | mTLS service mesh | service mesh observability",
-                "d": "• Service mesh: camada de infraestrutura que gerencia comunicação entre serviços\n• Sidecar proxy: cada pod tem proxy (Envoy) que intercepta todo tráfego\n• mTLS: criptografia automática entre todos serviços (sem mudar código)\n• Traffic management: canary deploy (5% tráfego pro novo), retry, circuit breaker, rate limit"
-              },
-              {
                 "w": "Serverless: Lambda/Cloud Functions, cold start, event-driven architecture, quando usar",
                 "s": "serverless Lambda Cloud Functions | cold start serverless | event-driven architecture | when to use serverless",
                 "d": "• Serverless: upload código, cloud gerencia tudo (escala, infra, patching). Paga por execução\n• Cold start: primeira invocação é lenta (provisionar container). ~100ms-1s dependendo da linguagem\n• Event-driven: S3 upload → Lambda processa → salva no banco. SNS message → Lambda → email\n• Quando usar: workloads esporádicos, webhooks, cron jobs. Quando NÃO: latência crítica, long-running"
@@ -6289,11 +6279,6 @@ const ROADMAP = [
                 "w": "SAST vs DAST vs IAST: análise estática, dinâmica, interativa — quando usar cada",
                 "s": "SAST DAST IAST comparison | static dynamic security testing | security testing pipeline",
                 "d": "• SAST: analisa código-fonte SEM executar (Semgrep). Rápido, falsos positivos\n• DAST: testa app RODANDO (ZAP). Problemas reais, mais lento\n• IAST: instrumenta app em runtime. Menos falsos positivos"
-              },
-              {
-                "w": "Container security: image scanning (Trivy), rootless, seccomp, distroless images",
-                "s": "container security Trivy | rootless containers | seccomp profiles | distroless images",
-                "d": "• Trivy: escaneia por CVEs. Rootless: sem root no host\n• Seccomp: restringe syscalls. Distroless: sem shell, superfície mínima"
               },
               {
                 "w": "Secret management: Vault, AWS Secrets Manager, rotação, NUNCA hardcode",
@@ -7428,11 +7413,6 @@ const ROADMAP = [
                 "w": "Security Automation: SOAR, playbooks automatizados, auto-remediation",
                 "s": "Security Automation SOAR tutorial portugues | SOAR security orchestration automation | security automation explained for beginners | security automation explicação em português",
                 "d": "• O que é: SOAR: Security Orchestration, Automation and Response..\n• Conceitos-chave: Playbook automatizado: alerta de malware > isolar maquina > coletar evidencia > notificar time.. Ferramentas: Shuffle (open-source), Splunk SOAR, Palo Alto XSOAR.. Reduz tempo de resposta de horas pra minutos.\n• O que estudar: SOAR, playbooks automatizados, auto-remediation."
-              },
-              {
-                "w": "Malware analysis formal: estática (PE/ELF headers, strings, Ghidra/IDA), dinâmica (sandbox, API monitoring, behavior analysis)",
-                "s": "Malware analysis formal explicação português | static dynamic analysis tutorial | malware analysis formal explained for beginners | Malware analysis formal examples and practice",
-                "d": "• O que é: Análise estática: examinar binário sem executar (strings, imports, disassembly em Ghidra)..\n• Conceitos-chave: Dinâmica: executar em sandbox (Any.Run, Cuckoo) e observar comportamento.\n• O que estudar: estática (PE/ELF headers, strings, Ghidra/IDA), dinâmica (sandbox, API monitoring, behavior analysis)."
               }
             ]
           },
