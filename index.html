@@ -4,10 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Roadmap Completo — Engenharia da Computação</title>
-  <meta name="description" content="Roadmap completo de Engenharia da Computação: do iniciante ao avançado. 1248 itens de estudo, 960 perguntas de quiz, 120 projetos práticos. Cobre IA, ML, Full-Stack, DevOps, Segurança, Robótica e mais.">
-  <meta name="keywords" content="roadmap engenharia computação, estudar programação, roadmap dev, computer science roadmap, engenharia da computação grade">
+  <meta name="description" content="Roadmap completo de Engenharia da Computação: do iniciante ao avançado. 1419 itens, 960 perguntas, 120 projetos. IA, ML, Full-Stack, DevOps, Segurança, Robótica e mais.">
   <meta property="og:title" content="Roadmap Completo — Engenharia da Computação">
-  <meta property="og:description" content="Do zero ao avançado: 56 áreas, 1248 itens, quizzes e projetos práticos. IA, ML, Full-Stack, DevOps, Segurança, Robótica.">
+  <meta property="og:description" content="Do zero ao avançado: 56 áreas, 1419 itens, quizzes e projetos práticos.">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,26 +16,30 @@
 <body>
   <header class="hero">
     <div class="hero-inner">
-      <p class="hero-tag">v5 · 56 áreas · 1248 itens · 960 perguntas · 120 projetos</p>
+      <p class="hero-tag">v6 · 56 áreas · 1419 itens · 960 perguntas · 120 projetos</p>
       <h1>Roadmap Completo<br><span class="hero-accent">Engenharia da Computação</span></h1>
-
     </div>
   </header>
 
   <div class="container">
     <div id="stats" class="stats-bar"></div>
 
-    <!-- TOOLBAR -->
     <div class="toolbar">
       <button id="theme-toggle" onclick="toggleTheme()">☀️ Claro</button>
+      <button class="study-btn" onclick="studyOfDay()">📚 Estudo do Dia</button>
       <div class="filter-group">
-        <span class="filter-label">Filtrar:</span>
         <button class="filter-btn active" data-filter="all" onclick="setFilter('all')">Todos</button>
         <button class="filter-btn" data-filter="not-studied" onclick="setFilter('not-studied')">⬜ Não estudados</button>
         <button class="filter-btn" data-filter="studied" onclick="setFilter('studied')">✅ Estudados</button>
       </div>
-      <button class="reset-btn" onclick="resetProgress()">🗑️ Resetar progresso</button>
+      <div class="toolbar-right">
+        <button class="export-btn" onclick="exportProgress()" title="Exportar progresso">📥 Exportar</button>
+        <button class="import-btn" onclick="importProgress()" title="Importar progresso">📤 Importar</button>
+        <button class="reset-btn" onclick="resetProgress()">🗑️ Resetar</button>
+      </div>
     </div>
+
+    <div class="shortcuts-hint">⌨️ Atalhos: <kbd>D</kbd> Estudo do dia · <kbd>T</kbd> Tema · <kbd>/</kbd> Buscar</div>
 
     <div class="search-wrap">
       <input type="text" id="search" placeholder="🔍 Buscar qualquer tópico, item, livro ou termo..." autocomplete="off">
@@ -48,120 +51,44 @@
     <!-- FAQ -->
     <div class="faq-section">
       <h2>❓ Perguntas Frequentes</h2>
-      
-      <details class="faq-item">
-        <summary>Posso pular áreas?</summary>
-        <p>Dentro do mesmo nível, algumas áreas são independentes (ex: Matemática e Web no Iniciante). Mas a ordem geral é importante — cada nível constrói sobre o anterior. Se já sabe algo, marque como estudado e siga em frente.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Quanto tempo por dia preciso estudar?</summary>
-        <p>O roadmap foi pensado pra 1-2h por dia, 5 dias por semana. Nesse ritmo, o Iniciante leva ~6-12 meses. Mais importante que horas é <strong>consistência</strong> — 1h todo dia é melhor que 8h no sábado.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Preciso de hardware especial?</summary>
-        <p>Não! Pra 95% do roadmap, qualquer computador com 4GB+ de RAM roda. Pra Eletrônica/Embarcados, você pode usar simuladores (Tinkercad, Wokwi) sem hardware. Se quiser, um Arduino Uno (~R$50) é suficiente.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Os livros são obrigatórios?</summary>
-        <p>Não. Os livros são referência de aprofundamento. Pra começar, use os <strong>termos de busca</strong> de cada item no YouTube/Google — há conteúdo gratuito excelente. Livros são pra quando você quer dominar o assunto de verdade.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Meu progresso é salvo?</summary>
-        <p>Sim, no seu navegador (localStorage). Não precisa de conta. ⚠️ Se limpar dados do navegador, o progresso é perdido. O botão "Resetar progresso" apaga tudo propositalmente.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Posso reprovar no quiz e tentar de novo?</summary>
-        <p>Sim! Você pode refazer qualquer quiz quantas vezes quiser. Só o último resultado é salvo. Precisa de 80% pra aprovação.</p>
-      </details>
+      <details class="faq-item"><summary>Posso pular áreas?</summary><p>Dentro do mesmo nível, algumas áreas são independentes. Mas a ordem geral importa — cada nível constrói sobre o anterior. Se já sabe algo, marque como estudado e siga.</p></details>
+      <details class="faq-item"><summary>Quanto tempo por dia?</summary><p>1-2h por dia, 5 dias/semana. Consistência > intensidade. Use o botão "📚 Estudo do Dia" pra saber por onde continuar.</p></details>
+      <details class="faq-item"><summary>Preciso de hardware?</summary><p>Pra 95% do roadmap, qualquer computador com 4GB+ RAM. Pra Eletrônica, use simuladores (Tinkercad). Um Arduino Uno (~R$50) é opcional.</p></details>
+      <details class="faq-item"><summary>Os livros são obrigatórios?</summary><p>Não. Use os botões ▶ YouTube e 🔍 Google de cada item. Livros são pra aprofundamento.</p></details>
+      <details class="faq-item"><summary>Meu progresso é salvo?</summary><p>Sim, no navegador (localStorage). Use 📥 Exportar pra fazer backup. 📤 Importar pra restaurar em outro navegador.</p></details>
+      <details class="faq-item"><summary>Posso reprovar no quiz?</summary><p>Sim! Refaça quantas vezes quiser. Precisa de 80%. Só o último resultado é salvo.</p></details>
     </div>
 
-    <!-- SETUP DO DEV -->
+    <!-- SETUP -->
     <div class="setup-section">
       <h2>🛠️ Setup do Desenvolvedor</h2>
-      <p>Ferramentas essenciais pra começar:</p>
       <div class="setup-grid">
-        <div class="setup-card">
-          <strong>Editor de Código</strong>
-          <p><a href="https://code.visualstudio.com/" target="_blank">VS Code</a> — gratuito, extensões pra tudo</p>
-          <p>Extensões: Python, Prettier, GitLens, Thunder Client, Live Server</p>
-        </div>
-        <div class="setup-card">
-          <strong>Terminal</strong>
-          <p>Windows: <a href="https://docs.microsoft.com/windows/wsl/" target="_blank">WSL2</a> (Linux dentro do Windows)</p>
-          <p>Mac: Terminal nativo + <a href="https://brew.sh/" target="_blank">Homebrew</a></p>
-        </div>
-        <div class="setup-card">
-          <strong>Git</strong>
-          <p><a href="https://git-scm.com/" target="_blank">Git</a> + conta no <a href="https://github.com/" target="_blank">GitHub</a></p>
-          <p>Configurar SSH key pro GitHub</p>
-        </div>
-        <div class="setup-card">
-          <strong>Python</strong>
-          <p><a href="https://www.python.org/" target="_blank">Python 3.12+</a> + pip</p>
-          <p>Jupyter Notebook: <code>pip install notebook</code></p>
-        </div>
-        <div class="setup-card">
-          <strong>Docker</strong>
-          <p><a href="https://www.docker.com/products/docker-desktop/" target="_blank">Docker Desktop</a> (Intermediário+)</p>
-        </div>
-        <div class="setup-card">
-          <strong>Node.js</strong>
-          <p><a href="https://nodejs.org/" target="_blank">Node.js LTS</a> (pra Full-Stack)</p>
-        </div>
+        <div class="setup-card"><strong>Editor</strong><p><a href="https://code.visualstudio.com/" target="_blank">VS Code</a> + extensões: Python, Prettier, GitLens, Live Server</p></div>
+        <div class="setup-card"><strong>Terminal</strong><p>Windows: <a href="https://docs.microsoft.com/windows/wsl/" target="_blank">WSL2</a> · Mac: Terminal + <a href="https://brew.sh/" target="_blank">Homebrew</a></p></div>
+        <div class="setup-card"><strong>Git</strong><p><a href="https://git-scm.com/" target="_blank">Git</a> + <a href="https://github.com/" target="_blank">GitHub</a> + SSH key configurada</p></div>
+        <div class="setup-card"><strong>Python</strong><p><a href="https://www.python.org/" target="_blank">Python 3.12+</a> · <code>pip install notebook</code></p></div>
+        <div class="setup-card"><strong>Docker</strong><p><a href="https://www.docker.com/products/docker-desktop/" target="_blank">Docker Desktop</a> (Intermediário+)</p></div>
+        <div class="setup-card"><strong>Node.js</strong><p><a href="https://nodejs.org/" target="_blank">Node.js LTS</a> (pra Full-Stack)</p></div>
       </div>
     </div>
 
     <!-- COMMUNITIES -->
     <div class="communities-section">
-      <h2>🌐 Comunidades para Estudar</h2>
+      <h2>🌐 Comunidades</h2>
       <div class="setup-grid">
-        <div class="setup-card">
-          <strong>🇧🇷 Português</strong>
-          <p><a href="https://www.reddit.com/r/brdev/" target="_blank">r/brdev</a> — comunidade dev BR</p>
-          <p><a href="https://www.youtube.com/@FilipeDeschamps" target="_blank">Filipe Deschamps</a> — YouTube BR</p>
-          <p><a href="https://www.youtube.com/@Rocketseat" target="_blank">Rocketseat</a> — Full-Stack BR</p>
-        </div>
-        <div class="setup-card">
-          <strong>🇺🇸 English</strong>
-          <p><a href="https://www.reddit.com/r/learnprogramming/" target="_blank">r/learnprogramming</a></p>
-          <p><a href="https://www.youtube.com/@freecodecamp" target="_blank">freeCodeCamp</a> — cursos grátis</p>
-          <p><a href="https://www.youtube.com/@ThePrimeTimeagen" target="_blank">ThePrimeagen</a> — avançado</p>
-        </div>
-        <div class="setup-card">
-          <strong>🔒 Segurança</strong>
-          <p><a href="https://tryhackme.com/" target="_blank">TryHackMe</a> — labs de segurança</p>
-          <p><a href="https://www.hackthebox.com/" target="_blank">HackTheBox</a> — CTFs</p>
-          <p><a href="https://www.youtube.com/@NetworkChuck" target="_blank">NetworkChuck</a></p>
-        </div>
-        <div class="setup-card">
-          <strong>💻 Prática</strong>
-          <p><a href="https://leetcode.com/" target="_blank">LeetCode</a> — algoritmos</p>
-          <p><a href="https://exercism.org/" target="_blank">Exercism</a> — exercícios por linguagem</p>
-          <p><a href="https://overthewire.org/wargames/" target="_blank">OverTheWire</a> — terminal/Linux</p>
-        </div>
+        <div class="setup-card"><strong>🇧🇷 Português</strong><p><a href="https://www.reddit.com/r/brdev/" target="_blank">r/brdev</a> · <a href="https://www.youtube.com/@FilipeDeschamps" target="_blank">Filipe Deschamps</a> · <a href="https://www.youtube.com/@Rocketseat" target="_blank">Rocketseat</a></p></div>
+        <div class="setup-card"><strong>🇺🇸 English</strong><p><a href="https://www.reddit.com/r/learnprogramming/" target="_blank">r/learnprogramming</a> · <a href="https://www.youtube.com/@freecodecamp" target="_blank">freeCodeCamp</a></p></div>
+        <div class="setup-card"><strong>🔒 Segurança</strong><p><a href="https://tryhackme.com/" target="_blank">TryHackMe</a> · <a href="https://www.hackthebox.com/" target="_blank">HackTheBox</a></p></div>
+        <div class="setup-card"><strong>💻 Prática</strong><p><a href="https://leetcode.com/" target="_blank">LeetCode</a> · <a href="https://exercism.org/" target="_blank">Exercism</a> · <a href="https://overthewire.org/wargames/" target="_blank">OverTheWire</a></p></div>
       </div>
     </div>
 
     <div class="tip-box">
-      <strong>💡 Como usar este roadmap:</strong><br>
-      1. Comece pelo 🟢 Iniciante, <strong>na ordem</strong> — cada área depende da anterior.<br>
-      2. Clique nos itens pra expandir e veja "O que estudar" com detalhes.<br>
-      3. Use os botões <strong>▶ YouTube</strong> e <strong>🔍 Google</strong> pra abrir buscas diretamente.<br>
-      4. Marque itens como ✅ estudado clicando no checkbox — seu progresso é salvo automaticamente.<br>
-      5. Faça a 📝 prova de cada área — precisa de 80% pra aprovação. Resultado é salvo.<br>
-      6. Complete os projetos 🟢 básico e 🔴 avançado de cada área pra fixar o aprendizado.<br>
-      7. Só avance de nível quando se sentir confortável com ~80% dos itens.
+      <strong>💡 Como usar:</strong> Comece pelo 🟢 Iniciante na ordem. Clique nos itens pra expandir. Use ▶ YouTube e 🔍 Google pra buscar. Marque ✅ ao concluir. Faça quiz de cada área (80% pra aprovação). Complete os projetos 🟢 e 🔴. Conquiste 🏅 badges ao completar áreas!
     </div>
   </div>
 
-  <footer>
-    <p>Roadmap de Engenharia da Computação · <a href="https://github.com" target="_blank">GitHub Pages</a> · Progresso salvo localmente no navegador</p>
-  </footer>
+  <footer><p>Roadmap Eng. Computação · Progresso salvo no navegador · <kbd>D</kbd> Estudo do dia · <kbd>T</kbd> Tema · <kbd>/</kbd> Buscar</p></footer>
 
   <script src="data.js"></script>
   <script src="quizzes.js"></script>

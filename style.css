@@ -678,3 +678,39 @@ footer {
   .stat-card { min-width:60px; padding:0.5rem; }
   .stat-num { font-size:1.2rem; }
 }
+
+/* ============================================================
+   NEW FEATURES v2
+   ============================================================ */
+
+/* Study of the Day button */
+.study-btn { background:linear-gradient(135deg,#34d399,#60a5fa) !important; color:#000 !important; font-weight:600 !important; border:none !important; }
+.study-btn:hover { opacity:0.9; }
+
+/* Study modal */
+.study-modal { max-width:550px; }
+.study-pick { padding:0.8rem; margin:0.5rem 0; border:1px solid var(--border); border-radius:8px; background:rgba(255,255,255,0.02); }
+.study-pick-path { font-size:0.7rem; color:var(--muted); margin-bottom:0.3rem; }
+.study-pick-title { font-weight:500; }
+.study-pick-time { font-size:0.75rem; color:var(--accent); margin-top:0.2rem; font-family:var(--mono); }
+
+/* Export/Import buttons */
+.toolbar-right { display:flex; gap:0.3rem; margin-left:auto; }
+.export-btn, .import-btn { font-size:0.75rem !important; }
+
+/* Badge toast */
+.badge-toast { position:fixed; bottom:-80px; left:50%; transform:translateX(-50%); background:linear-gradient(135deg,#f59e0b,#f97316); color:#000; padding:1rem 2rem; border-radius:12px; font-size:0.9rem; z-index:10000; transition:bottom 0.3s ease; box-shadow:0 4px 20px rgba(0,0,0,0.3); text-align:center; }
+.badge-toast.show { bottom:30px; }
+
+/* Keyboard shortcuts hint */
+.shortcuts-hint { text-align:center; font-size:0.7rem; color:var(--muted); margin-bottom:0.5rem; }
+.shortcuts-hint kbd { background:var(--card); border:1px solid var(--border); border-radius:3px; padding:0.1rem 0.4rem; font-family:var(--mono); font-size:0.7rem; }
+
+/* Print mode */
+@media print {
+  .toolbar, .hero, .search-wrap, footer, .faq-section, .setup-section, .communities-section, .tip-box, .shortcuts-hint, .area-actions, .final-actions, .quiz-btn, .project-btn, .final-btn { display:none !important; }
+  .level-content, .area-content, .topic-content, .item-detail { display:block !important; }
+  .level-btn, .area-btn, .topic-btn, .item-btn { background:none !important; border:none !important; color:#000 !important; }
+  body { background:#fff; color:#000; }
+  .item-check { display:none; }
+}

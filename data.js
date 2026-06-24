@@ -71,6 +71,31 @@ const ROADMAP = [
                 "w": "Compilado vs interpretado vs JIT: como código vira execução (C compila antes, Python interpreta, Java usa JIT)",
                 "s": "compilado vs interpretado vs JIT explicação | como código vira programa | compiled interpreted JIT explained | linguagem compilada interpretada diferença",
                 "d": "• Compilado: gcc converte C para binário ANTES de rodar. Rápido, erro em compilação\n• Interpretado: Python executa linha a linha. Flexível, erro em runtime\n• JIT: Java/C# compila bytecode para nativo EM RUNTIME. Meio-termo\n• Qual é melhor? Depende: C para performance, Python para produtividade, Java para enterprise"
+              },
+              {
+                "w": "Cores no computador: RGB (0-255 por canal), hexadecimal (#FF0000 = vermelho), HSL — como tela exibe cores",
+                "s": "RGB hexadecimal cores computador | como computador exibe cores | hex color code explained | RGB HSL color model tutorial",
+                "d": "• RGB: cada pixel = 3 valores (Red, Green, Blue) de 0-255. Branco = 255,255,255. Preto = 0,0,0\n• Hex: #FF0000 = FF red, 00 green, 00 blue. Usado em CSS e design\n• HSL: Hue (cor 0-360°), Saturation (0-100%), Lightness (0-100%) — mais intuitivo pra humanos"
+              },
+              {
+                "w": "Compressão de dados: ZIP, MP3, JPEG — lossy vs lossless, por que arquivos ficam menores",
+                "s": "compressão dados lossy lossless | como ZIP funciona | MP3 JPEG compressão explicação | data compression tutorial",
+                "d": "• Lossless (ZIP, PNG): comprime sem perder nada. Descomprime = idêntico ao original\n• Lossy (MP3, JPEG): remove informação que humanos não percebem. Menor mas não recupera original\n• ZIP: encontra padrões repetidos e substitui por referências (ex: 'AAAA' → '4×A')"
+              },
+              {
+                "w": "Boot do computador: BIOS/UEFI → bootloader (GRUB) → kernel → init → login — o que acontece ao ligar",
+                "s": "boot process computador | BIOS UEFI boot explained | como computador liga passo a passo | boot sequence tutorial",
+                "d": "• Ligar: firmware (BIOS/UEFI) faz POST (testa hardware), encontra disco de boot\n• Bootloader (GRUB): carrega o kernel do SO na RAM\n• Kernel: inicializa drivers, monta filesystems, inicia primeiro processo (init/systemd)\n• Login: systemd inicia serviços, display manager mostra tela de login"
+              },
+              {
+                "w": "32-bit vs 64-bit: endereçamento de memória, limites (4GB vs 16EB), por que importa na prática",
+                "s": "32 bit vs 64 bit diferença | por que 64 bits é melhor | 32-bit 64-bit explained | diferença 32 64 bits computador",
+                "d": "• 32-bit: endereça até 2³² bytes = 4GB de RAM máximo. Limitante pra aplicações modernas\n• 64-bit: endereça até 2⁶⁴ bytes = 16 exabytes (na prática, TBs). Registradores maiores = operações mais rápidas\n• Prática: SO 64-bit roda programas 32-bit, mas não vice-versa. Hoje 99% dos computadores são 64-bit"
+              },
+              {
+                "w": "Open source vs proprietary: licenças (MIT, GPL, Apache), por que open source domina tech",
+                "s": "open source vs proprietary | licenças MIT GPL Apache | o que é open source | software livre explicação",
+                "d": "• Open source: código público, qualquer um pode ver/modificar/distribuir (Linux, Python, VS Code)\n• Proprietary: código fechado, só a empresa controla (Windows, Photoshop, iOS)\n• MIT: faça o que quiser, só mantenha a licença. GPL: se modificar, tem que abrir o código também. Apache: como MIT + patentes\n• Linux roda 96% dos servidores, Android é baseado em Linux, a internet roda em open source"
               }
             ]
           },
@@ -321,6 +346,41 @@ const ROADMAP = [
                 "w": "Exercícios práticos de terminal: 20 desafios para dominar a linha de comando",
                 "s": "exercícios terminal Linux | Linux command line practice | desafios terminal para praticar | terminal exercises beginners",
                 "d": "• Desafio 1: encontre todos arquivos .py modificados nos últimos 7 dias\n• Desafio 2: conte quantas linhas de código tem em todos .py de um projeto\n• Desafio 3: encontre os 10 arquivos maiores do sistema\n• Desafio 4: monitore uso de CPU em tempo real e mate processo que usar >80%\n• Site pra praticar: overthewire.org/wargames/bandit (jogo de terminal)"
+              },
+              {
+                "w": "Permissões Linux em profundidade: chmod numérico (755, 644), chown, groups, umask — quem pode fazer o quê",
+                "s": "chmod numérico Linux tutorial | permissões Linux chown groups | umask explained | Linux file permissions deep dive",
+                "d": "• rwxrwxrwx = user/group/others. r=4, w=2, x=1. chmod 755 = rwxr-xr-x (dono tudo, outros leem+executam)\n• chmod 644 = rw-r--r-- (dono lê+escreve, outros só leem). Padrão pra arquivos\n• chown user:group arquivo. groups mostra seus grupos. umask define permissão padrão de novos arquivos"
+              },
+              {
+                "w": "Processos: ps aux, top/htop, kill, jobs, bg/fg, nohup — gerenciar o que roda no sistema",
+                "s": "processos Linux ps kill | htop tutorial | jobs bg fg nohup | gerenciar processos Linux terminal",
+                "d": "• ps aux: lista todos processos (PID, CPU%, MEM%, comando)\n• kill PID: encerra processo. kill -9 PID: força encerramento (SIGKILL)\n• Ctrl+Z: suspende. bg: manda pro background. fg: traz de volta. jobs: lista suspensos\n• nohup comando &: roda mesmo depois de fechar terminal"
+              },
+              {
+                "w": "SSH em profundidade: key pairs (ssh-keygen), config file, tunneling, SCP/rsync pra transferir arquivos",
+                "s": "SSH key pair tutorial | ssh-keygen config | SSH tunneling explained | SCP rsync transferir arquivos",
+                "d": "• ssh-keygen -t ed25519: gera par de chaves (pública + privada). Copia pública pro servidor\n• ~/.ssh/config: atalhos (Host meuserver → HostName 192.168.1.10 User kaio)\n• SCP: scp arquivo user@host:/destino. rsync: sincroniza pastas (só copia diferenças, muito mais rápido)\n• Tunneling: ssh -L 8080:localhost:3000 server → acessa porta 3000 do servidor como localhost:8080"
+              },
+              {
+                "w": "Variáveis de ambiente: PATH, HOME, export, .bashrc vs .zshrc vs .profile — configurar seu shell",
+                "s": "variáveis de ambiente Linux | PATH HOME export | bashrc zshrc profile | environment variables tutorial",
+                "d": "• PATH: lista de diretórios onde shell procura comandos. echo $PATH pra ver\n• export VAR=valor: define variável pra sessão atual + subprocessos\n• .bashrc: executa a cada terminal novo (aliases, exports). .profile: executa no login\n• Adicionar ao PATH: export PATH=\"$HOME/.local/bin:$PATH\" no .bashrc"
+              },
+              {
+                "w": "Filesystem hierarchy: /etc, /var, /home, /usr, /tmp — o que vive onde no Linux",
+                "s": "filesystem hierarchy Linux | /etc /var /home /usr | Linux directory structure | onde ficam arquivos Linux",
+                "d": "• /home: seus arquivos pessoais. /etc: configurações do sistema (nginx.conf, hosts)\n• /var: dados variáveis (logs em /var/log, bancos em /var/lib). /tmp: temporários (limpa no reboot)\n• /usr: programas instalados. /usr/bin: executáveis. /usr/lib: bibliotecas\n• /dev: devices (disco, USB). /proc: informações de processos em tempo real"
+              },
+              {
+                "w": "Logs do sistema: /var/log, journalctl, dmesg — encontrar informação quando algo dá errado",
+                "s": "logs Linux /var/log | journalctl tutorial | dmesg kernel log | como ler logs Linux",
+                "d": "• /var/log/syslog ou /var/log/messages: log geral do sistema\n• journalctl: logs do systemd. journalctl -u nginx (logs do nginx). journalctl -f (tempo real)\n• dmesg: mensagens do kernel (hardware, drivers, boot). Útil pra diagnosticar USB/disco\n• tail -f /var/log/arquivo.log: acompanhar log em tempo real"
+              },
+              {
+                "w": "Compactação: tar, gzip, zip/unzip — criar e extrair arquivos compactados no terminal",
+                "s": "tar gzip Linux tutorial | como compactar descompactar terminal | tar -xzf explicação | zip unzip Linux",
+                "d": "• tar -czf backup.tar.gz pasta/: compactar pasta inteira (c=create, z=gzip, f=file)\n• tar -xzf backup.tar.gz: extrair (x=extract)\n• zip -r arquivo.zip pasta/: formato compatível com Windows. unzip arquivo.zip\n• Dica: tar.gz é mais comum em Linux, zip é mais universal"
               }
             ]
           }
@@ -596,6 +656,21 @@ const ROADMAP = [
                 "w": "Debugging em Python: print debugging, debugger do VS Code (breakpoints, step, watch), pdb, logging básico",
                 "s": "Debugging em Python explicação português | Python debugging tutorial | debugging em python explained for beginners | Debugging em Python examples and practice",
                 "d": "• O que é: Debugging é skill essencial: print() é o básico, mas debugger do VS Code mostra variáveis em tempo real..\n• Conceitos-chave: pdb para terminal.. logging > print em projetos reais.\n• O que estudar: print debugging, debugger do VS Code (breakpoints, step, watch), pdb, logging básico."
+              },
+              {
+                "w": "Debugging passo a passo: pdb (n/s/c/p/l/b), VS Code debugger com breakpoints, watch variables",
+                "s": "Python pdb tutorial | VS Code debugger Python | debugging passo a passo Python | breakpoint Python tutorial",
+                "d": "• pdb: import pdb; pdb.set_trace() ou breakpoint() (Python 3.7+). n=next, s=step into, c=continue, p var=print\n• VS Code: clicar na linha → breakpoint vermelho. F5 roda. F10=next, F11=step into. Painel mostra variáveis\n• Watch: adicionar expressão que atualiza a cada step (ex: len(lista), dict['chave'])"
+              },
+              {
+                "w": "Ambientes virtuais: venv, por que usar, requirements.txt, pip freeze — isolar dependências por projeto",
+                "s": "Python venv tutorial | por que usar venv | requirements.txt pip freeze | virtual environment Python",
+                "d": "• Problema: projeto A precisa requests 2.28, projeto B precisa 2.31. Sem venv, conflito\n• python -m venv .venv → source .venv/bin/activate (Linux) ou .venv\\Scripts\\activate (Windows)\n• pip freeze > requirements.txt: salva todas dependências. pip install -r requirements.txt: instala tudo\n• SEMPRE usar venv em todo projeto. Adicionar .venv/ no .gitignore"
+              },
+              {
+                "w": "Type hints: int, str, list[int], Optional, Union — por que ajudam, mypy pra checar tipos",
+                "s": "Python type hints tutorial | mypy type checking | type annotations Python | Python typing module",
+                "d": "• def soma(a: int, b: int) -> int: return a + b\n• list[str], dict[str, int], Optional[str] (pode ser None), Union[int, str]\n• Python NÃO checa tipos em runtime (são dicas). mypy checa estaticamente: mypy meu_script.py\n• Benefícios: autocomplete melhor no VS Code, bugs pegos antes de rodar, documentação viva"
               }
             ]
           },
@@ -696,6 +771,16 @@ const ROADMAP = [
                 "w": "Matrizes 2x2 intro: soma, multiplicacao, determinante (preview pra algebra linear)",
                 "s": "Matrizes intro soma tutorial portugues | matrizes 2x2 basico tutorial | matrizes 2x2 intro explained for beginners | matrizes 2x2 intro explicação em português",
                 "d": "• O que é: Matriz = tabela de numeros..\n• Conceitos-chave: [[1,2],[3,4]].. Soma: elemento a elemento.. Multiplicacao: linha x coluna (AB != BA!).. Determinante 2x2: ad-bc.. Se det=0, nao tem inversa.. Preview: algebra linear no proximo nivel aprofunda.. Transformacoes geometricas: rotacao, escala.\n• O que estudar: soma, multiplicacao, determinante (preview pra algebra linear)."
+              },
+              {
+                "w": "Notação sigma (Σ) e pi (Π): somatórios e produtórios — leitura de fórmulas de CS e ML",
+                "s": "notação sigma somatório | sigma notation explained | produtório pi notation | somatório tutorial matemática",
+                "d": "• Σᵢ₌₁ⁿ i = 1+2+3+...+n = n(n+1)/2. Lê: 'soma de i, de 1 até n'\n• Πᵢ₌₁ⁿ i = 1×2×3×...×n = n! (fatorial). Lê: 'produto de i, de 1 até n'\n• Em ML: loss = (1/n) Σᵢ₌₁ⁿ (yᵢ - ŷᵢ)² (MSE). Em probabilidade: P(A∩B) = Πᵢ P(Aᵢ) se independentes\n• Essencial: toda fórmula de CS e ML usa Σ. Se não ler fluentemente, trava em papers e livros"
+              },
+              {
+                "w": "Complexidade de algoritmos intro: Big O intuitivo (O(1), O(n), O(n²), O(log n)) — ponte pro Intermediário",
+                "s": "Big O notation explicação simples | complexidade algoritmos iniciante | O(n) O(n²) O(log n) explained | Big O para iniciantes",
+                "d": "• O(1): tempo constante. Acessar array[5] é O(1) — não importa o tamanho\n• O(n): linear. Percorrer lista de n itens. Dobra a lista → dobra o tempo\n• O(n²): quadrático. Dois loops aninhados. 1000 itens → 1 milhão de operações\n• O(log n): logarítmico. Busca binária. 1 bilhão de itens → ~30 passos. Muito rápido\n• Regra: ignore constantes e termos menores. O(3n+5) = O(n). O(n²+n) = O(n²)"
               }
             ]
           },
@@ -1126,6 +1211,16 @@ const ROADMAP = [
                 "w": "Nanotecnologia intro: escala nanometrica, aplicacoes em chips, sensores, materiais",
                 "s": "Nanotecnologia intro explicação português | nanotechnology basics tutorial | nanotecnologia intro explained for beginners | Nanotecnologia intro examples and practice",
                 "d": "• O que é: 1 nanometro = 10^-9 m (1 bilionesimo de metro)..\n• Conceitos-chave: Transistor moderno: 3-5nm.. Nanotubos de carbono: fortissimos e conduzem eletricidade.. Quantum dots: displays.. Nano-sensores: medicina.. Chips: litografia EUV pra imprimir circuitos nanometricos.. Engenharia de computacao toca nisso diretamente.\n• O que estudar: escala nanometrica, aplicacoes em chips, sensores, materiais."
+              },
+              {
+                "w": "Semicondutores: transistor MOSFET, dopagem N/P, como chips são feitos — a base de toda computação",
+                "s": "transistor MOSFET como funciona | semicondutores dopagem N P | como chip é fabricado | semiconductor basics tutorial",
+                "d": "• Silício puro é isolante. Dopagem N (elétrons extras) e P (buracos) cria condutor controlável\n• Transistor MOSFET: 3 terminais (gate, source, drain). Gate controla se corrente passa — é um switch\n• Bilhões de transistores em um chip. Combinados formam portas lógicas → circuitos → CPU\n• Fabricação: fotolitografia em wafer de silício. Cada geração menor (7nm, 5nm, 3nm) = mais transistores"
+              },
+              {
+                "w": "Energia e potência elétrica: watts, kWh, eficiência energética, consumo de computadores",
+                "s": "potência elétrica watts kWh | consumo energia computador | eficiência energética eletrônica | watts vs kilowatt-hora",
+                "d": "• Potência (W) = Tensão × Corrente. PC gamer: ~500W. Notebook: ~65W. Raspberry Pi: ~5W\n• kWh: energia consumida. 500W por 2h = 1kWh. Conta de luz cobra por kWh\n• Eficiência: fonte 80 Plus converte 80%+ da energia. Resto vira calor\n• Data centers consomem ~1% da energia global. Eficiência importa em escala"
               }
             ]
           },
@@ -1276,6 +1371,16 @@ const ROADMAP = [
                 "w": "Animações CSS: @keyframes, transition, transform, animation-timing, performance (GPU acceleration)",
                 "s": "CSS animações tutorial | keyframes transition transform | CSS animation performance | animação CSS para iniciantes",
                 "d": "• Transition: anima mudança de propriedade (hover, click). transition: all 0.3s ease\n• @keyframes: definir animação frame a frame. animation: spin 2s linear infinite\n• Transform: translate, rotate, scale, skew — GPU accelerated (mais suave que mudar top/left)\n• Performance: animar apenas transform e opacity (não width, height, top — causam reflow)"
+              },
+              {
+                "w": "Responsividade: meta viewport, media queries, mobile-first — site que funciona em qualquer tela",
+                "s": "CSS responsivo tutorial | media queries | mobile-first design | responsive web design tutorial",
+                "d": "• <meta name='viewport' content='width=device-width, initial-scale=1.0'> — OBRIGATÓRIO\n• @media (max-width: 768px) { .sidebar { display: none; } } — esconde sidebar em mobile\n• Mobile-first: escreva CSS pro mobile primeiro, depois @media (min-width: 768px) pra desktop\n• Testar: DevTools → toggle device (Ctrl+Shift+M no Chrome)"
+              },
+              {
+                "w": "Acessibilidade web: ARIA labels, alt text em imagens, contraste, navegação por teclado, screen readers",
+                "s": "acessibilidade web ARIA | web accessibility tutorial | alt text imagens | ARIA labels screen reader",
+                "d": "• alt em toda <img>: descreve a imagem pra screen readers e quando não carrega\n• ARIA: role='button', aria-label='Fechar menu' — dá significado a elementos custom\n• Contraste: mínimo 4.5:1 (texto normal). Testar com Chrome DevTools > Accessibility\n• Tab order: todo elemento interativo deve ser focável e operável por teclado"
               }
             ]
           },
@@ -1308,9 +1413,9 @@ const ROADMAP = [
                 "d": "• O que é: document.querySelector('.classe')..\n• Conceitos-chave: .textContent .innerHTML .classList.add/remove/toggle.. addEventListener('click', fn).. Event delegation.\n• O que estudar: querySelector, createElement, classList, eventos."
               },
               {
-                "w": "Fetch API, Promises, async/await, JSON",
+                "w": "Fetch API e Promises: buscar dados de APIs, .then().catch(), JSON.parse — comunicação com servidores",
                 "s": "Fetch API Promises asyncawait JSON explicação português | Fetch Promises async/await explained | fetch api promises async/await json tutorial completo | Fetch API Promises async/await JSON examples and practice",
-                "d": "• O que é: fetch(url).then(r=>r.json()).then(data=>...)..\n• Conceitos-chave: async/await: mais legivel.. try/catch pra erros.. JSON.parse/stringify."
+                "d": "• O que é: fetch(url).then(r=>r.json()).then(data=>...)..\n• Conceitos-chave: "
               },
               {
                 "w": "ES6+: template literals, modules (import/export), optional chaining, nullish coalescing",
@@ -1326,6 +1431,21 @@ const ROADMAP = [
                 "w": "Closures e scope em JS: por que closures são tão importantes, module pattern, IIFE, data privacy",
                 "s": "JavaScript closures explicação | closure scope JS tutorial | module pattern JavaScript | closures para iniciantes",
                 "d": "• Closure: função que acessa variáveis do escopo onde foi criada, mesmo depois que esse escopo fechou\n• Exemplo: function counter() { let n=0; return ()=> ++n; } const c = counter(); c()→1, c()→2\n• Uso real: data privacy (variáveis 'privadas'), event handlers, callbacks\n• Module pattern: IIFE que retorna objeto público mas mantém variáveis privadas"
+              },
+              {
+                "w": "DOM manipulation: querySelector, addEventListener, createElement, innerHTML — JS que muda a página",
+                "s": "DOM manipulation JavaScript tutorial | querySelector addEventListener | JavaScript DOM tutorial | manipular HTML com JS",
+                "d": "• document.querySelector('.btn'): seleciona elemento. querySelectorAll pra vários\n• element.addEventListener('click', () => { ... }): reage a eventos (click, input, submit)\n• document.createElement('div'): cria elemento. parent.appendChild(child): adiciona na página\n• element.textContent = 'novo texto'. element.classList.add('active'). element.style.color = 'red'"
+              },
+              {
+                "w": "LocalStorage: salvar dados no navegador, persistem entre sessões — JSON.stringify/parse",
+                "s": "localStorage JavaScript tutorial | salvar dados navegador | localStorage JSON | web storage API tutorial",
+                "d": "• localStorage.setItem('nome', 'Ana'): salva. localStorage.getItem('nome'): recupera\n• Só salva strings. Objetos: localStorage.setItem('dados', JSON.stringify(obj)). Recuperar: JSON.parse(...)\n• Persiste mesmo fechando o navegador. sessionStorage: some ao fechar aba\n• Limite: ~5MB. Bom pra preferências, carrinho, rascunhos. NÃO pra dados sensíveis"
+              },
+              {
+                "w": "Performance web básica: lazy loading de imagens, minificação, Lighthouse — site rápido",
+                "s": "web performance lazy loading | lighthouse tutorial | minificação CSS JS | performance web básica",
+                "d": "• Lazy loading: <img loading='lazy'> — só carrega imagem quando visível. Economiza banda\n• Minificação: remover espaços/comentários de CSS/JS pra reduzir tamanho\n• Lighthouse: DevTools > Lighthouse. Pontua performance, accessibility, SEO. Mire em 90+\n• Imagens: usar WebP (30% menor que JPEG), comprimir, servir tamanho correto"
               }
             ]
           },
@@ -1381,6 +1501,16 @@ const ROADMAP = [
                 "w": "Git avançado: stash (salvar trabalho temporário), bisect (encontrar commit que introduziu bug), cherry-pick",
                 "s": "git stash tutorial | git bisect encontrar bug | git cherry-pick | comandos git avançados",
                 "d": "• git stash: salva mudanças sem commit (útil pra trocar de branch rápido). git stash pop pra restaurar\n• git bisect: busca binária nos commits pra encontrar exatamente qual commit introduziu o bug\n• git cherry-pick <hash>: copiar commit específico pra branch atual (sem merge)\n• git reflog: histórico de TUDO que você fez (salva-vidas quando faz algo errado)"
+              },
+              {
+                "w": "Deploy no GitHub Pages: passo a passo completo, domínio customizado, HTTPS automático",
+                "s": "GitHub Pages deploy tutorial | como publicar site GitHub Pages | GitHub Pages passo a passo | deploy site grátis GitHub",
+                "d": "• Settings → Pages → Branch: main, folder: / (root) ou /docs → Save\n• Em 1-2min: https://username.github.io/repo-name está no ar\n• Domínio customizado: comprar domínio, adicionar CNAME no DNS apontando pra github.io\n• HTTPS automático e grátis. Suporta HTML/CSS/JS estático (não backend)"
+              },
+              {
+                "w": "SEO básico: sitemap.xml, robots.txt, meta tags, structured data — ser encontrado no Google",
+                "s": "SEO básico para desenvolvedores | sitemap.xml robots.txt | meta tags SEO | structured data tutorial",
+                "d": "• <title> único por página (60 chars max). <meta name='description'> (155 chars)\n• robots.txt: diz ao Google o que pode/não pode indexar. sitemap.xml: lista todas URLs\n• Open Graph: <meta property='og:title'> — preview bonito no WhatsApp/Twitter/LinkedIn\n• Structured data (JSON-LD): diz ao Google o tipo do conteúdo (artigo, produto, receita)"
               }
             ]
           },
@@ -1476,6 +1606,21 @@ const ROADMAP = [
                 "w": "Transações ACID: Atomicidade, Consistência, Isolamento, Durabilidade — por que bancos são confiáveis",
                 "s": "ACID banco de dados explicação | transações ACID tutorial | atomicidade consistência isolamento durabilidade | ACID database explained",
                 "d": "• Atomicidade: tudo ou nada (transferência bancária: debita E credita, ou nenhum dos dois)\n• Consistência: banco sempre vai de estado válido para estado válido\n• Isolamento: transações simultâneas não interferem entre si\n• Durabilidade: após COMMIT, dados sobrevivem a crash (gravados em disco)"
+              },
+              {
+                "w": "Normalização: 1NF, 2NF, 3NF — eliminar redundância e anomalias de inserção/atualização/deleção",
+                "s": "normalização banco de dados 1NF 2NF 3NF | database normalization tutorial | formas normais SQL | normalização para iniciantes",
+                "d": "• 1NF: valores atômicos (sem listas em uma célula), chave primária definida\n• 2NF: 1NF + todo atributo depende da chave inteira (não de parte dela)\n• 3NF: 2NF + nenhum atributo depende de outro que não seja chave (dependência transitiva)\n• Prática: tabela 'pedido' com nome_cliente é redundância → separar em tabela 'clientes'"
+              },
+              {
+                "w": "Tipos de dados SQL: INTEGER, VARCHAR, TEXT, DATE, BOOLEAN, DECIMAL — escolher o tipo certo",
+                "s": "tipos de dados SQL | INTEGER VARCHAR TEXT DATE | SQL data types tutorial | quando usar cada tipo SQL",
+                "d": "• INTEGER: números inteiros (id, quantidade). BIGINT pra valores grandes\n• VARCHAR(100): texto com limite (nome, email). TEXT: texto sem limite (descrição)\n• DATE: datas. TIMESTAMP: data+hora. BOOLEAN: true/false\n• DECIMAL(10,2): valores monetários com precisão exata (NUNCA usar FLOAT pra dinheiro)"
+              },
+              {
+                "w": "Constraints: NOT NULL, UNIQUE, CHECK, DEFAULT, FOREIGN KEY — validação direto no banco",
+                "s": "SQL constraints tutorial | NOT NULL UNIQUE CHECK DEFAULT | foreign key constraint | constraints banco de dados",
+                "d": "• NOT NULL: campo obrigatório. UNIQUE: valor não pode repetir (email)\n• CHECK: validação customizada (CHECK(idade >= 0), CHECK(status IN ('ativo','inativo')))\n• DEFAULT: valor padrão se não informado (created_at DEFAULT CURRENT_TIMESTAMP)\n• FOREIGN KEY: garante que referência existe (pedido.cliente_id REFERENCES clientes(id))"
               }
             ]
           },
@@ -1555,7 +1700,7 @@ const ROADMAP = [
               {
                 "w": "Ferramentas visuais: DBeaver, pgAdmin, DB Browser for SQLite — visualizar tabelas, executar queries",
                 "s": "DBeaver tutorial | pgAdmin como usar | DB Browser SQLite tutorial | ferramenta visual SQL gratuita",
-                "d": "• DBeaver: universal (PostgreSQL, MySQL, SQLite, MongoDB). Gratuito, multiplataforma\n• pgAdmin: específico pra PostgreSQL, mais completo pra Postgres\n• DB Browser for SQLite: perfeito pra aprender, leve, visual\n• Todas permitem: ver tabelas, executar queries, exportar dados, ver diagrama ER"
+                "d": "• DBeaver: universal (PostgreSQL, MySQL, SQLite, MongoDB e outros). Gratuito, multiplataforma\n• pgAdmin: específico pra PostgreSQL, mais completo pra Postgres\n• DB Browser for SQLite: perfeito pra aprender, leve, visual\n• Todas permitem: ver tabelas, executar queries, exportar dados, ver diagrama ER"
               },
               {
                 "w": "Window functions intro: ROW_NUMBER(), RANK(), LAG(), LEAD(), SUM() OVER() — análise sem GROUP BY",
@@ -1566,6 +1711,21 @@ const ROADMAP = [
                 "w": "SQL na vida real: queries para relatórios, dashboards, análise de dados — casos do dia a dia",
                 "s": "SQL queries exemplos reais | SQL para análise de dados | SQL relatórios práticos | SQL real world examples",
                 "d": "• Top 10 clientes por faturamento: SELECT c.nome, SUM(p.valor) total FROM clientes c JOIN pedidos p... GROUP BY c.nome ORDER BY total DESC LIMIT 10\n• Vendas mês a mês: usar DATE_TRUNC + GROUP BY + window function pra calcular crescimento %\n• Clientes inativos: LEFT JOIN + WHERE pedido IS NULL (quem nunca comprou)\n• Prática: baixe dataset real (Kaggle) e faça 10 queries analíticas"
+              },
+              {
+                "w": "GROUP BY + HAVING + agregações: COUNT, SUM, AVG, MAX, MIN — resumir dados por categoria",
+                "s": "SQL GROUP BY HAVING tutorial | COUNT SUM AVG | funções agregadas SQL | SQL aggregate functions examples",
+                "d": "• SELECT categoria, COUNT(*) as total, AVG(preco) as media FROM produtos GROUP BY categoria\n• HAVING: filtro DEPOIS do GROUP BY. WHERE filtra linhas, HAVING filtra grupos\n• SELECT cidade, COUNT(*) FROM clientes GROUP BY cidade HAVING COUNT(*) > 100\n• Combo: WHERE filtra antes → GROUP BY agrupa → HAVING filtra grupos → ORDER BY ordena"
+              },
+              {
+                "w": "Modelagem ER na prática: desenhar diagrama de entidades e relacionamentos (1:1, 1:N, N:N)",
+                "s": "modelagem ER diagrama tutorial | entidade relacionamento banco de dados | ER diagram practice | como desenhar ER",
+                "d": "• Entidade = tabela (Cliente, Produto, Pedido). Atributo = coluna (nome, preço, data)\n• 1:1 (pessoa↔CPF), 1:N (cliente→pedidos), N:N (aluno↔matéria, precisa tabela intermediária)\n• Chave primária: ID único. Chave estrangeira: referência a outra tabela\n• Prática: modele um e-commerce (cliente, produto, pedido, item_pedido) antes de criar tabelas"
+              },
+              {
+                "w": "Backup e restore: pg_dump, importar CSV, export de dados — proteger seus dados",
+                "s": "pg_dump backup tutorial | importar CSV SQL | backup restore banco de dados | SQL export data",
+                "d": "• pg_dump meu_banco > backup.sql: exporta tudo. psql meu_banco < backup.sql: restaura\n• CSV: COPY tabela FROM '/caminho/dados.csv' WITH CSV HEADER (PostgreSQL)\n• SQLite: .dump > backup.sql. .read backup.sql\n• Regra: backup automático diário. Testar restore regularmente (backup que não restaura não é backup)"
               }
             ]
           }
@@ -1631,6 +1791,21 @@ const ROADMAP = [
                 "w": "Projeto prático: montar circuito LED com resistor calculado, depois divisor de tensão, depois filtro RC",
                 "s": "circuito LED resistor cálculo | divisor de tensão prática | filtro RC circuito | primeiro circuito eletrônica prática",
                 "d": "• LED + resistor: R = (Vfonte - Vled) / Iled. LED vermelho: ~2V, 20mA. Com 5V: R = (5-2)/0.02 = 150Ω\n• Divisor de tensão: Vout = Vin × R2/(R1+R2). Útil pra reduzir tensão pra sensores\n• Filtro RC: passa-baixa com resistor + capacitor. fc = 1/(2πRC). Remove ruído de alta frequência\n• Montar em simulador (Tinkercad) primeiro, depois em protoboard real"
+              },
+              {
+                "w": "Protoboard: como funciona, linhas de conexão, montar circuitos sem soldar — skill prático essencial",
+                "s": "protoboard como usar tutorial | breadboard connections explained | montar circuito protoboard | protoboard para iniciantes",
+                "d": "• Linhas horizontais no meio: conectadas em grupos de 5 (a-e e f-j separados pelo gap central)\n• Linhas verticais nas laterais: barramento de alimentação (+ vermelho, - azul), percorrem toda board\n• Componentes encaixam nos furos. Fios jumper conectam entre pontos\n• Dica: sempre conectar GND primeiro, depois VCC, depois componentes"
+              },
+              {
+                "w": "Multímetro: medir tensão (V), corrente (A), resistência (Ω), continuidade — ferramenta #1 de eletrônica",
+                "s": "como usar multímetro tutorial | medir tensão corrente resistência | multímetro para iniciantes | multimeter basics tutorial",
+                "d": "• Tensão (V): pontas em paralelo com componente. Selecionar DC (pilha) ou AC (tomada)\n• Resistência (Ω): circuito DESLIGADO. Pontas nos terminais do resistor\n• Continuidade (bip): testa se fio está conectado. Se bipa, tem conexão\n• Corrente (A): em SÉRIE com circuito (abrir e inserir multímetro). Cuidado: medir corrente em paralelo queima o fusível"
+              },
+              {
+                "w": "Comunicação serial: UART, baud rate, Serial Monitor do Arduino — como dispositivos conversam",
+                "s": "comunicação serial UART tutorial | baud rate explicação | Arduino Serial Monitor | serial communication basics",
+                "d": "• UART: 2 fios (TX e RX). TX de um conecta no RX do outro e vice-versa\n• Baud rate: velocidade em bits/segundo. 9600 é padrão, 115200 é rápido. AMBOS os lados devem usar o mesmo\n• Arduino: Serial.begin(9600); Serial.println('Hello'); — aparece no Serial Monitor do IDE\n• Prática: Arduino envia dados de sensor, Python lê com pyserial e processa"
               }
             ]
           },
@@ -1676,6 +1851,21 @@ const ROADMAP = [
                 "w": "Projeto prático: construir somador de 4 bits em simulador usando portas lógicas do zero",
                 "s": "somador 4 bits portas lógicas | build 4-bit adder logic gates | full adder circuit tutorial | circuito somador prática",
                 "d": "• Half adder: XOR (soma) + AND (carry). Soma 2 bits\n• Full adder: 2 half adders + OR. Soma 2 bits + carry-in\n• 4-bit adder: 4 full adders em cascata (carry de um alimenta o próximo)\n• Praticar: montar em Logisim ou Tinkercad, testar com 0101 + 0011 = 1000"
+              },
+              {
+                "w": "Flip-flops: SR, D, JK — base de memória, registradores e contadores digitais",
+                "s": "flip-flop SR D JK tutorial | flip-flop digital electronics | registradores flip-flop | memória digital flip-flop",
+                "d": "• Flip-flop: circuito que armazena 1 bit (estado 0 ou 1). Base de TODA memória digital\n• SR: Set/Reset. D: armazena dado no clock. JK: mais versátil, toggle\n• Registrador: 8 flip-flops D = armazena 1 byte. CPU tem dezenas de registradores\n• Contador: cadeia de flip-flops que conta pulsos de clock (binário crescente)"
+              },
+              {
+                "w": "Conversores ADC/DAC: resolução (8-bit=256 níveis, 12-bit=4096), sampling rate, Nyquist no hardware",
+                "s": "ADC DAC conversor tutorial | resolução ADC 8-bit 12-bit | sampling rate hardware | conversor analógico digital",
+                "d": "• ADC: converte sinal analógico (0-3.3V) em número digital (0-4095 em 12-bit)\n• Resolução: 8-bit = 256 níveis. 12-bit = 4096 níveis. Mais bits = mais precisão\n• Sampling rate: quantas amostras/segundo. Arduino = ~10KHz. Áudio precisa de 44.1KHz\n• DAC: inverso — número digital vira tensão analógica (usado em áudio, controle de motor)"
+              },
+              {
+                "w": "Timer/Counter do microcontrolador: gerar PWM preciso, medir frequência, criar delays exatos",
+                "s": "timer counter microcontrolador | Arduino timer tutorial | PWM timer hardware | medir frequência microcontrolador",
+                "d": "• Timer: contador de clock interno que incrementa automaticamente\n• PWM por timer: mais preciso que analogWrite. Configura frequência e duty cycle exatos\n• Medir frequência: contar pulsos externos em período fixo. Útil pra tacômetro, sensor\n• delay() bloqueia tudo. Timer permite fazer coisas ENQUANTO espera (não-bloqueante)"
               }
             ]
           },
@@ -1738,7 +1928,7 @@ const ROADMAP = [
     "name": "🟡 INTERMEDIARIO",
     "css": "yellow",
     "time": "12-24 meses (ritmo flexível)",
-    "desc": "Aprofundamento em programação, algoritmos, sistemas e tecnologias profissionais. Cada área pode ser estudada em paralelo conforme interesse.",
+    "desc": "Aprofundamento em programação, algoritmos, sistemas e tecnologias profissionais. Cada área pode ser estudada em paralelo conforme interesse. Dica: este é o maior nível (20 áreas). Você não precisa fazer tudo em ordem estrita — após dominar os fundamentos (ED&A, Python OOP, uma linguagem de sistemas), pode focar em trilhas: Backend (Go, Redes, BD, DevOps), Frontend/Mobile (Full-Stack, CG, Mobile), Dados/IA (Math ML, IA&ML, Sinais), ou Sistemas (Arquitetura, Concorrência, SO, Embarcados).",
     "areas": [
       {
         "name": "📊 Estruturas de Dados & Algoritmos",
@@ -2000,6 +2190,26 @@ const ROADMAP = [
                 "w": "Python para CLI profissional: click/typer, rich (output formatado), progress bars, config files",
                 "s": "Python CLI click typer tutorial | rich Python output | Python progress bar | CLI tool Python profissional",
                 "d": "• click/typer: frameworks pra criar CLIs com argumentos, opções, help automático\n• rich: output com cores, tabelas, progress bars, syntax highlighting no terminal\n• Exemplo: typer + rich = CLI bonita e funcional em poucas linhas\n• Config: toml/yaml para configuração, pathlib para caminhos cross-platform"
+              },
+              {
+                "w": "List comprehension avançada: nested, com condição, dict/set comprehension, generator expression",
+                "s": "list comprehension avançada Python | nested list comprehension | dict comprehension | generator expression",
+                "d": "• Nested: [x*y for x in range(3) for y in range(3)] → [0,0,0,0,1,2,0,2,4]\n• Com condição: [x for x in lista if x > 0]\n• Dict: {k:v for k,v in zip(keys,values)}\n• Generator: (x**2 for x in range(1000000)) — não aloca tudo em memória"
+              },
+              {
+                "w": "Collections: Counter, defaultdict, namedtuple, deque — estruturas especializadas da stdlib",
+                "s": "Python collections module | Counter defaultdict namedtuple | Python deque tutorial | collections stdlib",
+                "d": "• Counter: conta ocorrências. Counter('banana') → {'a':3,'n':2,'b':1}\n• defaultdict: dict com valor padrão. defaultdict(list) → d['key'].append(x) sem KeyError\n• namedtuple: tupla com nomes. Point = namedtuple('Point', ['x','y']). p.x, p.y\n• deque: fila eficiente dos dois lados. appendleft/popleft O(1)"
+              },
+              {
+                "w": "enumerate, zip, itertools na prática: combinar iteráveis, iterar com índice, combinações",
+                "s": "Python enumerate zip itertools | iterate with index Python | itertools combinations | Python iteration patterns",
+                "d": "• enumerate: for i, item in enumerate(lista) — índice + valor sem range(len())\n• zip: for nome, nota in zip(nomes, notas) — iterar em paralelo\n• itertools.product: todas combinações. itertools.chain: concatenar iteráveis. itertools.groupby"
+              },
+              {
+                "w": "argparse: criar CLIs profissionais com argumentos, flags, subcommands, help automático",
+                "s": "Python argparse tutorial | CLI arguments Python | argparse subcommands | Python command line interface",
+                "d": "• parser = argparse.ArgumentParser(description='Minha CLI')\n• parser.add_argument('arquivo') → argumento posicional obrigatório\n• parser.add_argument('-v', '--verbose', action='store_true') → flag opcional\n• Subcommands: parser.add_subparsers() → 'app create', 'app delete', 'app list'"
               }
             ]
           }
@@ -2295,6 +2505,21 @@ const ROADMAP = [
                 "w": "Debugging Java: IntelliJ debugger (breakpoints, evaluate, watches), jstack, jmap, heap dump analysis",
                 "s": "Java debugging IntelliJ tutorial | jstack jmap heap dump | Java memory debugging | debug Java aplicação",
                 "d": "• IntelliJ debugger: breakpoints condicionais, evaluate expression, step into/over, watch variables\n• jstack: ver todas threads de processo Java (diagnosticar deadlock)\n• jmap + heap dump: analisar uso de memória, encontrar memory leaks\n• VisualVM: profiling visual de CPU, memória, threads em tempo real"
+              },
+              {
+                "w": "Java concurrency: threads, ExecutorService, CompletableFuture, synchronized, volatile",
+                "s": "Java concurrency tutorial | ExecutorService CompletableFuture | Java threads synchronized | Java concurrent programming",
+                "d": "• Thread: new Thread(() -> { ... }).start(). Mas melhor usar ExecutorService (pool)\n• ExecutorService: pool de threads gerenciado. submit() retorna Future\n• CompletableFuture: async/await do Java. thenApply, thenCompose, allOf\n• synchronized: garante exclusão mútua. volatile: visibilidade entre threads"
+              },
+              {
+                "w": "Java networking: HttpClient (Java 11+), sockets, serialização, REST client",
+                "s": "Java HttpClient tutorial | Java sockets | Java REST client | Java networking modern",
+                "d": "• HttpClient (Java 11+): moderno, assíncrono. HttpRequest → HttpResponse<String>\n• Socket: comunicação TCP low-level. ServerSocket.accept() espera conexão\n• Serialização: converter objeto → bytes (Serializable, Jackson para JSON)\n• Prática: consumir API REST retornando JSON, deserializar com Jackson/Gson"
+              },
+              {
+                "w": "Build tools: Maven vs Gradle, dependency management, profiles, plugins",
+                "s": "Maven vs Gradle comparison | Java build tools | Maven dependency management | Gradle tutorial Java",
+                "d": "• Maven: XML (pom.xml), convention over configuration, repositório central\n• Gradle: Groovy/Kotlin DSL (build.gradle), mais flexível, mais rápido (incremental)\n• Dependencies: groupId:artifactId:version. Maven Central = npm do Java\n• Profiles: configurações diferentes pra dev/staging/prod (Maven -Pdev)"
               }
             ]
           }
@@ -2345,6 +2570,21 @@ const ROADMAP = [
                 "w": "IPC em detalhe: pipes, named pipes, shared memory, message queues, signals",
                 "s": "IPC em detalhe explicação português | ipc em detalhe tutorial beginners | ipc em detalhe explained for beginners | IPC em detalhe examples and practice",
                 "d": "• O que é: Pipe: ls | grep (unidirecional)..\n• Conceitos-chave: Named pipe (FIFO): mkfifo, persistente.. Shared memory: mais rapido (mesmo espaco de endereco).. Message queue: mensagens tipadas.. Signals: SIGINT (Ctrl+C), SIGTERM, SIGKILL.. Socket: IPC entre maquinas (rede).. Escolher: velocidade vs complexidade vs caso de uso.\n• O que estudar: pipes, named pipes, shared memory, message queues, signals."
+              },
+              {
+                "w": "I/O scheduling: deadline, CFQ, NOOP, BFQ — como SO prioriza acesso ao disco",
+                "s": "I/O scheduling Linux | deadline CFQ scheduler | disk scheduling algorithms | I/O scheduler comparison",
+                "d": "• CFQ: Complete Fair Queuing — distribui bandwidth igualmente entre processos\n• Deadline: garante que nenhum request espera mais que deadline (bom pra banco de dados)\n• NOOP: sem reordenação (bom pra SSD que não tem seek time)\n• BFQ: proporcional ao peso, melhor pra desktop (app em foco recebe mais I/O)"
+              },
+              {
+                "w": "IPC em profundidade: shared memory, message queues, semáforos POSIX, pipes nomeados",
+                "s": "IPC shared memory message queue | POSIX semaphore tutorial | pipes nomeados Linux | inter-process communication",
+                "d": "• Shared memory: região de RAM acessível por múltiplos processos (mais rápido, precisa sincronizar)\n• Message queue: fila de mensagens no kernel (ordenada, com prioridade)\n• Semáforo POSIX: sem_wait/sem_post — controlar acesso a recurso (como mutex entre processos)\n• Named pipe (FIFO): mkfifo /tmp/meu_pipe — pipe que persiste no filesystem"
+              },
+              {
+                "w": "Containers por dentro: namespaces, cgroups — o que Docker realmente faz no kernel Linux",
+                "s": "Docker namespaces cgroups | containers internals Linux | como Docker funciona por dentro | namespaces cgroups tutorial",
+                "d": "• Namespaces: isolam o que processo VÊ (PID, network, mount, user, UTS, IPC)\n• cgroups: limitam o que processo USA (CPU, memória, I/O, rede)\n• Container = processo com namespaces + cgroups. Não é VM (compartilha kernel)\n• Docker: cria namespaces/cgroups, monta filesystem (overlay2), configura rede (bridge)"
               }
             ]
           },
@@ -2550,6 +2790,21 @@ const ROADMAP = [
                 "w": "Multicore e multiprocessor: SMP, NUMA, coerência de cache entre cores, memory ordering",
                 "s": "multicore architecture SMP NUMA | cache coherence multicore | memory ordering CPU | multiprocessor architecture tutorial",
                 "d": "• SMP (Symmetric Multi-Processing): todos cores acessam mesma memória uniformemente\n• NUMA (Non-Uniform Memory Access): cada core tem memória local rápida + remota lenta\n• Coerência: protocolo MESI garante que cores veem dados consistentes\n• Memory ordering: CPUs reordenam instruções; memory barriers forçam ordem visível"
+              },
+              {
+                "w": "ISA comparison: x86 vs ARM vs RISC-V — por que ARM domina mobile e RISC-V é o futuro",
+                "s": "x86 vs ARM vs RISC-V comparison | ARM architecture mobile | RISC-V open source | ISA comparison",
+                "d": "• x86 (Intel/AMD): CISC, instruções complexas, domina desktop/servidor. Backward compatible desde 1978\n• ARM: RISC, instruções simples, baixo consumo → domina mobile (Apple M-series, Qualcomm, AWS Graviton)\n• RISC-V: ISA open-source e gratuita. Qualquer empresa pode criar chip sem licença. Crescendo rápido\n• Tendência: ARM subindo pra servidores (Graviton), RISC-V pra IoT/embarcados"
+              },
+              {
+                "w": "Memory hierarchy completa: registradores→L1→L2→L3→RAM→SSD→HDD — latências e tamanhos",
+                "s": "memory hierarchy latency | CPU cache L1 L2 L3 latency | memory hierarchy tutorial | cache vs RAM vs SSD speed",
+                "d": "• Registradores: ~0.5ns, 1KB. L1 cache: ~1ns, 64KB. L2: ~3ns, 256KB. L3: ~10ns, 8-32MB\n• RAM (DDR5): ~50ns, 16-64GB. SSD NVMe: ~100μs, 1-4TB. HDD: ~10ms, 1-16TB\n• Cada nível ~10× mais lento e ~10× maior que o anterior\n• Princípio: manter dados quentes próximos da CPU (locality of reference)"
+              },
+              {
+                "w": "DMA (Direct Memory Access): transferir dados sem CPU, por que importa pra I/O e performance",
+                "s": "DMA direct memory access | DMA controller tutorial | DMA vs CPU I/O | DMA hardware explained",
+                "d": "• Sem DMA: CPU copia cada byte manualmente (programmed I/O) → CPU 100% ocupada\n• Com DMA: controlador DMA transfere bloco inteiro enquanto CPU faz outra coisa\n• Aplicação: ler arquivo do disco, receber pacote de rede, transferir áudio — tudo usa DMA\n• Zero-copy: dado vai do disco direto pra rede sem passar pela aplicação (sendfile)"
               }
             ]
           }
@@ -2665,6 +2920,21 @@ const ROADMAP = [
                 "w": "Debugging de concorrência: ThreadSanitizer, race detector, logging thread-safe, reproduzir bugs",
                 "s": "debug race condition | ThreadSanitizer tutorial | debug concurrent program | reproduzir bug concorrência",
                 "d": "• Race conditions são os bugs mais difíceis: não-determinísticos, difíceis de reproduzir\n• Go: -race flag detecta data races em runtime\n• C++: ThreadSanitizer (TSan) instrumenta código para detectar races\n• Dica: adicionar sleep aleatório para aumentar chance de manifestar race (stress testing)"
+              },
+              {
+                "w": "Actor model: conceito de Erlang/Akka, cada actor tem mailbox, sem memória compartilhada",
+                "s": "actor model concurrency | Erlang actor model | Akka actors | actor vs shared memory concurrency",
+                "d": "• Cada actor: estado privado + mailbox de mensagens. Processa uma mensagem por vez\n• Sem locks: comunicação por mensagens, não por memória compartilhada\n• Erlang/Elixir: modelo nativo. Akka: implementação JVM. Go channels: similar\n• Vantagem: mais fácil de raciocinar sobre concorrência. Desvantagem: overhead de mensagens"
+              },
+              {
+                "w": "Wait groups e barriers: sincronizar N goroutines/threads antes de continuar, fan-out/fan-in",
+                "s": "WaitGroup Go tutorial | barrier synchronization | fan-out fan-in pattern | concurrent synchronization",
+                "d": "• WaitGroup (Go): wg.Add(N), go func(){ defer wg.Done(); ... }(), wg.Wait()\n• Fan-out: lançar N workers. Fan-in: esperar todos terminarem e juntar resultados\n• Barrier: todos threads param num ponto e só continuam quando todos chegaram\n• Java: CyclicBarrier, CountDownLatch. Python: threading.Barrier"
+              },
+              {
+                "w": "Concurrent data structures: ConcurrentHashMap (Java), sync.Map (Go), thread-safe patterns",
+                "s": "ConcurrentHashMap Java | sync.Map Go | thread-safe data structures | concurrent collections",
+                "d": "• ConcurrentHashMap: segmentos com locks independentes (melhor que Collections.synchronized)\n• sync.Map (Go): otimizado pra read-heavy workloads. Para write-heavy: mutex + map normal\n• Thread-safe patterns: copy-on-write, read-write locks, lock-free com CAS\n• Regra: prefira channels/mensagens a memória compartilhada quando possível"
               }
             ]
           }
@@ -2900,6 +3170,21 @@ const ROADMAP = [
                 "w": "Computabilidade avançada: hierarquia aritmética, graus de Turing, oráculos — problemas além de decidível/indecidível",
                 "s": "Computabilidade avanada explicação português | arithmetical hierarchy tutorial | computabilidade avanada explained for beginners | Computabilidade avançada examples and practice",
                 "d": "• O que é: Nem todos problemas indecidíveis são igualmente difíceis..\n• Conceitos-chave: Hierarquia aritmética classifica por nível.. Oracle machines exploram o que seria possível com oráculo.\n• O que estudar: hierarquia aritmética, graus de Turing, oráculos — problemas além de decidível/indecidível."
+              },
+              {
+                "w": "Problemas NP clássicos: SAT, Traveling Salesman, Graph Coloring, Knapsack — exemplos concretos",
+                "s": "NP complete problems examples | SAT problem | traveling salesman problem | graph coloring NP",
+                "d": "• SAT: dada fórmula lógica, existe atribuição que a torna verdadeira? (primeiro NP-completo provado)\n• TSP: menor rota que visita N cidades e volta. N=20 → 20! = 2.4×10¹⁸ possibilidades\n• Graph Coloring: colorir vértices com K cores sem vizinhos iguais (escalonamento, alocação de registradores)\n• Knapsack: maximizar valor com peso limitado (alocação de recursos, investimento)"
+              },
+              {
+                "w": "Lambda calculus intro: base teórica de programação funcional, Church encoding, Y combinator",
+                "s": "lambda calculus intro | Church encoding | programação funcional teoria | lambda calculus tutorial",
+                "d": "• Lambda calculus (Church, 1930s): sistema formal com apenas funções. Equivalente à Máquina de Turing\n• λx.x+1 = função que recebe x e retorna x+1. Aplicação: (λx.x+1) 5 = 6\n• Church encoding: representar números, booleanos e estruturas só com funções\n• Influência: Python lambda, JS arrow functions, Haskell, map/filter/reduce vêm daqui"
+              },
+              {
+                "w": "Decidibilidade: Halting Problem em detalhe, Rice's theorem, problemas que nenhum algoritmo resolve",
+                "s": "halting problem explained | Rice theorem | decidibilidade computação | undecidable problems",
+                "d": "• Halting Problem: dado programa P e input I, P para? Turing provou: IMPOSSÍVEL resolver em geral\n• Prova: suponha que existe detector H. Construa programa que contradiz H (paradoxo da auto-referência)\n• Rice's theorem: QUALQUER propriedade não-trivial de programas é indecidível\n• Impacto prático: não existe antivírus perfeito, verificador de bugs universal, ou otimizador ideal"
               }
             ]
           },
@@ -3250,6 +3535,21 @@ const ROADMAP = [
                 "w": "Telecomunicações intro: modulação (AM, FM, QAM), bandwidth, Shannon capacity, 5G basics",
                 "s": "modulação AM FM QAM explicação | Shannon capacity theorem | telecomunicações básico | 5G como funciona",
                 "d": "• AM: varia amplitude da portadora (rádio AM). FM: varia frequência (rádio FM, mais qualidade)\n• QAM: varia amplitude E fase (WiFi, 4G/5G). Mais bits por símbolo\n• Shannon: C = B × log₂(1 + SNR) — capacidade máxima do canal depende de bandwidth e ruído\n• 5G: mmWave (alta frequência, curto alcance, muita banda) + beamforming"
+              },
+              {
+                "w": "Z-transform: equivalente discreto de Laplace, análise de filtros digitais, ROC",
+                "s": "Z-transform tutorial | transformada Z filtros digitais | Z-transform for DSP | análise filtros discretos",
+                "d": "• Z-transform: converte sequência discreta x[n] em função de z (como Laplace para contínuo)\n• Função de transferência H(z): descreve comportamento do filtro no domínio Z\n• ROC (Region of Convergence): determina estabilidade e causalidade do sistema\n• Prática: analisar se filtro é estável (polos dentro do círculo unitário)"
+              },
+              {
+                "w": "Controle intro: feedback loop, controlador PID conceito, estabilidade, diagrama de blocos",
+                "s": "controle PID tutorial | feedback loop control | PID controller explained | sistema de controle intro",
+                "d": "• Feedback: saída medida e comparada com referência. Erro = referência - medido\n• PID: P(proporcional ao erro) + I(integral acumulada) + D(derivada da mudança)\n• Exemplo: termostato. Referência=22°C, medido=20°C, erro=2°C → liga aquecedor proporcional\n• Estabilidade: sistema que oscila sem convergir é instável. PID bem tunado converge rápido"
+              },
+              {
+                "w": "Modulação digital: ASK, FSK, PSK, QAM — como dados viram sinais para transmissão",
+                "s": "modulação digital ASK FSK PSK | QAM modulation tutorial | digital modulation basics | como WiFi transmite dados",
+                "d": "• ASK: varia amplitude (0=nada, 1=onda). Simples mas sensível a ruído\n• FSK: varia frequência (0=freq baixa, 1=freq alta). Mais robusto (usado em Bluetooth)\n• PSK: varia fase (0=0°, 1=180°). Mais eficiente em bandwidth\n• QAM: combina amplitude+fase (WiFi, 4G). 256-QAM = 8 bits por símbolo"
               }
             ]
           }
@@ -3355,6 +3655,26 @@ const ROADMAP = [
                 "w": "NLP básico: TF-IDF, word embeddings (Word2Vec), sentiment analysis, text classification pipeline",
                 "s": "NLP Python tutorial | TF-IDF text classification | Word2Vec embeddings | sentiment analysis Python",
                 "d": "• TF-IDF: representação de texto que pesa palavras por frequência no documento vs corpus\n• Word2Vec: palavras como vetores densos (rei - homem + mulher ≈ rainha)\n• Sentiment analysis: classificar texto como positivo/negativo. Pipeline: texto → TF-IDF → LogisticRegression\n• Libraries: scikit-learn (TF-IDF), gensim (Word2Vec), spaCy (NLP completo)"
+              },
+              {
+                "w": "Pré-processamento: missing values, outliers (IQR), feature scaling (Standard, MinMax), encoding categórico",
+                "s": "data preprocessing ML | feature scaling | outlier detection IQR | encoding categórico one-hot label",
+                "d": "• Missing: dropna ou fillna com média/mediana. Outliers: IQR method\n• StandardScaler (média=0, std=1), MinMaxScaler (0-1)\n• One-hot para nominais, label para ordinais, target encoding avançado"
+              },
+              {
+                "w": "Validação cruzada: k-fold, stratified k-fold, por que holdout é perigoso, data leakage",
+                "s": "cross validation k-fold stratified | data leakage prevention | validação cruzada tutorial",
+                "d": "• K-fold: treina k vezes, cada fold como teste. Média robusta\n• Stratified: mantém proporção de classes em cada fold\n• NUNCA fazer feature engineering antes do split → data leakage"
+              },
+              {
+                "w": "Métricas: accuracy vs precision vs recall vs F1, AUC-ROC, confusion matrix",
+                "s": "precision recall F1 AUC-ROC | confusion matrix | métricas ML tutorial",
+                "d": "• Accuracy enganosa com classes desbalanceadas\n• Precision: falso positivo caro. Recall: falso negativo caro\n• F1: harmônica. AUC-ROC: performance em todos thresholds"
+              },
+              {
+                "w": "Feature engineering e Pipelines: criar features, selection (LASSO), Pipeline + ColumnTransformer",
+                "s": "feature engineering Pipeline scikit-learn | LASSO feature selection | ColumnTransformer tutorial",
+                "d": "• Criar: data→dia_semana, preço→log. Polynomial: interações\n• LASSO zera features irrelevantes\n• Pipeline previne data leakage. ColumnTransformer: transformações por tipo de coluna"
               }
             ]
           },
@@ -3740,6 +4060,26 @@ const ROADMAP = [
                 "w": "Exportar e importar modelos 3D: formatos (glTF, OBJ, FBX), Blender basics, loaders em Three.js",
                 "s": "glTF OBJ FBX formato 3D | importar modelo Blender Three.js | 3D model formats explained | Three.js GLTFLoader tutorial",
                 "d": "• glTF: formato padrão moderno da web 3D (binário eficiente, suporta animações, materiais PBR)\n• OBJ: formato simples e universal (só geometria, sem animações)\n• FBX: formato da indústria (Autodesk), suporta tudo mas é proprietário\n• Blender → exportar glTF → carregar com GLTFLoader no Three.js"
+              },
+              {
+                "w": "Shaders: vertex shader e fragment shader, GLSL, como a GPU processa vértices e pixels",
+                "s": "vertex fragment shader GLSL | shader programming tutorial | GPU shader pipeline | WebGL shaders intro",
+                "d": "• Vertex shader: roda por vértice, transforma posição 3D→2D (model-view-projection)\n• Fragment shader: roda por pixel, calcula cor final (textura, iluminação, efeitos)\n• GLSL: linguagem C-like que roda na GPU. Variáveis: uniform (global), varying (interpolado), attribute (por vértice)\n• Pipeline: vértices → vertex shader → rasterização → fragment shader → pixel na tela"
+              },
+              {
+                "w": "Post-processing: bloom, blur, depth of field, tone mapping — efeitos após renderização",
+                "s": "post-processing effects graphics | bloom blur depth of field | tone mapping tutorial | post-processing pipeline",
+                "d": "• Renderizar cena pra textura (framebuffer), depois aplicar efeitos como filtro\n• Bloom: áreas brilhantes 'vazam' luz pros pixels vizinhos (brilho cinematográfico)\n• Blur: Gaussian blur por convolução. DoF: blur baseado em distância da câmera\n• Tone mapping: comprimir range HDR pra tela SDR (Reinhard, ACES)"
+              },
+              {
+                "w": "Particle systems: fogo, fumaça, chuva, explosões — milhares de sprites animados",
+                "s": "particle system tutorial | fire smoke rain particles | particle effects game | WebGL particles",
+                "d": "• Cada partícula: posição, velocidade, cor, vida útil, tamanho\n• Emitter: gera N partículas/segundo com variação aleatória\n• Update: mover, envelhecer, remover mortas, aplicar gravidade/vento\n• GPU particles: instancing ou transform feedback pra renderizar milhares eficientemente"
+              },
+              {
+                "w": "Shadow mapping: projetar sombras em tempo real, shadow map, cascaded shadows",
+                "s": "shadow mapping tutorial | real-time shadows | shadow map technique | cascaded shadow maps",
+                "d": "• Ideia: renderizar cena do ponto de vista da luz (depth map), depois comparar\n• Se pixel está mais longe que o depth map → está na sombra\n• Cascaded: dividir frustum em cascatas pra sombras de alta qualidade em cenas grandes\n• Problemas: peter-panning, shadow acne — resolvidos com bias e normal offset"
               }
             ]
           }
@@ -3800,6 +4140,21 @@ const ROADMAP = [
                 "w": "Animations e gestures: Animated API (RN), AnimationController (Flutter), gestos (pan, pinch, swipe)",
                 "s": "React Native Animated tutorial | Flutter animation tutorial | mobile gesture handling | pan pinch swipe mobile",
                 "d": "• React Native: Animated.timing, spring, decay. Reanimated para performance nativa\n• Flutter: AnimationController + Tween, Hero animations, AnimatedBuilder\n• Gestos: pan (arrastar), pinch (zoom), swipe (deslizar), long press\n• Performance: animações devem rodar a 60fps — usar native driver quando possível"
+              },
+              {
+                "w": "Push notifications: Firebase Cloud Messaging, configurar no iOS/Android, notification channels",
+                "s": "push notifications React Native Flutter | Firebase Cloud Messaging | mobile push notification tutorial",
+                "d": "• FCM (Firebase Cloud Messaging): gratuito, funciona em iOS e Android\n• Tipos: foreground (app aberto), background (app fechado), data-only (silencioso)\n• iOS: pedir permissão explícita (UNUserNotificationCenter). Android: notification channels (8+)\n• Prática: enviar push quando tarefa vence, mensagem nova, atualização do sistema"
+              },
+              {
+                "w": "Deep linking: abrir tela específica do app via URL, universal links (iOS), app links (Android)",
+                "s": "deep linking mobile tutorial | universal links iOS | Android app links | React Native deep linking",
+                "d": "• Deep link: meuapp://produto/123 abre direto a tela do produto\n• Universal links (iOS): https://meusite.com/produto/123 abre no app se instalado, senão no browser\n• Configurar: associar domínio ao app (apple-app-site-association, assetlinks.json)\n• React Native: react-navigation deep linking config"
+              },
+              {
+                "w": "App lifecycle: foreground/background/killed, persistent state, como não perder dados do usuário",
+                "s": "mobile app lifecycle | React Native app state | Flutter lifecycle | persistent state mobile",
+                "d": "• Estados: active (em uso), background (minimizado), killed (fechado)\n• Ao ir pro background: salvar estado. Ao voltar: restaurar\n• React Native: AppState.addEventListener('change'). Flutter: WidgetsBindingObserver\n• Dados críticos: salvar em storage (AsyncStorage/SharedPreferences) não só em memória"
               }
             ]
           },
@@ -3855,6 +4210,16 @@ const ROADMAP = [
                 "w": "Monetização: in-app purchases (RevenueCat), ads (AdMob), freemium model, subscription",
                 "s": "mobile app monetization strategies | RevenueCat in-app purchase | AdMob tutorial | freemium subscription mobile",
                 "d": "• Freemium: app gratuita com features premium pagas (Spotify, Notion)\n• Subscription: receita recorrente mensal/anual (RevenueCat facilita implementation)\n• Ads: AdMob (Google) — banners, interstitials, rewarded. Cuidado com UX\n• In-app purchase: compras dentro do app (Apple/Google cobram 15-30% de comissão)"
+              },
+              {
+                "w": "CI/CD mobile: Fastlane, build automático, distribuição beta (TestFlight, Firebase Distribution)",
+                "s": "Fastlane mobile CI/CD | mobile build automation | TestFlight Firebase Distribution | mobile deployment pipeline",
+                "d": "• Fastlane: automatiza build, screenshot, upload pra App Store/Play Store\n• CI: GitHub Actions + Fastlane. Cada push roda testes e gera build\n• Beta: TestFlight (iOS, até 10K testers) ou Firebase Distribution (cross-platform)\n• Prática: push pra main → CI builda → beta distribuído → aprovado → publish"
+              },
+              {
+                "w": "App store submission: guidelines, review process, screenshots, ASO (App Store Optimization)",
+                "s": "app store submission guide | Apple review guidelines | Play Store publish | ASO optimization",
+                "d": "• Apple: review leva 1-3 dias. Guidelines rigorosas (privacidade, conteúdo, UX)\n• Play Store: review ~horas. Menos rigoroso mas precisa policy compliance\n• Screenshots: 3+ por device size. Preview video ajuda conversão\n• ASO: título com keywords, descrição otimizada, ícone atrativo"
               }
             ]
           }
@@ -4150,6 +4515,26 @@ const ROADMAP = [
                 "w": "HTTP middleware em Go: padrão de handler chain, logging, auth, rate limiting, CORS, recovery",
                 "s": "Go HTTP middleware pattern | Go middleware chain tutorial | Go logging auth middleware | Gin middleware tutorial",
                 "d": "• Middleware em Go: função que recebe http.Handler e retorna http.Handler\n• Chain: logging → auth → rate limit → CORS → handler principal\n• Gin: router.Use(gin.Logger(), gin.Recovery(), authMiddleware())\n• Padrão: func middleware(next http.Handler) http.Handler { return http.HandlerFunc(func(w, r) { ... next.ServeHTTP(w, r) }) }"
+              },
+              {
+                "w": "Error wrapping: fmt.Errorf com %w, errors.Is/As, erro como tipo customizado, error chains",
+                "s": "Go error wrapping fmt.Errorf | errors.Is errors.As | Go custom error types | Go error handling patterns",
+                "d": "• fmt.Errorf('falhou: %w', err): wrapa erro original preservando a chain\n• errors.Is(err, ErrNotFound): checa se erro (ou qualquer wrapped) é específico\n• errors.As(err, &target): extrai tipo específico da chain (pra acessar campos custom)\n• Custom: type AppError struct { Code int; Message string; Cause error }"
+              },
+              {
+                "w": "Context: timeout, cancellation, propagação em goroutines, context.WithCancel/WithTimeout",
+                "s": "Go context package tutorial | context.WithTimeout WithCancel | Go context propagation | context deadline",
+                "d": "• ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)\n• Toda goroutine recebe ctx como primeiro argumento. Checa ctx.Done() pra parar\n• Cancellation cascata: se pai cancela, todos filhos cancelam automaticamente\n• Prática: HTTP handler com timeout → database query com mesmo ctx → cancela se timeout"
+              },
+              {
+                "w": "Go generics (1.18+): type parameters, constraints, quando usar vs interface{}",
+                "s": "Go generics tutorial | Go type parameters | Go constraints | generics vs interface Go",
+                "d": "• func Map[T, U any](slice []T, fn func(T) U) []U — funciona com qualquer tipo\n• Constraints: comparable, numbers. type Number interface { int | float64 }\n• Quando: funções utilitárias (Map, Filter, Contains). Quando NÃO: tudo já funciona com interface\n• Go generics são mais simples que Java/Rust — intencionalmente limitados"
+              },
+              {
+                "w": "Profiling: pprof, trace, benchmarks, identificar gargalos de CPU e memória",
+                "s": "Go pprof profiling tutorial | Go benchmark testing | Go trace tool | performance profiling Go",
+                "d": "• go test -bench=. -benchmem: mede tempo e alocações de memória\n• pprof: import net/http/pprof → go tool pprof http://localhost:6060/debug/pprof/heap\n• CPU profile: identifica funções que consomem mais tempo. Heap: mais memória\n• go tool trace: visualiza goroutines, GC, scheduler ao longo do tempo"
               }
             ]
           }
@@ -4542,6 +4927,36 @@ const ROADMAP = [
                 "d": "• O que é: Cada lab/CTF resolvido: escreva writeup (problema, tentativas, solucao, aprendizado)..\n• Conceitos-chave: Blog: dev.to, Medium, GitHub Pages.. GitHub: scripts, tools, configs.. Twitter/X: compartilhe aprendizados.. A comunidade de seguranca e generosa com quem compartilha.. Reputacao > certificacoes.\n• O que estudar: writeups, blog, GitHub, construir reputacao."
               }
             ]
+          },
+          {
+            "name": "OSINT, Social Engineering e Password Attacks",
+            "books": [
+              "Open Source Intelligence Techniques — Michael Bazzell",
+              "Social Engineering: The Science of Human Hacking — Christopher Hadnagy",
+              "Hash Crack: Password Cracking Manual — Joshua Picolet"
+            ],
+            "items": [
+              {
+                "w": "OSINT: theHarvester, Shodan, Google dorking avançado, Maltego, recon-ng",
+                "s": "OSINT theHarvester Shodan tutorial | Google dorking advanced | OSINT tools beginners",
+                "d": "• theHarvester: emails, subdomínios de um domínio. Shodan: dispositivos expostos\n• Google: site:target.com filetype:pdf, intitle:'index of' passwords\n• Maltego: mapa visual de relações (pessoa↔email↔domínio↔IP)"
+              },
+              {
+                "w": "Social engineering: phishing (GoPhish), pretexting, baiting — vetor #1 real",
+                "s": "social engineering GoPhish | phishing simulation | social engineering awareness",
+                "d": "• 90%+ ataques começam com social engineering, não exploit técnico\n• GoPhish: simular phishing pra treinar equipe\n• Baiting: pendrive com malware 'esquecido' funciona em ~45% dos casos"
+              },
+              {
+                "w": "Wireless: WPA2/WPA3, handshake capture, deauth, aircrack-ng",
+                "s": "wireless security aircrack-ng | WiFi hacking ethical | WPA2 WPA3 security",
+                "d": "• WPA2: vulnerável a handshake capture + dictionary attack\n• WPA3: SAE resolve fraquezas. Adoção crescendo\n• aircrack-ng: captura + crack. SEMPRE com autorização"
+              },
+              {
+                "w": "Password attacks: hashcat, John the Ripper, rainbow tables, wordlists, spraying",
+                "s": "hashcat tutorial | John the Ripper | password cracking ethical | password spraying",
+                "d": "• hashcat: GPU cracking (NTLM, SHA256, bcrypt)\n• Rainbow tables: hashes pré-computados. Salt previne\n• rockyou.txt: 14M senhas reais. Spraying: 1 senha em muitas contas"
+              }
+            ]
           }
         ]
       },
@@ -4634,46 +5049,6 @@ const ROADMAP = [
             ]
           },
           {
-            "name": "Hardware Avancado & FPGA",
-            "books": [
-              "Computer Organization and Design — Patterson & Hennessy",
-              "Digital Design with RTL — Vahid",
-              "FPGA Programming for Beginners — Wijesinghe"
-            ],
-            "items": [
-              {
-                "w": "Arquitetura de processadores: pipeline, cache, branch prediction, superscalar",
-                "s": "Arquitetura processadores pipeline tutorial portugues | arquitetura processadores pipeline | arquitetura de processadores explained for beginners | arquitetura de processadores explicação em português",
-                "d": "• O que é: Pipeline: dividir instrucao em etapas (fetch/decode/execute/memory/writeback)..\n• Conceitos-chave: Cache miss: penalidade.. Branch prediction: adivinhar saltos.. Superscalar: multiplas instrucoes por ciclo.\n• O que estudar: pipeline, cache, branch prediction, superscalar."
-              },
-              {
-                "w": "Barramentos: SPI, I2C, UART, CAN, USB, PCIe",
-                "s": "Barramentos UART PCIe tutorial portugues | bus protocols SPI I2C UART CAN USB PCIe | barramentos explained for beginners | barramentos explicação em português",
-                "d": "• O que é: UART: serial simples (2 fios)..\n• Conceitos-chave: SPI: rapido (4 fios, master-slave).. I2C: 2 fios, multiplos devices.. CAN: automotivo/industrial.. USB: universal.. PCIe: alta velocidade (GPU, SSD).\n• O que estudar: SPI, I2C, UART, CAN, USB, PCIe."
-              },
-              {
-                "w": "Memoria: SRAM, DRAM, Flash, EEPROM, DDR, memoria cache",
-                "s": "memory types SRAM DRAM Flash EEPROM DDR | Memoria SRAM DRAM tutorial portugues | memoria explained for beginners | memoria explicação em português",
-                "d": "• O que é: SRAM: rapida, cara (cache)..\n• Conceitos-chave: DRAM: precisa refresh (RAM principal).. Flash: nao-volatil (SSD, pendrive).. EEPROM: configuracao.. DDR4/DDR5: taxa de transferencia.\n• O que estudar: SRAM, DRAM, Flash, EEPROM, DDR, memoria cache."
-              },
-              {
-                "w": "FPGA: o que e, HDL (Verilog/VHDL), sintese, casos de uso",
-                "s": "FPGA Verilog/VHDL sintese explained | FPGA tutorial Verilog VHDL | fpga explicação em português | FPGA examples and practice",
-                "d": "• O que é: FPGA: hardware RECONFIGURAVEL..\n• Conceitos-chave: Voce programa a logica (nao software!).. Verilog/VHDL: linguagens de descricao de hardware.. Mais rapido que software pra tarefas paralelas.. Usado em: telecom, financas, prototipagem de chips.\n• O que estudar: o que e, HDL (Verilog/VHDL), sintese, casos de uso."
-              },
-              {
-                "w": "Design de PCB: esquematico, layout, KiCad, fabricacao",
-                "s": "Design esquematico layout explained | Design de PCB explicação português | design de pcb tutorial completo | Design de PCB examples and practice",
-                "d": "• O que é: KiCad (gratuito): esquematico > footprints > layout > roteamento > Gerber files > fabricar (JLCPCB, PCBWay)..\n• Conceitos-chave: Regras: largura trilha, espaçamento, plano terra, desacoplamento.\n• O que estudar: esquematico, layout, KiCad, fabricacao."
-              },
-              {
-                "w": "ARM, RISC-V: arquiteturas de processadores embarcados",
-                "s": "RISC-V arquiteturas processadores explained | embedded processor architectures | arm riscv tutorial completo | arm riscv explicação em português",
-                "d": "• O que é: ARM: domina mobile e embarcado (Cortex-M, Cortex-A)..\n• Conceitos-chave: RISC-V: open-source, crescendo rapido.. RISC vs CISC.. STM32 (ARM Cortex-M): profissional pra embarcados.\n• O que estudar: arquiteturas de processadores embarcados."
-              }
-            ]
-          },
-          {
             "name": "Automacao Industrial Intro",
             "books": [
               "Introduction to Industrial Automation — Ahmad",
@@ -4750,6 +5125,46 @@ const ROADMAP = [
                 "w": "Watchdog timer, interrupt latency, bare-metal vs RTOS: quando cada abordagem é adequada",
                 "s": "Watchdog timer interrupt latency baremetal vs RTOS explicação português | bare-metal vs RTOS tutorial | watchdog timer interrupt latency baremetal vs rtos explained for beginners | Watchdog timer interrupt latency baremetal vs examples and practice",
                 "d": "• O que é: Watchdog reseta sistema se travar..\n• Conceitos-chave: Bare-metal: simples, determinístico.. RTOS: multi-task, abstrações.. Escolher baseado em complexidade e requisitos de timing.\n• O que estudar: quando cada abordagem é adequada."
+              }
+            ]
+          },
+          {
+            "name": "Hardware Avancado & FPGA",
+            "books": [
+              "Computer Organization and Design — Patterson & Hennessy",
+              "Digital Design with RTL — Vahid",
+              "FPGA Programming for Beginners — Wijesinghe"
+            ],
+            "items": [
+              {
+                "w": "Arquitetura de processadores: pipeline, cache, branch prediction, superscalar",
+                "s": "Arquitetura processadores pipeline tutorial portugues | arquitetura processadores pipeline | arquitetura de processadores explained for beginners | arquitetura de processadores explicação em português",
+                "d": "• O que é: Pipeline: dividir instrucao em etapas (fetch/decode/execute/memory/writeback)..\n• Conceitos-chave: Cache miss: penalidade.. Branch prediction: adivinhar saltos.. Superscalar: multiplas instrucoes por ciclo.\n• O que estudar: pipeline, cache, branch prediction, superscalar."
+              },
+              {
+                "w": "Barramentos: SPI, I2C, UART, CAN, USB, PCIe",
+                "s": "Barramentos UART PCIe tutorial portugues | bus protocols SPI I2C UART CAN USB PCIe | barramentos explained for beginners | barramentos explicação em português",
+                "d": "• O que é: UART: serial simples (2 fios)..\n• Conceitos-chave: SPI: rapido (4 fios, master-slave).. I2C: 2 fios, multiplos devices.. CAN: automotivo/industrial.. USB: universal.. PCIe: alta velocidade (GPU, SSD).\n• O que estudar: SPI, I2C, UART, CAN, USB, PCIe."
+              },
+              {
+                "w": "Memoria: SRAM, DRAM, Flash, EEPROM, DDR, memoria cache",
+                "s": "memory types SRAM DRAM Flash EEPROM DDR | Memoria SRAM DRAM tutorial portugues | memoria explained for beginners | memoria explicação em português",
+                "d": "• O que é: SRAM: rapida, cara (cache)..\n• Conceitos-chave: DRAM: precisa refresh (RAM principal).. Flash: nao-volatil (SSD, pendrive).. EEPROM: configuracao.. DDR4/DDR5: taxa de transferencia.\n• O que estudar: SRAM, DRAM, Flash, EEPROM, DDR, memoria cache."
+              },
+              {
+                "w": "FPGA: o que e, HDL (Verilog/VHDL), sintese, casos de uso",
+                "s": "FPGA Verilog/VHDL sintese explained | FPGA tutorial Verilog VHDL | fpga explicação em português | FPGA examples and practice",
+                "d": "• O que é: FPGA: hardware RECONFIGURAVEL..\n• Conceitos-chave: Voce programa a logica (nao software!).. Verilog/VHDL: linguagens de descricao de hardware.. Mais rapido que software pra tarefas paralelas.. Usado em: telecom, financas, prototipagem de chips.\n• O que estudar: o que e, HDL (Verilog/VHDL), sintese, casos de uso."
+              },
+              {
+                "w": "Design de PCB: esquematico, layout, KiCad, fabricacao",
+                "s": "Design esquematico layout explained | Design de PCB explicação português | design de pcb tutorial completo | Design de PCB examples and practice",
+                "d": "• O que é: KiCad (gratuito): esquematico > footprints > layout > roteamento > Gerber files > fabricar (JLCPCB, PCBWay)..\n• Conceitos-chave: Regras: largura trilha, espaçamento, plano terra, desacoplamento.\n• O que estudar: esquematico, layout, KiCad, fabricacao."
+              },
+              {
+                "w": "ARM, RISC-V: arquiteturas de processadores embarcados",
+                "s": "RISC-V arquiteturas processadores explained | embedded processor architectures | arm riscv tutorial completo | arm riscv explicação em português",
+                "d": "• O que é: ARM: domina mobile e embarcado (Cortex-M, Cortex-A)..\n• Conceitos-chave: RISC-V: open-source, crescendo rapido.. RISC vs CISC.. STM32 (ARM Cortex-M): profissional pra embarcados.\n• O que estudar: arquiteturas de processadores embarcados."
               }
             ]
           }
@@ -4864,6 +5279,31 @@ const ROADMAP = [
                 "w": "Observabilidade avançada: SLOs/SLIs/SLAs, error budgets, alerting philosophy, on-call best practices",
                 "s": "SLO SLI SLA explained | error budget observability | alerting best practices | on-call engineering guide",
                 "d": "• SLI: métrica (ex: latência p99). SLO: meta (ex: p99 < 200ms em 99.9% do tempo). SLA: contrato com cliente\n• Error budget: 100% - SLO = budget pra falhar. Se gastou budget, pare de deployar e corrija\n• Alerting: alerte em sintomas (usuário afetado), não em causas (CPU alta). Minimize fadiga de alertas\n• On-call: runbooks, rotação justa, post-mortems blameless, tempo de resposta definido"
+              },
+              {
+                "w": "System design: Twitter — fan-out on write vs read, timeline service, celebrity problem",
+                "s": "design Twitter system design | fan-out on write vs read | timeline service architecture | Twitter system design interview",
+                "d": "• Fan-out on write: ao postar, inserir tweet no feed de todos seguidores (rápido pra ler, caro pra escrever)\n• Fan-out on read: ao abrir feed, buscar tweets dos seguidos em tempo real (lento pra ler, barato pra escrever)\n• Hybrid: fan-out on write pra maioria, fan-out on read pra celebridades (>1M seguidores)\n• Componentes: tweet service, timeline service, user graph, media storage (S3), cache (Redis)"
+              },
+              {
+                "w": "System design: Uber — geolocation matching, ETA estimation, surge pricing, dispatch system",
+                "s": "design Uber system design | geolocation matching | ride dispatch system | Uber architecture",
+                "d": "• Geolocation: quadtree ou geohash pra encontrar motoristas próximos eficientemente\n• Matching: algorithm que otimiza distância, tempo, e oferta/demanda\n• ETA: modelo de ML treinado em dados históricos de tráfego + tempo real\n• Surge: preço dinâmico baseado em oferta (motoristas) vs demanda (passageiros) por região"
+              },
+              {
+                "w": "Capacity planning: estimar QPS, storage, bandwidth, back-of-envelope calculations",
+                "s": "capacity planning system design | back of envelope calculation | QPS estimation | system design estimation",
+                "d": "• QPS: 1M DAU × 10 requests/dia = 10M/dia ÷ 86400 ≈ 115 QPS (pico 2-3×)\n• Storage: 1M posts/dia × 1KB = 1GB/dia = 365GB/ano\n• Bandwidth: 115 QPS × 100KB response = 11.5 MB/s\n• Regra: sempre calcular ANTES de escolher tecnologia"
+              },
+              {
+                "w": "Load testing: k6, Locust, Artillery — validar que sistema aguenta a carga estimada",
+                "s": "load testing k6 Locust | performance testing tutorial | stress testing web app | load testing tools comparison",
+                "d": "• k6: JavaScript, eficiente, bom pra CI. Simula N usuários virtuais fazendo requests\n• Locust: Python, UI web pra visualizar, fácil de customizar cenários\n• Métricas: p50, p95, p99 latency, error rate, throughput (requests/sec)\n• Processo: baseline → gradual ramp → find breaking point → optimize → repeat"
+              },
+              {
+                "w": "Database sharding: horizontal partitioning, shard key, resharding, cross-shard queries",
+                "s": "database sharding strategies | shard key selection | horizontal partitioning | resharding challenge",
+                "d": "• Sharding: dividir tabela grande em múltiplos bancos por shard key (ex: user_id % N)\n• Shard key: escolher bem é CRÍTICO. Distribuição uniforme, evitar hotspots\n• Cross-shard queries: JOIN entre shards é complexo e lento. Desnormalizar quando possível\n• Resharding: adicionar shards = mover dados. Consistent hashing minimiza movimento"
               }
             ]
           }
@@ -4929,6 +5369,31 @@ const ROADMAP = [
                 "w": "Vision Transformers (ViT): aplicar arquitetura Transformer em imagens — patches, position embeddings",
                 "s": "Vision Transformer ViT explained | ViT vs CNN | image patches Transformer | ViT tutorial",
                 "d": "• Ideia: dividir imagem em patches (16×16), tratar cada patch como token de texto\n• Cada patch → embedding → Transformer Encoder → classification\n• Vantagem: captura relações globais (CNN foca em local). Precisa de mais dados\n• Resultados: ViT supera CNNs em datasets grandes, base de modelos como CLIP, SAM, DINO"
+              },
+              {
+                "w": "Transfer learning: fine-tune ResNet/BERT, freeze vs unfreeze, learning rate scheduling",
+                "s": "transfer learning fine-tune tutorial | freeze unfreeze layers | learning rate scheduler DL",
+                "d": "• Modelo pré-treinado → adaptar para seu problema com poucos dados\n• Freeze camadas iniciais, treinar só as últimas\n• LR scheduling: reduce on plateau, cosine annealing, warmup"
+              },
+              {
+                "w": "Regularização DL: dropout, batch norm, weight decay, early stopping, data augmentation",
+                "s": "dropout batch normalization weight decay | data augmentation deep learning | regularization DL",
+                "d": "• Dropout: desliga neurônios aleatoriamente (p=0.1-0.5)\n• Batch norm: normaliza ativações, acelera treino\n• Data augmentation: rotação, flip, crop — multiplica dados"
+              },
+              {
+                "w": "Arquiteturas: U-Net (segmentação), YOLO (detecção objetos), Whisper (speech-to-text)",
+                "s": "U-Net segmentation | YOLO object detection | Whisper speech recognition | specialized DL",
+                "d": "• U-Net: encoder-decoder para segmentar pixels\n• YOLO: detecção em tempo real — uma passada detecta todos objetos\n• Whisper: speech-to-text multilíngue da OpenAI"
+              },
+              {
+                "w": "Treinamento eficiente: mixed precision (FP16), gradient accumulation, gradient checkpointing",
+                "s": "mixed precision training FP16 | gradient accumulation | gradient checkpointing | efficient training",
+                "d": "• FP16: 2x rápido, metade da memória GPU\n• Gradient accumulation: simular batch maior em GPU pequena\n• Checkpointing: recomputar ativações no backward, economiza memória"
+              },
+              {
+                "w": "GANs: generator vs discriminator, training loop adversarial, mode collapse, StyleGAN, Pix2Pix",
+                "s": "GAN generative adversarial network tutorial | generator discriminator training | StyleGAN Pix2Pix | mode collapse GAN",
+                "d": "• Generator: gera imagens fake. Discriminator: distingue real de fake. Competem e melhoram juntos\n• Training: alternado. Treina D pra classificar, depois G pra enganar D\n• Mode collapse: generator gera sempre a mesma imagem. Solução: diversity loss, Wasserstein GAN\n• Aplicações: gerar faces (StyleGAN), traduzir imagem (Pix2Pix), super-resolução (SRGAN)"
               }
             ]
           },
@@ -4974,6 +5439,21 @@ const ROADMAP = [
                 "w": "Model interpretability: Grad-CAM (onde o modelo olha), SHAP para NLP, attention visualization, probing",
                 "s": "Grad-CAM explained | SHAP NLP interpretability | attention visualization Transformer | model interpretability tutorial",
                 "d": "• Grad-CAM: heatmap mostrando quais regiões da imagem o modelo usa pra decidir\n• SHAP: contribuição de cada feature/token para a predição (funciona com qualquer modelo)\n• Attention visualization: ver quais tokens o Transformer relaciona com quais\n• Probing: treinar classificador simples nas representações internas pra entender o que cada camada aprendeu"
+              },
+              {
+                "w": "Autoencoders: encoder comprime, decoder reconstrói, latent space, variational (VAE), denoising",
+                "s": "autoencoder tutorial | variational autoencoder VAE | denoising autoencoder | latent space explained",
+                "d": "• Encoder: input → representação compacta (latent space). Decoder: latent → reconstrução\n• Treinamento: minimizar diferença entre input e reconstrução (reconstruction loss)\n• VAE: latent space contínuo e regularizado, permite gerar novos dados (sampling)\n• Denoising: treinar com input ruidoso, reconstruir sem ruído. Usado em difusão"
+              },
+              {
+                "w": "Model quantization: INT8, ONNX Runtime, TensorFlow Lite — rodar modelos em edge/mobile",
+                "s": "model quantization INT8 tutorial | ONNX Runtime deployment | TensorFlow Lite mobile | edge ML deployment",
+                "d": "• Quantização: FP32 → INT8. Modelo ~4× menor, ~2-3× mais rápido, pequena perda de qualidade\n• Post-training: quantizar modelo já treinado (simples). Quantization-aware training (melhor resultado)\n• ONNX Runtime: formato universal, roda em CPU/GPU/NPU eficientemente\n• TFLite: otimizado pra mobile/embedded. Edge deployment: modelo roda no device, não no server"
+              },
+              {
+                "w": "Contrastive learning: SimCLR, self-supervised, aprender representações sem labels",
+                "s": "contrastive learning SimCLR tutorial | self-supervised learning | representation learning | SimCLR CLIP training",
+                "d": "• Ideia: duas 'views' da mesma imagem devem ter representações similares, de imagens diferentes → distantes\n• SimCLR: data augmentation → encoder → projection → contrastive loss\n• Self-supervised: não precisa de labels humanos (dados são o próprio supervisor)\n• CLIP: contrastive entre texto e imagem — entende relação sem supervision explícita"
               }
             ]
           }
@@ -5034,6 +5514,46 @@ const ROADMAP = [
                 "w": "Safety, guardrails, eval, red-teaming",
                 "s": "Safety guardrails eval tutorial portugues | AI evaluation benchmarks tutorial | safety guardrails eval redteaming explained for beginners | safety guardrails eval redteaming explicação em português",
                 "d": "• O que é: Guardrails: limitar outputs..\n• Conceitos-chave: Eval: metricas automaticas.. Red-team: encontrar falhas.. Responsible AI."
+              },
+              {
+                "w": "Vector databases: Pinecone, Weaviate, pgvector — similarity search, HNSW, embeddings",
+                "s": "vector database Pinecone Weaviate pgvector | similarity search HNSW | vector DB tutorial",
+                "d": "• Armazena embeddings e busca por similaridade eficientemente\n• HNSW: busca aproximada O(log n). Trade-off recall vs speed\n• pgvector: extensão PostgreSQL (familiar para quem já sabe SQL)"
+              },
+              {
+                "w": "LLM fine-tuning: LoRA, QLoRA, dataset prep, Hugging Face PEFT",
+                "s": "LoRA QLoRA fine-tuning tutorial | Hugging Face PEFT | LLM fine-tuning dataset",
+                "d": "• LoRA: matrizes pequenas treináveis sem alterar pesos originais (~1% params)\n• QLoRA: LoRA + quantização 4-bit. Fine-tune 70B em 1 GPU 24GB\n• Dataset: 1K-10K exemplos de qualidade > 100K ruins"
+              },
+              {
+                "w": "Multi-modal AI: CLIP (texto+imagem), pipelines multimodais, aplicações",
+                "s": "CLIP multimodal AI | multimodal pipeline tutorial | multimodal applications",
+                "d": "• CLIP: texto e imagem no mesmo espaço vetorial\n• Pipeline: áudio→Whisper→texto→LLM→resposta→TTS→áudio\n• Aplicações: busca visual, acessibilidade, análise de documentos"
+              },
+              {
+                "w": "AI agents avançado: tool use, ReAct, memory, multi-agent systems",
+                "s": "AI agents tool use ReAct | multi-agent systems LLM | agent architecture",
+                "d": "• Tool use: agent decide quando chamar API, banco, calculadora\n• ReAct: raciocina, age, observa resultado, repete\n• Multi-agent: especializados colaboram (researcher+writer+reviewer)"
+              },
+              {
+                "w": "Guardrails para LLMs: input validation, output filtering, content moderation, jailbreak prevention",
+                "s": "LLM guardrails tutorial | input validation LLM | jailbreak prevention | content moderation AI",
+                "d": "• Input: filtrar prompts maliciosos, injeção de prompt, requests ilegais\n• Output: classificar resposta antes de enviar (toxicidade, PII, off-topic)\n• Guardrails libs: NeMo Guardrails, Guardrails AI, LangChain output parsers\n• Jailbreak prevention: system prompt robusto, monitorar padrões de ataque"
+              },
+              {
+                "w": "Structured output: function calling, JSON mode, Pydantic models, schema enforcement",
+                "s": "LLM function calling tutorial | JSON mode structured output | Pydantic LLM | structured output enforcement",
+                "d": "• Function calling: LLM decide qual função chamar e com quais argumentos (tool use)\n• JSON mode: forçar resposta em JSON válido (OpenAI json_object, Anthropic tool use)\n• Pydantic: definir schema, LLM retorna dados tipados. Instructor lib automatiza\n• Retry: se output inválido, reenviar com erro pra LLM corrigir"
+              },
+              {
+                "w": "Cost optimization LLM: caching (semantic), batching, model routing (grande vs pequeno), token management",
+                "s": "LLM cost optimization | semantic caching | model routing | token management LLM production",
+                "d": "• Caching: se pergunta similar já foi respondida, retornar do cache (GPTCache, LangChain cache)\n• Model routing: perguntas simples → modelo pequeno/barato. Complexas → modelo grande\n• Batching: agrupar requests pra processar em lote (menor latência total, menor custo)\n• Token management: truncar contexto inteligentemente, summarizar conversas longas"
+              },
+              {
+                "w": "Observabilidade LLM: Langfuse, Arize, tracing de chains, monitorar qualidade em produção",
+                "s": "Langfuse LLM observability | Arize ML monitoring | LLM tracing production | LLM quality monitoring",
+                "d": "• Langfuse: open-source, trace cada chamada de LLM (input, output, latência, custo, modelo)\n• Arize: monitora embedding drift, data quality, model performance ao longo do tempo\n• Métricas: latência p95, custo/request, user satisfaction (thumbs up/down), error rate\n• Alertas: degradação de qualidade, spike de custo, aumento de respostas tóxicas"
               }
             ]
           },
@@ -5134,6 +5654,21 @@ const ROADMAP = [
                 "w": "Microbiologia e virus: bacterias, virus, vacinas, resistencia a antibioticos",
                 "s": "Microbiologia e virus explicação português | microbiology basics viruses bacteria | microbiologia e virus tutorial completo | microbiologia e virus explained for beginners",
                 "d": "• O que é: Bacterias: unicelulares, reproduzem rapido..\n• Conceitos-chave: Virus: nao sao 'vivos' (precisam de hospedeiro).. Vacina: ensinar imunidade sem causar doenca.. Resistencia a antibioticos: evolucao em tempo real.. Bioinformatica: sequenciar patogenos, rastrear mutacoes (COVID variantes), descobrir antibioticos novos com ML.\n• O que estudar: bacterias, virus, vacinas, resistencia a antibioticos."
+              },
+              {
+                "w": "AlphaFold: predição de estrutura de proteínas, impacto no drug discovery",
+                "s": "AlphaFold protein structure | drug discovery AlphaFold | protein folding AI",
+                "d": "• AlphaFold2 resolveu problema de 50 anos com accuracy experimental\n• 200M+ estruturas disponíveis gratuitamente. Acelerou drug discovery"
+              },
+              {
+                "w": "Metagenomics: sequenciar DNA de ambientes inteiros (microbioma, solo, oceano)",
+                "s": "metagenomics tutorial | microbiome analysis | metagenomic pipeline",
+                "d": "• Sequenciar tudo de uma amostra (não só 1 organismo)\n• Descobrir antibióticos, entender microbioma humano. Tools: QIIME2, Kraken2"
+              },
+              {
+                "w": "Drug discovery pipeline: virtual screening, ADMET prediction, clinical trials computacionais",
+                "s": "drug discovery pipeline | virtual screening | ADMET prediction ML",
+                "d": "• Target → virtual screening (milhões de moléculas) → ADMET prediction com ML\n• Pipeline: 10+ anos e $1B+. Computação reduz tempo e custo significativamente"
               }
             ]
           },
@@ -5274,6 +5809,26 @@ const ROADMAP = [
                 "w": "Seguranca: roles, Row Level Security (RLS), encriptacao, audit",
                 "s": "Seguranca roles Level tutorial portugues | PostgreSQL security RLS tutorial | seguranca explained for beginners | seguranca explicação em português",
                 "d": "• O que é: Roles: GRANT/REVOKE (principio do minimo privilegio)..\n• Conceitos-chave: RLS: controlar acesso por linha (multi-tenant).. pgcrypto: encriptar dados.. SSL: conexao criptografada.. pgAudit: log de quem acessou o que.. Nao use superuser na aplicacao!.\n• O que estudar: roles, Row Level Security (RLS), encriptacao, audit."
+              },
+              {
+                "w": "Query optimization: EXPLAIN ANALYZE, execution plans, VACUUM, pg_stat, índices parciais",
+                "s": "query optimization PostgreSQL EXPLAIN ANALYZE | VACUUM pg_stat | partial indexes",
+                "d": "• EXPLAIN ANALYZE: tempo real de cada step. Seq Scan=lento, Index Scan=rápido\n• VACUUM: limpa dead tuples. AUTOVACUUM deve estar on\n• Partial index: indexa só subset (WHERE status='pending')"
+              },
+              {
+                "w": "Connection pooling: PgBouncer, pool sizing, transaction vs session mode",
+                "s": "PgBouncer connection pooling | pool sizing PostgreSQL | transaction pooling",
+                "d": "• Cada conexão PostgreSQL = ~10MB RAM. PgBouncer: 1000 clients → 20 conexões reais\n• Transaction mode: mais eficiente. Pool size: ~2-3× cores do banco"
+              },
+              {
+                "w": "Schema migration: Flyway, Alembic, zero-downtime migrations, rollback",
+                "s": "database migration Flyway Alembic | zero downtime migration | schema versioning",
+                "d": "• Flyway: SQL versionado. Alembic: programático com SQLAlchemy\n• Zero-downtime: add column → deploy → migrate data → drop old column"
+              },
+              {
+                "w": "Database security: Row Level Security, encryption at rest/transit, audit logging",
+                "s": "PostgreSQL Row Level Security | database encryption | audit logging pg_audit",
+                "d": "• RLS: políticas por usuário. Encryption: TDE ou full disk. Transit: SSL obrigatório\n• pg_audit: loga queries, quem executou, quando"
               }
             ]
           },
@@ -5391,11 +5946,6 @@ const ROADMAP = [
             ],
             "items": [
               {
-                "w": "Data quality: Great Expectations, dbt tests, anomaly detection, data contracts entre times",
-                "s": "Data quality explicação português | Great Expectations tutorial | data quality explained for beginners | Data quality examples and practice",
-                "d": "• O que é: Garantir qualidade: validar schema, completude, unicidade, freshness..\n• Conceitos-chave: Data contracts formalizam SLA entre produtor e consumidor de dados.\n• O que estudar: Great Expectations, dbt tests, anomaly detection, data contracts entre times."
-              },
-              {
                 "w": "Data governance: catálogo de dados, linhagem (lineage), controle de acesso, PII, LGPD/GDPR",
                 "s": "Data governance explicação português | data governance tutorial | data governance explained for beginners | Data governance examples and practice",
                 "d": "• O que é: Governança controla quem acessa quais dados, rastreia origem (lineage), protege PII e garante conformidade com leis de privacidade.\n• O que estudar: catálogo de dados, linhagem (lineage), controle de acesso, PII, LGPD/GDPR."
@@ -5419,6 +5969,21 @@ const ROADMAP = [
                 "w": "Observabilidade de dados: Monte Carlo, Bigeye — monitorar freshness, volume, schema, distribution",
                 "s": "Observabilidade de dados explicação português | freshness volume schema tutorial | observabilidade de dados explained for beginners | Observabilidade de dados examples and practice",
                 "d": "• O que é: Monitorar pipelines como monitoramos apps: alertar quando dados atrasam, schema muda inesperadamente, ou distribuição diverge.\n• O que estudar: Monte Carlo, Bigeye — monitorar freshness, volume, schema, distribution."
+              },
+              {
+                "w": "Data lakehouse: Delta Lake, Apache Iceberg — unir data lake + data warehouse em uma plataforma",
+                "s": "data lakehouse Delta Lake Iceberg | lakehouse architecture | Delta Lake tutorial | Apache Iceberg lakehouse",
+                "d": "• Problema: data lake (barato, schema-on-read, bagunçado) vs warehouse (caro, schema-on-write, organizado)\n• Lakehouse: armazena como lake (Parquet/S3) mas com features de warehouse (ACID, schema, time travel)\n• Delta Lake (Databricks): transaction log + ACID + time travel + schema enforcement em Spark\n• Apache Iceberg (Netflix): formato aberto, compaction, hidden partitioning, engine-agnostic"
+              },
+              {
+                "w": "CDC (Change Data Capture): Debezium, capturar mudanças do banco em tempo real pra pipelines",
+                "s": "CDC Debezium tutorial | change data capture | Debezium Kafka | real-time data pipeline CDC",
+                "d": "• CDC: captura INSERT/UPDATE/DELETE do banco como stream de eventos\n• Debezium: lê transaction log do banco (PostgreSQL WAL, MySQL binlog) sem impactar performance\n• Pipeline: banco → Debezium → Kafka → consumidor (analytics, cache, search index)\n• Sem CDC: batch ETL (query periódica). Com CDC: dados em tempo real, menor latência"
+              },
+              {
+                "w": "Data quality: Great Expectations, dbt tests, data contracts — garantir que dados são confiáveis",
+                "s": "data quality Great Expectations | dbt tests tutorial | data contracts | data quality monitoring",
+                "d": "• Great Expectations: definir 'expectations' (coluna X nunca nula, valores entre 0-100, unique)\n• dbt tests: unique, not_null, accepted_values, relationships — rodam no build\n• Data contracts: acordo entre produtor e consumidor sobre schema, SLA, qualidade\n• Sem data quality: 'garbage in, garbage out' — modelo de ML treinado em lixo = predições lixo"
               }
             ]
           }
@@ -5524,6 +6089,21 @@ const ROADMAP = [
                 "w": "Testing e deploy: Hardhat, Foundry, testnets (Sepolia, Mumbai), Etherscan",
                 "s": "Hardhat Foundry smart contract testing | Testing e deploy explicação português | testing e deploy tutorial completo | testing e deploy explained for beginners",
                 "d": "• O que é: Hardhat (JS) ou Foundry (Solidity, mais rapido): framework de dev..\n• Conceitos-chave: Testes: simular blockchain local, testar edge cases.. Testnets: Sepolia (Ethereum), Mumbai (Polygon) — deploy sem gastar dinheiro real.. Etherscan: verificar contrato (publicar codigo-fonte).. Deploy em mainnet: so apos auditorias.\n• O que estudar: Hardhat, Foundry, testnets (Sepolia, Mumbai), Etherscan."
+              },
+              {
+                "w": "Layer 2: Lightning Network, Optimistic Rollups, ZK-Rollups — escalar blockchain sem sacrificar segurança",
+                "s": "Layer 2 blockchain scaling | Lightning Network | Optimistic Rollups ZK-Rollups | blockchain scalability solutions",
+                "d": "• Problema: Ethereum processa ~15 TPS. Visa processa ~65K TPS. Como escalar?\n• Lightning Network (Bitcoin): canais de pagamento off-chain, settle on-chain periodicamente\n• Optimistic Rollups: assume transações válidas, só verifica se contestada (fraud proof). 7 dias pra sacar\n• ZK-Rollups: prova criptográfica de validade (zero-knowledge proof). Mais seguro, mais rápido pra sacar"
+              },
+              {
+                "w": "DeFi: liquidity pools, AMM (Automated Market Maker), yield farming — finanças sem intermediário",
+                "s": "DeFi liquidity pools | AMM automated market maker | yield farming explained | decentralized finance basics",
+                "d": "• Liquidity pool: par de tokens (ETH/USDC) depositados em smart contract. Qualquer um pode trocar\n• AMM (Uniswap): preço definido por fórmula x*y=k. Sem order book, sem exchange centralizada\n• Yield farming: depositar tokens em protocolo e ganhar juros/rewards\n• Riscos: impermanent loss, smart contract bugs, rug pulls (golpes)"
+              },
+              {
+                "w": "NFTs por dentro: ERC-721, metadata, IPFS storage — como funciona além do hype",
+                "s": "NFT ERC-721 explained | NFT metadata IPFS | how NFTs work technically | NFT smart contract",
+                "d": "• ERC-721: padrão de smart contract onde cada token tem ID único (diferente de ERC-20 fungível)\n• Metadata: JSON com nome, descrição, imagem. Armazenado off-chain (IPFS ou servidor)\n• IPFS: armazenamento descentralizado. Hash do conteúdo = endereço. Imutável\n• Token aponta pra metadata URI. Se servidor cai e não está no IPFS, NFT 'perde' a imagem"
               }
             ]
           }
@@ -5589,6 +6169,21 @@ const ROADMAP = [
                 "w": "Custo e billing: free tier, cost explorer, budgets, reserved vs on-demand vs spot instances",
                 "s": "cloud cost management | AWS free tier guide | spot instances tutorial | cloud billing optimization",
                 "d": "• Free tier: AWS/GCP/Azure oferecem serviços gratuitos limitados (750h EC2/mês primeiro ano)\n• Reserved: compromisso 1-3 anos = até 72% desconto. Spot: até 90% desconto mas pode ser interrompido\n• Cost Explorer: visualizar gastos por serviço/tag. Budgets: alertar antes de estourar"
+              },
+              {
+                "w": "Service mesh: Istio, Linkerd — traffic management, mTLS, observability entre microsserviços",
+                "s": "service mesh Istio Linkerd | Istio tutorial | mTLS service mesh | service mesh observability",
+                "d": "• Service mesh: camada de infraestrutura que gerencia comunicação entre serviços\n• Sidecar proxy: cada pod tem proxy (Envoy) que intercepta todo tráfego\n• mTLS: criptografia automática entre todos serviços (sem mudar código)\n• Traffic management: canary deploy (5% tráfego pro novo), retry, circuit breaker, rate limit"
+              },
+              {
+                "w": "Serverless: Lambda/Cloud Functions, cold start, event-driven architecture, quando usar",
+                "s": "serverless Lambda Cloud Functions | cold start serverless | event-driven architecture | when to use serverless",
+                "d": "• Serverless: upload código, cloud gerencia tudo (escala, infra, patching). Paga por execução\n• Cold start: primeira invocação é lenta (provisionar container). ~100ms-1s dependendo da linguagem\n• Event-driven: S3 upload → Lambda processa → salva no banco. SNS message → Lambda → email\n• Quando usar: workloads esporádicos, webhooks, cron jobs. Quando NÃO: latência crítica, long-running"
+              },
+              {
+                "w": "FinOps: cost optimization, reserved vs spot, rightsizing, tagging, cost allocation",
+                "s": "cloud cost optimization FinOps | reserved vs spot instances | rightsizing cloud | FinOps principles",
+                "d": "• Reserved: 1-3 anos commitment = até 72% desconto. Pra workloads previsíveis\n• Spot: até 90% desconto mas pode ser interrompido. Bom pra batch, CI/CD, ML training\n• Rightsizing: monitorar uso real e reduzir instância (t3.xlarge usando 10% CPU → t3.medium)\n• Tagging: toda resource com tags (team, project, env) pra saber QUEM gasta QUANTO"
               }
             ]
           },
@@ -5689,6 +6284,21 @@ const ROADMAP = [
                 "w": "OWASP Top 10 para devs: como cada vulnerabilidade se manifesta no código e como prevenir",
                 "s": "OWASP Top 10 prevention | secure coding practices | OWASP for developers | web vulnerability prevention guide",
                 "d": "• Injection: usar prepared statements SEMPRE, nunca concatenar input em SQL\n• Broken Auth: MFA, rate limiting, session timeout, bcrypt para senhas\n• XSS: escapar output, CSP header, sanitizar HTML\n• SSRF: whitelist de URLs, não seguir redirects, bloquear IPs internos"
+              },
+              {
+                "w": "SAST vs DAST vs IAST: análise estática, dinâmica, interativa — quando usar cada",
+                "s": "SAST DAST IAST comparison | static dynamic security testing | security testing pipeline",
+                "d": "• SAST: analisa código-fonte SEM executar (Semgrep). Rápido, falsos positivos\n• DAST: testa app RODANDO (ZAP). Problemas reais, mais lento\n• IAST: instrumenta app em runtime. Menos falsos positivos"
+              },
+              {
+                "w": "Container security: image scanning (Trivy), rootless, seccomp, distroless images",
+                "s": "container security Trivy | rootless containers | seccomp profiles | distroless images",
+                "d": "• Trivy: escaneia por CVEs. Rootless: sem root no host\n• Seccomp: restringe syscalls. Distroless: sem shell, superfície mínima"
+              },
+              {
+                "w": "Secret management: Vault, AWS Secrets Manager, rotação, NUNCA hardcode",
+                "s": "HashiCorp Vault | AWS Secrets Manager | secret rotation | secret management",
+                "d": "• NUNCA no código/repo. Vault: secrets criptografados, audit, rotação\n• K8s: montar secrets como env vars via Vault agent injector"
               }
             ]
           },
@@ -5784,6 +6394,16 @@ const ROADMAP = [
                 "w": "Ferramentas: Burp Suite, OWASP ZAP, ffuf, httpx, nuclei",
                 "s": "Ferramentas Burp Suite explained | Ferramentas explicação português | ferramentas tutorial completo | Ferramentas examples and practice",
                 "d": "• O que é: Burp Suite: proxy interceptador (ferramenta #1)..\n• Conceitos-chave: Repeater: reenviar requests modificados.. Intruder: fuzzing/brute force.. ZAP: alternativa gratis.. ffuf: fuzzing de diretorios/parametros.. httpx: probe HTTP.. Aprenda Burp Suite profundamente.\n• O que estudar: Burp Suite, OWASP ZAP, ffuf, httpx, nuclei."
+              },
+              {
+                "w": "API hacking: BOLA, JWT manipulation, GraphQL injection, rate limiting bypass",
+                "s": "API hacking BOLA JWT | GraphQL injection | API pentesting tutorial",
+                "d": "• BOLA: acessar /api/users/123 sem permissão\n• JWT: alg:none attack, secret brute-force\n• GraphQL: introspection expõe schema, nested queries→DoS"
+              },
+              {
+                "w": "Mobile pentesting: decompile APK (jadx), Frida, SSL pinning bypass",
+                "s": "mobile pentesting jadx Frida | SSL pinning bypass | mobile security testing",
+                "d": "• jadx: APK→Java (encontrar hardcoded secrets)\n• Frida: hookar funções em runtime, bypass checks\n• MobSF: análise estática+dinâmica automatizada"
               }
             ]
           },
@@ -6254,6 +6874,16 @@ const ROADMAP = [
                 "w": "Recuperação de dados deletados: como delete funciona (marca como disponível, não apaga), tools de recovery",
                 "s": "recover deleted files forensics | how file deletion works | data recovery forensics | undelete tools tutorial",
                 "d": "• Delete não apaga dados: SO marca clusters como disponíveis, dados permanecem até serem sobrescritos\n• Recovery: file carving por headers/footers (JPEG=FFD8, PDF=%PDF), Scalpel, PhotoRec\n• SSD complication: TRIM command pode apagar dados permanentemente, tornando recovery impossível"
+              },
+              {
+                "w": "Email forensics: header analysis, SPF/DKIM/DMARC, phishing investigation",
+                "s": "email forensics headers | SPF DKIM DMARC | phishing investigation email",
+                "d": "• Headers: caminho completo, IP origem, Message-ID\n• SPF/DKIM/DMARC: autenticação de email\n• Phishing: comparar domínio real vs display, verificar links"
+              },
+              {
+                "w": "Browser forensics: Chrome/Firefox artifacts, cache, IndexedDB, extensões",
+                "s": "browser forensics Chrome Firefox | browser artifacts | web browser investigation",
+                "d": "• Chrome: History, Cookies, Login Data em SQLite\n• Cache: páginas visitadas mesmo após deletar history\n• Extensões maliciosas: permissão total, analisar manifest.json"
               }
             ]
           }
@@ -6343,6 +6973,26 @@ const ROADMAP = [
                 "w": "Time in distributed systems: clocks (NTP, PTP), logical clocks (Lamport, vector), TrueTime, hybrid logical clocks",
                 "s": "time distributed systems | Lamport clock vector clock | NTP PTP time sync | TrueTime hybrid logical clock",
                 "d": "• Problema: relógios de máquinas diferentes divergem. Não dá pra confiar em timestamps\n• NTP: sincroniza com ~1ms de erro. PTP: ~1μs. Nenhum é perfeito\n• Lamport clock: contador lógico que captura ordem causal (não tempo real)\n• Vector clock: captura causalidade completa (quem aconteceu antes de quem)\n• TrueTime (Google): retorna intervalo [earliest, latest] em vez de ponto. Spanner espera intervalo passar"
+              },
+              {
+                "w": "CRDTs: estruturas de dados que convergem automaticamente sem coordenação (counters, sets, maps)",
+                "s": "CRDTs tutorial | conflict-free replicated data types | CRDT counter set map | eventual consistency CRDT",
+                "d": "• CRDT: Conflict-free Replicated Data Type — cada réplica modifica localmente, convergem automaticamente\n• G-Counter: só incrementa. Cada nó mantém seu counter, soma = total global\n• LWW-Register: Last-Writer-Wins com timestamp. OR-Set: add-wins para sets\n• Usado em: collaborative editing (Figma), distributed databases (Riak), offline-first apps"
+              },
+              {
+                "w": "Distributed transactions: 2PC, 3PC, Saga pattern — como garantir atomicidade entre serviços",
+                "s": "distributed transactions 2PC 3PC | Saga pattern transactions | two-phase commit | distributed atomicity",
+                "d": "• 2PC: coordinator pergunta 'prepare?' a todos. Se todos 'yes' → commit. Se qualquer 'no' → abort\n• Problema 2PC: coordinator crash = todos bloqueados. 3PC: adiciona pré-commit pra reduzir bloqueio\n• Saga: sequência de transações locais com compensações. Se step 3 falha → undo step 2 → undo step 1\n• Na prática: Saga é mais usado que 2PC em microsserviços (mais resiliente, menos bloqueio)"
+              },
+              {
+                "w": "Gossip protocols: disseminação epidêmica de informação, membership, failure detection",
+                "s": "gossip protocol distributed systems | epidemic dissemination | gossip membership | failure detection gossip",
+                "d": "• Gossip: cada nó periodicamente seleciona outro aleatório e troca informação\n• Propriedades: eventualmente todos sabem tudo. Robusto a falhas (não depende de coordenador)\n• Membership: detectar quem está vivo. SWIM protocol: ping + indirect ping + suspect\n• Usado em: Cassandra (dados), Consul (service discovery), Serf (membership)"
+              },
+              {
+                "w": "Clock synchronization: NTP limitations, Lamport timestamps, vector clocks, hybrid logical clocks",
+                "s": "clock synchronization distributed | Lamport timestamps | vector clocks | hybrid logical clocks",
+                "d": "• NTP: sincroniza relógios com ~1ms erro. Insuficiente pra ordenar eventos distribuídos\n• Lamport clock: counter lógico. Se A→B então L(A)<L(B). Mas L(A)<L(B) NÃO implica A→B\n• Vector clock: vetor de N contadores (1 por nó). Captura causalidade completa\n• HLC (Hybrid Logical Clock): combina relógio físico + lógico. Melhor dos dois mundos"
               }
             ]
           },
@@ -6468,6 +7118,26 @@ const ROADMAP = [
                 "w": "Model registry patterns: model versioning, staging→production promotion, rollback, model lineage, metadata",
                 "s": "model registry MLflow | model versioning promotion | ML model rollback | model lineage tracking",
                 "d": "• Model registry: catálogo central de modelos (nome, versão, métricas, quem treinou, com que dados)\n• Promoção: Staging → Production. Só promover após testes (acurácia, latência, bias check)\n• Rollback: se novo modelo degrada, reverter para versão anterior instantaneamente\n• Lineage: rastrear dados de treino → features → modelo → predições (reprodutibilidade)"
+              },
+              {
+                "w": "Online learning: atualizar modelo incrementalmente sem retreinar do zero",
+                "s": "online learning ML | incremental learning | concept drift adaptation",
+                "d": "• Batch: retreina periodicamente. Online: atualiza a cada dado novo\n• Concept drift: distribuição muda (COVID mudou consumo). Detectar e adaptar"
+              },
+              {
+                "w": "Feature store: Feast, Tecton, online vs offline store, feature serving em tempo real",
+                "s": "feature store Feast Tecton | online offline feature store | feature engineering production | feature store ML",
+                "d": "• Feature store: repositório central de features reutilizáveis entre modelos e times\n• Offline store: features pra treino (batch, histórico). Online store: features pra inference (baixa latência)\n• Feast: open-source, define features em código, serve online via Redis/DynamoDB\n• Sem feature store: cada time recomputa mesmas features → inconsistência e desperdício"
+              },
+              {
+                "w": "ML pipeline orchestration: Kubeflow, Vertex AI Pipelines, SageMaker — treino automatizado",
+                "s": "Kubeflow pipelines tutorial | Vertex AI Pipelines | SageMaker pipelines | ML pipeline orchestration",
+                "d": "• Pipeline: data prep → feature engineering → training → evaluation → deployment (automatizado)\n• Kubeflow: open-source em K8s. Cada step = container. Pode rodar em qualquer cloud\n• Vertex AI: managed Google. SageMaker: managed AWS. Menos infra, mais vendor lock-in\n• Trigger: novo dado chega → retraining automático → se métricas melhoram → deploy automático"
+              },
+              {
+                "w": "Model serving patterns: blue/green, canary, shadow — deploy seguro de modelos novos",
+                "s": "model serving blue green canary | shadow deployment ML | model deployment patterns | safe model deployment",
+                "d": "• Blue/green: dois ambientes. Troca tráfego de blue (antigo) pra green (novo) instantaneamente\n• Canary: 5% do tráfego pro modelo novo. Monitorar métricas. Se OK → 25% → 50% → 100%\n• Shadow: modelo novo recebe tráfego real mas respostas são descartadas (só pra comparar)\n• Rollback: se novo modelo degrada, reverter em segundos. Automatizar com alertas em métricas"
               }
             ]
           },
@@ -6523,6 +7193,16 @@ const ROADMAP = [
                 "w": "Data labeling: ferramentas (Label Studio, Prodigy), active learning, human-in-the-loop, quality assurance",
                 "s": "data labeling tools ML | Label Studio tutorial | active learning labeling | human in the loop ML",
                 "d": "• Problema: ML supervisionado precisa de dados rotulados — caro e lento\n• Label Studio: ferramenta open source para rotular imagens, texto, áudio\n• Active learning: modelo pede pra humano rotular só os exemplos mais incertos (eficiente)\n• Quality: inter-annotator agreement, revisão de labels, gold standard set"
+              },
+              {
+                "w": "ML testing avançado: behavioral testing (CheckList), slice-based evaluation, fairness",
+                "s": "behavioral testing CheckList | slice-based evaluation | fairness ML testing",
+                "d": "• CheckList: testar capacidades (negação, sinônimos) não só acurácia\n• Slice-based: performance por subgrupo (gênero, idade, região)\n• Fairness: demographic parity, equal opportunity — escolher por contexto"
+              },
+              {
+                "w": "Infraestrutura GPU: Ray, multi-node training, spot instances, preemption recovery",
+                "s": "Ray distributed ML | multi-node GPU training | spot instances ML",
+                "d": "• Ray: distribuir código Python em cluster. Ray Train para ML\n• Multi-node: quando modelo não cabe em 1 máquina\n• Spot: 70% mais barato, checkpointing frequente obrigatório"
               }
             ]
           }
@@ -6603,6 +7283,26 @@ const ROADMAP = [
                 "w": "AI governance e regulação: EU AI Act, NIST AI RMF, responsible AI frameworks, AI auditing",
                 "s": "EU AI Act explained | NIST AI Risk Management Framework | responsible AI governance | AI regulation 2024",
                 "d": "• EU AI Act: classifica IA por risco (inaceitável, alto, limitado, mínimo). Alto risco = compliance obrigatório\n• NIST AI RMF: framework de gestão de risco para IA (govern, map, measure, manage)\n• Responsible AI: fairness, transparency, accountability, privacy, safety\n• AI auditing: verificar bias, performance por grupo demográfico, documentar limitações"
+              },
+              {
+                "w": "Interpretability: LIME, SHAP em profundidade, attention visualization, probing classifiers",
+                "s": "LIME SHAP interpretability deep | model interpretability explainability | attention visualization | probing classifiers",
+                "d": "• LIME: perturba input localmente, treina modelo simples pra explicar decisão naquele ponto\n• SHAP: baseado em Shapley values (teoria dos jogos). Contribuição de cada feature é matematicamente justa\n• Probing: treinar classificador simples nas representações internas → entender o que cada camada aprendeu\n• Importa: regulação (EU AI Act exige explicabilidade), debugging, confiança do usuário"
+              },
+              {
+                "w": "Synthetic data: gerar dados artificiais pra treino, privacy-preserving, domain adaptation",
+                "s": "synthetic data generation | privacy preserving synthetic data | data augmentation ML | synthetic data quality",
+                "d": "• Problema: dados reais são caros, privados, enviesados. Sintéticos resolvem os 3\n• Técnicas: GANs (tabular, imagem), LLMs (texto), regras (combinatório)\n• Privacy: dados sintéticos que mantêm distribuição estatística sem expor indivíduos\n• Validação: verificar que modelo treinado em sintético performa em dados reais"
+              },
+              {
+                "w": "Differential privacy: ε-differential privacy, noise injection, private aggregation, DP-SGD",
+                "s": "differential privacy tutorial | epsilon differential privacy | DP-SGD private training | privacy preserving ML",
+                "d": "• ε-DP: adicionar ruído calibrado pra que presença/ausência de um indivíduo não mude o resultado\n• ε (epsilon): quanto menor, mais privacidade (mais ruído). Trade-off privacy vs utilidade\n• DP-SGD: treinar ML com gradientes ruidosos. Garante que modelo não memoriza indivíduos\n• Usado por: Apple (emoji prediction), Google (Chrome stats), US Census 2020"
+              },
+              {
+                "w": "AI agents research: AutoGPT architecture, tool learning, self-improvement, agent evaluation",
+                "s": "AutoGPT architecture | AI agent research | tool learning agents | agent evaluation benchmarks",
+                "d": "• AutoGPT: agent que define objetivos, planeja passos, executa ferramentas, itera\n• Tool learning: agent aprende a usar novas ferramentas (APIs, código) sem programação explícita\n• Self-improvement: agent avalia próprio output e melhora (Constitutional AI, self-refine)\n• Benchmarks: AgentBench, GAIA, WebArena — testar agents em tarefas reais"
               }
             ]
           },
@@ -6658,6 +7358,21 @@ const ROADMAP = [
                 "w": "Quantum hardware: superconducting qubits (IBM, Google), trapped ions (IonQ), photonic (Xanadu), topological",
                 "s": "quantum hardware types | superconducting qubits IBM | trapped ions IonQ | quantum computer hardware comparison",
                 "d": "• Superconducting (IBM, Google): qubits em chips supercondutores a ~15mK. Rápidos mas noisy\n• Trapped ions (IonQ, Quantinuum): átomos individuais presos por campos eletromagnéticos. Mais precisos, mais lentos\n• Photonic (Xanadu): qubits de luz. Opera à temperatura ambiente\n• Todos ainda são NISQ (Noisy Intermediate-Scale Quantum) — 100-1000 qubits com erros"
+              },
+              {
+                "w": "Scaling laws em detalhe: Kaplan et al, Chinchilla, data vs compute optimal training",
+                "s": "scaling laws AI Kaplan | Chinchilla optimal training | compute optimal LLM | scaling laws deep dive",
+                "d": "• Kaplan (OpenAI 2020): performance escala previsivelmente com params, dados e compute (power law)\n• Chinchilla (DeepMind 2022): modelo menor treinado com mais dados > modelo maior com menos dados\n• Implicação: GPT-3 era undertrained. Chinchilla 70B superou Gopher 280B com 4× mais dados\n• Frontier: quanto escalar? Limites de dados (internet tem ~10T tokens), eficiência, custo"
+              },
+              {
+                "w": "Mechanistic interpretability: circuits, superposition, features em transformers — entender o que IA aprendeu",
+                "s": "mechanistic interpretability transformers | circuits neural networks | superposition features | Anthropic interpretability",
+                "d": "• Objetivo: entender COMO rede neural funciona internamente, não só input→output\n• Circuits: subgrafos que implementam algoritmos identificáveis (induction heads, IOI circuit)\n• Superposition: neurônio representa múltiplos conceitos sobrepostos (mais features que dimensões)\n• Sparse autoencoders: decompor representações em features interpretáveis (Anthropic 2023-2024)"
+              },
+              {
+                "w": "Embodied AI: agentes em ambientes físicos/simulados, sim-to-real transfer, robótica + LLMs",
+                "s": "embodied AI agents | sim-to-real transfer robotics | embodied intelligence | LLM robotics integration",
+                "d": "• Embodied AI: IA que age no mundo físico (robôs) ou simulado (jogos, ambientes 3D)\n• Sim-to-real: treinar em simulação (rápido, seguro, barato) e transferir pra mundo real\n• LLM + Robótica: LLM como 'cérebro' que planeja, robô executa (SayCan, PaLM-E)\n• Desafio: mundo real é bagunçado, imprevisível, contínuo — diferente de texto"
               }
             ]
           }
@@ -6963,6 +7678,21 @@ const ROADMAP = [
                 "w": "Playbooks de resposta: workflow documentado para cada tipo de incidente (phishing, ransomware, data breach)",
                 "s": "incident response playbook template | phishing response playbook | ransomware response plan | security playbook examples",
                 "d": "• Playbook de phishing: verificar → conter (bloquear sender) → remediar (reset senhas) → comunicar\n• Playbook de ransomware: isolar → NÃO pagar → restaurar backup → investigar vetor de entrada\n• Data breach: conter → preservar evidências → notificar LGPD (72h) → investigar → comunicar afetados\n• Cada playbook tem: trigger, passos, responsáveis, escalation, comunicação"
+              },
+              {
+                "w": "Deception: honeypots (Canary tokens, T-Pot), honeyfiles, deception networks",
+                "s": "Canary tokens tutorial | T-Pot honeypot | deception technology cybersecurity",
+                "d": "• Canary tokens: alerta quando arquivo/URL é acessado\n• T-Pot: multi-honeypot emulando SSH, HTTP, SMB\n• Honeyfiles: 'passwords.xlsx' falso que detecta insider"
+              },
+              {
+                "w": "Threat modeling: STRIDE, PASTA, attack trees — mapear ameaças antes",
+                "s": "threat modeling STRIDE PASTA | attack trees | proactive security",
+                "d": "• STRIDE: Spoofing, Tampering, Repudiation, Info Disclosure, DoS, Elevation\n• Attack trees: diagrama hierárquico de caminhos de ataque\n• Fazer no DESIGN, não depois. Prevenir >> remediar"
+              },
+              {
+                "w": "Purple team: Atomic Red Team, CALDERA, medir gap de detecção",
+                "s": "purple team Atomic Red Team CALDERA | adversary emulation | detection gap",
+                "d": "• Atomic Red Team: testes mapeados ao MITRE ATT&CK\n• Executar técnica → SIEM detectou? → Se não: criar regra\n• Medir % TTPs detectados mensalmente (deve subir)"
               }
             ]
           }
@@ -7114,6 +7844,36 @@ const ROADMAP = [
                 "d": "• O que é: Demo ao vivo: impressiona mais, mas pode falhar.\n• Detalhe: Backup: video gravado E slides com screenshots.\n• Detalhe: Mostrar: input > processamento > output.\n• Detalhe: Nao mostrar: setup, instalacao, codigo (a menos que seja a contribuicao).\n• Detalhe: Se falhar: 'como viram no video preparado...' Sempre ter backup.\n• Importante: Testar antes 3x."
               }
             ]
+          },
+          {
+            "name": "Leitura de Papers e Literature Review",
+            "books": [
+              "How to Read a Paper — S. Keshav",
+              "Writing for Computer Science — Justin Zobel",
+              "The Craft of Research — Booth, Colomb & Williams"
+            ],
+            "items": [
+              {
+                "w": "Como ler papers: método 3 passadas (Keshav), abstract→conclusion→figures primeiro",
+                "s": "how to read research paper Keshav | ler artigo científico eficientemente | reading papers method",
+                "d": "• 1ª passada (5min): título, abstract, headings, conclusão. Vale ler mais?\n• 2ª passada (1h): ler com atenção, entender figuras, referências-chave\n• 3ª passada (4h): reimplementar mentalmente, questionar cada decisão"
+              },
+              {
+                "w": "Literature review: PRISMA, Semantic Scholar, Connected Papers, critérios inclusão/exclusão",
+                "s": "systematic literature review PRISMA | Semantic Scholar Connected Papers | literature review tutorial",
+                "d": "• PRISMA: framework padrão (identificação→triagem→elegibilidade→inclusão)\n• Definir critérios ANTES de buscar\n• Connected Papers: grafo visual de papers relacionados"
+              },
+              {
+                "w": "Estatística para papers: p-value, effect size, como reportar resultados corretamente",
+                "s": "statistics research papers | p-value effect size | how report results paper",
+                "d": "• p<0.05 NÃO significa importante. Effect size mede TAMANHO do efeito\n• Reportar: média ± std, IC, tamanho amostra, teste usado\n• p-hacking: testar até encontrar p<0.05 — viés grave"
+              },
+              {
+                "w": "Peer review: como fazer review, rebuttal letter, responder reviewers",
+                "s": "peer review process | rebuttal letter template | respond reviewers academic",
+                "d": "• Reviewer: pontos fortes, fracos, sugestões construtivas\n• Rebuttal: responder CADA ponto, agradecer, explicar mudanças\n• Tom respeitoso mesmo discordando"
+              }
+            ]
           }
         ]
       },
@@ -7162,6 +7922,21 @@ const ROADMAP = [
                 "w": "Laboratorio: como funciona um lab de pesquisa, equipamentos, cultura, seminarios",
                 "s": "research lab culture tutorial | como funciona laboratorio pesquisa | research group meetings tutorial | lab seminars PhD tutorial",
                 "d": "• O que é: Lab de pesquisa: reunioes semanais (paper reading, progress reports).\n• Detalhe: Seminarios: apresentar e assistir.\n• Detalhe: Cultura: colaboracao, compartilhar codigo/dados.\n• Detalhe: Equipamentos: servidores GPU, clusters.\n• Detalhe: Slack/Discord do lab.\n• Detalhe: Cafe e fundamental.\n• Importante: Cada lab tem cultura diferente — visite antes de entrar."
+              },
+              {
+                "w": "Como encontrar orientador: Lattes, ler papers do lab, email direto com projeto em mente",
+                "s": "como encontrar orientador IC | buscar Lattes | approach research advisor",
+                "d": "• Lattes: buscar palavras-chave. Ver publicações recentes\n• Ler 2-3 papers mostra interesse genuíno\n• Email: 'Li seu paper X, interesse em Y, conversar sobre IC?'"
+              },
+              {
+                "w": "Proposta de IC: problema, justificativa, objetivos, metodologia, cronograma Gantt",
+                "s": "proposta IC PIBIC modelo | research proposal | proposta iniciação científica",
+                "d": "• Estrutura: Intro→Problema→Justificativa→Objetivos→Método→Cronograma\n• Objetivos com verbos infinitivo (analisar, implementar)\n• Cronograma Gantt simples, 12 meses"
+              },
+              {
+                "w": "Apresentação: poster científico, oral 10-15min, SIICUSP, SBPC",
+                "s": "poster científico | apresentação oral pesquisa | SIICUSP SBPC",
+                "d": "• Poster: visual, pouco texto, figuras grandes\n• Oral: Contexto→Problema→Método→Resultados→Conclusão\n• Ensaiar com cronômetro. Slides backup pra perguntas"
               }
             ]
           },
@@ -7292,6 +8067,16 @@ const ROADMAP = [
                 "w": "POSCOMP: prova unificada, como estudar, peso no processo seletivo",
                 "s": "POSCOMP prova mestrado tutorial | como estudar POSCOMP | POSCOMP preparation tutorial | POSCOMP computer science exam Brazil",
                 "d": "• O que é: POSCOMP: prova anual (SBC) aceita por ~50 programas de pos.\n• Detalhe: Conteudo: matematica, fundamentos, tecnologia.\n• Detalhe: 70 questoes multipla escolha.\n• Detalhe: Nota usada como parte do processo seletivo (peso varia).\n• Detalhe: Como estudar: provas anteriores + livros base (CLRS, Tanenbaum, Nussenzveig).\n• Importante: Fazer mesmo se nao obrigatorio (mais opcoes)."
+              },
+              {
+                "w": "Seletivo: POSCOMP, carta motivação, contato prévio com orientador é essencial",
+                "s": "processo seletivo mestrado POSCOMP | carta motivação mestrado | mestrado computação",
+                "d": "• POSCOMP: ED&A, SO, Redes, Cálculo\n• Contato prévio com orientador = metade da aprovação\n• Prazos: inscrição ago-out, início março"
+              },
+              {
+                "w": "Defesa: slides, banca, perguntas comuns, ensaiar 3+ vezes",
+                "s": "defesa dissertação mestrado | banca examinadora | defense tips",
+                "d": "• 20-30 slides, 40-50min, foco na CONTRIBUIÇÃO\n• Ler papers dos membros da banca\n• Ensaiar com cronômetro, pedir feedback do orientador"
               }
             ]
           },
@@ -7422,6 +8207,21 @@ const ROADMAP = [
                 "w": "Saude mental no doutorado: burnout, isolamento, sindrome do impostor, quando pedir ajuda",
                 "s": "PhD mental health burnout | saude mental doutorado tutorial | PhD imposter syndrome tutorial | when to quit PhD tutorial | Saude mental no doutorado explicação português",
                 "d": "• O que é: 40-50% dos doutorandos reportam problemas de saude mental.\n• Detalhe: Burnout: excesso de trabalho sem resultado visivel.\n• Detalhe: Isolamento: pesquisa e solitaria.\n• Detalhe: Impostor: 'nao mereco estar aqui' (TODO MUNDO sente).\n• Detalhe: Pedir ajuda: terapia (universidade oferece), conversar com colegas, orientador.\n• Detalhe: NAO e fraqueza.\n• Importante: E inteligencia."
+              },
+              {
+                "w": "Qualifying exam: preparação, formato, o que a banca espera, resultados preliminares",
+                "s": "qualifying exam doutorado | exame qualificação | PhD qualifying exam",
+                "d": "• Quali: 12-18 meses. Apresentação + arguição (60-90min)\n• Banca espera: domínio da área, resultados preliminares, plano claro"
+              },
+              {
+                "w": "Grant writing: proposta FAPESP/CNPq, orçamento, impacto, viabilidade",
+                "s": "grant writing FAPESP CNPq | proposta financiamento pesquisa | research grant",
+                "d": "• Resumo→Intro→Revisão→Objetivos→Método→Cronograma→Orçamento\n• Foque em IMPACTO e VIABILIDADE. Reviewer tem 50 propostas"
+              },
+              {
+                "w": "Teaching: estágio docência, preparar aula, avaliação, feedback de alunos",
+                "s": "teaching doutorado | estágio docência | PAE como funciona",
+                "d": "• PAE obrigatório. Plano de aula, slides, exercícios. Não improvisar\n• Menos conteúdo, mais profundo. Exemplos práticos > teoria abstrata"
               }
             ]
           },
@@ -7511,7 +8311,7 @@ const ROADMAP = [
         "name": "🛠️ Ferramentas e Recursos Academicos",
         "topics": [
           {
-            "name": "Software e Plataformas pra Pesquisa",
+            "name": "Escrita e Publicação Acadêmica",
             "books": [
               "Research Software Engineering with Python — Wilson et al.",
               "Good Enough Practices in Scientific Computing — Wilson et al.",
@@ -7529,19 +8329,9 @@ const ROADMAP = [
                 "d": "• O que é: Templates: IEEE (2 colunas), ACM (especifico por conferencia), LNCS (Springer).\n• Detalhe: Beamer: slides em LaTeX (consistente com o paper).\n• Detalhe: TikZ: diagramas.\n• Detalhe: Algorithm2e: pseudocodigo.\n• Importante: Overleaf: colaboracao real-time."
               },
               {
-                "w": "Gerenciamento de experimentos: MLflow, Weights & Biases, notebooks reproduziveis",
-                "s": "experiment tracking research | reproducible research notebooks | MLflow research tutorial | Gerenciamento experimentos MLflow tutorial portugues",
-                "d": "• O que é: MLflow/W&B: track hiperparametros, metricas, artefatos.\n• Detalhe: Jupyter + papermill: notebooks parametrizados.\n• Detalhe: Seeds fixas pra reproducibilidade.\n• Detalhe: Docker pra ambiente.\n• Importante: README com instrucoes de reproducao."
-              },
-              {
-                "w": "Computacao cientifica: cluster, SLURM, GPU na nuvem (Colab, Lambda, vast.ai)",
-                "s": "HPC cluster SLURM tutorial | GPU cloud research tutorial | Google Colab Pro research | Computacao cientifica cluster tutorial portugues",
-                "d": "• O que é: Cluster da universidade: SLURM (sbatch, squeue).\n• Detalhe: GPU na nuvem: Colab Pro, Lambda Labs, vast.ai, AWS Spot.\n• Detalhe: Multi-GPU: DataParallel, DistributedDataParallel.\n• Importante: Custo: otimize batch size, use mixed precision."
-              },
-              {
-                "w": "Versionamento de dados e modelos: DVC, Git LFS, HuggingFace Hub",
-                "s": "DVC data version control tutorial | Git LFS large files tutorial | HuggingFace Hub models tutorial | Versionamento dados modelos tutorial portugues",
-                "d": "• O que é: DVC: git pra dados (trackea datasets grandes sem colocar no git).\n• Detalhe: Git LFS: arquivos grandes.\n• Detalhe: HuggingFace Hub: compartilhar modelos e datasets.\n• Importante: Reproducibilidade: codigo (git) + dados (DVC) + ambiente (Docker) + config (YAML)."
+                "w": "Escrita colaborativa: Overleaf, Git + LaTeX, Google Docs, revisao e controle de versao",
+                "s": "collaborative writing research | Overleaf collaboration tutorial | Git LaTeX academic writing | Escrita colaborativa Overleaf tutorial portugues",
+                "d": "• O que é: Overleaf: melhor pra LaTeX colaborativo (como Google Docs).\n• Detalhe: Git + LaTeX: pra quem quer controle total (diff de texto).\n• Detalhe: Google Docs: rascunhos rapidos com orientador.\n• Detalhe: Track changes: marcar o que mudou entre versoes.\n• Importante: Branch por secao se usar git."
               },
               {
                 "w": "Plataformas academicas: Google Scholar, DBLP, Semantic Scholar, arXiv, OpenReview",
@@ -7549,9 +8339,49 @@ const ROADMAP = [
                 "d": "• O que é: Google Scholar: perfil + citacoes + h-index.\n• Detalhe: DBLP: indice de publicacoes em CS.\n• Detalhe: Semantic Scholar: AI-powered search.\n• Detalhe: arXiv: pre-prints (publicar antes da conferencia).\n• Detalhe: OpenReview: reviews publicos (ICLR, NeurIPS).\n• Importante: ResearchGate: rede social academica."
               },
               {
+                "w": "Gerenciadores de referência: Zotero vs Mendeley vs Paperpile — organizar papers automaticamente",
+                "s": "Zotero vs Mendeley vs Paperpile | gerenciador referências acadêmicas | reference manager comparison | organizar papers",
+                "d": "• Zotero: gratuito, open-source, extensão browser que salva papers com 1 clique\n• Mendeley: gratuito (Elsevier), bom leitor de PDF com anotações, social features\n• Paperpile: pago, integrado com Google Docs, mais polido\n• Todos: geram citações automáticas (BibTeX, APA, IEEE), sincronizam entre devices"
+              },
+              {
+                "w": "Google Scholar alerts e Semantic Scholar: ficar atualizado automaticamente sobre sua área",
+                "s": "Google Scholar alerts | Semantic Scholar AI | ficar atualizado pesquisa | academic paper alerts",
+                "d": "• Google Scholar: criar alerta por keyword ou autor. Recebe email com papers novos\n• Semantic Scholar: IA que resume papers, encontra relacionados, grafo de citações\n• Connected Papers: visualização em grafo de papers similares. Ótimo pra literature review\n• Rotina: 30min/semana lendo abstracts de alertas. Ler completo só os relevantes"
+              },
+              {
                 "w": "Financiamento: FAPESP projetos, CNPq Universal, editais, parcerias industria",
                 "s": "research funding Brazil FAPESP CNPq | financiamento pesquisa tutorial | industry partnership research | Financiamento FAPESP projetos tutorial portugues",
                 "d": "• O que é: FAPESP: projetos tematicos, auxilio pesquisa.\n• Detalhe: CNPq: Universal, produtividade.\n• Detalhe: Editais: FINEP, CAPES.\n• Detalhe: Parcerias: Google Research Awards, Microsoft Research, Samsung, Huawei.\n• Detalhe: Patentes: proteger inovacao."
+              }
+            ]
+          },
+          {
+            "name": "Reprodutibilidade e Ferramentas de Pesquisa",
+            "books": [
+              "The Practice of Reproducible Research — Kitzes, Turek & Deniz",
+              "Research Software Engineering with Python — Irving et al",
+              "Managing Research Data — Graham Pryor"
+            ],
+            "items": [
+              {
+                "w": "Gerenciamento de experimentos: MLflow, Weights & Biases, notebooks reproduziveis",
+                "s": "experiment tracking research | reproducible research notebooks | MLflow research tutorial | Gerenciamento experimentos MLflow tutorial portugues",
+                "d": "• O que é: MLflow/W&B: track hiperparametros, metricas, artefatos.\n• Detalhe: Jupyter + papermill: notebooks parametrizados.\n• Detalhe: Seeds fixas pra reproducibilidade.\n• Detalhe: Docker pra ambiente.\n• Importante: README com instrucoes de reproducao."
+              },
+              {
+                "w": "Versionamento de dados e modelos: DVC, Git LFS, HuggingFace Hub",
+                "s": "DVC data version control tutorial | Git LFS large files tutorial | HuggingFace Hub models tutorial | Versionamento dados modelos tutorial portugues",
+                "d": "• O que é: DVC: git pra dados (trackea datasets grandes sem colocar no git).\n• Detalhe: Git LFS: arquivos grandes.\n• Detalhe: HuggingFace Hub: compartilhar modelos e datasets.\n• Importante: Reproducibilidade: codigo (git) + dados (DVC) + ambiente (Docker) + config (YAML)."
+              },
+              {
+                "w": "Computacao cientifica: cluster, SLURM, GPU na nuvem (Colab, Lambda, vast.ai)",
+                "s": "HPC cluster SLURM tutorial | GPU cloud research tutorial | Google Colab Pro research | Computacao cientifica cluster tutorial portugues",
+                "d": "• O que é: Cluster da universidade: SLURM (sbatch, squeue).\n• Detalhe: GPU na nuvem: Colab Pro, Lambda Labs, vast.ai, AWS Spot.\n• Detalhe: Multi-GPU: DataParallel, DistributedDataParallel.\n• Importante: Custo: otimize batch size, use mixed precision."
+              },
+              {
+                "w": "Reproducibilidade: Docker, conda environments, seeds, config files, README detalhado",
+                "s": "reproducible research Docker conda | reproducibility machine learning | research code README tutorial | Reproducibilidade Docker conda tutorial portugues",
+                "d": "• O que é: Codigo que ninguem reproduz = codigo inutil.\n• Detalhe: requirements.txt / environment.yml.\n• Detalhe: Docker: ambiente identico.\n• Detalhe: Seeds: random.seed(42).\n• Detalhe: Config: YAML/JSON (nao hardcode).\n• Detalhe: README: como instalar, como rodar, como reproduzir cada tabela/figura do paper.\n• Importante: Zenodo: DOI pro seu codigo."
               },
               {
                 "w": "Gestao de conhecimento: Obsidian, Notion, Zettelkasten method pra pesquisa",
@@ -7559,14 +8389,9 @@ const ROADMAP = [
                 "d": "• O que é: Zettelkasten: notas atomicas interconectadas (como seu cerebro).\n• Detalhe: Obsidian: Markdown + links + grafos (gratis, local).\n• Detalhe: Notion: mais estruturado.\n• Detalhe: Logseq: alternativa.\n• Detalhe: Linka notas de papers, ideias, reunioes.\n• Importante: Depois de 1 ano, seu 'segundo cerebro' e invaluavel."
               },
               {
-                "w": "Escrita colaborativa: Overleaf, Git + LaTeX, Google Docs, revisao e controle de versao",
-                "s": "collaborative writing research | Overleaf collaboration tutorial | Git LaTeX academic writing | Escrita colaborativa Overleaf tutorial portugues",
-                "d": "• O que é: Overleaf: melhor pra LaTeX colaborativo (como Google Docs).\n• Detalhe: Git + LaTeX: pra quem quer controle total (diff de texto).\n• Detalhe: Google Docs: rascunhos rapidos com orientador.\n• Detalhe: Track changes: marcar o que mudou entre versoes.\n• Importante: Branch por secao se usar git."
-              },
-              {
-                "w": "Reproducibilidade: Docker, conda environments, seeds, config files, README detalhado",
-                "s": "reproducible research Docker conda | reproducibility machine learning | research code README tutorial | Reproducibilidade Docker conda tutorial portugues",
-                "d": "• O que é: Codigo que ninguem reproduz = codigo inutil.\n• Detalhe: requirements.txt / environment.yml.\n• Detalhe: Docker: ambiente identico.\n• Detalhe: Seeds: random.seed(42).\n• Detalhe: Config: YAML/JSON (nao hardcode).\n• Detalhe: README: como instalar, como rodar, como reproduzir cada tabela/figura do paper.\n• Importante: Zenodo: DOI pro seu codigo."
+                "w": "Research data management: FAIR principles, data repositories, DOI pra datasets",
+                "s": "FAIR data principles | research data management | data repository Zenodo | DOI dataset",
+                "d": "• FAIR: Findable, Accessible, Interoperable, Reusable — dados de pesquisa devem ser\n• Repositórios: Zenodo (CERN, gratuito, DOI automático), Figshare, Dryad\n• DOI pra dados: dataset citável como paper. Importante pra reprodutibilidade\n• Prática: publicar dados junto com paper. Cada vez mais exigido por journals"
               }
             ]
           }
@@ -7825,7 +8650,7 @@ const ROADMAP = [
         "name": "💼 Lideranca & Gestao",
         "topics": [
           {
-            "name": "Product & Engineering Management",
+            "name": "Engineering Management e Métricas",
             "books": [
               "Engineering Manager — Camille Fournier",
               "Inspired — Marty Cagan",
@@ -7843,19 +8668,44 @@ const ROADMAP = [
                 "d": "• O que é: Discovery: entrevistar usuarios.\n• Detalhe: Priorizacao: RICE, MoSCoW.\n• Importante: Metricas: MAU, retention, NPS."
               },
               {
-                "w": "1:1s, feedback, coaching, hiring, demissao",
-                "s": "engineering manager 1on1 tutorial | giving feedback tutorial | technical hiring interview | feedback coaching hiring tutorial portugues",
-                "d": "• O que é: 1:1 semanal.\n• Detalhe: Feedback: SBI (Situacao-Comportamento-Impacto).\n• Detalhe: Coaching > telling.\n• Importante: Hiring: pair programming."
+                "w": "Engineering metrics: DORA, SPACE, developer experience (DevEx)",
+                "s": "engineering metrics DORA SPACE | developer experience DevEx | engineering productivity tutorial | Engineering metrics DORA tutorial portugues",
+                "d": "• O que é: DORA: deploy frequency, lead time, MTTR, change failure rate.\n• Detalhe: SPACE: satisfaction, performance, activity, communication, efficiency.\n• Exemplo: DevEx: como devs se SENTEM (surveys).\n• Detalhe: Nao otimize metricas — otimize outcomes.\n• Importante: Goodhart's law: metrica vira meta, deixa de ser boa metrica."
               },
+              {
+                "w": "OKRs na prática: definir, acompanhar, grading, erros comuns",
+                "s": "OKRs engineering team | how to write OKRs | OKR examples engineering",
+                "d": "• Objective: qualitativo. KR: quantitativo. Target 0.7 (1.0 = fácil demais)\n• Erro: KR como tarefa ('implementar X') vs resultado ('95% sem falha')"
+              },
+              {
+                "w": "Estimativas: story points, planning poker, Monte Carlo, cone of uncertainty",
+                "s": "software estimation story points | planning poker | Monte Carlo estimation",
+                "d": "• Story points: relatividade, NÃO horas. Planning poker: independente→discutir\n• Cone of uncertainty: início varia 4×. Refinar conforme avança"
+              },
+              {
+                "w": "Comunicacao tecnica, ADRs, RFCs, documentacao",
+                "s": "architecture decision records | RFC engineering tutorial | technical writing tutorial | Comunicacao tecnica ADRs tutorial portugues",
+                "d": "• O que é: ADR: registrar decisoes.\n• Detalhe: RFC: propor mudancas.\n• Importante: Docs: escrever pra quem nao tem contexto."
+              }
+            ]
+          },
+          {
+            "name": "Organização, Escala e Stakeholders",
+            "books": [
+              "Team Topologies — Matthew Skelton & Manuel Pais",
+              "The Staff Engineer's Path — Tanya Reilly",
+              "Accelerate — Forsgren, Humble & Kim"
+            ],
+            "items": [
               {
                 "w": "Team Topologies, postmortems, cultura de engenharia",
                 "s": "team topologies tutorial | blameless postmortems tutorial | engineering culture tutorial | Team Topologies postmortems tutorial portugues",
                 "d": "• O que é: Stream-aligned, platform, enabling, complicated-subsystem.\n• Detalhe: Postmortem blameless.\n• Importante: Cultura: safety psicologica."
               },
               {
-                "w": "Comunicacao tecnica, ADRs, RFCs, documentacao",
-                "s": "architecture decision records | RFC engineering tutorial | technical writing tutorial | Comunicacao tecnica ADRs tutorial portugues",
-                "d": "• O que é: ADR: registrar decisoes.\n• Detalhe: RFC: propor mudancas.\n• Importante: Docs: escrever pra quem nao tem contexto."
+                "w": "Arquitetura organizacional: Conway's Law, team topologies, platform teams",
+                "s": "Conway's law team topologies | platform engineering team | organizational architecture | Arquitetura organizacional Conway's tutorial portugues",
+                "d": "• O que é: Conway's Law: arquitetura do sistema espelha a estrutura da organizacao.\n• Detalhe: Team Topologies: stream-aligned, platform, enabling, complicated-subsystem.\n• Detalhe: Platform team: ferramentas + infra pra outros times.\n• Importante: Inverse Conway: estruture times pra obter a arquitetura desejada."
               },
               {
                 "w": "Scaling teams: hiring pipeline, onboarding, cultura de engenharia",
@@ -7868,14 +8718,9 @@ const ROADMAP = [
                 "d": "• O que é: Budget: quanto custa o time (salarios, infra, ferramentas).\n• Detalhe: Headcount: quantas pessoas preciso? Justifique com impacto em metricas.\n• Importante: ROI: este projeto de 3 meses gera quanto de valor? Falar a lingua do CFO."
               },
               {
-                "w": "Arquitetura organizacional: Conway's Law, team topologies, platform teams",
-                "s": "Conway's law team topologies | platform engineering team | organizational architecture | Arquitetura organizacional Conway's tutorial portugues",
-                "d": "• O que é: Conway's Law: arquitetura do sistema espelha a estrutura da organizacao.\n• Detalhe: Team Topologies: stream-aligned, platform, enabling, complicated-subsystem.\n• Detalhe: Platform team: ferramentas + infra pra outros times.\n• Importante: Inverse Conway: estruture times pra obter a arquitetura desejada."
-              },
-              {
-                "w": "Engineering metrics: DORA, SPACE, developer experience (DevEx)",
-                "s": "engineering metrics DORA SPACE | developer experience DevEx | engineering productivity tutorial | Engineering metrics DORA tutorial portugues",
-                "d": "• O que é: DORA: deploy frequency, lead time, MTTR, change failure rate.\n• Detalhe: SPACE: satisfaction, performance, activity, communication, efficiency.\n• Exemplo: DevEx: como devs se SENTEM (surveys).\n• Detalhe: Nao otimize metricas — otimize outcomes.\n• Importante: Goodhart's law: metrica vira meta, deixa de ser boa metrica."
+                "w": "Stakeholder management: comunicar pra cima, pro lado, pra baixo",
+                "s": "stakeholder management engineering | communicate up down | status updates",
+                "d": "• Cima: resultados, riscos, sem jargão. Lado: dependências, timeline\n• Baixo: contexto do 'por quê', prioridades. Status: 3 bullets, weekly"
               }
             ]
           }
@@ -8015,7 +8860,7 @@ const ROADMAP = [
         "name": "📈 Produto & Estrategia",
         "topics": [
           {
-            "name": "Product Thinking pra Engenheiros",
+            "name": "Discovery e Pesquisa de Produto",
             "books": [
               "Inspired — Marty Cagan",
               "The Lean Startup — Eric Ries",
@@ -8033,14 +8878,9 @@ const ROADMAP = [
                 "d": "• O que é: Nao construa o que o usuario PEDE — descubra o que ele PRECISA.\n• Importante: Jobs-to-be-done: qual 'trabalho' o usuario contrata seu produto pra fazer? Prototipo: testar ideia antes de construir (Figma, papel, MVP)."
               },
               {
-                "w": "Metricas de produto: MAU, DAU, retention, NPS, funnel, cohort",
-                "s": "product metrics MAU retention NPS | product analytics funnel tutorial | cohort analysis tutorial | Metricas produto retention tutorial portugues",
-                "d": "• O que é: MAU/DAU: usuarios ativos.\n• Detalhe: Retention: voltam depois de 7/30 dias? NPS: recomendaria? Funnel: onde usuarios desistem.\n• Detalhe: Cohort: agrupar por data de entrada.\n• Importante: North Star Metric: 1 metrica que resume o valor do produto."
-              },
-              {
-                "w": "OKRs: Objectives and Key Results, alinhamento de time",
-                "s": "OKR objectives key results | OKR engineering teams tutorial | goal setting framework tutorial | OKRs Objectives Results tutorial portugues",
-                "d": "• O que é: Objective: qualitativo, inspirador ('Ser referencia em onboarding').\n• Detalhe: Key Results: quantitativo, mensuravel ('Reduzir churn de 15% pra 8%').\n• Detalhe: Ciclo trimestral.\n• Detalhe: Ambicioso (70% de atingimento = sucesso).\n• Importante: Alinhar time com estrategia."
+                "w": "User research: entrevistas, usability testing, personas — entender quem usa",
+                "s": "user research interviews usability | user personas | product research methods",
+                "d": "• Perguntar: 'conta a última vez que...' (comportamento > opinião)\n• Usability test: observar pessoa usando, pensar em voz alta"
               },
               {
                 "w": "A/B testing, feature flags, experimentacao orientada a dados",
@@ -8053,9 +8893,44 @@ const ROADMAP = [
                 "d": "• O que é: PLG: produto se vende sozinho (Slack, Figma, Notion).\n• Detalhe: Freemium: gratis ate X, paga depois.\n• Detalhe: Free trial: experimentar antes de comprar.\n• Detalhe: Viral loop: usar > convidar > usar.\n• Detalhe: Activation: momento aha! (Slack: 2000 mensagens = time fica).\n• Importante: Onboarding e tudo."
               },
               {
-                "w": "Roadmap: discovery > delivery, dual-track agile, opportunity solution tree",
-                "s": "product roadmap dual track agile | opportunity solution tree | product discovery delivery | Roadmap discovery delivery tutorial portugues",
-                "d": "• O que é: Dual-track: discovery (o que construir?) + delivery (construir bem) em paralelo.\n• Detalhe: Opportunity Solution Tree (Teresa Torres): outcome > opportunities > solutions > experiments.\n• Detalhe: Roadmap baseado em outcomes, nao features.\n• Importante: Evite 'feature factory'."
+                "w": "Jobs-to-be-Done (JTBD): entender o 'trabalho' que o usuário contrata seu produto pra fazer",
+                "s": "Jobs to be Done framework | JTBD tutorial | jobs to be done examples | customer jobs product",
+                "d": "• JTBD: pessoas não compram produtos, 'contratam' eles pra resolver um trabalho\n• Exemplo clássico: ninguém quer uma furadeira, quer o buraco na parede\n• Entrevista JTBD: focar na situação e motivação, não em features desejadas\n• Ajuda a descobrir concorrentes inesperados (Netflix concorre com sono, não só com TV)"
+              }
+            ]
+          },
+          {
+            "name": "Métricas, OKRs e Roadmap",
+            "books": [
+              "Lean Analytics — Alistair Croll & Benjamin Yoskovitz",
+              "Measure What Matters — John Doerr",
+              "Inspired — Marty Cagan"
+            ],
+            "items": [
+              {
+                "w": "Product metrics: DAU, MAU, retention, churn, LTV, CAC — medir sucesso do produto",
+                "s": "product metrics DAU MAU retention | LTV CAC | churn rate product",
+                "d": "• Retention: % que volta após 1/7/30 dias. Saúde do produto\n• LTV > 3×CAC = negócio saudável. Churn alto = problema real"
+              },
+              {
+                "w": "OKRs: Objectives and Key Results, alinhamento de time",
+                "s": "OKR objectives key results | OKR engineering teams tutorial | goal setting framework tutorial | OKRs Objectives Results tutorial portugues",
+                "d": "• O que é: Objective: qualitativo, inspirador ('Ser referencia em onboarding').\n• Detalhe: Key Results: quantitativo, mensuravel ('Reduzir churn de 15% pra 8%').\n• Detalhe: Ciclo trimestral.\n• Detalhe: Ambicioso (70% de atingimento = sucesso).\n• Importante: Alinhar time com estrategia."
+              },
+              {
+                "w": "Roadmap: priorização RICE/MoSCoW, comunicar stakeholders, quarterly planning",
+                "s": "product roadmap RICE MoSCoW | product prioritization | quarterly planning",
+                "d": "• RICE: Reach×Impact×Confidence/Effort. Score numérico\n• Roadmap = direção, NÃO lista de features com datas"
+              },
+              {
+                "w": "North Star Metric: definir a métrica única que melhor representa valor entregue ao usuário",
+                "s": "North Star Metric framework | one metric that matters | North Star Metric examples | product strategy metric",
+                "d": "• North Star: 1 métrica que captura o valor central (Spotify: tempo ouvindo, Airbnb: noites reservadas)\n• Boa NSM: reflete valor pro usuário, prediz receita futura, time toda alinha em torno dela\n• Cuidado: métrica errada distorce comportamento (otimizar cliques ≠ otimizar satisfação)\n• Input metrics: as alavancas que o time controla pra mover a North Star"
+              },
+              {
+                "w": "Stakeholder alignment: comunicar roadmap, gerenciar expectativas, dizer não com dados",
+                "s": "stakeholder alignment product | product roadmap communication | saying no product manager | managing expectations product",
+                "d": "• Roadmap não é promessa de datas — é direção. Comunicar incerteza honestamente\n• Dizer não: 'isso é bom, mas X tem mais impacto agora'. Usar RICE pra justificar\n• Diferentes audiências: executivos querem outcomes, engenheiros querem contexto\n• Documentar decisões e trade-offs pra evitar rediscussão"
               }
             ]
           }
@@ -8065,7 +8940,7 @@ const ROADMAP = [
         "name": "👥 Gestao de Pessoas",
         "topics": [
           {
-            "name": "Lideranca de Times de Engenharia",
+            "name": "1:1s, Feedback e Desenvolvimento",
             "books": [
               "The Manager's Path — Camille Fournier",
               "Radical Candor — Kim Scott",
@@ -8091,6 +8966,31 @@ const ROADMAP = [
                 "w": "Career development: career ladder, growth plans, promoções",
                 "s": "career ladder engineering | growth plan developer tutorial | engineering promotion criteria | Career development career tutorial portugues",
                 "d": "• O que é: Ladder: Junior > Mid > Senior > Staff > Principal.\n• Detalhe: Cada nivel: expectativas claras de scope, impacto, autonomia.\n• Detalhe: Growth plan: gaps + acoes + timeline.\n• Detalhe: Promocao: demonstre o nivel ANTES de ser promovido.\n• Importante: Documente impacto."
+              },
+              {
+                "w": "Performance review: avaliar, calibração entre times, growth frameworks",
+                "s": "performance review engineering | calibration | growth framework engineering",
+                "d": "• Calibração: gestores comparam avaliações pra consistência\n• Growth framework: o que cada nível faz (junior executa, senior projeta)"
+              },
+              {
+                "w": "Conflict resolution: difficult conversations, framework DESC, mediação",
+                "s": "conflict resolution team | DESC feedback | difficult conversations engineering",
+                "d": "• DESC: Describe, Express, Specify, Consequences\n• Conflito técnico: dados/benchmarks. Pessoal: conversar separadamente primeiro"
+              }
+            ]
+          },
+          {
+            "name": "Cultura, Hiring e Gestão de Times",
+            "books": [
+              "The Manager's Path — Camille Fournier",
+              "Radical Candor — Kim Scott",
+              "An Elegant Puzzle: Systems of Engineering Management — Will Larson"
+            ],
+            "items": [
+              {
+                "w": "Hiring: entrevistar, scorecard, pipeline recrutamento, reduzir viés",
+                "s": "technical hiring scorecard | engineering recruitment | reduce hiring bias",
+                "d": "• Scorecard ANTES da entrevista. Perguntas estruturadas = menos viés\n• Pipeline: source→screen→technical→culture→offer→onboard"
               },
               {
                 "w": "Demissao e performance management: PIPs, conversas dificeis",
@@ -8125,7 +9025,7 @@ const ROADMAP = [
         "name": "💰 Estrategia, Negocio & Empreendedorismo",
         "topics": [
           {
-            "name": "Pensamento Estrategico pra Engenheiros",
+            "name": "Modelo de Negócios e Economia",
             "books": [
               "The Hard Thing About Hard Things — Ben Horowitz",
               "Zero to One — Peter Thiel",
@@ -8148,14 +9048,39 @@ const ROADMAP = [
                 "d": "• O que é: CAC: quanto custa adquirir 1 cliente.\n• Detalhe: LTV: quanto ele gera de receita total.\n• Detalhe: LTV/CAC > 3 = saudavel.\n• Detalhe: MRR: receita recorrente mensal.\n• Detalhe: Churn: taxa de cancelamento.\n• Detalhe: Burn rate: quanto gasta/mes.\n• Importante: Runway: meses ate o dinheiro acabar."
               },
               {
+                "w": "Entender o mercado: TAM/SAM/SOM, concorrencia, moats, timing",
+                "s": "TAM SAM SOM market sizing | competitive analysis tutorial | startup moat tutorial | Entender mercado TAM/SAM/SOM tutorial portugues",
+                "d": "• O que é: TAM: mercado total.\n• Detalhe: SAM: segmento acessivel.\n• Detalhe: SOM: fatia realista.\n• Detalhe: Moat: vantagem competitiva (network effect, switching cost, brand, tech).\n• Detalhe: Timing: cedo demais e tao ruim quanto tarde demais."
+              },
+              {
+                "w": "Open source como estrategia: community, governance, monetizacao (open-core, SaaS)",
+                "s": "open source business strategy | open core monetization tutorial | open source community building | Open source como tutorial portugues",
+                "d": "• O que é: Open-core: nucleo gratis, enterprise features pagas (GitLab, Elastic).\n• Detalhe: SaaS hosted: versao gerenciada (MongoDB Atlas, Confluent Cloud).\n• Detalhe: Community: contribuidores = evangelistas gratuitos.\n• Detalhe: Governance: licenca, CoC, decision making.\n• Importante: Risco: fork (Amazon vs Elastic)."
+              }
+            ]
+          },
+          {
+            "name": "Empreendedorismo e Fundraising",
+            "books": [
+              "The Lean Startup — Eric Ries",
+              "Venture Deals — Brad Feld & Jason Mendelson",
+              "Zero to One — Peter Thiel"
+            ],
+            "items": [
+              {
                 "w": "Empreendedorismo tech: MVP, validacao, pivot, fundraising, equity",
                 "s": "tech startup MVP validation | startup fundraising equity | lean startup methodology tutorial | Empreendedorismo tech validacao tutorial portugues",
                 "d": "• O que é: MVP: versao minima pra testar hipotese.\n• Detalhe: Validate: usuarios querem isso? pagariam? Pivot: mudar direcao (Instagram comecou como Burbn).\n• Detalhe: Fundraising: pre-seed > seed > Series A/B/C.\n• Detalhe: Equity: porcentagem da empresa.\n• Importante: Vesting: 4 anos cliff 1 ano."
               },
               {
-                "w": "Entender o mercado: TAM/SAM/SOM, concorrencia, moats, timing",
-                "s": "TAM SAM SOM market sizing | competitive analysis tutorial | startup moat tutorial | Entender mercado TAM/SAM/SOM tutorial portugues",
-                "d": "• O que é: TAM: mercado total.\n• Detalhe: SAM: segmento acessivel.\n• Detalhe: SOM: fatia realista.\n• Detalhe: Moat: vantagem competitiva (network effect, switching cost, brand, tech).\n• Detalhe: Timing: cedo demais e tao ruim quanto tarde demais."
+                "w": "Lean startup: MVP, build-measure-learn, pivot, validated learning",
+                "s": "lean startup MVP | build measure learn | pivot persevere | validated learning",
+                "d": "• MVP: versão mínima que testa hipótese. Landing page pode ser MVP\n• Pivot: mudar se dados mostram hipótese errada (Slack era jogo)"
+              },
+              {
+                "w": "Fundraising: seed, Series A/B/C, valuation, term sheet, dilution",
+                "s": "startup fundraising seed Series A | valuation dilution | term sheet",
+                "d": "• Seed: $500K-$2M. Series A: $5-15M. Cada rodada dilui equity\n• Term sheet: termos do investimento (valuation, board seats, liquidation)"
               },
               {
                 "w": "Due diligence tecnica: avaliar stack, debito tecnico, time, riscos",
@@ -8163,9 +9088,9 @@ const ROADMAP = [
                 "d": "Investidor/comprador quer saber: stack e moderna? Debito tecnico e gerenciavel? Time e retido? Tem testes? Tem CI/CD? Seguranca ok? Escalabilidade? Documentacao? IP: quem e dono do codigo? Como CTO/VP: prepare o time pra passar nessa avaliacao."
               },
               {
-                "w": "Open source como estrategia: community, governance, monetizacao (open-core, SaaS)",
-                "s": "open source business strategy | open core monetization tutorial | open source community building | Open source como tutorial portugues",
-                "d": "• O que é: Open-core: nucleo gratis, enterprise features pagas (GitLab, Elastic).\n• Detalhe: SaaS hosted: versao gerenciada (MongoDB Atlas, Confluent Cloud).\n• Detalhe: Community: contribuidores = evangelistas gratuitos.\n• Detalhe: Governance: licenca, CoC, decision making.\n• Importante: Risco: fork (Amazon vs Elastic)."
+                "w": "Go-to-market: como lançar produto, canais de aquisição, primeiros clientes, growth loops",
+                "s": "go-to-market strategy | customer acquisition channels | first customers startup | growth loops",
+                "d": "• GTM: estratégia de como levar produto ao mercado e adquirir clientes\n• Canais: content marketing, ads, vendas, parcerias, product-led, community\n• Primeiros clientes: founder-led sales, early adopters, nichos específicos\n• Growth loop: mecanismo onde uso gera mais uso (referral, conteúdo, network effects)"
               }
             ]
           }
