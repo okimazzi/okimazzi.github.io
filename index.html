@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roadmap Completo — Engenharia da Computação</title>
+  <meta name="description" content="Roadmap completo de Engenharia da Computação: do iniciante ao avançado. 1644 itens e 129 projetos práticos. IA, ML, Full-Stack, DevOps, Segurança, Robótica e mais.">
+  <meta property="og:title" content="Roadmap Completo — Engenharia da Computação">
+  <meta property="og:description" content="Do zero ao avançado: 60 áreas, 1644 itens e 129 projetos práticos.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#6366f1">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%236366f1'/%3E%3Ctext x='50' y='68' font-size='58' text-anchor='middle' fill='white' font-family='system-ui,sans-serif'%3E🧭%3C/text%3E%3C/svg%3E">
+  <link rel="manifest" href="manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="hero-tag">v7 · 60 áreas · 1644 itens · 129 projetos</p>
+      <h1>Roadmap Completo<br><span class="hero-accent">Engenharia da Computação</span></h1>
+    </div>
+  </header>
+
+  <div class="container">
+    <div id="stats" class="stats-bar"></div>
+
+    <div class="toolbar">
+      <button id="theme-toggle" onclick="toggleTheme()">☀️ Claro</button>
+      <button class="study-btn" onclick="studyOfDay()">📚 Estudo do Dia</button>
+      <button id="review-widget" class="review-widget-btn" onclick="openReview()" style="display:none" title="Itens prontos para revisar">🔁 Revisar (<span class="review-count">0</span>)</button>
+      <button class="pace-btn" onclick="openPacePlanner()" title="Planejar ritmo de estudo">📅 Planejar ritmo</button>
+      <div class="filter-group" role="group" aria-label="Filtrar itens">
+        <button class="filter-btn active" data-filter="all" aria-pressed="true" onclick="setFilter('all')">Todos</button>
+        <button class="filter-btn" data-filter="not-studied" aria-pressed="false" onclick="setFilter('not-studied')">⬜ Não estudados</button>
+        <button class="filter-btn" data-filter="studied" aria-pressed="false" onclick="setFilter('studied')">✅ Estudados</button>
+      </div>
+      <div class="toolbar-right">
+        <button class="view-btn" id="compact-toggle" onclick="toggleCompact()" title="Alternar modo compacto">📑 Modo compacto</button>
+        <button class="view-btn" onclick="collapseAll()" title="Recolher tudo">🔼 Recolher tudo</button>
+        <button class="export-btn" onclick="exportProgress()" title="Exportar progresso">📥 Exportar</button>
+        <button class="import-btn" onclick="importProgress()" title="Importar progresso">📤 Importar</button>
+        <button class="reset-btn" onclick="resetProgress()">🗑️ Resetar</button>
+      </div>
+    </div>
+
+    <div class="shortcuts-hint">⌨️ Atalhos: <kbd>D</kbd> Estudo do dia · <kbd>T</kbd> Tema · <kbd>/</kbd> Buscar</div>
+
+    <div class="search-wrap">
+      <input type="text" id="search" placeholder="🔍 Buscar qualquer tópico, item, livro ou termo..." autocomplete="off">
+    </div>
+
+    <nav class="level-nav" aria-label="Navegar por nível">
+      <span class="level-nav-label">Ir para:</span>
+      <button class="level-nav-btn nav-green" onclick="jumpToLevel('green')">🟢 Iniciante</button>
+      <button class="level-nav-btn nav-yellow" onclick="jumpToLevel('yellow')">🟡 Intermediário</button>
+      <button class="level-nav-btn nav-orange" onclick="jumpToLevel('orange')">🟠 Avançado</button>
+      <button class="level-nav-btn nav-red" onclick="jumpToLevel('red')">🔴 Muito Avançado</button>
+      <button class="level-nav-btn nav-blue" onclick="jumpToLevel('blue')">🎓 Academia</button>
+      <button class="level-nav-btn nav-purple" onclick="jumpToLevel('purple')">💼 Carreira</button>
+    </nav>
+
+    <div class="track-filter" role="group" aria-label="Filtrar por trilha">
+      <span class="track-filter-label">Trilhas:</span>
+      <button class="track-filter-btn active" data-track="all" onclick="setTrackFilter('all')">Todas as áreas</button>
+      <button class="track-filter-btn tf-gd" data-track="gamedesign" onclick="setTrackFilter('gamedesign')">🎮 Game Design</button>
+      <button class="track-filter-btn tf-ai" data-track="ai" onclick="setTrackFilter('ai')">🤖 IA &amp; ML</button>
+      <button class="track-filter-btn tf-web" data-track="web" onclick="setTrackFilter('web')">🌐 Web / Full-Stack</button>
+      <button class="track-filter-btn tf-sec" data-track="security" onclick="setTrackFilter('security')">🔒 Segurança</button>
+    </div>
+
+    <div id="search-results" class="search-results" style="display:none"></div>
+
+    <details class="start-here">
+      <summary><span class="sh-icon">🧭</span> Comece por aqui — como usar este roadmap</summary>
+      <div class="sh-body">
+        <p>São <strong>6 níveis do iniciante ao profissional</strong>. Você pode seguir <strong>em ordem</strong> (cada área respeita os pré-requisitos da anterior) ou <strong>seguir um interesse</strong> pelas trilhas temáticas. Cada área mostra seus <strong>📋 pré-requisitos</strong> e o <strong>tempo estimado (~h)</strong>. Marque ✅ ao concluir e complete os <strong>projetos 🟢🔴</strong> de cada área e o <strong>🏆 Desafio Final</strong> de cada nível.</p>
+        <p class="sh-paths-title">Quer seguir por objetivo? Caminhos sugeridos:</p>
+        <div class="sh-paths">
+          <div class="sh-path sh-path-gd"><span class="sh-path-h">🎮 Game Dev</span><span class="sh-path-d">Game Design (Fundamentos → Teoria & Design → Dev Avançado) + Computação Gráfica. Trilha dedicada no fim de cada nível.</span></div>
+          <div class="sh-path sh-path-ai"><span class="sh-path-h">🤖 Engenheiro de IA / ML</span><span class="sh-path-d">Matemática p/ ML → Introdução a IA → Deep Learning → AI Engineering → MLOps → Pesquisa & Fronteira.</span></div>
+          <div class="sh-path sh-path-sec"><span class="sh-path-h">🔒 Segurança</span><span class="sh-path-d">Segurança & Ethical Hacking → Ethical Hacking Web → DevSecOps → Forense Digital → Segurança Defensiva.</span></div>
+          <div class="sh-path sh-path-web"><span class="sh-path-h">🌐 Dev Web / Full-Stack</span><span class="sh-path-d">Full-Stack → Mobile → DevOps → Cloud & Kubernetes → Banco de Dados Avançado → Sistemas Distribuídos.</span></div>
+        </div>
+        <p class="sh-note">As áreas das trilhas aparecem marcadas com um selo colorido (🎮 🤖 🔒) e um número de etapa, pra você seguir o caminho mesmo quando elas estão espalhadas pelos níveis.</p>
+      </div>
+    </details>
+
+    <div id="roadmap"></div>
+
+    <!-- FAQ -->
+    <div class="faq-section">
+      <h2>❓ Perguntas Frequentes</h2>
+      <details class="faq-item"><summary>Posso pular áreas?</summary><p>Dentro do mesmo nível, algumas áreas são independentes. Mas a ordem geral importa — cada nível constrói sobre o anterior. Se já sabe algo, marque como estudado e siga.</p></details>
+      <details class="faq-item"><summary>Quanto tempo por dia?</summary><p>1-2h por dia, 5 dias/semana. Consistência > intensidade. Use o botão "📚 Estudo do Dia" pra saber por onde continuar.</p></details>
+      <details class="faq-item"><summary>Preciso de hardware?</summary><p>Pra 95% do roadmap, qualquer computador com 4GB+ RAM. Pra Eletrônica, use simuladores (Tinkercad). Um Arduino Uno (~R$50) é opcional.</p></details>
+      <details class="faq-item"><summary>Os livros são obrigatórios?</summary><p>Não. Use os botões ▶ YouTube e 🔍 Google de cada item. Livros são pra aprofundamento.</p></details>
+      <details class="faq-item"><summary>Meu progresso é salvo?</summary><p>Sim, no navegador (localStorage). Use 📥 Exportar pra fazer backup. 📤 Importar pra restaurar em outro navegador.</p></details>
+      <details class="faq-item"><summary>Como funcionam os projetos?</summary><p>Cada área tem um projeto 🟢 básico e um 🔴 avançado, e cada nível termina com um 🏆 Desafio Final que integra tudo. Use-os pra praticar de verdade — é aprendendo fazendo que o conteúdo fixa.</p></details>
+    </div>
+
+    <!-- SETUP -->
+    <div class="setup-section">
+      <h2>🛠️ Setup do Desenvolvedor</h2>
+      <div class="setup-grid">
+        <div class="setup-card"><strong>Editor</strong><p><a href="https://code.visualstudio.com/" target="_blank">VS Code</a> + extensões: Python, Prettier, GitLens, Live Server</p></div>
+        <div class="setup-card"><strong>Terminal</strong><p>Windows: <a href="https://docs.microsoft.com/windows/wsl/" target="_blank">WSL2</a> · Mac: Terminal + <a href="https://brew.sh/" target="_blank">Homebrew</a></p></div>
+        <div class="setup-card"><strong>Git</strong><p><a href="https://git-scm.com/" target="_blank">Git</a> + <a href="https://github.com/" target="_blank">GitHub</a> + SSH key configurada</p></div>
+        <div class="setup-card"><strong>Python</strong><p><a href="https://www.python.org/" target="_blank">Python 3.12+</a> · <code>pip install notebook</code></p></div>
+        <div class="setup-card"><strong>Docker</strong><p><a href="https://www.docker.com/products/docker-desktop/" target="_blank">Docker Desktop</a> (Intermediário+)</p></div>
+        <div class="setup-card"><strong>Node.js</strong><p><a href="https://nodejs.org/" target="_blank">Node.js LTS</a> (pra Full-Stack)</p></div>
+      </div>
+    </div>
+
+    <!-- COMMUNITIES -->
+    <div class="communities-section">
+      <h2>🌐 Comunidades</h2>
+      <div class="setup-grid">
+        <div class="setup-card"><strong>🇧🇷 Português</strong><p><a href="https://www.reddit.com/r/brdev/" target="_blank">r/brdev</a> · <a href="https://www.youtube.com/@FilipeDeschamps" target="_blank">Filipe Deschamps</a> · <a href="https://www.youtube.com/@Rocketseat" target="_blank">Rocketseat</a></p></div>
+        <div class="setup-card"><strong>🇺🇸 English</strong><p><a href="https://www.reddit.com/r/learnprogramming/" target="_blank">r/learnprogramming</a> · <a href="https://www.youtube.com/@freecodecamp" target="_blank">freeCodeCamp</a></p></div>
+        <div class="setup-card"><strong>🔒 Segurança</strong><p><a href="https://tryhackme.com/" target="_blank">TryHackMe</a> · <a href="https://www.hackthebox.com/" target="_blank">HackTheBox</a></p></div>
+        <div class="setup-card"><strong>💻 Prática</strong><p><a href="https://leetcode.com/" target="_blank">LeetCode</a> · <a href="https://exercism.org/" target="_blank">Exercism</a> · <a href="https://overthewire.org/wargames/" target="_blank">OverTheWire</a></p></div>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <strong>💡 Como usar:</strong> Comece pelo 🟢 Iniciante na ordem. Clique nos itens pra expandir. Use ▶ YouTube e 🔍 Google pra buscar. Marque ✅ ao concluir. Complete os projetos 🟢 e 🔴 de cada área e o 🏆 Desafio Final de cada nível. Há também a 🎮 Trilha de Game Design (uma sessão dedicada no fim de cada dificuldade) com seu próprio desafio final. Conquiste 🏅 badges ao completar áreas!
+    </div>
+  </div>
+
+  <footer><p>Roadmap Eng. Computação · Progresso salvo no navegador · <kbd>D</kbd> Estudo do dia · <kbd>T</kbd> Tema · <kbd>/</kbd> Buscar</p></footer>
+
+  <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Voltar ao topo" aria-label="Voltar ao topo">↑</button>
+
+  <script defer src="data.js"></script>
+  <script defer src="projects.js"></script>
+  <script defer src="final.js"></script>
+  <script defer src="app.js"></script>
+  <script>
+    if('serviceWorker' in navigator && location.protocol.startsWith('http')){
+      window.addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(()=>{});});
+    }
+  </script>
+</body>
+</html>
