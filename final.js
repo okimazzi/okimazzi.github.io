@@ -49,3 +49,12 @@ FINAL_LEVEL["purple"] = {
   }
 };
 
+FINAL_LEVEL["gamedesign"] = {
+  track: true,
+  project: {
+    title: "🏆 Desafio Final — Trilha de Game Design",
+    desc: "O capstone da Trilha de Game Design: um jogo completo, polido e LANÇADO que prova tudo que você aprendeu nas três dificuldades.\n\nDesign (Fundamentos + Teoria): defina uma visão clara com o framework MDA — core loop, mecânicas, dinâmicas pretendidas e a estética/emoção que você busca. Curva de dificuldade e pacing intencionais.\n\nNíveis e narrativa: vários níveis projetados de propósito (guiar o olhar, ensinar sem tutorial), com narrativa integrada à jogabilidade e identidade visual/sonora coesa.\n\nDev avançado: arquitetura com padrões (component/ECS, object pooling, state machine), física/colisão, IA de inimigos (behavior tree), save system e geração procedural de conteúdo (dungeons/mapas/níveis) para rejogabilidade.\n\nProdução e lançamento: escopo bem definido, vertical slice, playtesting estruturado (observação + métricas) e ajuste de balanceamento com dados reais. Lance publicamente (itch.io/Steam) com página de loja, trailer e devlog.\n\nOpcional: se preferir o caminho analógico, entregue um jogo de tabuleiro/cartas completo e balanceado (você curte MTG/Pokémon TCG) com toda a documentação de design e playtesting.",
+    deliverable: "Um jogo completo e LANÇADO (digital publicado com página de loja e trailer, OU de tabuleiro/cartas jogável e balanceado) que integra design intencional, níveis/narrativa, sistemas avançados com PCG, e produção real — acompanhado de um GDD completo e um postmortem honesto cobrindo design, produção, playtesting e aprendizados da trilha inteira"
+  }
+};
+

@@ -82,6 +82,8 @@ rS();
 
 // Search links
 function mSL(s){return s.split('|').map(t=>{const tr=t.trim();if(!tr)return'';const yt='https://www.youtube.com/results?search_query='+encodeURIComponent(tr);const gg='https://www.google.com/search?q='+encodeURIComponent(tr);return`<div class="search-term-row"><span class="search-term-text">• ${tr}</span><a href="${yt}" target="_blank" rel="noopener" class="search-link yt-link">▶ YouTube</a><a href="${gg}" target="_blank" rel="noopener" class="search-link gg-link">🔍 Google</a></div>`}).join('')}
+// Clean item search: use the primary (first) term for 2 tidy buttons; hide the raw keyword soup
+function itemSL(s){const terms=s.split('|').map(t=>t.trim()).filter(Boolean);if(!terms.length)return'';const primary=terms[0];const yt='https://www.youtube.com/results?search_query='+encodeURIComponent(primary+' tutorial');const gg='https://www.google.com/search?q='+encodeURIComponent(primary);return`<a href="${yt}" target="_blank" rel="noopener" class="search-link yt-link">▶ YouTube</a><a href="${gg}" target="_blank" rel="noopener" class="search-link gg-link">🔍 Google</a>`}
 
 function tog(b,c){
   const opening=!c.classList.contains('expanded');
@@ -199,6 +201,35 @@ function aF(){
   expandForFilter();
 }
 window.setFilter=function(f){cF=f;aF();document.querySelectorAll('.filter-btn').forEach(b=>{const on=b.dataset.filter===f;b.classList.toggle('active',on);b.setAttribute('aria-pressed',on?'true':'false')})};
+
+// ── Navigation: jump to level ──
+window.jumpToLevel=function(css){const el=document.getElementById('level-'+css);if(!el)return;const btn=el.querySelector('.level-btn');if(btn&&!btn.classList.contains('open'))tog(btn,el.querySelector('.level-content'));el.scrollIntoView({behavior:'smooth',block:'start'})};
+
+// ── Collapse / expand all ──
+window.collapseAll=function(){document.querySelectorAll('.level-content,.area-content,.topic-content,.item-detail').forEach(c=>{c.style.display='none';c.classList.remove('expanded')});document.querySelectorAll('.level-btn,.area-btn,.topic-btn,.item-btn').forEach(b=>{b.classList.remove('open');b.setAttribute('aria-expanded','false');const ar=b.querySelector('.arrow')||b.querySelector('.item-toggle');if(ar)ar.textContent='▸'});window.scrollTo({top:0,behavior:'smooth'})};
+window.expandAllLevels=function(){document.querySelectorAll('.level-content').forEach(c=>{c.style.display='block';c.classList.add('expanded');c.style.height='auto'});document.querySelectorAll('.level-btn').forEach(b=>{b.classList.add('open');b.setAttribute('aria-expanded','true');const ar=b.querySelector('.arrow');if(ar)ar.textContent='▾'})};
+
+// ── Filter by track ──
+let cTrack='all';
+window.setTrackFilter=function(tr){cTrack=tr;
+  document.querySelectorAll('.area').forEach(a=>{
+    const at=a.dataset.track||'';
+    a.classList.toggle('track-hidden', tr!=='all' && at!==tr);
+  });
+  // hide levels that end up with no visible area
+  document.querySelectorAll('.level').forEach(lv=>{
+    const anyVisible=[...lv.querySelectorAll('.area')].some(a=>!a.classList.contains('track-hidden'));
+    lv.classList.toggle('track-hidden', tr!=='all' && !anyVisible);
+  });
+  document.querySelectorAll('.track-filter-btn').forEach(b=>{const on=b.dataset.track===tr;b.classList.toggle('active',on)});
+  if(tr!=='all')window.expandAllLevels();
+};
+
+// ── Compact mode (hide item details + descriptions, show only titles) ──
+window.toggleCompact=function(){const on=document.body.classList.toggle('compact-mode');const btn=document.getElementById('compact-toggle');if(btn)btn.textContent=on?'📖 Modo completo':'📑 Modo compacto'};
+
+// ── Back to top ──
+window.addEventListener('scroll',()=>{const b=document.getElementById('back-to-top');if(b)b.classList.toggle('show',window.scrollY>600)});
 window.resetProgress=function(){if(confirm('Apagar todo progresso (itens estudados e badges)?')){localStorage.removeItem(SK);localStorage.removeItem(BK);localStorage.removeItem('roadmap_levels_done');localStorage.removeItem('roadmap_quizzes');location.reload()}};
 
 // Export/Import
@@ -241,20 +272,27 @@ window.studyOfDay=function(){
 // RENDER LEVELS
 // ============================================================
 ROADMAP.forEach((level,levelIdx)=>{
-const sec=document.createElement('div');sec.className='level';
+const sec=document.createElement('div');sec.className='level';sec.id='level-'+level.css;
 const btn=document.createElement('button');btn.className=`level-btn ${level.css}`;btn.setAttribute('aria-expanded','false');
 const stageNum=levelIdx+1;
 btn.innerHTML=`<div class="level-stage" aria-hidden="true">${stageNum}</div><div class="level-body"><div class="level-name">${esc(level.name)} <span class="arrow" aria-hidden="true">▸</span></div><div class="level-meta">${esc(level.time)} · ${level.areas.length} áreas</div><div class="level-desc">${esc(level.desc||'')}</div></div>`;
 const cont=document.createElement('div');cont.className='level-content';cont.style.display='none';
 
 level.areas.forEach(area=>{
-const aD=document.createElement('div');aD.className='area';
+const TRACKS={gamedesign:{label:'Trilha de Game Design',icon:'🎮',cls:'gd'},ai:{label:'Trilha de IA & ML',icon:'🤖',cls:'ai'},security:{label:'Trilha de Segurança',icon:'🔒',cls:'sec'},web:{label:'Trilha Web / Full-Stack',icon:'🌐',cls:'web'}};
+const tk=area.track&&TRACKS[area.track]?TRACKS[area.track]:null;
+const isGD=area.track==='gamedesign';
+const aD=document.createElement('div');aD.className='area'+(tk?' area-track area-track-'+tk.cls:'');if(area.track)aD.dataset.track=area.track;
 const aIC=area.topics.reduce((s,t)=>s+t.items.length,0);
+// Estimated hours for this area (same heuristic as study load)
+const estH=Math.round(area.topics.reduce((s,t)=>s+t.items.reduce((s2,it)=>{const l=it.d.length+it.w.length;return s2+(/🎯/.test(it.w)?10:l>500?240:l>300?120:60)},0),0)/60);
 const badges=gB();const aKey=area.name.replace(/^[^\w\s]+\s*/u,'').trim();
 const hasBadge=badges[aKey];
-const aB=document.createElement('button');aB.className='area-btn';aB.setAttribute('aria-expanded','false');
-aB.innerHTML=`<span>${hasBadge?'🏅 ':''} ${esc(area.name)}</span><span class="area-meta">${area.topics.length} tópicos · ${aIC} itens <span class="arrow" aria-hidden="true">▸</span></span>`;
+const aB=document.createElement('button');aB.className='area-btn'+(tk?' area-btn-track area-btn-'+tk.cls:'');aB.setAttribute('aria-expanded','false');
+const trackTag=tk?`<span class="track-badge track-badge-${tk.cls}">${tk.icon} ${tk.label} · ${area.trackPart}/${area.trackTotal}</span>`:'';
+aB.innerHTML=`<span class="area-title">${hasBadge?'🏅 ':''}${esc(area.name)}${trackTag}</span><span class="area-meta">${area.topics.length} tópicos · ${aIC} itens · ~${estH}h <span class="arrow" aria-hidden="true">▸</span></span>`;
 const aC=document.createElement('div');aC.className='area-content';aC.style.display='none';
+if(area.prereq){const pr=document.createElement('div');pr.className='area-prereq';pr.innerHTML=`<span class="prereq-label">📋 Pré-requisitos:</span> ${esc(area.prereq)}`;aC.appendChild(pr)}
 
 area.topics.forEach(topic=>{
 const tD=document.createElement('div');tD.className='topic';
@@ -263,6 +301,7 @@ tB.innerHTML=`<span>${esc(topic.name)}</span><span class="topic-meta">${topic.it
 const tC=document.createElement('div');tC.className='topic-content';tC.style.display='none';
 const st=cS(level.css,area.name,topic.name,topic.items.length);
 const pb=cPB(st,topic.items.length);pb.className+=' topic-progress';tC.appendChild(pb);
+if(topic.search){const tsq=topic.search;const tyt='https://www.youtube.com/results?search_query='+encodeURIComponent(tsq+' tutorial');const tgg='https://www.google.com/search?q='+encodeURIComponent(tsq);const tsr=document.createElement('div');tsr.className='topic-search';tsr.innerHTML=`<span class="topic-search-label">🔍 Buscar o tema todo:</span><a href="${tyt}" target="_blank" rel="noopener" class="search-link yt-link">▶ YouTube</a><a href="${tgg}" target="_blank" rel="noopener" class="search-link gg-link">🔍 Google</a>`;tC.appendChild(tsr)}
 const bb=document.createElement('div');bb.className='books-box';
 bb.innerHTML=`<strong>📚 Livros recomendados:</strong>`+topic.books.map(b=>`<div class="book-item">• ${esc(b)}</div>`).join('');tC.appendChild(bb);
 
@@ -284,7 +323,7 @@ const bulletsHtml=item.d.split('\n').map(line=>{
   if(tl.startsWith('•'))return '<li>'+esc(tl.substring(1).trim())+'</li>';
   return tl?'<li class="no-bullet">'+esc(tl)+'</li>':'';
 }).join('');
-det.innerHTML=`<div class="item-desc"><strong>📖 O que estudar:</strong><ul class="desc-bullets">${bulletsHtml}</ul></div><div class="search-terms"><strong>🔍 Termos de busca:</strong>${mSL(item.s)}</div>`;
+det.innerHTML=`<div class="item-desc"><strong>📖 O que estudar:</strong><ul class="desc-bullets">${bulletsHtml}</ul></div><div class="item-study"><span class="item-study-label">Estudar:</span>${itemSL(item.s)}</div>`;
 iB.addEventListener('click',e=>{if(e.target.closest('.item-check'))return;tog(iB,det)});
 iB.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){if(e.target.closest('.item-check'))return;e.preventDefault();tog(iB,det)}});
 iD.appendChild(iB);iD.appendChild(det);tC.appendChild(iD)});
@@ -297,6 +336,12 @@ const pd=PROJECTS[hP];
 const bb2=document.createElement('button');bb2.className='project-btn project-basic';bb2.textContent=pd.basic.title;bb2.addEventListener('click',e=>{e.stopPropagation();openProject(pd.basic)});ab.appendChild(bb2);
 const ab2=document.createElement('button');ab2.className='project-btn project-advanced';ab2.textContent=pd.advanced.title;ab2.addEventListener('click',e=>{e.stopPropagation();openProject(pd.advanced)});ab.appendChild(ab2);
 aC.appendChild(ab)}
+// Game Design track capstone — shown at the end of the final (orange) GD area
+if(isGD&&level.css==='orange'&&typeof FINAL_LEVEL!=='undefined'&&FINAL_LEVEL.gamedesign){
+const gf=document.createElement('div');gf.className='gd-capstone';
+const gfb=document.createElement('button');gfb.className='final-btn gd-capstone-btn';gfb.textContent='🏆 '+FINAL_LEVEL.gamedesign.project.title.replace(/^🏆\s*/,'');
+gfb.addEventListener('click',e=>{e.stopPropagation();openProject(FINAL_LEVEL.gamedesign.project)});
+gf.appendChild(gfb);aC.appendChild(gf)}
 aB.addEventListener('click',()=>tog(aB,aC));aD.appendChild(aB);aD.appendChild(aC);cont.appendChild(aD)});
 
 if(typeof FINAL_LEVEL!=='undefined'&&FINAL_LEVEL[level.css]){
