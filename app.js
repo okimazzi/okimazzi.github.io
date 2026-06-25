@@ -325,7 +325,7 @@ btn.innerHTML=`<div class="level-stage" aria-hidden="true">${stageNum}</div><div
 const cont=document.createElement('div');cont.className='level-content';cont.style.display='none';
 
 level.areas.forEach(area=>{
-const TRACKS={gamedesign:{label:'Trilha de Game Design',icon:'🎮',cls:'gd'},ai:{label:'Trilha de IA & ML',icon:'🤖',cls:'ai'},security:{label:'Trilha de Segurança',icon:'🔒',cls:'sec'},web:{label:'Trilha Web / Full-Stack',icon:'🌐',cls:'web'}};
+const TRACKS={gamedesign:{label:'Trilha de Game Design',icon:'🎮',cls:'gd'},ai:{label:'Trilha de IA & ML',icon:'🤖',cls:'ai'},security:{label:'Trilha de Segurança',icon:'🔒',cls:'sec'},web:{label:'Trilha Web / Full-Stack',icon:'🌐',cls:'web'},hardware:{label:'Trilha de Hardware & Embarcados',icon:'🔧',cls:'hw'}};
 const tk=area.track&&TRACKS[area.track]?TRACKS[area.track]:null;
 const isGD=area.track==='gamedesign';
 const aD=document.createElement('div');aD.className='area'+(tk?' area-track area-track-'+tk.cls:'');if(area.track)aD.dataset.track=area.track;

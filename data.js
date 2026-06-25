@@ -1553,6 +1553,41 @@ const ROADMAP = [
               }
             ],
             "search": "Algebra Linear (Inicio)"
+          },
+          {
+            "name": "Lógica e Demonstrações",
+            "books": [
+              "Como Demonstrar (How to Prove It) — Daniel Velleman",
+              "Matemática Discreta e Suas Aplicações — Kenneth Rosen",
+              "Book of Proof — Richard Hammack (gratuito)"
+            ],
+            "items": [
+              {
+                "w": "Lógica proposicional e de predicados",
+                "s": "lógica proposicional | lógica de predicados | propositional predicate logic | lógica matemática | tabela verdade",
+                "d": "• Proposições, conectivos (E, OU, NÃO, implicação) e tabelas-verdade\n• Quantificadores (para todo ∀, existe ∃)\n• Equivalências lógicas e formas normais\n• Base pra raciocínio formal e teoria da computação"
+              },
+              {
+                "w": "Técnicas de demonstração: direta, contrapositiva, absurdo",
+                "s": "técnicas de demonstração | prova direta contrapositiva | proof techniques | demonstração matemática | prova por absurdo",
+                "d": "• Prova direta: da hipótese à conclusão\n• Contrapositiva e redução ao absurdo\n• Prova por casos e por construção\n• Como estruturar e escrever uma demonstração"
+              },
+              {
+                "w": "Indução matemática",
+                "s": "indução matemática | mathematical induction | prova por indução | induction proof | indução forte",
+                "d": "• Indução: provar pra todos os naturais a partir de um caso base\n• Passo base e passo indutivo\n• Indução forte e suas aplicações\n• Fundamental pra provar correção de algoritmos e recursão"
+              },
+              {
+                "w": "Conjuntos, relações e funções (rigor)",
+                "s": "conjuntos relações funções | set theory relations | funções injetora sobrejetora | teoria dos conjuntos | cardinalidade",
+                "d": "• Conjuntos, operações e diagramas\n• Relações: equivalência, ordem parcial\n• Funções: injetora, sobrejetora, bijetora\n• Cardinalidade e infinito (contável vs incontável)"
+              },
+              {
+                "w": "Aplicações em computação: correção e raciocínio formal",
+                "s": "lógica em computação | correção de algoritmos | formal reasoning cs | invariantes prova | verificação formal",
+                "d": "• Provar que um algoritmo está correto (invariantes de loop)\n• Lógica por trás de tipos, verificação e provas formais\n• Conexão com teoria da computação e compiladores\n• Ferramentas: assistentes de prova (Coq, Lean) — visão geral"
+              }
+            ]
           }
         ],
         "prereq": "Matemática do ensino médio",
@@ -2000,7 +2035,10 @@ const ROADMAP = [
           "Dominar Eletricidade Basica",
           "Dominar Eletronica Digital",
           "Dominar Eletronica Analogica"
-        ]
+        ],
+        "track": "hardware",
+        "trackPart": 1,
+        "trackTotal": 5
       },
       {
         "name": "🎮 Game Design (Fundamentos)",
@@ -3227,7 +3265,186 @@ const ROADMAP = [
         "objectives": [
           "Projetar Conjunto de Instruções e Organização da CPU",
           "Projetar Pipeline, Cache e Performance"
-        ]
+        ],
+        "track": "hardware",
+        "trackPart": 2,
+        "trackTotal": 5
+      },
+      {
+        "name": "🔲 Design Digital & HDL (Verilog/VHDL)",
+        "prereq": "Eletronica & Hardware, Matematica Fundamental (lógica)",
+        "track": "hardware",
+        "trackPart": 3,
+        "trackTotal": 5,
+        "topics": [
+          {
+            "name": "Fundamentos de Design Digital",
+            "books": [
+              "Digital Design and Computer Architecture — David Harris & Sarah Harris",
+              "Sistemas Digitais — Tocci, Widmer & Moss",
+              "Fundamentals of Digital Logic — Stephen Brown & Zvonko Vranesic"
+            ],
+            "items": [
+              {
+                "w": "🎯 Por que estudar Design Digital? Do transistor ao processador",
+                "s": "por que estudar design digital | importância lógica digital | design digital engenharia computação | digital design overview | por que estudar design digital tutorial",
+                "d": "• Design digital é a ponte entre eletrônica e computadores: como gates viram CPUs\n• Disciplina central de Engenharia da Computação\n• Base pra entender hardware, FPGAs, ASICs e arquitetura\n• Diferente de só ligar fios: é projetar sistemas de forma sistemática e verificável"
+              },
+              {
+                "w": "Álgebra booleana e minimização: simplificar lógica",
+                "s": "álgebra booleana | minimização lógica | mapa de karnaugh | boolean algebra minimization | álgebra booleana tutorial",
+                "d": "• Álgebra booleana: a matemática dos circuitos digitais\n• Mapas de Karnaugh e Quine-McCluskey pra simplificar expressões\n• Menos gates = mais rápido, mais barato, menos energia\n• Teoremas (De Morgan) que guiam a simplificação"
+              },
+              {
+                "w": "Lógica combinacional: somadores, multiplexadores e decodificadores",
+                "s": "lógica combinacional | somador multiplexador decodificador | combinational logic design | building blocks digitais | lógica combinacional tutorial",
+                "d": "• Lógica combinacional: saída depende só das entradas atuais\n• Blocos fundamentais: somadores, MUX, decoders, comparadores\n• Compor blocos pequenos pra construir funções complexas\n• Base de ALUs e datapaths"
+              },
+              {
+                "w": "Lógica sequencial e máquinas de estado (FSM)",
+                "s": "lógica sequencial | máquina de estados FSM | finite state machine design | sequential logic | lógica sequencial tutorial",
+                "d": "• Lógica sequencial: saída depende do estado (memória)\n• Latches, flip-flops e registradores como elementos de estado\n• FSMs (Moore/Mealy): projetar sistematicamente comportamento\n• Diagrama de estados → tabela → circuito"
+              },
+              {
+                "w": "Temporização, clock e metaestabilidade",
+                "s": "temporização digital | clock setup hold | metaestabilidade | timing digital design | temporização digital tutorial",
+                "d": "• Clock sincroniza o circuito; setup e hold time são críticos\n• Violações de timing causam erros e metaestabilidade\n• Skew e jitter de clock afetam a frequência máxima\n• Sincronizadores pra cruzar domínios de clock (CDC)"
+              },
+              {
+                "w": "Aritmética digital: representação e operações",
+                "s": "aritmética digital | complemento de dois hardware | ponto flutuante hardware | digital arithmetic | aritmética digital tutorial",
+                "d": "• Representação de números: complemento de dois, sinal-magnitude\n• Somadores (ripple-carry, carry-lookahead) e seus trade-offs\n• Multiplicação e divisão em hardware\n• Ponto flutuante (IEEE 754) no nível de hardware"
+              }
+            ]
+          },
+          {
+            "name": "Verilog & VHDL: Descrevendo Hardware",
+            "books": [
+              "Verilog HDL — Samir Palnitkar",
+              "The Designer's Guide to VHDL — Peter Ashenden",
+              "FPGA Prototyping by Verilog/VHDL Examples — Pong Chu"
+            ],
+            "items": [
+              {
+                "w": "HDL: pensar em hardware, não em software",
+                "s": "HDL verilog vhdl | hardware description language | pensar em hardware | RTL design intro | HDL verilog vhdl tutorial",
+                "d": "• HDLs descrevem hardware, não executam como software sequencial\n• Tudo acontece em paralelo (concorrente) — mudança de mentalidade\n• Verilog (estilo C) vs VHDL (estilo Ada/verboso, fortemente tipado)\n• RTL (Register Transfer Level): o nível em que se projeta"
+              },
+              {
+                "w": "Verilog na prática: módulos, sinais e atribuições",
+                "s": "verilog tutorial | verilog módulos | verilog blocking nonblocking | verilog na prática | verilog tutorial tutorial",
+                "d": "• Módulos: a unidade de design (entradas, saídas, lógica)\n• wire vs reg; atribuições blocking (=) vs non-blocking (<=)\n• always blocks pra lógica combinacional e sequencial\n• Erros comuns: latches acidentais, race conditions"
+              },
+              {
+                "w": "VHDL na prática: entidades, arquiteturas e processos",
+                "s": "vhdl tutorial | vhdl entidade arquitetura | vhdl process | vhdl na prática | vhdl tutorial tutorial",
+                "d": "• Entity (interface) + Architecture (implementação)\n• Tipos fortes (std_logic, std_logic_vector) evitam bugs\n• Processos (process) pra lógica sequencial\n• Verboso mas seguro — popular em aeroespacial/militar"
+              },
+              {
+                "w": "Testbenches e simulação: verificar antes de sintetizar",
+                "s": "testbench verilog | simulação HDL | verificação de hardware | testbench simulation | testbench verilog tutorial",
+                "d": "• Testbench: código que estimula e verifica seu design\n• Simulação (ModelSim, Verilator, Icarus) antes de gastar hardware\n• Waveforms (GTKWave) pra inspecionar sinais no tempo\n• Verificação é a maior parte do esforço em design real"
+              },
+              {
+                "w": "Design RTL: do comportamento ao circuito sintetizável",
+                "s": "RTL design | código sintetizável | rtl coding guidelines | synthesizable verilog | RTL design tutorial",
+                "d": "• Nem todo código HDL é sintetizável (vira hardware real)\n• Separar lógica combinacional de registradores claramente\n• Padrões: FSM em HDL, pipelines, datapath + controle\n• Escrever pensando no que o sintetizador vai gerar"
+              },
+              {
+                "w": "Parametrização e reuso: módulos genéricos",
+                "s": "verilog parameter | vhdl generic | reuso de módulos HDL | parameterized design | verilog parameter tutorial",
+                "d": "• Parâmetros (parameter/generic) tornam módulos reutilizáveis\n• Generate pra instanciar lógica repetida\n• IP cores: blocos prontos (memórias, FIFOs, interfaces)\n• Bibliotecas e boas práticas de organização de projeto"
+              }
+            ]
+          },
+          {
+            "name": "FPGA: Síntese e Implementação",
+            "books": [
+              "FPGA Prototyping by Verilog Examples — Pong Chu",
+              "Digital Design and Computer Architecture — Harris & Harris",
+              "Free Range VHDL — Bryan Mealy & Fabrizio Tappero"
+            ],
+            "items": [
+              {
+                "w": "O que é uma FPGA e quando usar",
+                "s": "o que é FPGA | fpga vs asic vs cpu | quando usar fpga | fpga introdução | o que é FPGA tutorial",
+                "d": "• FPGA: chip de lógica reconfigurável (LUTs, flip-flops, blocos)\n• Reprogramável vs ASIC (fixo, mas mais rápido/barato em escala)\n• Usos: prototipagem, processamento paralelo, baixa latência\n• Vendors: Xilinx (AMD), Intel (Altera), Lattice"
+              },
+              {
+                "w": "Fluxo de síntese: do HDL ao bitstream",
+                "s": "síntese fpga | place and route | bitstream fpga | fpga synthesis flow | síntese fpga tutorial",
+                "d": "• Síntese: HDL → netlist de gates/LUTs\n• Place & Route: mapear no chip físico e conectar\n• Timing analysis: verificar se atende a frequência alvo\n• Bitstream: arquivo que configura a FPGA"
+              },
+              {
+                "w": "Análise de timing e constraints",
+                "s": "timing constraints fpga | static timing analysis | constraints sdc | fpga timing | timing constraints fpga tutorial",
+                "d": "• Constraints definem clocks, I/O timing, exceções\n• Static Timing Analysis (STA) valida setup/hold em todos os caminhos\n• Caminho crítico determina a frequência máxima\n• Otimizar: pipeline, retiming, melhor floorplan"
+              },
+              {
+                "w": "Interfaces e periféricos: GPIO, UART, SPI em FPGA",
+                "s": "fpga uart spi | fpga gpio | fpga peripherals | fpga interfaces | fpga uart spi tutorial",
+                "d": "• Conectar a FPGA ao mundo: botões, LEDs, sensores\n• Implementar protocolos (UART, SPI, I2C) em HDL\n• Memórias externas (DDR) e on-chip (block RAM)\n• Clock management (PLLs/MMCMs) pra gerar frequências"
+              },
+              {
+                "w": "SoC em FPGA: processador + lógica customizada",
+                "s": "fpga soc | zynq | soft processor | fpga embedded processor | fpga soc tutorial",
+                "d": "• FPGAs modernas integram CPUs (ARM) + lógica programável (Zynq)\n• Soft processors (MicroBlaze, Nios, RISC-V) instanciados em HDL\n• Aceleradores: lógica customizada pra tarefas pesadas\n• HLS (High-Level Synthesis): gerar HDL a partir de C/C++"
+              },
+              {
+                "w": "Projeto prático em FPGA: do conceito à placa",
+                "s": "projeto fpga | fpga hands-on | tang nano basys | fpga project board | projeto fpga tutorial",
+                "d": "• Placas acessíveis pra começar: Tang Nano, iCEBreaker, Basys\n• Toolchains abertas (Yosys, nextpnr) vs proprietárias (Vivado)\n• Fluxo completo: código → simular → sintetizar → gravar → testar\n• Projetos: controlador de display, gerador de vídeo, sintetizador"
+              }
+            ]
+          },
+          {
+            "name": "Projetando uma CPU Simples",
+            "books": [
+              "Digital Design and Computer Architecture — Harris & Harris",
+              "Computer Organization and Design — Patterson & Hennessy",
+              "But How Do It Know? — J. Clark Scott"
+            ],
+            "items": [
+              {
+                "w": "Datapath e unidade de controle: anatomia de uma CPU",
+                "s": "datapath unidade de controle | cpu datapath control | arquitetura cpu hardware | building a cpu | datapath unidade de controle tutorial",
+                "d": "• CPU = datapath (faz contas/move dados) + controle (orquestra)\n• Registradores, ALU, multiplexadores e barramentos no datapath\n• Unidade de controle: FSM que gera os sinais de controle\n• Conecta o que você aprendeu em arquitetura de computadores"
+              },
+              {
+                "w": "Ciclo de instrução: fetch, decode, execute em hardware",
+                "s": "ciclo de instrução | fetch decode execute hardware | instruction cycle cpu | cpu pipeline básico | ciclo de instrução tutorial",
+                "d": "• Fetch (buscar instrução), Decode (interpretar), Execute (executar)\n• Program counter, registrador de instrução, memória\n• Implementar cada etapa em HDL\n• Single-cycle vs multi-cycle vs pipelined"
+              },
+              {
+                "w": "Implementando um subset de ISA (RISC-V/MIPS)",
+                "s": "implementar isa risc-v | mips cpu verilog | risc-v processor hdl | cpu instruction set | implementar isa risc-v tutorial",
+                "d": "• Escolher um subset de instruções (aritméticas, load/store, branch)\n• RISC-V: ISA aberta e didática, ideal pra aprender\n• Mapear cada instrução no datapath\n• Decodificador que traduz opcode em sinais de controle"
+              },
+              {
+                "w": "Memória, pipeline e hazards no seu processador",
+                "s": "pipeline cpu hazards | memory hierarchy cpu | data hazard forwarding | cpu pipeline design | pipeline cpu hazards tutorial",
+                "d": "• Hierarquia de memória: registradores, cache, RAM\n• Pipeline aumenta throughput mas cria hazards\n• Data/control hazards: forwarding, stalls, branch prediction\n• Trade-offs entre simplicidade e performance"
+              },
+              {
+                "w": "Testando e rodando programas na sua CPU",
+                "s": "testar cpu verilog | rodar programa cpu custom | cpu testbench | assembly na cpu própria | testar cpu verilog tutorial",
+                "d": "• Escrever programas em assembly pra sua CPU\n• Montar (assemble) pra código de máquina e carregar na memória\n• Testbench que roda o programa e verifica resultados\n• Depurar: inspecionar registradores e memória em simulação"
+              },
+              {
+                "w": "Próximos passos: do processador didático ao real",
+                "s": "arquitetura avançada cpu | superscalar out of order | cpu design avançado | from toy cpu to real | arquitetura avançada cpu tutorial",
+                "d": "• O que separa um processador didático de um real\n• Superescalar, out-of-order, especulação, multicore\n• Extensões: interrupções, modos privilegiados, MMU\n• Caminhos: contribuir pra cores RISC-V abertos, pesquisa em arquitetura"
+              }
+            ]
+          }
+        ],
+        "objectives": [
+          "Projetar Fundamentos de Design Digital",
+          "Projetar Verilog & VHDL",
+          "Projetar FPGA",
+          "Projetar Projetando uma CPU Simples"
+        ],
+        "projectKey": "🔲 Design Digital & HDL (Verilog/VHDL)"
       },
       {
         "name": "⚡ Concorrencia e Paralelismo",
@@ -4245,47 +4462,6 @@ const ROADMAP = [
               }
             ],
             "search": "ML Aplicado Automacao com IA"
-          },
-          {
-            "name": "Dashboards e Visualizacao pra Negocios",
-            "books": [
-              "Storytelling with Data — Cole Knaflic",
-              "The Big Book of Dashboards — Wexler, Shaffer & Cotgreave",
-              "Information Dashboard Design — Stephen Few"
-            ],
-            "items": [
-              {
-                "w": "Storytelling com dados: narrativa, audiencia, escolher o grafico certo",
-                "s": "Storytelling dados narrativa tutorial portugues | data visualization choosing chart type | storytelling com dados explained for beginners | storytelling com dados explicação em português | Storytelling dados narrativa tutorial portugues tutorial",
-                "d": "• O que é: Nao mostre dados — conte uma HISTORIA..\n• Conceitos-chave: Audiencia: quem vai ver? (C-level quer resumo, analista quer detalhe).. Grafico certo: comparacao (bar), tendencia (line), composicao (pie/stacked), distribuicao (histogram), relacao (scatter).. Menos e mais.. Remova chart junk.\n• O que estudar: narrativa, audiencia, escolher o grafico certo."
-              },
-              {
-                "w": "Ferramentas de BI: Metabase, Tableau, Power BI, Looker, Streamlit",
-                "s": "Ferramentas Metabase Tableau tutorial portugues | business intelligence tools | ferramentas de bi explained for beginners | ferramentas de bi explicação em português | Ferramentas Metabase Tableau tutorial portugues tutorial",
-                "d": "• O que é: Metabase: open-source, facil (SQL ou click)..\n• Conceitos-chave: Tableau: poderoso, caro.. Power BI: Microsoft (integra com Excel/Azure).. Looker: Google (LookML).. Streamlit: dashboard em Python (pra devs).. Pra empresa: Metabase ou Looker.\n• Exemplos: Pra prototipo rapido: Streamlit..\n• O que estudar: Metabase, Tableau, Power BI, Looker, Streamlit."
-              },
-              {
-                "w": "SQL pra analytics: window functions, CTEs, pivots, date operations",
-                "s": "analytics window functions tutorial portugues | analytical SQL queries tutorial | sql pra analytics explained for beginners | sql pra analytics explicação em português | analytics window functions tutorial portugues tutorial",
-                "d": "• O que é: Window functions: ROW_NUMBER, RANK, LAG, LEAD, running totals..\n• Conceitos-chave: CTEs: legibilidade.. Date: DATE_TRUNC, EXTRACT, intervals.. Pivoting: CASE WHEN ou CROSSTAB.. Cohort analysis em SQL puro.. SQL analytics = skill mais pedida em data.\n• O que estudar: window functions, CTEs, pivots, date operations."
-              },
-              {
-                "w": "Streamlit: criar dashboard interativo em Python em minutos",
-                "s": "Streamlit dashboard data tutorial | Streamlit interactive tutorial | streamlit explained for beginners | streamlit explicação em português | Streamlit dashboard data tutorial tutorial",
-                "d": "• O que é: pip install streamlit..\n• Conceitos-chave: st.title('Meu App').. st.dataframe(df).. st.line_chart(data).. st.selectbox(), st.slider().. streamlit run app.py.. Deploy gratis: Streamlit Cloud.. Em 50 linhas de Python voce tem um dashboard interativo.. Melhor pra devs que Tableau.\n• O que estudar: criar dashboard interativo em Python em minutos."
-              },
-              {
-                "w": "Design de dashboard: hierarquia visual, KPIs no topo, filtros, drill-down",
-                "s": "Design de dashboard explicação português | dashboard best practices tutorial | design de dashboard explained for beginners | Design de dashboard examples and practice | Design de dashboard explicação português tutorial",
-                "d": "• O que é: Topo: KPIs principais (numeros grandes)..\n• Conceitos-chave: Meio: graficos de tendencia.. Baixo: detalhes/tabelas.. Filtros: data, regiao, categoria.. Drill-down: clicar pra ver detalhe.. Cores: vermelho=ruim, verde=bom (cuidado daltonicos).. Menos graficos = mais clareza.. Pergunte: que decisao esse dashboard ajuda a tomar?.\n• O que estudar: hierarquia visual, KPIs no topo, filtros, drill-down."
-              },
-              {
-                "w": "Metricas de negocio: como escolher o que medir, vanity metrics vs actionable metrics",
-                "s": "Metricas de negocio explicação português | business metrics vanity vs actionable | metricas de negocio tutorial completo | metricas de negocio explained for beginners | Metricas de negocio explicação português tutorial",
-                "d": "• O que é: Vanity metrics: page views, downloads (parecem bons, nao informam decisao)..\n• Conceitos-chave: Actionable: retention, NPS, conversion rate, revenue per user.. North Star Metric: 1 metrica que resume valor do produto (Airbnb: noites reservadas).. Correlation != causation.. Sempre pergunte: e o que faco com esse numero?.\n• O que estudar: como escolher o que medir, vanity metrics vs actionable metrics."
-              }
-            ],
-            "search": "Dashboards e Visualizacao pra Negocios"
           }
         ],
         "prereq": "Matemática p/ ML, Python",
@@ -5570,7 +5746,10 @@ const ROADMAP = [
           "Dominar ESP32, Raspberry Pi, IoT",
           "Dominar Automacao Industrial Intro",
           "Dominar Sistemas de Tempo Real (RTOS)"
-        ]
+        ],
+        "track": "hardware",
+        "trackPart": 4,
+        "trackTotal": 5
       },
       {
         "name": "🎨 Computação Gráfica",
@@ -7194,6 +7373,47 @@ const ROADMAP = [
               }
             ],
             "search": "Qualidade, Governança e Arquitetura Moderna"
+          },
+          {
+            "name": "Visualização de Dados e BI",
+            "books": [
+              "Storytelling with Data — Cole Knaflic",
+              "The Big Book of Dashboards — Wexler, Shaffer & Cotgreave",
+              "Information Dashboard Design — Stephen Few"
+            ],
+            "items": [
+              {
+                "w": "Storytelling com dados: narrativa, audiencia, escolher o grafico certo",
+                "s": "Storytelling dados narrativa tutorial portugues | data visualization choosing chart type | storytelling com dados explained for beginners | storytelling com dados explicação em português | Storytelling dados narrativa tutorial portugues tutorial",
+                "d": "• O que é: Nao mostre dados — conte uma HISTORIA..\n• Conceitos-chave: Audiencia: quem vai ver? (C-level quer resumo, analista quer detalhe).. Grafico certo: comparacao (bar), tendencia (line), composicao (pie/stacked), distribuicao (histogram), relacao (scatter).. Menos e mais.. Remova chart junk.\n• O que estudar: narrativa, audiencia, escolher o grafico certo."
+              },
+              {
+                "w": "Ferramentas de BI: Metabase, Tableau, Power BI, Looker, Streamlit",
+                "s": "Ferramentas Metabase Tableau tutorial portugues | business intelligence tools | ferramentas de bi explained for beginners | ferramentas de bi explicação em português | Ferramentas Metabase Tableau tutorial portugues tutorial",
+                "d": "• O que é: Metabase: open-source, facil (SQL ou click)..\n• Conceitos-chave: Tableau: poderoso, caro.. Power BI: Microsoft (integra com Excel/Azure).. Looker: Google (LookML).. Streamlit: dashboard em Python (pra devs).. Pra empresa: Metabase ou Looker.\n• Exemplos: Pra prototipo rapido: Streamlit..\n• O que estudar: Metabase, Tableau, Power BI, Looker, Streamlit."
+              },
+              {
+                "w": "SQL pra analytics: window functions, CTEs, pivots, date operations",
+                "s": "analytics window functions tutorial portugues | analytical SQL queries tutorial | sql pra analytics explained for beginners | sql pra analytics explicação em português | analytics window functions tutorial portugues tutorial",
+                "d": "• O que é: Window functions: ROW_NUMBER, RANK, LAG, LEAD, running totals..\n• Conceitos-chave: CTEs: legibilidade.. Date: DATE_TRUNC, EXTRACT, intervals.. Pivoting: CASE WHEN ou CROSSTAB.. Cohort analysis em SQL puro.. SQL analytics = skill mais pedida em data.\n• O que estudar: window functions, CTEs, pivots, date operations."
+              },
+              {
+                "w": "Streamlit: criar dashboard interativo em Python em minutos",
+                "s": "Streamlit dashboard data tutorial | Streamlit interactive tutorial | streamlit explained for beginners | streamlit explicação em português | Streamlit dashboard data tutorial tutorial",
+                "d": "• O que é: pip install streamlit..\n• Conceitos-chave: st.title('Meu App').. st.dataframe(df).. st.line_chart(data).. st.selectbox(), st.slider().. streamlit run app.py.. Deploy gratis: Streamlit Cloud.. Em 50 linhas de Python voce tem um dashboard interativo.. Melhor pra devs que Tableau.\n• O que estudar: criar dashboard interativo em Python em minutos."
+              },
+              {
+                "w": "Design de dashboard: hierarquia visual, KPIs no topo, filtros, drill-down",
+                "s": "Design de dashboard explicação português | dashboard best practices tutorial | design de dashboard explained for beginners | Design de dashboard examples and practice | Design de dashboard explicação português tutorial",
+                "d": "• O que é: Topo: KPIs principais (numeros grandes)..\n• Conceitos-chave: Meio: graficos de tendencia.. Baixo: detalhes/tabelas.. Filtros: data, regiao, categoria.. Drill-down: clicar pra ver detalhe.. Cores: vermelho=ruim, verde=bom (cuidado daltonicos).. Menos graficos = mais clareza.. Pergunte: que decisao esse dashboard ajuda a tomar?.\n• O que estudar: hierarquia visual, KPIs no topo, filtros, drill-down."
+              },
+              {
+                "w": "Metricas de negocio: como escolher o que medir, vanity metrics vs actionable metrics",
+                "s": "Metricas de negocio explicação português | business metrics vanity vs actionable | metricas de negocio tutorial completo | metricas de negocio explained for beginners | Metricas de negocio explicação português tutorial",
+                "d": "• O que é: Vanity metrics: page views, downloads (parecem bons, nao informam decisao)..\n• Conceitos-chave: Actionable: retention, NPS, conversion rate, revenue per user.. North Star Metric: 1 metrica que resume valor do produto (Airbnb: noites reservadas).. Correlation != causation.. Sempre pergunte: e o que faco com esse numero?.\n• O que estudar: como escolher o que medir, vanity metrics vs actionable metrics."
+              }
+            ],
+            "search": "Dashboards e Visualizacao pra Negocios"
           }
         ],
         "prereq": "Banco de Dados, Python",
@@ -8071,7 +8291,10 @@ const ROADMAP = [
           "Dominar ROS, Visao, Controle",
           "Dominar IA aplicada a Robotica",
           "Dominar Automacao Avancada & Industria 4.0"
-        ]
+        ],
+        "track": "hardware",
+        "trackPart": 5,
+        "trackTotal": 5
       },
       {
         "name": "🥽 AR/VR/XR & Computação Espacial",
@@ -8323,6 +8546,413 @@ const ROADMAP = [
           "Compreender Fundamentos Quant e Dados Financeiros",
           "Dominar Estratégias, Backtesting e Risco"
         ]
+      },
+      {
+        "name": "🎛️ Sistemas de Controle",
+        "prereq": "Sinais e Sistemas, Calculo II & Equacoes Diferenciais",
+        "topics": [
+          {
+            "name": "Fundamentos de Controle",
+            "books": [
+              "Engenharia de Sistemas de Controle — Norman Nise",
+              "Modern Control Engineering — Katsuhiko Ogata",
+              "Feedback Systems — Åström & Murray (gratuito online)"
+            ],
+            "items": [
+              {
+                "w": "🎯 Por que estudar Sistemas de Controle? Máquinas que se autorregulam",
+                "s": "por que estudar controle | importância sistemas de controle | controle engenharia | control systems overview | por que estudar controle tutorial",
+                "d": "• Controle faz sistemas se manterem estáveis e atingirem objetivos sozinhos\n• Está em tudo: drones, carros, robôs, ar-condicionado, foguetes\n• Une matemática (cálculo, Laplace) com engenharia prática\n• Essencial pra robótica, embarcados e automação"
+              },
+              {
+                "w": "Malha aberta vs malha fechada: o poder do feedback",
+                "s": "malha aberta malha fechada | feedback controle | open loop closed loop control | realimentação | malha aberta malha fechada tutorial",
+                "d": "• Malha aberta: age sem medir o resultado (frágil a perturbações)\n• Malha fechada: mede a saída e corrige (feedback)\n• Feedback dá robustez, precisão e estabilidade\n• Exemplo: termostato mede temperatura e ajusta o aquecimento"
+              },
+              {
+                "w": "Modelagem de sistemas: equações diferenciais e função de transferência",
+                "s": "função de transferência | modelagem sistema controle | transfer function | modelo matemático sistema | função de transferência tutorial",
+                "d": "• Sistemas físicos viram equações diferenciais\n• Transformada de Laplace converte EDOs em álgebra\n• Função de transferência: relação saída/entrada no domínio s\n• Polos e zeros determinam o comportamento"
+              },
+              {
+                "w": "Resposta no tempo: transitório, regime e desempenho",
+                "s": "resposta no tempo controle | resposta transitória | time response control | overshoot settling time | resposta no tempo controle tutorial",
+                "d": "• Resposta a degrau: como o sistema reage a uma mudança\n• Métricas: tempo de subida, overshoot, tempo de acomodação\n• Sistemas de 1ª e 2ª ordem e seus comportamentos típicos\n• Erro em regime permanente"
+              },
+              {
+                "w": "Estabilidade: o sistema converge ou explode?",
+                "s": "estabilidade controle | critério de routh | stability control systems | sistema estável | estabilidade controle tutorial",
+                "d": "• Estabilidade: a saída permanece limitada (não diverge)\n• Polos no semiplano esquerdo = estável\n• Critério de Routh-Hurwitz pra checar sem calcular polos\n• Margem de estabilidade: quão perto de ficar instável"
+              },
+              {
+                "w": "Diagramas de Bode e resposta em frequência",
+                "s": "diagrama de bode | resposta em frequência | bode plot control | frequency response | diagrama de bode tutorial",
+                "d": "• Resposta em frequência: como o sistema reage a cada frequência\n• Diagrama de Bode (ganho e fase) e Nyquist\n• Margens de ganho e fase pra avaliar robustez\n• Liga com o que você viu em Sinais e Sistemas"
+              }
+            ]
+          },
+          {
+            "name": "Controladores PID e Projeto",
+            "books": [
+              "Engenharia de Sistemas de Controle — Norman Nise",
+              "PID Controllers — Åström & Hägglund",
+              "Control Systems Engineering — I.J. Nagrath"
+            ],
+            "items": [
+              {
+                "w": "O controlador PID: o cavalo de batalha da indústria",
+                "s": "controlador PID | PID tutorial | pid controller explained | proporcional integral derivativo | controlador PID tutorial",
+                "d": "• PID: combina ação Proporcional, Integral e Derivativa\n• P reage ao erro, I elimina erro acumulado, D antecipa\n• ~95% dos controladores industriais são PID\n• Simples, robusto e eficaz pra maioria dos casos"
+              },
+              {
+                "w": "Sintonia de PID: ajustando ganhos na prática",
+                "s": "sintonia PID | tuning pid | ziegler nichols | pid tuning prática | sintonia PID tutorial",
+                "d": "• Sintonizar: escolher Kp, Ki, Kd pro comportamento desejado\n• Métodos: Ziegler-Nichols, tentativa-erro, auto-tuning\n• Trade-off: resposta rápida vs estabilidade vs overshoot\n• Problemas práticos: windup do integrador, ruído no derivativo"
+              },
+              {
+                "w": "Lugar das raízes (root locus): projetar pela posição dos polos",
+                "s": "lugar das raízes | root locus | projeto controlador root locus | pole placement | lugar das raízes tutorial",
+                "d": "• Root locus: como os polos se movem ao variar o ganho\n• Ferramenta gráfica pra projetar controladores\n• Posicionar polos pra atingir desempenho desejado\n• Compensadores lead/lag pra moldar a resposta"
+              },
+              {
+                "w": "Projeto de compensadores e controle avançado",
+                "s": "compensador lead lag | controle avançado | state space control | controle moderno | compensador lead lag tutorial",
+                "d": "• Compensadores avanço (lead) e atraso (lag) de fase\n• Controle em espaço de estados (moderno, multivariável)\n• Controlabilidade e observabilidade\n• Introdução a LQR e controle ótimo"
+              },
+              {
+                "w": "Simulação de controle: MATLAB/Simulink e Python",
+                "s": "simulação controle matlab | simulink | python control library | controle simulação | simulação controle matlab tutorial",
+                "d": "• Simular antes de implementar no sistema real\n• MATLAB/Simulink: padrão da indústria e academia\n• Python (python-control, scipy.signal): alternativa gratuita\n• Validar projeto: resposta, estabilidade, robustez"
+              },
+              {
+                "w": "Aplicações reais: do drone ao processo industrial",
+                "s": "aplicações controle | controle drone robô | process control industrial | control applications | aplicações controle tutorial",
+                "d": "• Drones: estabilização de voo com PID em cascata\n• Robótica: controle de juntas e trajetória\n• Processos industriais: temperatura, pressão, vazão\n• Automotivo: cruise control, ABS, direção autônoma"
+              }
+            ]
+          },
+          {
+            "name": "Controle Digital e Embarcado",
+            "books": [
+              "Digital Control of Dynamic Systems — Franklin, Powell & Workman",
+              "Computer-Controlled Systems — Åström & Wittenmark",
+              "Real-Time Control Systems — diversos"
+            ],
+            "items": [
+              {
+                "w": "Controle digital: do contínuo ao discreto",
+                "s": "controle digital | discretização controle | digital control systems | transformada z controle | controle digital tutorial",
+                "d": "• Controladores hoje rodam em microcontroladores (digital)\n• Amostragem e a transformada Z (o equivalente discreto de Laplace)\n• Escolha do período de amostragem é crítica\n• Discretizar um controlador contínuo pra implementar em código"
+              },
+              {
+                "w": "Implementando PID em microcontrolador",
+                "s": "pid microcontrolador | pid arduino embedded | pid embedded code | implementar pid firmware | pid microcontrolador tutorial",
+                "d": "• Traduzir o PID pra código em loop de tempo real\n• Tratar saturação, anti-windup e filtragem do derivativo\n• Timing determinístico: rodar o controle em intervalos fixos\n• Conecta com Embarcados e RTOS"
+              },
+              {
+                "w": "Sensores, atuadores e a malha real",
+                "s": "sensores atuadores controle | malha de controle real | sensor actuator control loop | instrumentação | sensores atuadores controle tutorial",
+                "d": "• Sensores (encoders, IMUs, termopares) medem a planta\n• Atuadores (motores, válvulas, PWM) aplicam a ação\n• Ruído, atraso e quantização do mundo real\n• Filtros (média móvel, Kalman) pra medições limpas"
+              },
+              {
+                "w": "Filtro de Kalman: estimação de estado",
+                "s": "filtro de kalman | kalman filter | estimação de estado | sensor fusion kalman | filtro de kalman tutorial",
+                "d": "• Kalman: estima o estado real a partir de medições ruidosas\n• Funde múltiplos sensores (sensor fusion)\n• Essencial em navegação, drones, robótica\n• Versões: linear, estendido (EKF), unscented (UKF)"
+              },
+              {
+                "w": "Projeto prático: controlando um sistema físico",
+                "s": "projeto controle prático | balancing robot | controle motor projeto | hands-on control project | projeto controle prático tutorial",
+                "d": "• Projetos clássicos: pêndulo invertido, robô que se equilibra\n• Controle de velocidade/posição de motor DC\n• Linha seguidor, quadricóptero, braço robótico\n• Ciclo: modelar → projetar → implementar → ajustar"
+              }
+            ]
+          }
+        ],
+        "objectives": [
+          "Compreender Fundamentos de Controle",
+          "Construir projetos usando Controladores PID e Projeto",
+          "Dominar Controle Digital e Embarcado"
+        ],
+        "projectKey": "🎛️ Sistemas de Controle"
+      },
+      {
+        "name": "👁️ Visão Computacional & Processamento de Imagens",
+        "prereq": "Python Intermediario & OOP, Matematica p/ ML",
+        "topics": [
+          {
+            "name": "Fundamentos de Imagens Digitais",
+            "books": [
+              "Digital Image Processing — Gonzalez & Woods",
+              "Computer Vision: Algorithms and Applications — Richard Szeliski (gratuito)",
+              "Programming Computer Vision with Python — Jan Erik Solem"
+            ],
+            "items": [
+              {
+                "w": "🎯 Por que estudar Visão Computacional? Ensinar máquinas a enxergar",
+                "s": "por que estudar visão computacional | importância computer vision | visão computacional aplicações | computer vision overview | por que estudar visão computacional tutorial",
+                "d": "• Visão computacional dá aos computadores a capacidade de interpretar imagens\n• Está em câmeras, carros autônomos, medicina, indústria, celulares\n• Processamento clássico de imagens é base mesmo na era do deep learning\n• Une matemática, programação e percepção"
+              },
+              {
+                "w": "A imagem digital: pixels, resolução e amostragem",
+                "s": "imagem digital pixels | resolução amostragem imagem | digital image fundamentals | pixel raster | imagem digital pixels tutorial",
+                "d": "• Imagem = matriz de pixels (valores de intensidade)\n• Resolução, profundidade de bits e amostragem\n• Imagens em tons de cinza vs coloridas\n• Como a câmera transforma luz em números"
+              },
+              {
+                "w": "Espaços de cor: RGB, HSV e quando usar cada um",
+                "s": "espaço de cor RGB HSV | color space | hsv vs rgb | color models imagem | espaço de cor RGB HSV tutorial",
+                "d": "• RGB: aditivo, como telas funcionam\n• HSV/HSL: separa cor de brilho (útil pra segmentar por cor)\n• Grayscale, CMYK, Lab e seus usos\n• Converter entre espaços pra facilitar tarefas"
+              },
+              {
+                "w": "Histogramas e operações de ponto",
+                "s": "histograma imagem | equalização de histograma | point operations image | brightness contrast | histograma imagem tutorial",
+                "d": "• Histograma: distribuição de intensidades da imagem\n• Equalização pra melhorar contraste\n• Operações de ponto: brilho, contraste, threshold\n• Binarização (Otsu) pra separar objeto e fundo"
+              },
+              {
+                "w": "Ruído e suavização: limpando a imagem",
+                "s": "ruído imagem | suavização blur | image denoising | gaussian blur median filter | ruído imagem tutorial",
+                "d": "• Tipos de ruído (gaussiano, sal e pimenta)\n• Filtros de suavização: média, gaussiano, mediana\n• Trade-off: remover ruído vs preservar detalhes\n• Filtros bilaterais preservam bordas"
+              }
+            ]
+          },
+          {
+            "name": "Processamento de Imagens com OpenCV",
+            "books": [
+              "Learning OpenCV — Bradski & Kaehler",
+              "Digital Image Processing — Gonzalez & Woods",
+              "OpenCV with Python by Example — Prateek Joshi"
+            ],
+            "items": [
+              {
+                "w": "OpenCV: a caixa de ferramentas da visão computacional",
+                "s": "opencv tutorial | opencv python | introdução opencv | computer vision opencv | opencv tutorial tutorial",
+                "d": "• OpenCV: biblioteca padrão pra visão computacional\n• Carregar, exibir, salvar e manipular imagens/vídeo\n• Milhares de funções prontas e otimizadas\n• Python, C++ e bindings pra várias linguagens"
+              },
+              {
+                "w": "Convolução e filtros: a operação fundamental",
+                "s": "convolução imagem | filtros convolucionais | image convolution kernel | filtros opencv | convolução imagem tutorial",
+                "d": "• Convolução: aplicar um kernel deslizante na imagem\n• Kernels pra blur, sharpen, emboss, detecção\n• A mesma operação que está no coração das CNNs\n• Entender convolução conecta processamento clássico e deep learning"
+              },
+              {
+                "w": "Detecção de bordas: Sobel, Canny e gradientes",
+                "s": "detecção de bordas | canny sobel | edge detection | gradiente imagem | detecção de bordas tutorial",
+                "d": "• Bordas marcam mudanças bruscas de intensidade\n• Gradientes (Sobel, Scharr) medem variação\n• Canny: detector de bordas robusto e clássico\n• Bordas são base pra detectar formas e contornos"
+              },
+              {
+                "w": "Morfologia matemática: erosão, dilatação e formas",
+                "s": "morfologia matemática imagem | erosão dilatação | morphological operations | opening closing | morfologia matemática imagem tutorial",
+                "d": "• Operações morfológicas em imagens binárias\n• Erosão (encolhe) e dilatação (expande)\n• Abertura e fechamento pra limpar ruído e preencher buracos\n• Útil em OCR, contagem de objetos, segmentação"
+              },
+              {
+                "w": "Segmentação e contornos: isolar objetos",
+                "s": "segmentação de imagem | contornos opencv | image segmentation | contour detection | segmentação de imagem tutorial",
+                "d": "• Segmentação: dividir a imagem em regiões de interesse\n• Threshold, watershed, grabcut\n• Detecção e análise de contornos (área, perímetro, forma)\n• Contar e medir objetos numa cena"
+              },
+              {
+                "w": "Transformadas geométricas: rotação, warp e perspectiva",
+                "s": "transformada geométrica imagem | warp perspectiva | image transformation | affine perspective transform | transformada geométrica imagem tutorial",
+                "d": "• Transladar, rotacionar, escalar e cisalhar imagens\n• Transformações afins e de perspectiva\n• Corrigir distorção e endireitar documentos\n• Matrizes de transformação (conecta com álgebra linear)"
+              }
+            ]
+          },
+          {
+            "name": "Visão Computacional Clássica",
+            "books": [
+              "Computer Vision: Algorithms and Applications — Szeliski",
+              "Multiple View Geometry — Hartley & Zisserman",
+              "Learning OpenCV — Bradski & Kaehler"
+            ],
+            "items": [
+              {
+                "w": "Detecção de features: cantos, SIFT e ORB",
+                "s": "detecção de features | sift orb | feature detection | keypoints imagem | detecção de features tutorial",
+                "d": "• Features: pontos distintivos e repetíveis na imagem\n• Detectores de cantos (Harris) e descritores (SIFT, SURF, ORB)\n• Invariância a escala, rotação e iluminação\n• Base pra casar imagens e reconhecer objetos"
+              },
+              {
+                "w": "Matching e homografia: alinhando imagens",
+                "s": "feature matching | homografia | image stitching | homography opencv | feature matching tutorial",
+                "d": "• Casar features entre duas imagens\n• Homografia: transformação entre planos\n• RANSAC pra rejeitar correspondências erradas\n• Aplicações: panoramas, realidade aumentada"
+              },
+              {
+                "w": "Calibração de câmera e geometria",
+                "s": "calibração de câmera | camera calibration | geometria projetiva | camera matrix | calibração de câmera tutorial",
+                "d": "• Câmera real distorce a imagem (lente, perspectiva)\n• Calibração estima parâmetros intrínsecos e distorção\n• Matriz da câmera e modelo pinhole\n• Necessário pra medições métricas e AR/robótica"
+              },
+              {
+                "w": "Visão estéreo e profundidade",
+                "s": "visão estéreo | stereo vision | depth map | disparity stereo | visão estéreo tutorial",
+                "d": "• Duas câmeras estimam profundidade (como olhos humanos)\n• Mapa de disparidade → mapa de profundidade\n• Triangulação e geometria epipolar\n• Sensores de profundidade (Kinect, LiDAR, ToF)"
+              },
+              {
+                "w": "Rastreamento de objetos e movimento",
+                "s": "rastreamento de objetos | object tracking | optical flow | motion tracking opencv | rastreamento de objetos tutorial",
+                "d": "• Rastrear objetos ao longo de um vídeo\n• Optical flow: estimar movimento entre frames\n• Trackers clássicos (KLT, mean-shift, CSRT)\n• Subtração de fundo pra detectar movimento"
+              },
+              {
+                "w": "Detecção clássica: Haar cascades e HOG",
+                "s": "haar cascade | hog detector | detecção facial clássica | classical object detection | haar cascade tutorial",
+                "d": "• Detecção antes do deep learning: Haar (Viola-Jones), HOG+SVM\n• Detecção de faces, pedestres, placas\n• Rápido e leve, roda em hardware modesto\n• Quando o clássico ainda vence o DL (latência, dados, custo)"
+              }
+            ]
+          },
+          {
+            "name": "Aplicações e Ponte com Deep Learning",
+            "books": [
+              "Computer Vision: Algorithms and Applications — Szeliski",
+              "Deep Learning for Vision Systems — Mohamed Elgendy",
+              "Practical Computer Vision — diversos"
+            ],
+            "items": [
+              {
+                "w": "Quando usar clássico vs deep learning",
+                "s": "clássico vs deep learning visão | when to use deep learning vision | cv tradeoffs | visão computacional escolha | clássico vs deep learning visão tutorial",
+                "d": "• Clássico: rápido, interpretável, pouca data, baixo custo\n• Deep learning: melhor em tarefas complexas, mas exige dados/GPU\n• Muitas soluções reais combinam os dois\n• Critérios: latência, dados disponíveis, hardware, precisão"
+              },
+              {
+                "w": "OCR: reconhecimento de texto em imagens",
+                "s": "OCR | tesseract | reconhecimento de texto imagem | optical character recognition | OCR tutorial",
+                "d": "• OCR: extrair texto de imagens e documentos\n• Tesseract (clássico) e abordagens modernas\n• Pré-processamento (binarização, deskew) melhora muito\n• Aplicações: digitalização, placas, documentos"
+              },
+              {
+                "w": "Pipelines de visão em produção",
+                "s": "pipeline visão produção | deploy computer vision | cv production | visão computacional tempo real | pipeline visão produção tutorial",
+                "d": "• Da prova de conceito ao sistema em produção\n• Performance: otimização, GPU, edge devices\n• Robustez a iluminação, ângulo, oclusão variáveis\n• Integração com câmeras, streams e hardware"
+              },
+              {
+                "w": "Visão em embarcados e edge",
+                "s": "visão embarcada | edge computer vision | raspberry pi camera | tinyml vision | visão embarcada tutorial",
+                "d": "• Rodar visão em dispositivos pequenos (Raspberry Pi, Jetson)\n• Modelos leves e otimização (quantização, TensorRT)\n• Conecta com Embarcados/IoT e Robótica\n• Aplicações: câmeras inteligentes, drones, indústria"
+              },
+              {
+                "w": "Projetos práticos de visão computacional",
+                "s": "projetos visão computacional | computer vision projects | cv portfolio | visão projeto prático | projetos visão computacional tutorial",
+                "d": "• Projetos: contador de objetos, leitor de placas, detector de movimento\n• Scanner de documentos, medidor por imagem, filtro de câmera\n• Combinar processamento + features + (opcional) DL\n• Documentar resultados e limitações pro portfólio"
+              }
+            ]
+          }
+        ],
+        "objectives": [
+          "Compreender Fundamentos de Imagens Digitais",
+          "Dominar Processamento de Imagens com OpenCV",
+          "Dominar Visão Computacional Clássica",
+          "Construir projetos usando Aplicações e Ponte com Deep Learning"
+        ],
+        "projectKey": "👁️ Visão Computacional & Processamento de Imagens"
+      },
+      {
+        "name": "📈 Otimização & Pesquisa Operacional",
+        "prereq": "Matematica Fundamental, Estruturas de Dados & Algoritmos",
+        "topics": [
+          {
+            "name": "Otimização Matemática",
+            "books": [
+              "Convex Optimization — Boyd & Vandenberghe (gratuito)",
+              "Numerical Optimization — Nocedal & Wright",
+              "Introduction to Operations Research — Hillier & Lieberman"
+            ],
+            "items": [
+              {
+                "w": "🎯 Por que estudar Otimização? Tomar as melhores decisões",
+                "s": "por que estudar otimização | importância otimização | optimization overview | pesquisa operacional importância | por que estudar otimização tutorial",
+                "d": "• Otimização busca a melhor solução dentro de restrições\n• Está em logística, ML, finanças, engenharia, agendamento\n• Transforma problemas de decisão em matemática resolvível\n• Diferencial forte no mercado e na pesquisa"
+              },
+              {
+                "w": "Modelagem: função objetivo e restrições",
+                "s": "modelagem otimização | função objetivo restrições | optimization modeling | objective function constraints | modelagem otimização tutorial",
+                "d": "• Traduzir um problema real em modelo matemático\n• Função objetivo: o que maximizar/minimizar\n• Restrições: limites do problema\n• Variáveis de decisão: o que se pode controlar"
+              },
+              {
+                "w": "Programação linear e o método Simplex",
+                "s": "programação linear | método simplex | linear programming | simplex method | programação linear tutorial",
+                "d": "• Programação linear: objetivo e restrições lineares\n• Método Simplex: algoritmo clássico pra resolver\n• Interpretação geométrica (vértices do politopo)\n• Dualidade e análise de sensibilidade"
+              },
+              {
+                "w": "Otimização convexa: o que torna um problema tratável",
+                "s": "otimização convexa | convex optimization | convexidade | convex problems | otimização convexa tutorial",
+                "d": "• Problemas convexos: ótimo local = ótimo global\n• Reconhecer convexidade é meio caminho andado\n• Conjuntos e funções convexas\n• Por que convexidade importa tanto em ML"
+              },
+              {
+                "w": "Gradiente e métodos iterativos",
+                "s": "gradiente descendente | métodos iterativos otimização | gradient descent optimization | newton method | gradiente descendente tutorial",
+                "d": "• Gradiente descendente: seguir a descida mais íngreme\n• Variantes: momentum, métodos de segunda ordem (Newton)\n• Conecta diretamente com treinamento de modelos de ML\n• Convergência, learning rate, mínimos locais"
+              }
+            ]
+          },
+          {
+            "name": "Pesquisa Operacional Aplicada",
+            "books": [
+              "Introduction to Operations Research — Hillier & Lieberman",
+              "Operations Research — Hamdy Taha",
+              "Model Building in Mathematical Programming — H.P. Williams"
+            ],
+            "items": [
+              {
+                "w": "Programação inteira e combinatória",
+                "s": "programação inteira | integer programming | otimização combinatória | combinatorial optimization | programação inteira tutorial",
+                "d": "• Variáveis inteiras (ex: não dá pra alocar meio caminhão)\n• Muito mais difícil que linear contínua (NP-difícil)\n• Branch and bound, planos de corte\n• Solvers (CBC, Gurobi, CPLEX, OR-Tools)"
+              },
+              {
+                "w": "Problemas clássicos: mochila, caixeiro viajante, alocação",
+                "s": "problema da mochila | caixeiro viajante TSP | knapsack assignment | problemas clássicos otimização | problema da mochila tutorial",
+                "d": "• Mochila (knapsack): maximizar valor com capacidade limitada\n• Caixeiro viajante (TSP): menor rota passando por todos\n• Alocação, coloração, cobertura\n• Reconhecer o problema clássico por trás do seu caso real"
+              },
+              {
+                "w": "Fluxo em redes e roteamento",
+                "s": "fluxo em redes | network flow | roteamento otimização | max flow min cost | fluxo em redes tutorial",
+                "d": "• Modelar problemas como fluxo em grafos\n• Fluxo máximo, fluxo de custo mínimo\n• Roteamento de veículos, logística, telecom\n• Conecta com algoritmos de grafos"
+              },
+              {
+                "w": "Escalonamento e sequenciamento",
+                "s": "escalonamento scheduling | sequenciamento | job scheduling optimization | timetabling | escalonamento scheduling tutorial",
+                "d": "• Alocar tarefas a recursos no tempo\n• Escalas de funcionários, produção, salas\n• Restrições complexas e múltiplos objetivos\n• Aplicações em fábricas, hospitais, transporte"
+              },
+              {
+                "w": "Modelagem na prática: OR-Tools e solvers",
+                "s": "OR-Tools | solver otimização | pyomo pulp | linear programming python | OR-Tools tutorial",
+                "d": "• Bibliotecas pra modelar e resolver (OR-Tools, PuLP, Pyomo)\n• Escrever o modelo em código e chamar o solver\n• Interpretar a solução e a viabilidade\n• Quando o problema é grande demais pra solução exata"
+              }
+            ]
+          },
+          {
+            "name": "Metaheurísticas e Otimização Estocástica",
+            "books": [
+              "Essentials of Metaheuristics — Sean Luke (gratuito)",
+              "Introduction to Evolutionary Computing — Eiben & Smith",
+              "Clever Algorithms — Jason Brownlee (gratuito)"
+            ],
+            "items": [
+              {
+                "w": "Quando o exato falha: heurísticas e aproximação",
+                "s": "heurística otimização | algoritmos aproximação | when exact fails | metaheuristics intro | heurística otimização tutorial",
+                "d": "• Problemas grandes/NP-difíceis: solução exata é inviável\n• Heurísticas: boas soluções em tempo razoável (sem garantia de ótimo)\n• Trade-off qualidade vs tempo\n• Algoritmos de aproximação com garantias"
+              },
+              {
+                "w": "Busca local e simulated annealing",
+                "s": "busca local | simulated annealing | local search optimization | hill climbing | busca local tutorial",
+                "d": "• Busca local: melhorar a solução com pequenos passos\n• Problema dos mínimos locais\n• Simulated annealing: aceitar pioras pra escapar de mínimos\n• Inspiração física (resfriamento de metais)"
+              },
+              {
+                "w": "Algoritmos genéticos e computação evolutiva",
+                "s": "algoritmos genéticos | genetic algorithm | computação evolutiva | evolutionary computation | algoritmos genéticos tutorial",
+                "d": "• Inspirados em evolução: população, seleção, cruzamento, mutação\n• Bons pra espaços de busca grandes e complexos\n• Aplicações: design, agendamento, tuning de parâmetros\n• Variantes: programação genética, estratégias evolutivas"
+              },
+              {
+                "w": "Otimização por enxame e colônias",
+                "s": "otimização por enxame | particle swarm | ant colony | swarm intelligence | otimização por enxame tutorial",
+                "d": "• Inteligência de enxame: muitos agentes simples cooperando\n• PSO (enxame de partículas), colônia de formigas (ACO)\n• Inspiração em pássaros, formigas, abelhas\n• Bons pra otimização contínua e roteamento"
+              },
+              {
+                "w": "Otimização aplicada a ML e engenharia",
+                "s": "otimização hiperparâmetros | otimização ML engenharia | hyperparameter optimization | optimization machine learning | otimização hiperparâmetros tutorial",
+                "d": "• Tuning de hiperparâmetros (grid, random, bayesiano)\n• Otimização de arquitetura e de design de engenharia\n• Multi-objetivo: equilibrar metas conflitantes (Pareto)\n• Conecta otimização com ML e problemas reais"
+              }
+            ]
+          }
+        ],
+        "objectives": [
+          "Analisar Otimização Matemática",
+          "Construir projetos usando Pesquisa Operacional Aplicada",
+          "Analisar Metaheurísticas e Otimização Estocástica"
+        ],
+        "projectKey": "📈 Otimização & Pesquisa Operacional"
       },
       {
         "name": "🎮 Game Design (Dev Avançado)",
