@@ -4051,7 +4051,7 @@ const ROADMAP = [
         ]
       },
       {
-        "name": "🎮 Computação Gráfica & Game Design",
+        "name": "🎨 Computação Gráfica",
         "topics": [
           {
             "name": "Fundamentos de CG",
@@ -4187,7 +4187,12 @@ const ROADMAP = [
                 "d": "• Animação por sprites (2D) vs esqueletal (rig de ossos, reaproveita animações)\n• Tweening e easing: interpolar entre estados com curvas (não linear = mais natural)\n• Máquina de estados de animação: idle→correr→pular→cair com transições\n• Inverse kinematics (IK): pés se ajustam ao terreno, mãos alcançam objetos"
               }
             ]
-          },
+          }
+        ]
+      },
+      {
+        "name": "🎮 Game Design",
+        "topics": [
           {
             "name": "Game Design: Teoria e Mecânicas",
             "books": [
@@ -4196,6 +4201,11 @@ const ROADMAP = [
               "A Theory of Fun for Game Design — Raph Koster"
             ],
             "items": [
+              {
+                "w": "🎯 Por que estudar Game Design?",
+                "s": "por que game design | game design carreira | importância game design | design de jogos",
+                "d": "• Game design é a disciplina que torna jogos divertidos — independente de gráficos ou tecnologia\n• Aplicável a games, gamificação, educação, produto e até design de sistemas\n• Conecta com seus interesses (FFXIV, MTG, Pokémon TCG) pelo ângulo de criador\n• Combina criatividade, psicologia, sistemas e teste — habilidade rara e valorizada"
+              },
               {
                 "w": "Pilares do game design: mecânicas, dinâmicas, estética (MDA) e o loop de diversão",
                 "s": "MDA framework | mechanics dynamics aesthetics | game design pillars | core loop diversão",
@@ -7274,6 +7284,16 @@ const ROADMAP = [
                 "w": "Renderização estéreo e performance: dois olhos, foveated rendering, frame timing, latência",
                 "s": "stereo rendering VR | foveated rendering | VR performance optimization | motion-to-photon latency",
                 "d": "• VR renderiza DUAS imagens (uma por olho) — dobra o custo de renderização\n• Frame rate alto é obrigatório (72-120 FPS); frame perdido causa enjoo\n• Foveated rendering: alta resolução só onde o olho olha (usa eye tracking)\n• Métrica crítica: motion-to-photon latency (< 20ms)"
+              },
+              {
+                "w": "Hardware de XR: headsets (Quest, Vision Pro), displays, lentes, campo de visão, refresh rate",
+                "s": "hardware XR | headset VR | display lentes VR | field of view refresh rate",
+                "d": "• Displays: resolução por olho, PPD (pixels por grau), o que causa o efeito 'screen door'\n• Lentes: fresnel vs pancake; campo de visão (FOV) e seu impacto na imersão\n• Refresh rate (90-120Hz) é crítico pra conforto; persistência baixa evita blur\n• Categorias: standalone (Quest), PCVR, MR passthrough (Vision Pro)"
+              },
+              {
+                "w": "Áudio espacial e haptics: som 3D, HRTF, feedback tátil, imersão multissensorial",
+                "s": "áudio espacial VR | HRTF | haptics VR | feedback tátil imersão",
+                "d": "• Áudio espacial: som posicionado em 3D aumenta presença tanto quanto o visual\n• HRTF: simula como orelhas/cabeça filtram som pra dar direção\n• Haptics: vibração nos controllers dá feedback tátil (toque, impacto)\n• Imersão é multissensorial — visão, áudio e tato juntos"
               }
             ]
           },
@@ -7304,6 +7324,26 @@ const ROADMAP = [
                 "w": "Design de UX espacial: ergonomia, conforto, affordances 3D, acessibilidade em XR",
                 "s": "spatial UX design | VR UX best practices | XR ergonomics comfort | VR accessibility",
                 "d": "• UX em 3D é diferente: profundidade, escala, campo de visão, fadiga de braço ('gorilla arm')\n• Conforto: evitar movimento forçado da câmera, dar pontos de referência\n• Affordances: objetos devem parecer interativos (highlight, física)\n• Acessibilidade: opções pra sentados, daltonismo, legendas espaciais"
+              },
+              {
+                "w": "Otimização para XR: draw calls, foveated rendering, baking, mobile VR constraints",
+                "s": "otimização VR | foveated rendering | mobile VR performance | VR draw calls",
+                "d": "• VR exige render duplo a 90+ FPS — orçamento de performance apertadíssimo\n• Reduzir draw calls (batching), usar LOD, baking de luz (pré-calcular)\n• Foveated rendering: alta resolução só onde o olho olha (com eye tracking)\n• Standalone (Quest) é mobile — restrições de GPU/térmica ainda mais duras"
+              },
+              {
+                "w": "Interação avançada em XR: hand tracking, gaze, voz, físicas de objetos virtuais",
+                "s": "hand tracking XR | gaze interaction | voz VR | physics objetos virtuais",
+                "d": "• Hand tracking: interagir sem controller, com as mãos (Quest, Vision Pro)\n• Gaze: mirar/selecionar com o olhar (eye tracking) — natural e rápido\n• Voz: comandos por fala complementam interação espacial\n• Físicas: objetos virtuais que pegam, empurram, colidem de forma crível"
+              },
+              {
+                "w": "Casos de uso e plataformas: treinamento, saúde, educação, indústria, social VR",
+                "s": "casos de uso XR | VR treinamento saúde | enterprise VR | social VR",
+                "d": "• Treinamento: simular cenários caros/perigosos com segurança (cirurgia, manutenção)\n• Saúde: terapia, reabilitação, visualização médica 3D\n• Indústria: prototipagem, gêmeos digitais, manutenção assistida por AR\n• Social VR e o debate sobre 'metaverso' — onde faz sentido e onde é hype"
+              },
+              {
+                "w": "Ética e conforto em XR: privacidade (eye/body tracking), segurança física, bem-estar",
+                "s": "ética XR | privacidade VR | eye tracking privacy | segurança física VR",
+                "d": "• Eye/body tracking gera dados biométricos sensíveis — privacidade séria\n• Segurança física: o usuário não vê o mundo real (tropeços, colisões)\n• Bem-estar: limitar tempo de uso, evitar conteúdo que cause enjoo/desconforto\n• Design responsável considera o impacto físico e psicológico da imersão"
               }
             ]
           }
@@ -7339,6 +7379,21 @@ const ROADMAP = [
                 "w": "Teoria de portfólio: Markowitz, fronteira eficiente, Sharpe ratio, diversificação",
                 "s": "Markowitz portfolio theory | efficient frontier | Sharpe ratio | portfolio optimization Python",
                 "d": "• Markowitz: otimizar retorno vs risco escolhendo pesos dos ativos\n• Fronteira eficiente: melhores portfólios pra cada nível de risco\n• Sharpe ratio: retorno por unidade de risco — métrica padrão de comparação\n• Diversificação reduz risco sem sacrificar retorno (o 'almoço grátis')"
+              },
+              {
+                "w": "Tipos de ativos e mercados: ações, renda fixa, cripto, derivativos, câmbio",
+                "s": "tipos de ativos | mercado financeiro | renda fixa derivativos | classes de ativos",
+                "d": "• Ações (equity), renda fixa (títulos), commodities, câmbio, cripto\n• Derivativos: opções e futuros — instrumentos que derivam de outro ativo\n• Cada classe tem risco/retorno e dinâmica própria\n• Entender os mercados é base antes de qualquer estratégia quantitativa"
+              },
+              {
+                "w": "Juros compostos, valor do dinheiro no tempo, valuation básico",
+                "s": "juros compostos | valor do dinheiro no tempo | present value | valuation básico",
+                "d": "• Valor do dinheiro no tempo: R$1 hoje vale mais que R$1 amanhã\n• Juros compostos: a 'oitava maravilha' — crescimento exponencial\n• Present value / future value: trazer fluxos futuros pro presente\n• Base de valuation (DCF) e de comparar investimentos"
+              },
+              {
+                "w": "Indicadores técnicos: médias móveis, RSI, MACD, bandas de Bollinger",
+                "s": "indicadores técnicos | médias móveis | RSI MACD | bandas de bollinger",
+                "d": "• Médias móveis: suavizar preço pra ver tendência (cruzamentos sinalizam)\n• RSI: mede sobrecompra/sobrevenda (momentum)\n• MACD: convergência/divergência de médias\n• Cuidado: indicadores são heurísticas, não bola de cristal — fáceis de overfit"
               }
             ]
           },
@@ -7369,6 +7424,26 @@ const ROADMAP = [
                 "w": "Gestão de risco e execução: position sizing, stop loss, drawdown, custos de transação",
                 "s": "position sizing | risk management trading | maximum drawdown | transaction costs slippage",
                 "d": "• Position sizing: quanto alocar por trade (Kelly criterion, risco fixo)\n• Drawdown: maior queda do pico — o que realmente quebra traders\n• Stop loss e gestão de risco importam mais que a estratégia de entrada\n• Custos reais: spread, slippage, taxas — muitas estratégias morrem aqui"
+              },
+              {
+                "w": "Análise de fatores e smart beta: value, momentum, quality, size",
+                "s": "fatores investimento | smart beta | factor investing | value momentum quality",
+                "d": "• Fatores: características que historicamente explicam retornos (value, momentum, size, quality)\n• Smart beta: estratégias sistemáticas baseadas em fatores\n• Combinar fatores diversifica fontes de retorno\n• Base acadêmica sólida (Fama-French) vs data mining — saber distinguir"
+              },
+              {
+                "w": "Microestrutura de mercado: order book, bid-ask, liquidez, market making",
+                "s": "microestrutura mercado | order book | bid-ask spread | market making liquidez",
+                "d": "• Order book: livro de ofertas de compra e venda; como ordens casam\n• Bid-ask spread: diferença entre comprar e vender (custo implícito)\n• Liquidez: facilidade de negociar sem mover o preço\n• HFT e market making operam nesse nível de microssegundos"
+              },
+              {
+                "w": "Pricing de opções: Black-Scholes, gregas, volatilidade implícita",
+                "s": "black-scholes | opções pricing | gregas opções | volatilidade implícita",
+                "d": "• Black-Scholes: modelo clássico de precificação de opções\n• Gregas (delta, gamma, theta, vega): sensibilidade do preço a fatores\n• Volatilidade implícita: o que o mercado 'espera' de volatilidade\n• Conecta matemática (cálculo estocástico) com mercado real"
+              },
+              {
+                "w": "Carteira na prática: rebalanceamento, otimização com restrições, robustez",
+                "s": "rebalanceamento carteira | otimização portfólio | portfolio constraints | robustez carteira",
+                "d": "• Rebalancear: voltar aos pesos-alvo periodicamente (disciplina vence emoção)\n• Otimização com restrições reais (limites por ativo, custos, liquidez)\n• Markowitz puro é instável — métodos robustos (Black-Litterman, risk parity)\n• Backtest honesto da carteira completa, não só de ativos isolados"
               }
             ]
           }
