@@ -1147,19 +1147,12 @@ ul.desc-bullets li.no-bullet::before { display: none; }
 .area.area-track-web::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:linear-gradient(180deg,#3b82f6,#2563eb); border-radius:12px 0 0 12px; }
 .area.area-track-web:has(.area-btn.open){ border-color:#3b82f6; box-shadow:0 0 0 1px rgba(59,130,246,0.22),0 8px 30px rgba(59,130,246,0.08); }
 
-/* Topic-level "search the whole theme" buttons */
-.topic-search { display:flex; align-items:center; flex-wrap:wrap; gap:8px; padding:8px 12px; margin:0 0 12px; background:rgba(99,102,241,0.06); border-radius:8px; font-size:13px; }
-.topic-search-label { font-weight:700; color:var(--text-muted,#94a3b8); }
-.light-mode .topic-search { background:rgba(99,102,241,0.07); }
 
 /* ════════════════════════════════════════════════════════════
    UI v7 — ORGANIZAÇÃO: hierarquia, respiro, navegação, modos
    ════════════════════════════════════════════════════════════ */
 
 /* ── ONDA 1C/D: hierarquia visual e respiro ── */
-/* Clean item study buttons (replaces raw keyword soup) */
-.item-study { display:flex; align-items:center; gap:8px; margin-top:10px; padding-top:10px; border-top:1px solid var(--border,rgba(148,163,184,0.12)); }
-.item-study-label { font-size:12.5px; font-weight:700; color:var(--text-muted,#94a3b8); }
 
 /* More breathing room between areas */
 .area { margin-bottom:10px; }

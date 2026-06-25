@@ -82,8 +82,6 @@ rS();
 
 // Search links
 function mSL(s){return s.split('|').map(t=>{const tr=t.trim();if(!tr)return'';const yt='https://www.youtube.com/results?search_query='+encodeURIComponent(tr);const gg='https://www.google.com/search?q='+encodeURIComponent(tr);return`<div class="search-term-row"><span class="search-term-text">• ${tr}</span><a href="${yt}" target="_blank" rel="noopener" class="search-link yt-link">▶ YouTube</a><a href="${gg}" target="_blank" rel="noopener" class="search-link gg-link">🔍 Google</a></div>`}).join('')}
-// Clean item search: use the primary (first) term for 2 tidy buttons; hide the raw keyword soup
-function itemSL(s){const terms=s.split('|').map(t=>t.trim()).filter(Boolean);if(!terms.length)return'';const primary=terms[0];const yt='https://www.youtube.com/results?search_query='+encodeURIComponent(primary+' tutorial');const gg='https://www.google.com/search?q='+encodeURIComponent(primary);return`<a href="${yt}" target="_blank" rel="noopener" class="search-link yt-link">▶ YouTube</a><a href="${gg}" target="_blank" rel="noopener" class="search-link gg-link">🔍 Google</a>`}
 
 function tog(b,c){
   const opening=!c.classList.contains('expanded');
@@ -301,7 +299,6 @@ tB.innerHTML=`<span>${esc(topic.name)}</span><span class="topic-meta">${topic.it
 const tC=document.createElement('div');tC.className='topic-content';tC.style.display='none';
 const st=cS(level.css,area.name,topic.name,topic.items.length);
 const pb=cPB(st,topic.items.length);pb.className+=' topic-progress';tC.appendChild(pb);
-if(topic.search){const tsq=topic.search;const tyt='https://www.youtube.com/results?search_query='+encodeURIComponent(tsq+' tutorial');const tgg='https://www.google.com/search?q='+encodeURIComponent(tsq);const tsr=document.createElement('div');tsr.className='topic-search';tsr.innerHTML=`<span class="topic-search-label">🔍 Buscar o tema todo:</span><a href="${tyt}" target="_blank" rel="noopener" class="search-link yt-link">▶ YouTube</a><a href="${tgg}" target="_blank" rel="noopener" class="search-link gg-link">🔍 Google</a>`;tC.appendChild(tsr)}
 const bb=document.createElement('div');bb.className='books-box';
 bb.innerHTML=`<strong>📚 Livros recomendados:</strong>`+topic.books.map(b=>`<div class="book-item">• ${esc(b)}</div>`).join('');tC.appendChild(bb);
 
@@ -323,7 +320,7 @@ const bulletsHtml=item.d.split('\n').map(line=>{
   if(tl.startsWith('•'))return '<li>'+esc(tl.substring(1).trim())+'</li>';
   return tl?'<li class="no-bullet">'+esc(tl)+'</li>':'';
 }).join('');
-det.innerHTML=`<div class="item-desc"><strong>📖 O que estudar:</strong><ul class="desc-bullets">${bulletsHtml}</ul></div><div class="item-study"><span class="item-study-label">Estudar:</span>${itemSL(item.s)}</div>`;
+det.innerHTML=`<div class="item-desc"><strong>📖 O que estudar:</strong><ul class="desc-bullets">${bulletsHtml}</ul></div><div class="search-terms"><strong>🔍 Termos de busca:</strong>${mSL(item.s)}</div>`;
 iB.addEventListener('click',e=>{if(e.target.closest('.item-check'))return;tog(iB,det)});
 iB.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){if(e.target.closest('.item-check'))return;e.preventDefault();tog(iB,det)}});
 iD.appendChild(iB);iD.appendChild(det);tC.appendChild(iD)});
@@ -386,11 +383,12 @@ if(toolbar&&typeof IntersectionObserver!=='undefined'){
   },{threshold:[1]});
   obs.observe(probe);
 }
-})();
 
-// Project
+// Project (must live INSIDE the IIFE to access esc/helpers)
 function openProject(p){const ov=document.createElement('div');ov.className='quiz-overlay';const mo=document.createElement('div');mo.className='quiz-modal project-modal';
 mo.setAttribute('role','dialog');mo.setAttribute('aria-modal','true');
 const bullets=str=>str.split('\n').map(line=>{const tl=line.trim();if(tl.startsWith('•'))return '<li>'+esc(tl.substring(1).trim())+'</li>';return tl?'<li class="no-bullet">'+esc(tl)+'</li>':''}).join('');
 mo.innerHTML=`<h2>${esc(p.title)}</h2><div class="project-section"><strong>📋 Descrição:</strong><ul class="desc-bullets">${bullets(p.desc)}</ul></div><div class="project-section"><strong>📦 Entregável:</strong><p>${esc(p.deliverable)}</p></div><div class="quiz-actions"><button class="quiz-close-btn" onclick="this.closest('.quiz-overlay').remove()">Fechar</button></div>`;
 ov.appendChild(mo);document.body.appendChild(ov);const fb=mo.querySelector('button');if(fb)fb.focus();ov.addEventListener('click',e=>{if(e.target===ov)ov.remove()})}
+window.openProject=openProject;
+})();
