@@ -264,7 +264,15 @@ window.setTrackFilter=function(tr){cTrack=tr;
 };
 
 // ── Compact mode (hide item details + descriptions, show only titles) ──
-window.toggleCompact=function(){const on=document.body.classList.toggle('compact-mode');const btn=document.getElementById('compact-toggle');if(btn)btn.textContent=on?'📖 Modo completo':'📑 Modo compacto'};
+window.toggleCompact=function(){const on=document.body.classList.toggle('compact-mode');const btn=document.getElementById('compact-toggle');if(btn)btn.textContent=on?'📖 Modo completo':'📑 Modo compacto';
+  if(on){
+    // close any open item details (they're hidden in compact anyway) and expand levels+areas+topics so the lean checklist is visible
+    document.querySelectorAll('.item-detail').forEach(d=>{d.style.display='none';d.classList.remove('expanded')});
+    document.querySelectorAll('.item-btn.open').forEach(b=>{b.classList.remove('open');b.setAttribute('aria-expanded','false');const ar=b.querySelector('.item-toggle');if(ar)ar.textContent='▸'});
+    document.querySelectorAll('.level-content,.area-content,.topic-content').forEach(c=>{c.style.display='block';c.classList.add('expanded');c.style.height='auto'});
+    document.querySelectorAll('.level-btn,.area-btn,.topic-btn').forEach(b=>{b.classList.add('open');b.setAttribute('aria-expanded','true');const ar=b.querySelector('.arrow');if(ar)ar.textContent='▾'});
+  }
+};
 
 // ── Back to top ──
 window.addEventListener('scroll',()=>{const b=document.getElementById('back-to-top');if(b)b.classList.toggle('show',window.scrollY>600)});

@@ -1159,7 +1159,7 @@ ul.desc-bullets li.no-bullet::before { display: none; }
 .level-content { padding-top:4px; }
 
 /* Sticky level navigation bar */
-.level-nav { position:sticky; top:0; z-index:50; display:flex; align-items:center; gap:7px; flex-wrap:wrap; padding:10px 12px; margin:0 0 14px; background:var(--surface,rgba(15,23,42,0.92)); backdrop-filter:blur(10px); border:1px solid var(--border,rgba(148,163,184,0.15)); border-radius:12px; }
+.level-nav { display:flex; align-items:center; gap:7px; flex-wrap:wrap; padding:10px 12px; margin:0 0 14px; background:var(--surface,rgba(15,23,42,0.92)); border:1px solid var(--border,rgba(148,163,184,0.15)); border-radius:12px; }
 .level-nav-label, .track-filter-label { font-size:12.5px; font-weight:700; color:var(--text-muted,#94a3b8); margin-right:2px; }
 .level-nav-btn { font-size:12.5px; font-weight:600; padding:6px 11px; border-radius:999px; border:1px solid var(--border,rgba(148,163,184,0.2)); background:var(--card,rgba(30,41,59,0.6)); color:var(--text,#e2e8f0); cursor:pointer; transition:transform 0.12s, background 0.15s, border-color 0.15s; white-space:nowrap; }
 .level-nav-btn:hover { transform:translateY(-1px); border-color:var(--accent,#6366f1); }
@@ -1181,10 +1181,22 @@ ul.desc-bullets li.no-bullet::before { display: none; }
 /* Hidden by track filter */
 .track-hidden { display:none !important; }
 
-/* ── ONDA 2E: compact mode (only titles, hide details/projects/prereq) ── */
-.compact-mode .item-detail, .compact-mode .area-prereq, .compact-mode .topic-search, .compact-mode .topic-progress, .compact-mode .area-actions, .compact-mode .gd-capstone, .compact-mode .level-desc { display:none !important; }
-.compact-mode .item-btn { padding-top:6px; padding-bottom:6px; }
+/* ── Modo compacto: lista enxuta — esconde detalhes, livros, tempo, recall, notas; mostra só títulos ── */
+.compact-mode .item-detail,
+.compact-mode .area-prereq,
+.compact-mode .area-objectives,
+.compact-mode .books-box,
+.compact-mode .topic-progress,
+.compact-mode .area-actions,
+.compact-mode .gd-capstone,
+.compact-mode .final-actions,
+.compact-mode .level-desc,
+.compact-mode .item-time,
+.compact-mode .item-toggle { display:none !important; }
+.compact-mode .item-btn { padding-top:5px; padding-bottom:5px; }
 .compact-mode .item { border-bottom:1px solid var(--border,rgba(148,163,184,0.08)); }
+.compact-mode .topic-content { padding-top:4px; padding-bottom:4px; }
+.compact-mode .item-btn { cursor:default; }
 
 /* Back to top */
 #back-to-top { position:fixed; bottom:24px; right:24px; width:46px; height:46px; border-radius:50%; border:none; background:var(--accent,#6366f1); color:#fff; font-size:20px; cursor:pointer; opacity:0; pointer-events:none; transform:translateY(10px); transition:opacity 0.25s, transform 0.25s; box-shadow:0 6px 20px rgba(99,102,241,0.4); z-index:60; }
@@ -1192,7 +1204,7 @@ ul.desc-bullets li.no-bullet::before { display: none; }
 #back-to-top:hover { transform:translateY(-3px); }
 
 @media (prefers-reduced-motion: reduce){ .level-nav-btn, .track-filter-btn, .view-btn, #back-to-top { transition:none; } }
-@media (max-width:640px){ .level-nav{top:0;overflow-x:auto;flex-wrap:nowrap} .level-nav-btn{flex-shrink:0} }
+@media (max-width:640px){ .level-nav{overflow-x:auto;flex-wrap:nowrap} .level-nav-btn{flex-shrink:0} }
 
 /* ════════════════════════════════════════════════════════════
    UI v8 — pedagogia (objetivos, notas, recall, revisão, ritmo) + a11y
