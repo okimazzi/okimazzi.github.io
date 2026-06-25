@@ -2,11 +2,20 @@
 (function(){
 const $=s=>document.querySelector(s);
 const roadmap=$('#roadmap'),statsEl=$('#stats'),searchInput=$('#search'),searchResults=$('#search-results');
-const SK='roadmap_progress',TK='roadmap_theme',BK='roadmap_badges';
+const SK='roadmap_progress',TK='roadmap_theme',BK='roadmap_badges',NK='roadmap_notes',RK='roadmap_review';
 function gP(){try{return JSON.parse(localStorage.getItem(SK))||{}}catch(e){return{}}}
-function sP(d){localStorage.setItem(SK,JSON.stringify(d))}
+function sP(d){try{localStorage.setItem(SK,JSON.stringify(d))}catch(e){}}
 function gB(){try{return JSON.parse(localStorage.getItem(BK))||{}}catch(e){return{}}}
-function sB(d){localStorage.setItem(BK,JSON.stringify(d))}
+function sB(d){try{localStorage.setItem(BK,JSON.stringify(d))}catch(e){}}
+// Personal notes per item
+function gN(){try{return JSON.parse(localStorage.getItem(NK))||{}}catch(e){return{}}}
+function sN(d){try{localStorage.setItem(NK,JSON.stringify(d))}catch(e){}}
+// Spaced repetition: per-item {date, count}. Intervals in days (SM-2 lite).
+const RIVALS=[1,3,7,16,35,90];
+function gR(){try{return JSON.parse(localStorage.getItem(RK))||{}}catch(e){return{}}}
+function sR(d){try{localStorage.setItem(RK,JSON.stringify(d))}catch(e){}}
+function reviewDue(iid){const r=gR()[iid];if(!r||!r.date)return false;const days=(Date.now()-r.date)/86400000;const iv=RIVALS[Math.min(r.count||0,RIVALS.length-1)];return days>=iv}
+function countDue(){const r=gR();let n=0;Object.keys(r).forEach(iid=>{if(reviewDue(iid))n++});return n}
 function mid(lc,an,tn,ii){return lc+'::'+an.substring(0,20)+'::'+tn.substring(0,20)+'::'+ii}
 // Escape HTML to prevent broken render on <, >, &, " in content (e.g. vector<int>, a < b)
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
@@ -80,8 +89,39 @@ function updateJourney(){
 }
 rS();
 
-// Search links
+// ── Spaced repetition review widget ──
+function updateReviewWidget(){const el=document.getElementById('review-widget');if(!el)return;const n=countDue();if(n>0){el.style.display='inline-flex';el.querySelector('.review-count').textContent=n}else{el.style.display='none'}}
+window.openReview=function(){const r=gR();const due=[];ROADMAP.forEach(lv=>lv.areas.forEach(a=>a.topics.forEach(t=>t.items.forEach((it,idx)=>{const iid=mid(lv.css,a.name,t.name,idx);if(reviewDue(iid))due.push({iid,w:it.w,path:lv.name+' › '+a.name.replace(/^[^\w\s]+\s*/u,'').trim()+' › '+t.name,s:it.s})}))));
+const ov=document.createElement('div');ov.className='quiz-overlay';const mo=document.createElement('div');mo.className='quiz-modal review-modal';mo.setAttribute('role','dialog');mo.setAttribute('aria-modal','true');
+if(!due.length){mo.innerHTML=`<h2>🔁 Revisão</h2><p style="color:var(--text-dim)">Nada para revisar agora. Continue estudando — os itens voltam aqui no momento certo de revisar.</p><div class="quiz-actions"><button class="quiz-close-btn" onclick="this.closest('.quiz-overlay').remove()">Fechar</button></div>`}
+else{mo.innerHTML=`<h2>🔁 Revisão — ${due.length} ${due.length>1?'itens':'item'}</h2><p style="color:var(--text-dim);font-size:14px">Tente lembrar cada um. Marque "✅ Revisei" pra agendar a próxima revisão (intervalos crescentes).</p><div class="review-list">${due.map(d=>`<div class="review-item" data-iid="${esc(d.iid)}"><div class="review-item-path">${esc(d.path)}</div><div class="review-item-title">${esc(d.w)}</div><div class="review-item-actions"><button type="button" class="review-done-btn" data-iid="${esc(d.iid)}">✅ Revisei</button>${mSL(d.s).replace(/<div class="search-term-row">/g,'<div class="search-term-row mini">')}</div></div>`).join('')}</div><div class="quiz-actions"><button class="quiz-close-btn" onclick="this.closest('.quiz-overlay').remove()">Fechar</button></div>`;
+mo.querySelectorAll('.review-done-btn').forEach(b=>b.addEventListener('click',function(){const iid=this.dataset.iid;const rv=gR();if(rv[iid]){rv[iid].count=(rv[iid].count||0)+1;rv[iid].date=Date.now();sR(rv)}const card=this.closest('.review-item');if(card){card.style.opacity='0.4';this.textContent='✅ Agendado';this.disabled=true}updateReviewWidget()}))}
+ov.appendChild(mo);document.body.appendChild(ov);const fb=mo.querySelector('button');if(fb)fb.focus();ov.addEventListener('click',e=>{if(e.target===ov)ov.remove()})};
+
+// ── Pace planner: hours/week → finish estimate ──
+window.openPacePlanner=function(){
+  const prog=computeProgress();const remainingMin=Math.max(0,totalMinutes-prog.minutes);const remainingH=Math.round(remainingMin/60);
+  const ov=document.createElement('div');ov.className='quiz-overlay';const mo=document.createElement('div');mo.className='quiz-modal pace-modal';mo.setAttribute('role','dialog');mo.setAttribute('aria-modal','true');
+  function calc(hpw){if(hpw<=0)return'—';const weeks=remainingH/hpw;if(weeks<4)return Math.ceil(weeks)+' semana'+(Math.ceil(weeks)>1?'s':'');const months=weeks/4.345;if(months<12)return months.toFixed(1)+' meses';return (months/12).toFixed(1)+' anos'}
+  mo.innerHTML=`<h2>📅 Planejador de Ritmo</h2>
+    <p class="quiz-info">Faltam ~${fmtTime(remainingMin)} de conteúdo (${remainingH}h) para concluir tudo o que ainda não estudou.</p>
+    <div class="pace-control"><label>Quantas horas por semana você consegue estudar?</label>
+    <input type="range" id="pace-range" min="1" max="40" value="10" step="1"><div class="pace-value"><span id="pace-hours">10</span> h/semana</div></div>
+    <div class="pace-result">⏳ Você concluiria em aproximadamente <strong id="pace-eta">${calc(10)}</strong></div>
+    <div class="pace-presets">${[5,10,15,20].map(h=>`<button type="button" class="pace-preset" data-h="${h}">${h}h/sem</button>`).join('')}</div>
+    <p class="pace-note">Estimativa baseada no tempo médio por item. Estudar com constância (mesmo 1h/dia) rende mais que maratonas.</p>
+    <div class="quiz-actions"><button class="quiz-close-btn" onclick="this.closest('.quiz-overlay').remove()">Fechar</button></div>`;
+  ov.appendChild(mo);document.body.appendChild(ov);
+  const range=mo.querySelector('#pace-range'),hoursEl=mo.querySelector('#pace-hours'),etaEl=mo.querySelector('#pace-eta');
+  function upd(v){hoursEl.textContent=v;etaEl.textContent=calc(+v)}
+  range.addEventListener('input',()=>upd(range.value));
+  mo.querySelectorAll('.pace-preset').forEach(b=>b.addEventListener('click',()=>{range.value=b.dataset.h;upd(b.dataset.h)}));
+  const cb=mo.querySelector('.quiz-close-btn');if(cb)cb.focus();ov.addEventListener('click',e=>{if(e.target===ov)ov.remove()});
+};
+
+// Search links — one row per term (▶ YouTube + 🔍 Google)
 function mSL(s){return s.split('|').map(t=>{const tr=t.trim();if(!tr)return'';const yt='https://www.youtube.com/results?search_query='+encodeURIComponent(tr);const gg='https://www.google.com/search?q='+encodeURIComponent(tr);return`<div class="search-term-row"><span class="search-term-text">• ${tr}</span><a href="${yt}" target="_blank" rel="noopener" class="search-link yt-link">▶ YouTube</a><a href="${gg}" target="_blank" rel="noopener" class="search-link gg-link">🔍 Google</a></div>`}).join('')}
+
 
 function tog(b,c){
   const opening=!c.classList.contains('expanded');
@@ -281,6 +321,7 @@ const TRACKS={gamedesign:{label:'Trilha de Game Design',icon:'🎮',cls:'gd'},ai
 const tk=area.track&&TRACKS[area.track]?TRACKS[area.track]:null;
 const isGD=area.track==='gamedesign';
 const aD=document.createElement('div');aD.className='area'+(tk?' area-track area-track-'+tk.cls:'');if(area.track)aD.dataset.track=area.track;
+const aSlug=area.name.replace(/^[^\w\s]+\s*/u,'').trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'').substring(0,40);aD.dataset.slug=aSlug;
 const aIC=area.topics.reduce((s,t)=>s+t.items.length,0);
 // Estimated hours for this area (same heuristic as study load)
 const estH=Math.round(area.topics.reduce((s,t)=>s+t.items.reduce((s2,it)=>{const l=it.d.length+it.w.length;return s2+(/🎯/.test(it.w)?10:l>500?240:l>300?120:60)},0),0)/60);
@@ -291,6 +332,7 @@ const trackTag=tk?`<span class="track-badge track-badge-${tk.cls}">${tk.icon} ${
 aB.innerHTML=`<span class="area-title">${hasBadge?'🏅 ':''}${esc(area.name)}${trackTag}</span><span class="area-meta">${area.topics.length} tópicos · ${aIC} itens · ~${estH}h <span class="arrow" aria-hidden="true">▸</span></span>`;
 const aC=document.createElement('div');aC.className='area-content';aC.style.display='none';
 if(area.prereq){const pr=document.createElement('div');pr.className='area-prereq';pr.innerHTML=`<span class="prereq-label">📋 Pré-requisitos:</span> ${esc(area.prereq)}`;aC.appendChild(pr)}
+if(area.objectives&&area.objectives.length){const ob=document.createElement('div');ob.className='area-objectives';ob.innerHTML=`<div class="objectives-label">🎯 Ao final desta área, você será capaz de:</div><ul class="objectives-list">${area.objectives.map(o=>`<li>${esc(o)}</li>`).join('')}</ul>`;aC.appendChild(ob)}
 
 area.topics.forEach(topic=>{
 const tD=document.createElement('div');tD.className='topic';
@@ -309,29 +351,40 @@ const tm=eT(item);
 const iB=document.createElement('div');iB.className='item-btn';iB.setAttribute('role','button');iB.setAttribute('tabindex','0');iB.setAttribute('aria-expanded','false');
 iB.innerHTML=`<span class="item-left"><button type="button" class="item-check" role="checkbox" aria-checked="${iS?'true':'false'}" aria-label="Marcar &quot;${esc(item.w)}&quot; como estudado">${iS?'✅':'⬜'}</button><span class="item-text">${esc(item.w)}</span></span><span class="item-right"><span class="item-time">~${fmtTime(tm)}</span><span class="item-toggle" aria-hidden="true">▸</span></span>`;
 const chk=iB.querySelector('.item-check');
-function toggleStudied(){const p=gP();p[iid]=!p[iid];sP(p);chk.textContent=p[iid]?'✅':'⬜';chk.setAttribute('aria-checked',p[iid]?'true':'false');iD.classList.toggle('item-studied',p[iid]);updateJourney();
+function toggleStudied(){const p=gP();p[iid]=!p[iid];sP(p);chk.textContent=p[iid]?'✅':'⬜';chk.setAttribute('aria-checked',p[iid]?'true':'false');iD.classList.toggle('item-studied',p[iid]);
+const rv=gR();if(p[iid]){rv[iid]={date:Date.now(),count:0}}else{delete rv[iid]}sR(rv);updateReviewWidget();
+updateJourney();
 const ns=cS(level.css,area.name,topic.name,topic.items.length);const bar=tC.querySelector('.progress-fill');const txt=tC.querySelector('.progress-text');
 if(bar)bar.style.width=Math.round(ns/topic.items.length*100)+'%';if(txt)txt.textContent=ns+'/'+topic.items.length+' ('+Math.round(ns/topic.items.length*100)+'%)';
 checkBadge(area.name);checkLevelComplete();}
 chk.addEventListener('click',e=>{e.stopPropagation();toggleStudied()});
 const det=document.createElement('div');det.className='item-detail';det.style.display='none';
-const bulletsHtml=item.d.split('\n').map(line=>{
-  const tl=line.trim();
-  if(tl.startsWith('•'))return '<li>'+esc(tl.substring(1).trim())+'</li>';
-  return tl?'<li class="no-bullet">'+esc(tl)+'</li>':'';
-}).join('');
-det.innerHTML=`<div class="item-desc"><strong>📖 O que estudar:</strong><ul class="desc-bullets">${bulletsHtml}</ul></div><div class="search-terms"><strong>🔍 Termos de busca:</strong>${mSL(item.s)}</div>`;
-iB.addEventListener('click',e=>{if(e.target.closest('.item-check'))return;tog(iB,det)});
-iB.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){if(e.target.closest('.item-check'))return;e.preventDefault();tog(iB,det)}});
+let detBuilt=false;
+function buildDetail(){if(detBuilt)return;detBuilt=true;
+  const bulletsHtml=item.d.split('\n').map(line=>{const tl=line.trim();if(tl.startsWith('•'))return '<li>'+esc(tl.substring(1).trim())+'</li>';return tl?'<li class="no-bullet">'+esc(tl)+'</li>':''}).join('');
+  const noteVal=gN()[iid]||'';
+  det.innerHTML=`<div class="item-desc"><strong>📖 O que estudar:</strong><ul class="desc-bullets">${bulletsHtml}</ul></div>`+
+    `<div class="item-recall"><button type="button" class="recall-btn">🧠 Sei explicar isso sem olhar?</button><span class="recall-hint">Tente lembrar antes de marcar como aprendido — é assim que fixa.</span></div>`+
+    `<div class="search-terms"><strong>🔍 Termos de busca:</strong>${mSL(item.s)}</div>`+
+    `<div class="item-notes"><label class="notes-label">📝 Minhas anotações:</label><textarea class="notes-area" rows="2" placeholder="Anote dúvidas, links, insights...">${esc(noteVal)}</textarea></div>`;
+  // wire recall self-check (no grade, just reveals + nudges)
+  const rb=det.querySelector('.recall-btn');if(rb)rb.addEventListener('click',e=>{e.stopPropagation();rb.classList.toggle('revealed');rb.textContent=rb.classList.contains('revealed')?'✅ Boa! Se conseguiu explicar, marque como estudado':'🧠 Sei explicar isso sem olhar?'});
+  // wire notes autosave
+  const ta=det.querySelector('.notes-area');if(ta){ta.addEventListener('click',e=>e.stopPropagation());ta.addEventListener('input',()=>{const n=gN();const v=ta.value.trim();if(v)n[iid]=v;else delete n[iid];sN(n);iD.classList.toggle('has-note',!!v)});}
+}
+if(gN()[iid])iD.classList.add('has-note');
+iB.addEventListener('click',e=>{if(e.target.closest('.item-check'))return;buildDetail();tog(iB,det)});
+iB.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){if(e.target.closest('.item-check'))return;e.preventDefault();buildDetail();tog(iB,det)}});
 iD.appendChild(iB);iD.appendChild(det);tC.appendChild(iD)});
 tB.addEventListener('click',()=>tog(tB,tC));tD.appendChild(tB);tD.appendChild(tC);aC.appendChild(tD)});
 
 const aK2=area.name.replace(/^[^\w\s]+\s*/u,'').trim();
-const hP=typeof PROJECTS!=='undefined'&&Object.keys(PROJECTS).find(k=>aK2.includes(k)||k.includes(aK2));
+const hP=area.projectKey&&typeof PROJECTS!=='undefined'&&PROJECTS[area.projectKey]?area.projectKey:(typeof PROJECTS!=='undefined'&&Object.keys(PROJECTS).find(k=>aK2.includes(k)||k.includes(aK2)));
 if(hP){const ab=document.createElement('div');ab.className='area-actions';
 const pd=PROJECTS[hP];
 const bb2=document.createElement('button');bb2.className='project-btn project-basic';bb2.textContent=pd.basic.title;bb2.addEventListener('click',e=>{e.stopPropagation();openProject(pd.basic)});ab.appendChild(bb2);
 const ab2=document.createElement('button');ab2.className='project-btn project-advanced';ab2.textContent=pd.advanced.title;ab2.addEventListener('click',e=>{e.stopPropagation();openProject(pd.advanced)});ab.appendChild(ab2);
+const lk=document.createElement('button');lk.className='area-link-btn';lk.textContent='🔗 Copiar link';lk.title='Copiar link direto para esta área';lk.addEventListener('click',e=>{e.stopPropagation();const url=location.origin+location.pathname+'#area-'+aSlug;const done=()=>{lk.textContent='✅ Copiado!';setTimeout(()=>lk.textContent='🔗 Copiar link',1500)};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(done).catch(()=>{location.hash='area-'+aSlug;done()})}else{location.hash='area-'+aSlug;done()}});ab.appendChild(lk);
 aC.appendChild(ab)}
 // Game Design track capstone — shown at the end of the final (orange) GD area
 if(isGD&&level.css==='orange'&&typeof FINAL_LEVEL!=='undefined'&&FINAL_LEVEL.gamedesign){
@@ -391,4 +444,17 @@ const bullets=str=>str.split('\n').map(line=>{const tl=line.trim();if(tl.startsW
 mo.innerHTML=`<h2>${esc(p.title)}</h2><div class="project-section"><strong>📋 Descrição:</strong><ul class="desc-bullets">${bullets(p.desc)}</ul></div><div class="project-section"><strong>📦 Entregável:</strong><p>${esc(p.deliverable)}</p></div><div class="quiz-actions"><button class="quiz-close-btn" onclick="this.closest('.quiz-overlay').remove()">Fechar</button></div>`;
 ov.appendChild(mo);document.body.appendChild(ov);const fb=mo.querySelector('button');if(fb)fb.focus();ov.addEventListener('click',e=>{if(e.target===ov)ov.remove()})}
 window.openProject=openProject;
+
+// ── Init: review widget + deep-linking (hash routing) ──
+updateReviewWidget();
+function openFromHash(){const h=decodeURIComponent(location.hash.replace(/^#/,''));if(!h)return;
+  if(h==='review'){window.openReview();return}
+  const m=h.match(/^area-(.+)$/);if(m){const slug=m[1];
+    // find area whose slug matches
+    let target=null;document.querySelectorAll('.area').forEach(a=>{if(a.dataset.slug===slug)target=a});
+    if(target){const lv=target.closest('.level');if(lv){const lb=lv.querySelector('.level-btn');if(lb&&!lb.classList.contains('open'))tog(lb,lv.querySelector('.level-content'))}const ab=target.querySelector('.area-btn');if(ab&&!ab.classList.contains('open'))tog(ab,target.querySelector('.area-content'));setTimeout(()=>target.scrollIntoView({behavior:'smooth',block:'start'}),80)}
+  }
+}
+window.addEventListener('hashchange',openFromHash);
+if(location.hash)setTimeout(openFromHash,120);
 })();

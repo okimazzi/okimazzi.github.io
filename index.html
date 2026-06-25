@@ -9,6 +9,9 @@
   <meta property="og:description" content="Do zero ao avançado: 60 áreas, 1644 itens e 129 projetos práticos.">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#6366f1">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%236366f1'/%3E%3Ctext x='50' y='68' font-size='58' text-anchor='middle' fill='white' font-family='system-ui,sans-serif'%3E🧭%3C/text%3E%3C/svg%3E">
+  <link rel="manifest" href="manifest.json">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
@@ -27,6 +30,8 @@
     <div class="toolbar">
       <button id="theme-toggle" onclick="toggleTheme()">☀️ Claro</button>
       <button class="study-btn" onclick="studyOfDay()">📚 Estudo do Dia</button>
+      <button id="review-widget" class="review-widget-btn" onclick="openReview()" style="display:none" title="Itens prontos para revisar">🔁 Revisar (<span class="review-count">0</span>)</button>
+      <button class="pace-btn" onclick="openPacePlanner()" title="Planejar ritmo de estudo">📅 Planejar ritmo</button>
       <div class="filter-group" role="group" aria-label="Filtrar itens">
         <button class="filter-btn active" data-filter="all" aria-pressed="true" onclick="setFilter('all')">Todos</button>
         <button class="filter-btn" data-filter="not-studied" aria-pressed="false" onclick="setFilter('not-studied')">⬜ Não estudados</button>
@@ -133,5 +138,10 @@
   <script defer src="projects.js"></script>
   <script defer src="final.js"></script>
   <script defer src="app.js"></script>
+  <script>
+    if('serviceWorker' in navigator && location.protocol.startsWith('http')){
+      window.addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(()=>{});});
+    }
+  </script>
 </body>
 </html>

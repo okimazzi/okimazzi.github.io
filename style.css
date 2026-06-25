@@ -1193,3 +1193,66 @@ ul.desc-bullets li.no-bullet::before { display: none; }
 
 @media (prefers-reduced-motion: reduce){ .level-nav-btn, .track-filter-btn, .view-btn, #back-to-top { transition:none; } }
 @media (max-width:640px){ .level-nav{top:0;overflow-x:auto;flex-wrap:nowrap} .level-nav-btn{flex-shrink:0} }
+
+/* ════════════════════════════════════════════════════════════
+   UI v8 — pedagogia (objetivos, notas, recall, revisão, ritmo) + a11y
+   ════════════════════════════════════════════════════════════ */
+
+/* Learning objectives per area */
+.area-objectives { margin:0 0 14px; padding:12px 14px; background:rgba(99,102,241,0.07); border-left:3px solid var(--accent,#6366f1); border-radius:8px; }
+.objectives-label { font-weight:700; font-size:13.5px; color:var(--text,#e2e8f0); margin-bottom:6px; }
+.objectives-list { margin:0; padding-left:20px; }
+.objectives-list li { font-size:13.5px; color:var(--text-dim,#cbd5e1); margin:3px 0; line-height:1.45; }
+.light-mode .area-objectives { background:rgba(99,102,241,0.06); }
+
+/* Active recall self-check */
+.item-recall { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:10px 0; padding:8px 0; }
+.recall-btn { font-size:13px; font-weight:600; padding:7px 13px; border-radius:999px; border:1px dashed var(--accent,#6366f1); background:transparent; color:var(--accent,#818cf8); cursor:pointer; transition:all 0.15s; }
+.recall-btn:hover { background:rgba(99,102,241,0.1); }
+.recall-btn.revealed { border-style:solid; background:rgba(52,211,153,0.12); border-color:#34d399; color:#34d399; }
+.recall-hint { font-size:12px; color:var(--text-dim,#94a3b8); font-style:italic; }
+
+/* Personal notes */
+.item-notes { margin-top:12px; padding-top:10px; border-top:1px solid var(--border,rgba(148,163,184,0.12)); }
+.notes-label { display:block; font-size:12.5px; font-weight:700; color:var(--text-muted,#94a3b8); margin-bottom:5px; }
+.notes-area { width:100%; box-sizing:border-box; background:var(--bg,rgba(10,14,26,0.5)); border:1px solid var(--border,rgba(148,163,184,0.2)); border-radius:8px; color:var(--text,#e2e8f0); font-family:inherit; font-size:13.5px; padding:8px 10px; resize:vertical; min-height:42px; }
+.notes-area:focus { outline:2px solid var(--accent,#6366f1); outline-offset:1px; border-color:transparent; }
+.item.has-note > .item-btn .item-text::after { content:' 📝'; font-size:11px; opacity:0.7; }
+
+/* Review widget button + pace button */
+.review-widget-btn { font-size:13px; font-weight:600; padding:8px 14px; border-radius:8px; border:none; background:linear-gradient(135deg,#f59e0b,#f97316); color:#fff; cursor:pointer; align-items:center; gap:5px; transition:transform 0.12s; }
+.review-widget-btn:hover { transform:translateY(-1px); }
+.pace-btn { font-size:13px; padding:8px 14px; border-radius:8px; border:1px solid var(--border,rgba(148,163,184,0.2)); background:var(--card,rgba(30,41,59,0.6)); color:var(--text,#e2e8f0); cursor:pointer; transition:all 0.15s; }
+.pace-btn:hover { border-color:var(--accent,#6366f1); transform:translateY(-1px); }
+
+/* Copy-link button per area */
+.area-link-btn { font-size:13px; padding:9px 14px; border-radius:8px; border:1px solid var(--border,rgba(148,163,184,0.25)); background:transparent; color:var(--text-dim,#cbd5e1); cursor:pointer; transition:all 0.15s; }
+.area-link-btn:hover { border-color:var(--accent,#6366f1); color:var(--accent,#818cf8); }
+
+/* Review modal */
+.review-modal, .pace-modal { max-width:620px; }
+.review-list { display:flex; flex-direction:column; gap:10px; margin:14px 0; max-height:50vh; overflow-y:auto; }
+.review-item { padding:12px; border:1px solid var(--border,rgba(148,163,184,0.18)); border-radius:10px; background:var(--bg,rgba(10,14,26,0.4)); transition:opacity 0.3s; }
+.review-item-path { font-size:11.5px; color:var(--text-muted,#94a3b8); margin-bottom:3px; }
+.review-item-title { font-size:14.5px; font-weight:600; color:var(--text,#e2e8f0); margin-bottom:8px; }
+.review-item-actions { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.review-done-btn { font-size:13px; font-weight:600; padding:6px 12px; border-radius:7px; border:none; background:#34d399; color:#06281c; cursor:pointer; }
+.review-done-btn:disabled { background:rgba(52,211,153,0.3); cursor:default; }
+.search-term-row.mini { font-size:12px; padding:2px 0; }
+
+/* Pace planner */
+.pace-control { margin:16px 0 10px; }
+.pace-control label { display:block; font-size:14px; font-weight:600; margin-bottom:10px; color:var(--text,#e2e8f0); }
+#pace-range { width:100%; accent-color:var(--accent,#6366f1); }
+.pace-value { text-align:center; font-size:15px; margin-top:8px; color:var(--text-dim,#cbd5e1); }
+.pace-value span { font-weight:800; font-size:20px; color:var(--accent,#818cf8); }
+.pace-result { text-align:center; font-size:15px; padding:14px; margin:12px 0; background:rgba(99,102,241,0.08); border-radius:10px; color:var(--text,#e2e8f0); }
+.pace-result strong { color:var(--accent,#818cf8); font-size:17px; }
+.pace-presets { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin:10px 0; }
+.pace-preset { font-size:13px; padding:6px 14px; border-radius:999px; border:1px solid var(--border,rgba(148,163,184,0.25)); background:transparent; color:var(--text-dim,#cbd5e1); cursor:pointer; transition:all 0.15s; }
+.pace-preset:hover { border-color:var(--accent,#6366f1); color:var(--accent,#818cf8); }
+.pace-note { font-size:12.5px; color:var(--text-muted,#94a3b8); font-style:italic; text-align:center; margin-top:6px; }
+
+/* a11y: visible focus for keyboard users across interactive elements */
+.area-btn:focus-visible, .topic-btn:focus-visible, .level-btn:focus-visible, .item-btn:focus-visible, button:focus-visible, a:focus-visible, .item-check:focus-visible { outline:2px solid var(--accent,#6366f1); outline-offset:2px; border-radius:6px; }
+@media (prefers-reduced-motion: reduce){ .review-widget-btn, .pace-btn, .area-link-btn, .recall-btn, .pace-preset { transition:none; } }

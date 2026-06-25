@@ -203,7 +203,13 @@ const ROADMAP = [
             "search": "Como a Internet Funciona"
           }
         ],
-        "prereq": "Nenhum — comece por aqui"
+        "prereq": "Nenhum — comece por aqui",
+        "projectKey": "Fundamentos de Computacao",
+        "objectives": [
+          "Compreender Como Computadores Funcionam",
+          "Compreender Pensamento Computacional",
+          "Compreender Como a Internet Funciona"
+        ]
       },
       {
         "name": "🐍 Logica de Programacao com Python",
@@ -541,7 +547,14 @@ const ROADMAP = [
             "search": "Projetos Praticos"
           }
         ],
-        "prereq": "Nenhum — raciocínio lógico"
+        "prereq": "Nenhum — raciocínio lógico",
+        "projectKey": "Logica de Programacao com Python",
+        "objectives": [
+          "Dominar Setup e Primeiros Passos",
+          "Dominar Strings",
+          "Dominar Controle de Fluxo",
+          "Dominar Estruturas de Dados Nativas"
+        ]
       },
       {
         "name": "💻 Sistemas Operacionais & Terminal",
@@ -729,7 +742,12 @@ const ROADMAP = [
             "search": "Linux e Linha de Comando"
           }
         ],
-        "prereq": "Noções de computador"
+        "prereq": "Noções de computador",
+        "projectKey": "Sistemas Operacionais & Terminal",
+        "objectives": [
+          "Compreender Conceitos de SO",
+          "Dominar Linux e Linha de Comando"
+        ]
       },
       {
         "name": "🌐 Web, Git & Ferramentas",
@@ -1020,7 +1038,14 @@ const ROADMAP = [
             "search": "Ferramentas do Dev"
           }
         ],
-        "prereq": "Lógica de Programação"
+        "prereq": "Lógica de Programação",
+        "projectKey": "Web, Git & Ferramentas",
+        "objectives": [
+          "Dominar HTML",
+          "Dominar CSS",
+          "Dominar JavaScript Basico",
+          "Dominar Git & GitHub"
+        ]
       },
       {
         "name": "🗄️ Banco de Dados Introducao",
@@ -1193,7 +1218,12 @@ const ROADMAP = [
             "search": "SQL na Pratica"
           }
         ],
-        "prereq": "Lógica de Programação"
+        "prereq": "Lógica de Programação",
+        "projectKey": "Banco de Dados Introducao",
+        "objectives": [
+          "Compreender Conceitos Fundamentais",
+          "Compreender SQL na Pratica"
+        ]
       },
       {
         "name": "📐 Matematica Fundamental",
@@ -1525,7 +1555,14 @@ const ROADMAP = [
             "search": "Algebra Linear (Inicio)"
           }
         ],
-        "prereq": "Matemática do ensino médio"
+        "prereq": "Matemática do ensino médio",
+        "projectKey": "Matematica Fundamental",
+        "objectives": [
+          "Compreender Pre-Calculo e Revisao",
+          "Compreender Matematica Discreta",
+          "Compreender Probabilidade e Estatistica Basica",
+          "Compreender Calculo I"
+        ]
       },
       {
         "name": "🌌 Fisica & Quimica p/ Engenharia",
@@ -1761,7 +1798,14 @@ const ROADMAP = [
             "search": "Mecânica dos Sólidos e Fluidos"
           }
         ],
-        "prereq": "Matemática Fundamental (em paralelo)"
+        "prereq": "Matemática Fundamental (em paralelo)",
+        "projectKey": "Fisica & Quimica p/ Engenharia",
+        "objectives": [
+          "Dominar Mecanica Classica",
+          "Dominar Eletromagnetismo",
+          "Dominar Ondas, Optica e Termodinamica",
+          "Dominar Quimica p/ Engenharia"
+        ]
       },
       {
         "name": "🔌 Eletronica & Hardware",
@@ -1950,7 +1994,13 @@ const ROADMAP = [
             "search": "Eletronica Analogica"
           }
         ],
-        "prereq": "Física, Matemática Fundamental"
+        "prereq": "Física, Matemática Fundamental",
+        "projectKey": "Eletronica & Hardware",
+        "objectives": [
+          "Dominar Eletricidade Basica",
+          "Dominar Eletronica Digital",
+          "Dominar Eletronica Analogica"
+        ]
       },
       {
         "name": "🎮 Game Design (Fundamentos)",
@@ -2102,7 +2152,13 @@ const ROADMAP = [
             "search": "Primeiros Passos como Game Designer"
           }
         ],
-        "prereq": "Nenhum — pode começar cedo"
+        "prereq": "Nenhum — pode começar cedo",
+        "projectKey": "Game Design (Fundamentos)",
+        "objectives": [
+          "Compreender Introdução ao Game Design",
+          "Construir projetos usando Como Criar Jogos",
+          "Compreender Primeiros Passos como Game Designer"
+        ]
       }
     ]
   },
@@ -2249,7 +2305,12 @@ const ROADMAP = [
             "search": "Algoritmos"
           }
         ],
-        "prereq": "Python (Iniciante)"
+        "prereq": "Python (Iniciante)",
+        "projectKey": "Estruturas de Dados & Algoritmos",
+        "objectives": [
+          "Dominar Estruturas de Dados",
+          "Dominar Algoritmos"
+        ]
       },
       {
         "name": "🐍 Python Intermediario & OOP",
@@ -2397,7 +2458,12 @@ const ROADMAP = [
             "search": "Python Avancado"
           }
         ],
-        "prereq": "Python (Iniciante)"
+        "prereq": "Python (Iniciante)",
+        "projectKey": "Python Intermediario & OOP",
+        "objectives": [
+          "Dominar OOP em Python",
+          "Dominar Python Avancado"
+        ]
       },
       {
         "name": "⚙️ C, C++ & Rust",
@@ -2571,7 +2637,13 @@ const ROADMAP = [
             "search": "Rust Seguranca sem Garbage Collector"
           }
         ],
-        "prereq": "Python Intermediário, Estruturas de Dados"
+        "prereq": "Python Intermediário, Estruturas de Dados",
+        "projectKey": "C, C++ & Rust",
+        "objectives": [
+          "Dominar C",
+          "Dominar C++",
+          "Dominar Rust"
+        ]
       },
       {
         "name": "☕ Java & Ecossistema JVM",
@@ -2714,7 +2786,12 @@ const ROADMAP = [
             "search": "Ecossistema Java Spring, Build, Deploy"
           }
         ],
-        "prereq": "Python Intermediário, OOP"
+        "prereq": "Python Intermediário, OOP",
+        "projectKey": "Java & Ecossistema JVM",
+        "objectives": [
+          "Dominar Java",
+          "Dominar Ecossistema Java"
+        ]
       },
       {
         "name": "🐹 Go (Golang)",
@@ -2842,7 +2919,12 @@ const ROADMAP = [
             "search": "Go Avançado Interfaces, Testes e Patterns"
           }
         ],
-        "prereq": "Python Intermediário"
+        "prereq": "Python Intermediário",
+        "projectKey": "Go (Golang)",
+        "objectives": [
+          "Dominar Go",
+          "Dominar Go Avançado"
+        ]
       },
       {
         "name": "🖥️ Sistemas Operacionais (Disciplina)",
@@ -2991,7 +3073,13 @@ const ROADMAP = [
             "search": "File Systems e I/O"
           }
         ],
-        "prereq": "SO & Terminal (Iniciante)"
+        "prereq": "SO & Terminal (Iniciante)",
+        "projectKey": "Sistemas Operacionais (Disciplina)",
+        "objectives": [
+          "Dominar Processos e Threads",
+          "Dominar Gerenciamento de Memoria",
+          "Dominar File Systems e I/O"
+        ]
       },
       {
         "name": "🖥️ Arquitetura de Computadores",
@@ -3134,7 +3222,12 @@ const ROADMAP = [
             "search": "Pipeline, Cache e Performance"
           }
         ],
-        "prereq": "Sistemas Operacionais"
+        "prereq": "Sistemas Operacionais",
+        "projectKey": "Arquitetura de Computadores",
+        "objectives": [
+          "Projetar Conjunto de Instruções e Organização da CPU",
+          "Projetar Pipeline, Cache e Performance"
+        ]
       },
       {
         "name": "⚡ Concorrencia e Paralelismo",
@@ -3267,7 +3360,12 @@ const ROADMAP = [
             "search": "Padrões e Prática de Concorrência"
           }
         ],
-        "prereq": "Sistemas Operacionais, OOP"
+        "prereq": "Sistemas Operacionais, OOP",
+        "projectKey": "Concorrencia e Paralelismo",
+        "objectives": [
+          "Dominar Programacao Concorrente e Paralela",
+          "Construir projetos usando Padrões e Prática de Concorrência"
+        ]
       },
       {
         "name": "📖 Teoria da Computacao & Compiladores",
@@ -3400,7 +3498,12 @@ const ROADMAP = [
             "search": "Compiladores (Intro)"
           }
         ],
-        "prereq": "Estruturas de Dados & Algoritmos"
+        "prereq": "Estruturas de Dados & Algoritmos",
+        "projectKey": "Teoria da Computacao & Compiladores",
+        "objectives": [
+          "Compreender Teoria da Computacao",
+          "Compreender Compiladores (Intro)"
+        ]
       },
       {
         "name": "🏗️ Engenharia de Software",
@@ -3594,7 +3697,13 @@ const ROADMAP = [
             "search": "Etica, LGPD e Impacto Social"
           }
         ],
-        "prereq": "OOP, Git"
+        "prereq": "OOP, Git",
+        "projectKey": "Engenharia de Software",
+        "objectives": [
+          "Compreender Principios, Agile, Patterns",
+          "Analisar Testes de Software",
+          "Dominar Etica, LGPD e Impacto Social"
+        ]
       },
       {
         "name": "📐 Matematica p/ ML",
@@ -3777,7 +3886,14 @@ const ROADMAP = [
         "prereq": "Matemática Fundamental",
         "track": "ai",
         "trackPart": 1,
-        "trackTotal": 6
+        "trackTotal": 6,
+        "projectKey": "Matematica p/ ML",
+        "objectives": [
+          "Dominar Calculo Multivariavel",
+          "Dominar Algebra Linear Avancada",
+          "Dominar Probabilidade e Estatistica",
+          "Dominar Computacao Numerica e Erros"
+        ]
       },
       {
         "name": "📡 Sinais e Sistemas",
@@ -3956,7 +4072,13 @@ const ROADMAP = [
             "search": "Programação de Áudio e DSP Aplicado"
           }
         ],
-        "prereq": "Cálculo, Álgebra Linear"
+        "prereq": "Cálculo, Álgebra Linear",
+        "projectKey": "Sinais e Sistemas",
+        "objectives": [
+          "Dominar Sinais, Transformadas e Amostragem",
+          "Dominar Processamento Digital de Sinais (DSP)",
+          "Dominar Programação de Áudio e DSP Aplicado"
+        ]
       },
       {
         "name": "🤖 Introducao a IA & ML",
@@ -4169,7 +4291,14 @@ const ROADMAP = [
         "prereq": "Matemática p/ ML, Python",
         "track": "ai",
         "trackPart": 2,
-        "trackTotal": 6
+        "trackTotal": 6,
+        "projectKey": "Introducao a IA & ML",
+        "objectives": [
+          "Compreender Data Science",
+          "Compreender ML Classico (Scikit-Learn)",
+          "Compreender ML Aplicado & Automacao com IA",
+          "Compreender Dashboards e Visualizacao pra Negocios"
+        ]
       },
       {
         "name": "🌐 Full-Stack",
@@ -4377,7 +4506,14 @@ const ROADMAP = [
         "prereq": "Web & Git, Banco de Dados (Iniciante)",
         "track": "web",
         "trackPart": 1,
-        "trackTotal": 6
+        "trackTotal": 6,
+        "projectKey": "Full-Stack",
+        "objectives": [
+          "Dominar Frontend",
+          "Dominar Backend",
+          "Dominar Banco de Dados Intermediario",
+          "Dominar APIs Avancadas"
+        ]
       },
       {
         "name": "📱 Desenvolvimento Mobile (Intro)",
@@ -4523,7 +4659,12 @@ const ROADMAP = [
         "prereq": "Programação, OOP",
         "track": "web",
         "trackPart": 2,
-        "trackTotal": 6
+        "trackTotal": 6,
+        "projectKey": "Desenvolvimento Mobile (Intro)",
+        "objectives": [
+          "Construir projetos usando Cross-platform e Nativo",
+          "Projetar Arquitetura e Deploy de Apps Mobile"
+        ]
       },
       {
         "name": "🔧 DevOps & Infra",
@@ -4721,7 +4862,14 @@ const ROADMAP = [
         "prereq": "Linux/Terminal, Backend básico",
         "track": "web",
         "trackPart": 3,
-        "trackTotal": 6
+        "trackTotal": 6,
+        "projectKey": "DevOps & Infra",
+        "objectives": [
+          "Dominar Redes pra Devs",
+          "Dominar Docker e Containers",
+          "Dominar CI/CD e Cloud",
+          "Dominar Monitoramento e Observabilidade de Aplicacao"
+        ]
       },
       {
         "name": "🌐 Redes de Computadores",
@@ -4926,7 +5074,14 @@ const ROADMAP = [
             "search": "Camada de Aplicação Segurança de Rede"
           }
         ],
-        "prereq": "Sistemas Operacionais (básico)"
+        "prereq": "Sistemas Operacionais (básico)",
+        "projectKey": "Redes de Computadores",
+        "objectives": [
+          "Dominar Modelo OSI & TCP/IP",
+          "Dominar Camada de Rede",
+          "Dominar Camada de Transporte",
+          "Construir projetos usando Camada de Aplicação & Segurança de Rede"
+        ]
       },
       {
         "name": "🔒 Seguranca & Ethical Hacking (Intro)",
@@ -5170,7 +5325,14 @@ const ROADMAP = [
         "prereq": "Redes, Linux",
         "track": "security",
         "trackPart": 1,
-        "trackTotal": 5
+        "trackTotal": 5,
+        "projectKey": "Seguranca & Ethical Hacking (Intro)",
+        "objectives": [
+          "Analisar Etica, Legalidade e Escopo",
+          "Compreender Fundamentos de Seguranca",
+          "Analisar Reconhecimento e OSINT Basico",
+          "Analisar Pratica"
+        ]
       },
       {
         "name": "🔌 Embarcados, Hardware & Automacao",
@@ -5401,7 +5563,14 @@ const ROADMAP = [
             "search": "Hardware Avancado FPGA"
           }
         ],
-        "prereq": "Eletrônica, C/C++"
+        "prereq": "Eletrônica, C/C++",
+        "projectKey": "Embarcados, Hardware & Automacao",
+        "objectives": [
+          "Dominar Arduino",
+          "Dominar ESP32, Raspberry Pi, IoT",
+          "Dominar Automacao Industrial Intro",
+          "Dominar Sistemas de Tempo Real (RTOS)"
+        ]
       },
       {
         "name": "🎨 Computação Gráfica",
@@ -5544,7 +5713,12 @@ const ROADMAP = [
             "search": "Prática 3D no Navegador e Game Engines"
           }
         ],
-        "prereq": "Álgebra Linear, Programação"
+        "prereq": "Álgebra Linear, Programação",
+        "projectKey": "Computação Gráfica",
+        "objectives": [
+          "Compreender Fundamentos de CG",
+          "Construir projetos usando Prática"
+        ]
       },
       {
         "name": "🎮 Game Design (Teoria & Design)",
@@ -5859,7 +6033,14 @@ const ROADMAP = [
         "track": "gamedesign",
         "trackPart": 2,
         "trackTotal": 3,
-        "prereq": "Computação Gráfica, Game Design (Fundamentos)"
+        "prereq": "Computação Gráfica, Game Design (Fundamentos)",
+        "projectKey": "Game Design (Teoria & Design)",
+        "objectives": [
+          "Compreender Game Design",
+          "Projetar Level Design",
+          "Projetar Character Design",
+          "Projetar Narrativa e World Building"
+        ]
       }
     ]
   },
@@ -6001,7 +6182,12 @@ const ROADMAP = [
             "search": "Escalabilidade e Resiliência"
           }
         ],
-        "prereq": "Engenharia de Software"
+        "prereq": "Engenharia de Software",
+        "projectKey": "Arquitetura de Software",
+        "objectives": [
+          "Projetar System Design",
+          "Projetar Escalabilidade e Resiliência"
+        ]
       },
       {
         "name": "🧠 Deep Learning",
@@ -6213,7 +6399,13 @@ const ROADMAP = [
         "prereq": "Introdução a IA, Matemática p/ ML",
         "track": "ai",
         "trackPart": 3,
-        "trackTotal": 6
+        "trackTotal": 6,
+        "projectKey": "Deep Learning",
+        "objectives": [
+          "Dominar Redes Neurais e Frameworks",
+          "Dominar NLP",
+          "Dominar Visão Computacional"
+        ]
       },
       {
         "name": "🤖 AI Engineering",
@@ -6389,7 +6581,12 @@ const ROADMAP = [
         "prereq": "Introdução a IA, APIs/Backend",
         "track": "ai",
         "trackPart": 4,
-        "trackTotal": 6
+        "trackTotal": 6,
+        "projectKey": "AI Engineering",
+        "objectives": [
+          "Dominar LLMs, RAG, Agents, APIs",
+          "Analisar Avaliação, Segurança e Produção de LLMs"
+        ]
       },
       {
         "name": "🧬 Bioinformatica & Computacao Biologica",
@@ -6538,7 +6735,13 @@ const ROADMAP = [
             "search": "ML e IA em Biologia"
           }
         ],
-        "prereq": "Introdução a IA, Python"
+        "prereq": "Introdução a IA, Python",
+        "projectKey": "Bioinformatica & Computacao Biologica",
+        "objectives": [
+          "Dominar Biologia Essencial pra Computacao",
+          "Compreender Fundamentos de Bioinformatica",
+          "Dominar ML e IA em Biologia"
+        ]
       },
       {
         "name": "☁️ Cloud & Kubernetes",
@@ -6689,7 +6892,12 @@ const ROADMAP = [
         "prereq": "DevOps, Redes",
         "track": "web",
         "trackPart": 4,
-        "trackTotal": 6
+        "trackTotal": 6,
+        "projectKey": "Cloud & Kubernetes",
+        "objectives": [
+          "Dominar IaC, K8s, Observabilidade",
+          "Dominar Kubernetes Avançado e Multi-Cloud"
+        ]
       },
       {
         "name": "🗄️ Banco de Dados Avancado",
@@ -6840,7 +7048,12 @@ const ROADMAP = [
         "prereq": "Full-Stack, SQL",
         "track": "web",
         "trackPart": 5,
-        "trackTotal": 6
+        "trackTotal": 6,
+        "projectKey": "Banco de Dados Avancado",
+        "objectives": [
+          "Dominar PostgreSQL DBA & NoSQL",
+          "Dominar NoSQL, NewSQL e Estratégias de Dados"
+        ]
       },
       {
         "name": "📊 Data Engineering",
@@ -6983,7 +7196,12 @@ const ROADMAP = [
             "search": "Qualidade, Governança e Arquitetura Moderna"
           }
         ],
-        "prereq": "Banco de Dados, Python"
+        "prereq": "Banco de Dados, Python",
+        "projectKey": "Data Engineering",
+        "objectives": [
+          "Construir projetos usando Pipelines, Streaming e Data Lakes",
+          "Projetar Qualidade, Governança e Arquitetura Moderna"
+        ]
       },
       {
         "name": "⛓️ Blockchain & Web3",
@@ -7106,7 +7324,12 @@ const ROADMAP = [
             "search": "Smart Contracts e DApps"
           }
         ],
-        "prereq": "Redes, Criptografia básica"
+        "prereq": "Redes, Criptografia básica",
+        "projectKey": "Blockchain & Web3",
+        "objectives": [
+          "Compreender Fundamentos de Blockchain",
+          "Dominar Smart Contracts e DApps"
+        ]
       },
       {
         "name": "🕵️ Ethical Hacking: Web & Redes",
@@ -7345,7 +7568,14 @@ const ROADMAP = [
         "prereq": "Segurança & Ethical Hacking (Intro)",
         "track": "security",
         "trackPart": 2,
-        "trackTotal": 5
+        "trackTotal": 5,
+        "projectKey": "Ethical Hacking: Web & Redes",
+        "objectives": [
+          "Dominar Vulnerabilidades Web",
+          "Dominar Network Hacking",
+          "Dominar Scanning Avancado e Vulnerability Assessment",
+          "Dominar Exploitation de Sistemas (Intro)"
+        ]
       },
       {
         "name": "🛡️ DevSecOps & Seguranca",
@@ -7496,7 +7726,12 @@ const ROADMAP = [
         "prereq": "DevOps, Segurança (Intro)",
         "track": "security",
         "trackPart": 3,
-        "trackTotal": 5
+        "trackTotal": 5,
+        "projectKey": "DevSecOps & Seguranca",
+        "objectives": [
+          "Construir projetos usando Security Pipeline, Container Security",
+          "Analisar Compliance, Threat Modeling e Runtime Security"
+        ]
       },
       {
         "name": "🔍 Forense Digital & Cloud Security",
@@ -7679,7 +7914,14 @@ const ROADMAP = [
         "prereq": "Segurança (Intro), Redes",
         "track": "security",
         "trackPart": 4,
-        "trackTotal": 5
+        "trackTotal": 5,
+        "projectKey": "Forense Digital & Cloud Security",
+        "objectives": [
+          "Analisar Cloud Security Testing",
+          "Analisar Forense Digital",
+          "Analisar Forense de Disco e Sistema de Arquivos",
+          "Analisar Aquisição e Análise de Evidências"
+        ]
       },
       {
         "name": "🔌 Robotica, IoT & Automacao Avancada",
@@ -7823,7 +8065,13 @@ const ROADMAP = [
             "search": "Automacao Avancada Industria 4.0"
           }
         ],
-        "prereq": "Embarcados, Python"
+        "prereq": "Embarcados, Python",
+        "projectKey": "Robotica, IoT & Automacao Avancada",
+        "objectives": [
+          "Dominar ROS, Visao, Controle",
+          "Dominar IA aplicada a Robotica",
+          "Dominar Automacao Avancada & Industria 4.0"
+        ]
       },
       {
         "name": "🥽 AR/VR/XR & Computação Espacial",
@@ -7941,7 +8189,12 @@ const ROADMAP = [
             "search": "Desenvolvimento XR na Prática"
           }
         ],
-        "prereq": "Computação Gráfica, 3D"
+        "prereq": "Computação Gráfica, 3D",
+        "projectKey": "AR/VR/XR & Computação Espacial",
+        "objectives": [
+          "Compreender Fundamentos de Realidade Estendida",
+          "Construir projetos usando Desenvolvimento XR"
+        ]
       },
       {
         "name": "💹 Finanças Quantitativas & Fintech",
@@ -8064,7 +8317,12 @@ const ROADMAP = [
             "search": "Estratégias, Backtesting e Risco"
           }
         ],
-        "prereq": "Python, Matemática p/ ML, Estatística"
+        "prereq": "Python, Matemática p/ ML, Estatística",
+        "projectKey": "Finanças Quantitativas & Fintech",
+        "objectives": [
+          "Compreender Fundamentos Quant e Dados Financeiros",
+          "Dominar Estratégias, Backtesting e Risco"
+        ]
       },
       {
         "name": "🎮 Game Design (Dev Avançado)",
@@ -8323,7 +8581,14 @@ const ROADMAP = [
         "track": "gamedesign",
         "trackPart": 3,
         "trackTotal": 3,
-        "prereq": "Computação Gráfica, Game Design (Teoria), Estruturas de Dados"
+        "prereq": "Computação Gráfica, Game Design (Teoria), Estruturas de Dados",
+        "projectKey": "Game Design (Dev Avançado)",
+        "objectives": [
+          "Dominar Tópicos Avançados de Game Dev",
+          "Construir projetos usando Desenvolvimento de Jogos",
+          "Dominar Geração Procedural de Conteúdo (PCG)",
+          "Dominar Produção, Lançamento e Comunidade"
+        ]
       }
     ]
   },
@@ -8488,7 +8753,12 @@ const ROADMAP = [
         "prereq": "Arquitetura de Software, Cloud & Kubernetes",
         "track": "web",
         "trackPart": 6,
-        "trackTotal": 6
+        "trackTotal": 6,
+        "projectKey": "Sistemas Distribuidos",
+        "objectives": [
+          "Compreender Teoria e Pratica",
+          "Construir projetos usando Prática de Sistemas Distribuídos"
+        ]
       },
       {
         "name": "⚙️ MLOps & Producao",
@@ -8644,7 +8914,12 @@ const ROADMAP = [
         "prereq": "Deep Learning, AI Engineering, Cloud",
         "track": "ai",
         "trackPart": 5,
-        "trackTotal": 6
+        "trackTotal": 6,
+        "projectKey": "MLOps & Producao",
+        "objectives": [
+          "Construir projetos usando Pipeline ML em Producao",
+          "Dominar LLMOps e ML em Escala"
+        ]
       },
       {
         "name": "🧬 Pesquisa & Fronteira",
@@ -8820,7 +9095,12 @@ const ROADMAP = [
         "prereq": "Deep Learning, Matemática avançada",
         "track": "ai",
         "trackPart": 6,
-        "trackTotal": 6
+        "trackTotal": 6,
+        "projectKey": "Pesquisa & Fronteira",
+        "objectives": [
+          "Dominar RL, Multimodal, Scaling Laws",
+          "Dominar Computacao Quantica"
+        ]
       },
       {
         "name": "🛡️ Seguranca Defensiva, Forense Avancada & Blue Team",
@@ -9146,7 +9426,14 @@ const ROADMAP = [
         "prereq": "Segurança (Intro), Redes",
         "track": "security",
         "trackPart": 5,
-        "trackTotal": 5
+        "trackTotal": 5,
+        "projectKey": "Seguranca Defensiva, Forense Avancada & Blue Team",
+        "objectives": [
+          "Analisar Seguranca Defensiva",
+          "Analisar Forense de Memoria (RAM)",
+          "Analisar Forense de Rede e Logs",
+          "Analisar Forense Mobile e IoT"
+        ]
       }
     ]
   },
@@ -9345,7 +9632,14 @@ const ROADMAP = [
             "search": "Leitura de Papers e Literature Review"
           }
         ],
-        "prereq": "Inglês técnico"
+        "prereq": "Inglês técnico",
+        "projectKey": "Escrita e Metodologia Cientifica",
+        "objectives": [
+          "Dominar Metodologia Cientifica & Escrita Academica",
+          "Dominar Escrita Academica em Computacao",
+          "Dominar Apresentacoes e Comunicacao Cientifica",
+          "Dominar Leitura de Papers e Literature Review"
+        ]
       },
       {
         "name": "🔬 Iniciacao Cientifica (IC)",
@@ -9494,7 +9788,13 @@ const ROADMAP = [
             "search": "Bolsas, Editais e Oportunidades na IC"
           }
         ],
-        "prereq": "Escrita e Metodologia Científica"
+        "prereq": "Escrita e Metodologia Científica",
+        "projectKey": "Iniciacao Cientifica (IC)",
+        "objectives": [
+          "Dominar Primeiros Passos na Pesquisa",
+          "Dominar Durante a IC",
+          "Dominar Bolsas, Editais e Oportunidades na IC"
+        ]
       },
       {
         "name": "🏫 Mestrado",
@@ -9638,7 +9938,13 @@ const ROADMAP = [
             "search": "Publicar no Mestrado"
           }
         ],
-        "prereq": "Iniciação Científica"
+        "prereq": "Iniciação Científica",
+        "projectKey": "Mestrado",
+        "objectives": [
+          "Dominar Mestrado Academico em Computacao",
+          "Dominar Vida no Mestrado",
+          "Dominar Publicar no Mestrado"
+        ]
       },
       {
         "name": "🧑‍🎓 Doutorado",
@@ -9787,7 +10093,13 @@ const ROADMAP = [
             "search": "Carreira Academica e Internacionalizacao"
           }
         ],
-        "prereq": "Mestrado"
+        "prereq": "Mestrado",
+        "projectKey": "Doutorado",
+        "objectives": [
+          "Dominar Doutorado em Computacao",
+          "Dominar Vida no Doutorado",
+          "Dominar Carreira Academica e Internacionalizacao"
+        ]
       },
       {
         "name": "🛠️ Ferramentas e Recursos Academicos",
@@ -9900,7 +10212,12 @@ const ROADMAP = [
             "search": "Reprodutibilidade e Ferramentas de Pesquisa"
           }
         ],
-        "prereq": "Python (básico)"
+        "prereq": "Python (básico)",
+        "projectKey": "Ferramentas e Recursos Academicos",
+        "objectives": [
+          "Dominar Escrita e Publicação Acadêmica",
+          "Dominar Reprodutibilidade e Ferramentas de Pesquisa"
+        ]
       }
     ]
   },
@@ -10032,7 +10349,12 @@ const ROADMAP = [
             "search": "Preparacao de Carreira"
           }
         ],
-        "prereq": "Nenhum — estude em paralelo"
+        "prereq": "Nenhum — estude em paralelo",
+        "projectKey": "Aprendizado & Preparacao de Carreira",
+        "objectives": [
+          "Dominar Metodos de Estudo Eficaz",
+          "Dominar Preparacao de Carreira"
+        ]
       },
       {
         "name": "🚀 Trilhas, Crescimento & Transicoes",
@@ -10176,7 +10498,13 @@ const ROADMAP = [
             "search": "Transicoes de Carreira em Tech"
           }
         ],
-        "prereq": "Experiência prática"
+        "prereq": "Experiência prática",
+        "projectKey": "Trilhas, Crescimento & Transicoes",
+        "objectives": [
+          "Analisar Carreira em Cyber Security e Forense",
+          "Dominar Crescimento Profissional",
+          "Dominar Transicoes de Carreira em Tech"
+        ]
       },
       {
         "name": "👥 Liderança & Gestão de Pessoas",
@@ -10351,6 +10679,13 @@ const ROADMAP = [
             ],
             "search": "Cultura, Hiring e Gestão de Times"
           }
+        ],
+        "projectKey": "Liderança & Gestão de Pessoas",
+        "objectives": [
+          "Dominar Engineering Management e Métricas",
+          "Dominar Organização, Escala e Stakeholders",
+          "Dominar 1",
+          "Dominar Cultura, Hiring e Gestão de Times"
         ]
       },
       {
@@ -10485,7 +10820,13 @@ const ROADMAP = [
             "search": "Gestao de Crise e Comunicacao"
           }
         ],
-        "prereq": "Experiência sênior"
+        "prereq": "Experiência sênior",
+        "projectKey": "Lideranca Tecnica",
+        "objectives": [
+          "Dominar Tech Lead & Staff Engineer",
+          "Construir projetos usando Gestao de Projetos e Processos",
+          "Dominar Gestao de Crise e Comunicacao"
+        ]
       },
       {
         "name": "📊 Produto, Estratégia & Negócio",
@@ -10665,6 +11006,13 @@ const ROADMAP = [
             ],
             "search": "Empreendedorismo e Fundraising"
           }
+        ],
+        "projectKey": "Produto, Estratégia & Negócio",
+        "objectives": [
+          "Dominar Discovery e Pesquisa de Produto",
+          "Dominar Métricas, OKRs e Roadmap",
+          "Dominar Modelo de Negócios e Economia",
+          "Dominar Empreendedorismo e Fundraising"
         ]
       },
       {
@@ -10768,7 +11116,12 @@ const ROADMAP = [
             "search": "Workflow, Comunidade e Mantendo Projetos"
           }
         ],
-        "prereq": "Git, ler código"
+        "prereq": "Git, ler código",
+        "projectKey": "Open Source na Prática",
+        "objectives": [
+          "Construir projetos usando Contribuindo com Projetos Open Source",
+          "Construir projetos usando Workflow, Comunidade e Mantendo Projetos"
+        ]
       }
     ]
   }
