@@ -394,8 +394,8 @@ const bb2=document.createElement('button');bb2.className='project-btn project-ba
 const ab2=document.createElement('button');ab2.className='project-btn project-advanced';ab2.textContent=pd.advanced.title;ab2.addEventListener('click',e=>{e.stopPropagation();openProject(pd.advanced)});ab.appendChild(ab2);
 const lk=document.createElement('button');lk.className='area-link-btn';lk.textContent='🔗 Copiar link';lk.title='Copiar link direto para esta área';lk.addEventListener('click',e=>{e.stopPropagation();const url=location.origin+location.pathname+'#area-'+aSlug;const done=()=>{lk.textContent='✅ Copiado!';setTimeout(()=>lk.textContent='🔗 Copiar link',1500)};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(done).catch(()=>{location.hash='area-'+aSlug;done()})}else{location.hash='area-'+aSlug;done()}});ab.appendChild(lk);
 aC.appendChild(ab)}
-// Game Design track capstone — shown at the end of the final (orange) GD area
-if(isGD&&level.css==='orange'&&typeof FINAL_LEVEL!=='undefined'&&FINAL_LEVEL.gamedesign){
+// Game Design track capstone — shown only at the end of the flagged GD area (Dev Avançado)
+if(area.gdCapstone&&typeof FINAL_LEVEL!=='undefined'&&FINAL_LEVEL.gamedesign){
 const gf=document.createElement('div');gf.className='gd-capstone';
 const gfb=document.createElement('button');gfb.className='final-btn gd-capstone-btn';gfb.textContent='🏆 '+FINAL_LEVEL.gamedesign.project.title.replace(/^🏆\s*/,'');
 gfb.addEventListener('click',e=>{e.stopPropagation();openProject(FINAL_LEVEL.gamedesign.project)});

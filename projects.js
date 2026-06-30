@@ -766,5 +766,137 @@ const PROJECTS = {
       "desc": "Ataque um problema NP-difícil de porte realista (ex: roteamento de veículos, escalonamento complexo, ou uma variação do caixeiro viajante com muitas cidades). Compare uma abordagem exata (quando viável) com uma metaheurística (algoritmo genético, simulated annealing ou busca local). Avalie qualidade da solução vs tempo de execução e discuta os trade-offs.",
       "deliverable": "Código com a(s) abordagem(ns) implementada(s), experimentos comparando qualidade e tempo, gráficos de convergência e uma análise dos trade-offs entre exato e heurístico."
     }
+  },
+  "🎯 Reinforcement Learning": {
+    "basic": {
+      "title": "🟢 Agente Q-Learning em ambiente clássico",
+      "desc": "Implemente Q-Learning tabular do zero para resolver um ambiente clássico do Gymnasium (FrozenLake, Taxi ou CartPole discretizado). Treine o agente, visualize a curva de recompensa ao longo dos episódios e mostre a política aprendida. Experimente com epsilon, learning rate e fator de desconto.",
+      "deliverable": "Notebook com Q-Learning implementado, curva de aprendizado, política final visualizada e uma análise do efeito dos hiperparâmetros."
+    },
+    "advanced": {
+      "title": "🔴 Deep RL com PPO/DQN",
+      "desc": "Treine um agente de deep RL (DQN ou PPO via Stable-Baselines3) em um ambiente desafiador (Atari, LunarLander, ou ambiente customizado). Compare com um baseline, faça reward shaping se necessário e avalie a estabilidade do treino. Documente as decisões e os problemas enfrentados.",
+      "deliverable": "Agente treinado + código + vídeo/gif do desempenho + relatório comparando configurações e discutindo estabilidade e sample efficiency."
+    }
+  },
+  "🕸️ Sistemas de Recomendação": {
+    "basic": {
+      "title": "🟢 Recomendador por filtragem colaborativa",
+      "desc": "Construa um sistema de recomendação de filmes com o dataset MovieLens usando filtragem colaborativa (vizinhança ou fatoração de matrizes). Avalie com precision@k e NDCG e gere recomendações top-N para usuários de exemplo.",
+      "deliverable": "Notebook com o recomendador, métricas de avaliação offline e exemplos de recomendações geradas para diferentes usuários."
+    },
+    "advanced": {
+      "title": "🔴 Recomendador híbrido em produção",
+      "desc": "Desenvolva um recomendador híbrido (colaborativo + conteúdo, ou deep learning) com retrieval (ANN/FAISS) e ranking. Sirva recomendações via API, avalie offline e desenhe um plano de A/B test. Trate cold start e discuta vieses e filtro-bolha.",
+      "deliverable": "Sistema servindo recomendações via API + código + avaliação + plano de experimentação online + discussão de vieses e cold start."
+    }
+  },
+  "📈 Séries Temporais & Forecasting": {
+    "basic": {
+      "title": "🟢 Previsão com modelos clássicos",
+      "desc": "Faça forecasting de uma série real (vendas, energia, temperatura) usando suavização exponencial e ARIMA/SARIMA. Decomponha a série, valide de forma temporal (sem embaralhar) e compare contra um baseline naive com MAE/RMSE.",
+      "deliverable": "Notebook com decomposição, modelos clássicos, validação temporal correta e comparação de métricas contra baseline."
+    },
+    "advanced": {
+      "title": "🔴 Pipeline de forecasting ML/DL",
+      "desc": "Construa um pipeline de previsão de demanda comparando modelos clássicos, gradient boosting (com feature engineering temporal) e deep learning (LSTM ou modelo moderno). Faça previsão probabilística (intervalos), validação walk-forward e monitore a degradação. Discuta qual abordagem compensa.",
+      "deliverable": "Pipeline completo + comparação honesta de abordagens + previsões com incerteza + validação temporal + discussão de trade-offs."
+    }
+  },
+  "🕹️ Programação de Jogos & Engines": {
+    "basic": {
+      "title": "🟢 Jogo 2D completo numa engine",
+      "desc": "Desenvolva um jogo 2D simples e completo (plataforma, arcade ou puzzle) em Godot ou Unity. Implemente game loop, input responsivo, colisão, pelo menos uma mecânica central e um loop de gameplay (início, objetivo, fim). Foque no game feel.",
+      "deliverable": "Jogo 2D jogável (executável ou web) + código organizado + descrição das mecânicas e decisões de game feel."
+    },
+    "advanced": {
+      "title": "🔴 Jogo com arquitetura sólida ou multiplayer",
+      "desc": "Crie um jogo mais ambicioso aplicando boas práticas de arquitetura (ECS ou padrões de gamedev), com sistemas desacoplados (input, física, áudio), ou implemente multiplayer simples com servidor autoritativo. Faça profiling e otimize o desempenho.",
+      "deliverable": "Jogo com arquitetura documentada (ou multiplayer funcional) + código + análise de performance/profiling."
+    }
+  },
+  "🤖 Game AI (IA para Jogos)": {
+    "basic": {
+      "title": "🟢 NPC com pathfinding e estados",
+      "desc": "Implemente um NPC inteligente num jogo: pathfinding com A* num grid/navmesh e uma máquina de estados (patrulhar, perseguir, atacar, recuar) com percepção (visão por raycast). O comportamento deve ser crível e divertido de enfrentar.",
+      "deliverable": "Demo jogável com NPC usando A* + FSM + percepção, mais descrição dos estados e transições."
+    },
+    "advanced": {
+      "title": "🔴 Sistema de IA com behavior trees ou GOAP",
+      "desc": "Construa um sistema de IA mais sofisticado usando behavior trees ou GOAP, com múltiplos NPCs que coordenam, reagem ao mundo e exibem comportamento emergente. Inclua pathfinding dinâmico e dificuldade balanceada. Opcionalmente experimente ML-Agents.",
+      "deliverable": "Demo com IA avançada (BT/GOAP) + múltiplos agentes + documentação do design de comportamento e do balanceamento."
+    }
+  },
+  "🔊 Áudio de Jogos & Arte Técnica": {
+    "basic": {
+      "title": "🟢 Paisagem sonora e feedback de um jogo",
+      "desc": "Crie o design de áudio para um pequeno jogo: efeitos sonoros de feedback (ações, UI), ambiente e uma trilha. Implemente na engine com triggers por eventos de gameplay e mixagem básica. Mostre como o som melhora a sensação do jogo.",
+      "deliverable": "Jogo/demo com áudio implementado (SFX + ambiente + música) + descrição das escolhas de sound design."
+    },
+    "advanced": {
+      "title": "🔴 Sistema de áudio adaptativo ou efeito com shader",
+      "desc": "Implemente um sistema de áudio adaptativo (música que reage ao gameplay via middleware como FMOD/Wwise, ou parâmetros na engine) OU crie um efeito visual completo com shader (água, dissolve, portal) integrado e otimizado. Documente como funciona.",
+      "deliverable": "Sistema de áudio adaptativo OU efeito de shader funcional e otimizado + código/projeto + explicação técnica."
+    }
+  },
+  "🔐 Criptografia Aplicada": {
+    "basic": {
+      "title": "🟢 Cofre de senhas com criptografia correta",
+      "desc": "Construa um gerenciador de senhas simples que use criptografia corretamente: hashing de senha mestra com Argon2/bcrypt, criptografia simétrica autenticada (AES-GCM) para os dados, e geração segura de aleatoriedade. Use bibliotecas auditadas, nunca cripto caseira.",
+      "deliverable": "Aplicação funcional + código + documento explicando cada escolha criptográfica e por que está correta."
+    },
+    "advanced": {
+      "title": "🔴 Sistema de comunicação criptografada ponta-a-ponta",
+      "desc": "Implemente uma troca de mensagens com criptografia ponta-a-ponta: troca de chaves (Diffie-Hellman/ECDH), criptografia autenticada, assinaturas para autenticidade e perfect forward secrecy. Analise o modelo de ameaça e os ataques possíveis. Use primitivas de bibliotecas sérias.",
+      "deliverable": "Protótipo de comunicação E2E + código + análise do modelo de ameaça, das primitivas usadas e das proteções contra ataques conhecidos."
+    }
+  },
+  "🔬 Análise de Malware & Engenharia Reversa": {
+    "basic": {
+      "title": "🟢 Reversa de um binário (crackme)",
+      "desc": "Faça engenharia reversa de um crackme ou binário didático usando Ghidra e um debugger. Analise estaticamente (assembly, strings, fluxo) e dinamicamente, entenda a lógica e documente como o programa funciona. Tudo em ambiente isolado e legal.",
+      "deliverable": "Relatório de RE: o que o binário faz, como descobriu, trechos de assembly/decompilação relevantes e o fluxo de execução."
+    },
+    "advanced": {
+      "title": "🔴 Análise completa de uma amostra de malware",
+      "desc": "Analise uma amostra de malware de treino (de repositórios didáticos) em ambiente isolado: análise estática e dinâmica, desempacotamento se necessário, extração de IOCs, mapeamento para MITRE ATT&CK e criação de uma regra de detecção (YARA). Sempre com segurança e legalidade.",
+      "deliverable": "Relatório de análise de malware + IOCs extraídos + mapeamento ATT&CK + regra YARA, conduzido em ambiente isolado."
+    }
+  },
+  "🚩 Red Team & Adversary Simulation": {
+    "basic": {
+      "title": "🟢 Cadeia de ataque em lab autorizado",
+      "desc": "Em um lab autorizado (HackTheBox, TryHackMe, ou ambiente próprio), execute uma cadeia de ataque completa: reconhecimento, acesso inicial, escalonamento de privilégio e captura do objetivo. Documente cada passo mapeando para o MITRE ATT&CK.",
+      "deliverable": "Relatório da cadeia de ataque com passos, técnicas (ATT&CK), evidências e recomendações de mitigação — em ambiente autorizado."
+    },
+    "advanced": {
+      "title": "🔴 Operação red team simulada com C2 e evasão",
+      "desc": "Conduza uma operação red team simulada em lab próprio: estabeleça C2, pratique evasão de defesas, movimentação lateral e persistência, atingindo um objetivo definido sem ser detectado. Produza um relatório purple team com timeline e o que o blue team detectou (ou não).",
+      "deliverable": "Relatório de operação red team: timeline do ataque, TTPs, o que foi detectado, e recomendações acionáveis — estritamente em ambiente autorizado e ético."
+    }
+  },
+  "🗄️ Banco de Dados Intermediário": {
+    "basic": {
+      "title": "🟢 Banco de dados de e-commerce com queries analíticas",
+      "desc": "Modele e implemente um banco de dados relacional para um e-commerce (usuários, produtos, pedidos, itens, reviews). Popule com dados e escreva consultas que respondam perguntas reais usando JOINs, GROUP BY e subconsultas: produtos mais vendidos, faturamento por mês, clientes mais ativos.",
+      "deliverable": "Schema do banco + dados de exemplo + um conjunto de queries analíticas (JOINs, agregações, subconsultas) respondendo perguntas de negócio."
+    },
+    "advanced": {
+      "title": "🔴 Camada de dados com ORM, índices e otimização",
+      "desc": "Construa a camada de dados de uma aplicação usando um ORM (Prisma/SQLAlchemy) com migrations, modele relacionamentos complexos, e otimize: identifique queries lentas com EXPLAIN, crie índices apropriados, resolva o problema N+1 e use transações corretamente. Integre um NoSQL (Redis para cache) onde fizer sentido.",
+      "deliverable": "Camada de dados com ORM + migrations + análise de performance (EXPLAIN, índices criados, N+1 resolvido) + uso justificado de cache/NoSQL."
+    }
+  },
+  "📐 Cálculo Avançado & Álgebra Linear": {
+    "basic": {
+      "title": "🟢 Resolvendo sistemas e transformações com álgebra linear",
+      "desc": "Use Python (NumPy) para resolver problemas de álgebra linear: resolver um sistema linear por eliminação de Gauss, calcular determinantes e inversas, e aplicar transformações lineares (rotação, escala) a um conjunto de pontos, visualizando o resultado. Conecte a teoria com a computação.",
+      "deliverable": "Notebook com sistema linear resolvido, operações matriciais e uma visualização de transformações lineares aplicadas a pontos (antes/depois)."
+    },
+    "advanced": {
+      "title": "🔴 Modelagem de um sistema físico com equações diferenciais",
+      "desc": "Modele um sistema físico real (circuito RLC, sistema massa-mola, ou resfriamento) com uma equação diferencial. Resolva analiticamente e com Transformada de Laplace, depois valide numericamente em Python (scipy.integrate). Compare a solução analítica com a numérica e interprete o comportamento (oscilação, amortecimento, regime).",
+      "deliverable": "Notebook com o modelo (EDO), solução analítica + via Laplace, simulação numérica e gráficos comparando os resultados com interpretação física."
+    }
   }
 };
