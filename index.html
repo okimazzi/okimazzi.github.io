@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Roadmap Completo — Engenharia da Computação</title>
-  <meta name="description" content="Roadmap completo de Engenharia da Computação: do iniciante ao avançado. 1864 itens e 75 projetos práticos. IA, ML, Full-Stack, DevOps, Segurança, Robótica e mais.">
+  <meta name="description" content="Roadmap completo de Engenharia da Computação: do iniciante ao avançado. 1988 itens e 87 projetos práticos. IA, ML, Full-Stack, DevOps, Segurança, Robótica e mais.">
   <meta property="og:title" content="Roadmap Completo — Engenharia da Computação">
-  <meta property="og:description" content="Do zero ao avançado: 75 áreas, 1864 itens e 75 projetos práticos.">
+  <meta property="og:description" content="Do zero ao avançado: 87 áreas, 1988 itens e 87 projetos práticos.">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#6366f1">
@@ -19,7 +19,7 @@
 <body>
   <header class="hero">
     <div class="hero-inner">
-      <p class="hero-tag">v10 · 75 áreas · 1864 itens · 75 projetos</p>
+      <p class="hero-tag">v13 · 87 áreas · 1988 itens · 87 projetos</p>
       <h1>Roadmap Completo<br><span class="hero-accent">Engenharia da Computação</span></h1>
     </div>
   </header>
@@ -64,12 +64,13 @@
 
     <div class="track-filter" role="group" aria-label="Filtrar por trilha">
       <span class="track-filter-label">Trilhas:</span>
-      <button class="track-filter-btn active" data-track="all" onclick="setTrackFilter('all')">Todas as áreas</button>
-      <button class="track-filter-btn tf-gd" data-track="gamedesign" onclick="setTrackFilter('gamedesign')">🎮 Game Design</button>
-      <button class="track-filter-btn tf-ai" data-track="ai" onclick="setTrackFilter('ai')">🤖 IA &amp; ML</button>
-      <button class="track-filter-btn tf-web" data-track="web" onclick="setTrackFilter('web')">🌐 Web / Full-Stack</button>
-      <button class="track-filter-btn tf-sec" data-track="security" onclick="setTrackFilter('security')">🔒 Segurança</button>
-      <button class="track-filter-btn tf-hw" data-track="hardware" onclick="setTrackFilter('hardware')">🔧 Hardware &amp; Embarcados</button>
+      <button class="track-filter-btn active" data-track="all" aria-pressed="true" onclick="setTrackFilter('all')">Todas as áreas</button>
+      <button class="track-filter-btn tf-gd" data-track="gamedesign" aria-pressed="false" onclick="setTrackFilter('gamedesign')">🎮 Game Design</button>
+      <button class="track-filter-btn tf-ai" data-track="ai" aria-pressed="false" onclick="setTrackFilter('ai')">🤖 IA &amp; ML</button>
+      <button class="track-filter-btn tf-web" data-track="web" aria-pressed="false" onclick="setTrackFilter('web')">🌐 Web / Full-Stack</button>
+      <button class="track-filter-btn tf-sec" data-track="security" aria-pressed="false" onclick="setTrackFilter('security')">🔒 Segurança</button>
+      <button class="track-filter-btn tf-hw" data-track="hardware" aria-pressed="false" onclick="setTrackFilter('hardware')">🔧 Hardware &amp; Embarcados</button>
+      <button class="track-filter-btn tf-data" data-track="data" aria-pressed="false" onclick="setTrackFilter('data')">📊 Dados</button>
     </div>
 
     <div id="search-results" class="search-results" style="display:none"></div>
@@ -78,6 +79,7 @@
       <summary><span class="sh-icon">🧭</span> Comece por aqui — como usar este roadmap</summary>
       <div class="sh-body">
         <p>São <strong>6 níveis do iniciante ao profissional</strong>. Você pode seguir <strong>em ordem</strong> (cada área respeita os pré-requisitos da anterior) ou <strong>seguir um interesse</strong> pelas trilhas temáticas. Cada área mostra seus <strong>📋 pré-requisitos</strong> e o <strong>tempo estimado (~h)</strong>. Marque ✅ ao concluir e complete os <strong>projetos 🟢🔴</strong> de cada área e o <strong>🏆 Desafio Final</strong> de cada nível.</p>
+        <p class="sh-priority">⭐ <strong>Não precisa fazer todas as áreas.</strong> Comece pela área <strong>🚀 Comece Aqui</strong> (métodos de estudo + meta-habilidades) e pelas marcadas <span class="core-badge">⭐ Essencial</span> — a espinha de um dev empregável. O resto é eletiva/nicho: siga o que te interessa. <strong>Foco em IA/Dados?</strong> Siga as trilhas <strong>🤖 IA &amp; ML</strong> e <strong>📊 Dados</strong>. Monte um <strong>portfólio</strong> (6-8 projetos) — é o que prova que você aprendeu, mais do que só assistir. Em áreas de ferramentas que mudam rápido (LLMs, cloud), foque no <strong>princípio</strong> durável, não no produto da moda.</p>
         <p class="sh-paths-title">Quer seguir por objetivo? Caminhos sugeridos:</p>
         <div class="sh-paths">
           <div class="sh-path sh-path-gd"><span class="sh-path-h">🎮 Game Dev</span><span class="sh-path-d">Game Design (Fundamentos → Teoria & Design → Dev Avançado) + Computação Gráfica. Trilha dedicada no fim de cada nível.</span></div>

@@ -8,9 +8,9 @@ self.addEventListener('fetch',e=>{
   e.respondWith(
     caches.match(e.request).then(cached=>{
       const net=fetch(e.request).then(resp=>{
-        if(resp&&resp.status===200&&resp.type==='basic'){const cp=resp.clone();caches.open(CACHE).then(c=>c.put(e.request,cp))}
+        if(resp&&resp.status===200&&resp.type==='basic'){const cp=resp.clone();caches.open(CACHE).then(c=>c.put(e.request,cp)).catch(()=>{})}
         return resp;
-      }).catch(()=>cached);
+      }).catch(()=>cached||Response.error());
       return cached||net;
     })
   );

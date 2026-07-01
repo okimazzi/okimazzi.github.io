@@ -3,6 +3,8 @@
 const $=s=>document.querySelector(s);
 const roadmap=$('#roadmap'),statsEl=$('#stats'),searchInput=$('#search'),searchResults=$('#search-results');
 const SK='roadmap_progress',TK='roadmap_theme',BK='roadmap_badges',NK='roadmap_notes',RK='roadmap_review';
+// Naming legend: g*/s* = get/set a localStorage store (gP/sP progress, gB/sB badges,
+// gN/sN notes, gR/sR review); mid() = per-item key; esc() = HTML-escape; eT() = est. minutes.
 function gP(){try{return JSON.parse(localStorage.getItem(SK))||{}}catch(e){return{}}}
 function sP(d){try{localStorage.setItem(SK,JSON.stringify(d))}catch(e){}}
 function gB(){try{return JSON.parse(localStorage.getItem(BK))||{}}catch(e){return{}}}
@@ -16,9 +18,41 @@ function gR(){try{return JSON.parse(localStorage.getItem(RK))||{}}catch(e){retur
 function sR(d){try{localStorage.setItem(RK,JSON.stringify(d))}catch(e){}}
 function reviewDue(iid){const r=gR()[iid];if(!r||!r.date)return false;const days=(Date.now()-r.date)/86400000;const iv=RIVALS[Math.min(r.count||0,RIVALS.length-1)];return days>=iv}
 function countDue(){const r=gR();let n=0;Object.keys(r).forEach(iid=>{if(reviewDue(iid))n++});return n}
-function mid(lc,an,tn,ii){return lc+'::'+an.substring(0,20)+'::'+tn.substring(0,20)+'::'+ii}
-// Escape HTML to prevent broken render on <, >, &, " in content (e.g. vector<int>, a < b)
-function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+// Stable per-item key. Uses FULL area/topic names (not truncated) so sibling topics that
+// share a long prefix can't collide onto the same localStorage key (was: substring(0,20)).
+function mid(lc,an,tn,ii){return lc+'::'+an+'::'+tn+'::'+ii}
+// Escape HTML to prevent broken render (and as XSS defense-in-depth) on & < > " ' in content
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+// Respect the user's reduced-motion preference for celebratory animations
+const prefersReducedMotion=()=>!!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+// Element that opened the current modal, so focus can be restored when it closes (a11y)
+let modalTrigger=null;
+
+// One-time migration: earlier builds truncated area/topic names to 20 chars when forming
+// item IDs, so sibling topics sharing a 20-char prefix collided (e.g. "Visão Computacional
+// Clássica" vs "…Moderna (Deep Learning)"), silently linking their studied/notes/review state.
+// mid() now uses full names; remap any old truncated keys to the new ones so saved data survives.
+(function migrateItemIds(){
+  try{
+    if(localStorage.getItem('roadmap_id_migrated_v2'))return;
+    const oldMid=(lc,an,tn,ii)=>lc+'::'+an.substring(0,20)+'::'+tn.substring(0,20)+'::'+ii;
+    const remap={};
+    ROADMAP.forEach(l=>l.areas.forEach(a=>a.topics.forEach(t=>t.items.forEach((it,idx)=>{
+      remap[oldMid(l.css,a.name,t.name,idx)]=mid(l.css,a.name,t.name,idx);
+    }))));
+    [SK,NK,RK].forEach(K=>{
+      let obj;try{obj=JSON.parse(localStorage.getItem(K))}catch(e){return}
+      if(!obj||typeof obj!=='object'||Array.isArray(obj))return;
+      const next={};let changed=false;
+      // Pass 1: keys already in the new format (not remapped) always win.
+      Object.keys(obj).forEach(k=>{if((remap[k]||k)===k)next[k]=obj[k]});
+      // Pass 2: remapped old keys fill only gaps, so a correct new key is never clobbered.
+      Object.keys(obj).forEach(k=>{const nk=remap[k];if(nk&&nk!==k){changed=true;if(!(nk in next))next[nk]=obj[k]}});
+      if(changed)localStorage.setItem(K,JSON.stringify(next));
+    });
+    localStorage.setItem('roadmap_id_migrated_v2','1');
+  }catch(e){}
+})();
 
 // Theme
 function initTheme(){if(localStorage.getItem(TK)==='light')document.body.classList.add('light-mode')}
@@ -26,7 +60,7 @@ initTheme();
 window.toggleTheme=function(){document.body.classList.toggle('light-mode');localStorage.setItem(TK,document.body.classList.contains('light-mode')?'light':'dark');const b=$('#theme-toggle');if(b)b.textContent=document.body.classList.contains('light-mode')?'🌙 Escuro':'☀️ Claro'};
 
 // Time estimate
-function eT(it){const l=it.d.length+it.w.length;if(it.w.includes('🎯'))return 10;if(l>500)return 240;if(l>300)return 120;return 60}
+function eT(it){const l=it.d.length+it.w.length;if(it.w.includes('🎯'))return 8;if(l>700)return 90;if(l>400)return 45;return 25}
 function fmtTime(min){if(min<60)return min+'min';const h=Math.floor(min/60);const m=min%60;return m>0?h+'h'+m+'min':h+'h'}
 
 // Count all
@@ -91,7 +125,7 @@ rS();
 
 // ── Spaced repetition review widget ──
 function updateReviewWidget(){const el=document.getElementById('review-widget');if(!el)return;const n=countDue();if(n>0){el.style.display='inline-flex';el.querySelector('.review-count').textContent=n}else{el.style.display='none'}}
-window.openReview=function(){const r=gR();const due=[];ROADMAP.forEach(lv=>lv.areas.forEach(a=>a.topics.forEach(t=>t.items.forEach((it,idx)=>{const iid=mid(lv.css,a.name,t.name,idx);if(reviewDue(iid))due.push({iid,w:it.w,path:lv.name+' › '+a.name.replace(/^[^\w\s]+\s*/u,'').trim()+' › '+t.name,s:it.s})}))));
+window.openReview=function(){modalTrigger=document.activeElement;const r=gR();const due=[];ROADMAP.forEach(lv=>lv.areas.forEach(a=>a.topics.forEach(t=>t.items.forEach((it,idx)=>{const iid=mid(lv.css,a.name,t.name,idx);if(reviewDue(iid))due.push({iid,w:it.w,path:lv.name+' › '+a.name.replace(/^[^\w\s]+\s*/u,'').trim()+' › '+t.name,s:it.s})}))));
 const ov=document.createElement('div');ov.className='quiz-overlay';const mo=document.createElement('div');mo.className='quiz-modal review-modal';mo.setAttribute('role','dialog');mo.setAttribute('aria-modal','true');
 if(!due.length){mo.innerHTML=`<h2>🔁 Revisão</h2><p style="color:var(--text-dim)">Nada para revisar agora. Continue estudando — os itens voltam aqui no momento certo de revisar.</p><div class="quiz-actions"><button class="quiz-close-btn" onclick="this.closest('.quiz-overlay').remove()">Fechar</button></div>`}
 else{mo.innerHTML=`<h2>🔁 Revisão — ${due.length} ${due.length>1?'itens':'item'}</h2><p style="color:var(--text-dim);font-size:14px">Tente lembrar cada um. Marque "✅ Revisei" pra agendar a próxima revisão (intervalos crescentes).</p><div class="review-list">${due.map(d=>`<div class="review-item" data-iid="${esc(d.iid)}"><div class="review-item-path">${esc(d.path)}</div><div class="review-item-title">${esc(d.w)}</div><div class="review-item-actions"><button type="button" class="review-done-btn" data-iid="${esc(d.iid)}">✅ Revisei</button>${mSL(d.s).replace(/<div class="search-term-row">/g,'<div class="search-term-row mini">')}</div></div>`).join('')}</div><div class="quiz-actions"><button class="quiz-close-btn" onclick="this.closest('.quiz-overlay').remove()">Fechar</button></div>`;
@@ -100,11 +134,12 @@ ov.appendChild(mo);document.body.appendChild(ov);const fb=mo.querySelector('butt
 
 // ── Pace planner: hours/week → finish estimate ──
 window.openPacePlanner=function(){
-  const prog=computeProgress();const remainingMin=Math.max(0,totalMinutes-prog.minutes);const remainingH=Math.round(remainingMin/60);
+  modalTrigger=document.activeElement;
+  const p=gP();let scopeMin=0,scopeDone=0;ROADMAP.forEach(lv=>lv.areas.forEach(a=>{if(cTrack!=='all'&&!(a.track===cTrack||a.core))return;a.topics.forEach(t=>t.items.forEach((it,idx)=>{if(it.w.includes('🎯'))return;const m=eT(it);scopeMin+=m;if(p[mid(lv.css,a.name,t.name,idx)])scopeDone+=m}))}));const scopeLabel=cTrack==='all'?'todo o roadmap':'a trilha atual + CORE';const remainingMin=Math.max(0,scopeMin-scopeDone);const remainingH=Math.round(remainingMin/60);
   const ov=document.createElement('div');ov.className='quiz-overlay';const mo=document.createElement('div');mo.className='quiz-modal pace-modal';mo.setAttribute('role','dialog');mo.setAttribute('aria-modal','true');
   function calc(hpw){if(hpw<=0)return'—';const weeks=remainingH/hpw;if(weeks<4)return Math.ceil(weeks)+' semana'+(Math.ceil(weeks)>1?'s':'');const months=weeks/4.345;if(months<12)return months.toFixed(1)+' meses';return (months/12).toFixed(1)+' anos'}
   mo.innerHTML=`<h2>📅 Planejador de Ritmo</h2>
-    <p class="quiz-info">Faltam ~${fmtTime(remainingMin)} de conteúdo (${remainingH}h) para concluir tudo o que ainda não estudou.</p>
+    <p class="quiz-info">Faltam ~${fmtTime(remainingMin)} de conteúdo (${remainingH}h) para concluir <strong>${scopeLabel}</strong> (filtre uma trilha pra escopar o cálculo).</p>
     <div class="pace-control"><label>Quantas horas por semana você consegue estudar?</label>
     <input type="range" id="pace-range" min="1" max="40" value="10" step="1"><div class="pace-value"><span id="pace-hours">10</span> h/semana</div></div>
     <div class="pace-result">⏳ Você concluiria em aproximadamente <strong id="pace-eta">${calc(10)}</strong></div>
@@ -161,7 +196,7 @@ function checkBadge(areaName){
 }
 function showBadge(name){
   const toast=document.createElement('div');toast.className='badge-toast';
-  toast.innerHTML='🏅 <strong>Badge conquistada!</strong><br>Mestre em '+name;
+  toast.innerHTML='🏅 <strong>Badge conquistada!</strong><br>Mestre em '+esc(name);
   document.body.appendChild(toast);setTimeout(()=>toast.classList.add('show'),10);setTimeout(()=>{toast.classList.remove('show');setTimeout(()=>toast.remove(),300)},3000);
   // Check if a whole level got completed
   checkLevelComplete();
@@ -181,26 +216,28 @@ function checkLevelComplete(){
   });
 }
 function celebrate(levelName){
-  // Confetti
-  const colors=['#34d399','#60a5fa','#fbbf24','#fb923c','#f87171','#a78bfa'];
-  const container=document.createElement('div');container.className='confetti-container';
-  for(let i=0;i<80;i++){
-    const c=document.createElement('div');c.className='confetti';
-    c.style.left=Math.random()*100+'%';
-    c.style.background=colors[i%colors.length];
-    c.style.animationDelay=(Math.random()*0.5)+'s';
-    c.style.animationDuration=(2+Math.random()*1.5)+'s';
-    c.style.setProperty('--drift',(Math.random()*200-100)+'px');
-    container.appendChild(c);
+  // Confetti — skip entirely when the user prefers reduced motion (vestibular safety)
+  if(!prefersReducedMotion()){
+    const colors=['#34d399','#60a5fa','#fbbf24','#fb923c','#f87171','#a78bfa'];
+    const container=document.createElement('div');container.className='confetti-container';
+    for(let i=0;i<80;i++){
+      const c=document.createElement('div');c.className='confetti';
+      c.style.left=Math.random()*100+'%';
+      c.style.background=colors[i%colors.length];
+      c.style.animationDelay=(Math.random()*0.5)+'s';
+      c.style.animationDuration=(2+Math.random()*1.5)+'s';
+      c.style.setProperty('--drift',(Math.random()*200-100)+'px');
+      container.appendChild(c);
+    }
+    document.body.appendChild(container);
+    setTimeout(()=>container.remove(),4000);
   }
-  document.body.appendChild(container);
-  // Banner
+  // Banner (always shown; its slide-in transition is disabled under reduced motion via CSS)
   const banner=document.createElement('div');banner.className='level-complete-banner';
-  banner.innerHTML='🎉<div><strong>Nível completo!</strong><span>'+levelName+'</span></div>🎉';
+  banner.innerHTML='🎉<div><strong>Nível completo!</strong><span>'+esc(levelName)+'</span></div>🎉';
   document.body.appendChild(banner);
   setTimeout(()=>banner.classList.add('show'),10);
   setTimeout(()=>{banner.classList.remove('show');setTimeout(()=>banner.remove(),400);},4000);
-  setTimeout(()=>container.remove(),4000);
 }
 
 // Filter
@@ -252,14 +289,14 @@ let cTrack='all';
 window.setTrackFilter=function(tr){cTrack=tr;
   document.querySelectorAll('.area').forEach(a=>{
     const at=a.dataset.track||'';
-    a.classList.toggle('track-hidden', tr!=='all' && at!==tr);
+    a.classList.toggle('track-hidden', tr!=='all' && at!==tr && !a.dataset.core);
   });
   // hide levels that end up with no visible area
   document.querySelectorAll('.level').forEach(lv=>{
     const anyVisible=[...lv.querySelectorAll('.area')].some(a=>!a.classList.contains('track-hidden'));
     lv.classList.toggle('track-hidden', tr!=='all' && !anyVisible);
   });
-  document.querySelectorAll('.track-filter-btn').forEach(b=>{const on=b.dataset.track===tr;b.classList.toggle('active',on)});
+  document.querySelectorAll('.track-filter-btn').forEach(b=>{const on=b.dataset.track===tr;b.classList.toggle('active',on);b.setAttribute('aria-pressed',on?'true':'false')});
   if(tr!=='all')window.expandAllLevels();
 };
 
@@ -276,11 +313,11 @@ window.toggleCompact=function(){const on=document.body.classList.toggle('compact
 
 // ── Back to top ──
 window.addEventListener('scroll',()=>{const b=document.getElementById('back-to-top');if(b)b.classList.toggle('show',window.scrollY>600)});
-window.resetProgress=function(){if(confirm('Apagar todo progresso (itens estudados e badges)?')){localStorage.removeItem(SK);localStorage.removeItem(BK);localStorage.removeItem('roadmap_levels_done');localStorage.removeItem('roadmap_quizzes');location.reload()}};
+window.resetProgress=function(){if(confirm('Apagar TODO o progresso (itens estudados, badges, notas e revisões)?')){localStorage.removeItem(SK);localStorage.removeItem(BK);localStorage.removeItem(NK);localStorage.removeItem(RK);localStorage.removeItem('roadmap_levels_done');localStorage.removeItem('roadmap_quizzes');location.reload()}};
 
 // Export/Import
 window.exportProgress=function(){
-  const data={progress:gP(),badges:gB(),date:new Date().toISOString()};
+  const data={progress:gP(),badges:gB(),notes:gN(),review:gR(),date:new Date().toISOString()};
   const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
   const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='roadmap-progress-'+new Date().toISOString().split('T')[0]+'.json';a.click();
 };
@@ -288,21 +325,27 @@ window.importProgress=function(){
   const input=document.createElement('input');input.type='file';input.accept='.json';
   input.onchange=function(e){const f=e.target.files[0];if(!f)return;const reader=new FileReader();
     reader.onload=function(ev){try{const data=JSON.parse(ev.target.result);
-      if(data.progress){localStorage.setItem(SK,JSON.stringify(data.progress))}
-      if(data.badges){localStorage.setItem(BK,JSON.stringify(data.badges))}
+      const isObj=o=>o&&typeof o==='object'&&!Array.isArray(o);
+      if(!isObj(data)||!isObj(data.progress)){alert('Arquivo inválido: não parece um backup de progresso do roadmap.');return}
+      localStorage.setItem(SK,JSON.stringify(data.progress));
+      if(isObj(data.badges))localStorage.setItem(BK,JSON.stringify(data.badges));
+      if(isObj(data.notes))localStorage.setItem(NK,JSON.stringify(data.notes));
+      if(isObj(data.review)){const clean={};Object.keys(data.review).forEach(k=>{const r=data.review[k];if(isObj(r)){const d=+r.date,c=+r.count;clean[k]={date:isFinite(d)?d:Date.now(),count:isFinite(c)?Math.max(0,Math.round(c)):0}}});localStorage.setItem(RK,JSON.stringify(clean));}
       alert('Progresso importado! Recarregando...');location.reload();
     }catch(err){alert('Arquivo inválido')}};reader.readAsText(f)};input.click();
 };
 
 // Study of the day
 window.studyOfDay=function(){
-  const p=gP();let suggestions=[];
-  ROADMAP.forEach(lv=>{lv.areas.forEach(a=>{a.topics.forEach(t=>{
+  modalTrigger=document.activeElement;
+  const p=gP();let inScope=[],rest=[];
+  ROADMAP.forEach(lv=>{lv.areas.forEach(a=>{const scoped=cTrack==='all'||a.track===cTrack||a.core;a.topics.forEach(t=>{
     t.items.forEach((it,idx)=>{
       const id=mid(lv.css,a.name,t.name,idx);
-      if(!p[id]&&!it.w.includes('🎯'))suggestions.push({level:lv.name,area:a.name.replace(/^[^\w\s]+\s*/u,'').trim(),topic:t.name,item:it,id:id,time:eT(it)})
+      if(p[id]||it.w.includes('🎯'))return;
+      (scoped?inScope:rest).push({level:lv.name,area:(a.displayName||a.name).replace(/^[^\w\s]+\s*/u,'').trim(),topic:t.name,item:it,id:id,time:eT(it)})
     })})})});
-  const picks=suggestions.slice(0,5);
+  const picks=inScope.concat(rest).slice(0,5);
   if(!picks.length){alert('Parabéns! Você estudou TUDO! 🎉');return}
   const ov=document.createElement('div');ov.className='quiz-overlay';
   const mo=document.createElement('div');mo.className='quiz-modal study-modal';
@@ -325,19 +368,19 @@ btn.innerHTML=`<div class="level-stage" aria-hidden="true">${stageNum}</div><div
 const cont=document.createElement('div');cont.className='level-content';cont.style.display='none';
 
 level.areas.forEach(area=>{
-const TRACKS={gamedesign:{label:'Trilha de Game Design',icon:'🎮',cls:'gd'},ai:{label:'Trilha de IA & ML',icon:'🤖',cls:'ai'},security:{label:'Trilha de Segurança',icon:'🔒',cls:'sec'},web:{label:'Trilha Web / Full-Stack',icon:'🌐',cls:'web'},hardware:{label:'Trilha de Hardware & Embarcados',icon:'🔧',cls:'hw'}};
+const TRACKS={gamedesign:{label:'Trilha de Game Design',icon:'🎮',cls:'gd'},ai:{label:'Trilha de IA & ML',icon:'🤖',cls:'ai'},security:{label:'Trilha de Segurança',icon:'🔒',cls:'sec'},web:{label:'Trilha Web / Full-Stack',icon:'🌐',cls:'web'},hardware:{label:'Trilha de Hardware & Embarcados',icon:'🔧',cls:'hw'},data:{label:'Trilha de Dados',icon:'📊',cls:'data'}};
 const tk=area.track&&TRACKS[area.track]?TRACKS[area.track]:null;
 const isGD=area.track==='gamedesign';
-const aD=document.createElement('div');aD.className='area'+(tk?' area-track area-track-'+tk.cls:'');if(area.track)aD.dataset.track=area.track;
+const aD=document.createElement('div');aD.className='area'+(tk?' area-track area-track-'+tk.cls:'');if(area.track)aD.dataset.track=area.track;if(area.core)aD.dataset.core='1';
 const aSlug=area.name.replace(/^[^\w\s]+\s*/u,'').trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'').substring(0,40);aD.dataset.slug=aSlug;
 const aIC=area.topics.reduce((s,t)=>s+t.items.length,0);
 // Estimated hours for this area (same heuristic as study load)
-const estH=Math.round(area.topics.reduce((s,t)=>s+t.items.reduce((s2,it)=>{const l=it.d.length+it.w.length;return s2+(/🎯/.test(it.w)?10:l>500?240:l>300?120:60)},0),0)/60);
+const estH=Math.round(area.topics.reduce((s,t)=>s+t.items.reduce((s2,it)=>s2+eT(it),0),0)/60);
 const badges=gB();const aKey=area.name.replace(/^[^\w\s]+\s*/u,'').trim();
 const hasBadge=badges[aKey];
 const aB=document.createElement('button');aB.className='area-btn'+(tk?' area-btn-track area-btn-'+tk.cls:'');aB.setAttribute('aria-expanded','false');
 const trackTag=tk?`<span class="track-badge track-badge-${tk.cls}">${tk.icon} ${tk.label} · ${area.trackPart}/${area.trackTotal}</span>`:'';
-aB.innerHTML=`<span class="area-title">${hasBadge?'🏅 ':''}${esc(area.name)}${trackTag}</span><span class="area-meta">${area.topics.length} tópicos · ${aIC} itens · ~${estH}h <span class="arrow" aria-hidden="true">▸</span></span>`;
+aB.innerHTML=`<span class="area-title">${area.core?'<span class="core-badge">⭐ Essencial</span> ':''}${hasBadge?'🏅 ':''}${esc(area.displayName||area.name)}${trackTag}</span><span class="area-meta">${area.topics.length} tópicos · ${aIC} itens · ~${estH}h <span class="arrow" aria-hidden="true">▸</span></span>`;
 const aC=document.createElement('div');aC.className='area-content';aC.style.display='none';
 if(area.prereq){const pr=document.createElement('div');pr.className='area-prereq';pr.innerHTML=`<span class="prereq-label">📋 Pré-requisitos:</span> ${esc(area.prereq)}`;aC.appendChild(pr)}
 if(area.objectives&&area.objectives.length){const ob=document.createElement('div');ob.className='area-objectives';ob.innerHTML=`<div class="objectives-label">🎯 Ao final desta área, você será capaz de:</div><ul class="objectives-list">${area.objectives.map(o=>`<li>${esc(o)}</li>`).join('')}</ul>`;aC.appendChild(ob)}
@@ -360,7 +403,7 @@ const iB=document.createElement('div');iB.className='item-btn';iB.setAttribute('
 iB.innerHTML=`<span class="item-left"><button type="button" class="item-check" role="checkbox" aria-checked="${iS?'true':'false'}" aria-label="Marcar &quot;${esc(item.w)}&quot; como estudado">${iS?'✅':'⬜'}</button><span class="item-text">${esc(item.w)}</span></span><span class="item-right"><span class="item-time">~${fmtTime(tm)}</span><span class="item-toggle" aria-hidden="true">▸</span></span>`;
 const chk=iB.querySelector('.item-check');
 function toggleStudied(){const p=gP();p[iid]=!p[iid];sP(p);chk.textContent=p[iid]?'✅':'⬜';chk.setAttribute('aria-checked',p[iid]?'true':'false');iD.classList.toggle('item-studied',p[iid]);
-const rv=gR();if(p[iid]){rv[iid]={date:Date.now(),count:0}}else{delete rv[iid]}sR(rv);updateReviewWidget();
+const rv=gR();if(p[iid]){if(!item.w.includes('🎯')&&!rv[iid])rv[iid]={date:Date.now(),count:0}}else{delete rv[iid]}sR(rv);updateReviewWidget();
 updateJourney();
 const ns=cS(level.css,area.name,topic.name,topic.items.length);const bar=tC.querySelector('.progress-fill');const txt=tC.querySelector('.progress-text');
 if(bar)bar.style.width=Math.round(ns/topic.items.length*100)+'%';if(txt)txt.textContent=ns+'/'+topic.items.length+' ('+Math.round(ns/topic.items.length*100)+'%)';
@@ -414,8 +457,9 @@ let db;searchInput.addEventListener('input',function(){clearTimeout(db);db=setTi
 function doS(q){if(q.length<2){searchResults.style.display='none';roadmap.style.display='block';return}
 const l=q.toLowerCase();const res=[];
 ROADMAP.forEach(lv=>{lv.areas.forEach(a=>{a.topics.forEach(t=>{
-t.books.forEach(b=>{if(b.toLowerCase().includes(l))res.push({path:`${lv.name} > ${a.name} > ${t.name}`,title:`📚 ${b}`,detail:`Livro no tópico "${t.name}"`,search:''})});
-t.items.forEach(it=>{if((it.w+it.d+it.s).toLowerCase().includes(l))res.push({path:`${lv.name} > ${a.name} > ${t.name}`,title:it.w,detail:it.d,search:it.s})})})})});
+t.books.forEach(b=>{if(b.toLowerCase().includes(l))res.push({rank:3,path:`${lv.name} > ${a.displayName||a.name} > ${t.name}`,title:`📚 ${b}`,detail:`Livro no tópico "${t.name}"`,search:''})});
+t.items.forEach(it=>{const W=it.w.toLowerCase(),S=(it.s||'').toLowerCase(),D=(it.d||'').toLowerCase();let rk=-1;if(W.includes(l))rk=0;else if(S.includes(l))rk=1;else if(D.includes(l))rk=2;if(rk>=0)res.push({rank:rk,path:`${lv.name} > ${a.displayName||a.name} > ${t.name}`,title:it.w,detail:it.d,search:it.s})})})})});
+res.sort((a,b)=>a.rank-b.rank);
 if(!res.length){searchResults.innerHTML=`<div class="sr-count">Nenhum resultado para "${esc(q)}"</div>`}else{
 const sh=res.slice(0,20);searchResults.innerHTML=`<div class="sr-count">${res.length} resultado${res.length>1?'s':''} para "${esc(q)}"${res.length>20?' (mostrando 20)':''}</div>`+sh.map(r=>`<div class="sr-item"><div class="sr-path">${esc(r.path)}</div><div class="sr-title">${hl(r.title,l)}</div><div class="sr-detail">${hl(r.detail,l).replace(/\n/g,'<br>')}</div>${r.search?`<div class="sr-search">${mSL(r.search)}</div>`:''}</div>`).join('')}
 searchResults.style.display='block';roadmap.style.display='none'}
@@ -424,15 +468,28 @@ function hl(t,q){const e=esc(t);if(!q)return e;return e.replace(new RegExp(`(${q
 
 // Keyboard shortcuts
 document.addEventListener('keydown',function(e){
-  // Esc closes any open modal
-  if(e.key==='Escape'){const ov=document.querySelector('.quiz-overlay');if(ov){ov.remove();return}}
+  const ov=document.querySelector('.quiz-overlay');
+  // Trap Tab focus inside an open modal (WCAG 2.1.2 / 2.4.3)
+  if(e.key==='Tab'&&ov){
+    const f=[...ov.querySelectorAll('a[href],button:not([disabled]),textarea,input:not([disabled]),select,[tabindex]:not([tabindex="-1"])')].filter(el=>el.offsetParent!==null||el===document.activeElement);
+    if(f.length){const first=f[0],last=f[f.length-1];
+      if(!ov.contains(document.activeElement)){e.preventDefault();first.focus()}
+      else if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}
+      else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}
+    }
+    return;
+  }
+  // Esc closes any open modal and restores focus to whatever opened it
+  if(e.key==='Escape'){if(ov){ov.remove();if(modalTrigger&&modalTrigger.focus)modalTrigger.focus();modalTrigger=null;return}}
   if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA')return;
   // Don't fire letter shortcuts while a modal is open
-  if(document.querySelector('.quiz-overlay'))return;
+  if(ov)return;
   if(e.key==='d'||e.key==='D'){e.preventDefault();window.studyOfDay()}
   if(e.key==='t'||e.key==='T'){e.preventDefault();window.toggleTheme()}
   if(e.key==='/'){e.preventDefault();searchInput.focus()}
 });
+// Restore focus to the trigger after a modal is closed by click (close button or backdrop)
+document.addEventListener('click',function(){if(modalTrigger&&!document.querySelector('.quiz-overlay')){if(modalTrigger.focus)modalTrigger.focus();modalTrigger=null;}});
 
 // Sticky toolbar shadow when stuck
 const toolbar=document.querySelector('.toolbar');
@@ -446,7 +503,7 @@ if(toolbar&&typeof IntersectionObserver!=='undefined'){
 }
 
 // Project (must live INSIDE the IIFE to access esc/helpers)
-function openProject(p){const ov=document.createElement('div');ov.className='quiz-overlay';const mo=document.createElement('div');mo.className='quiz-modal project-modal';
+function openProject(p){modalTrigger=document.activeElement;const ov=document.createElement('div');ov.className='quiz-overlay';const mo=document.createElement('div');mo.className='quiz-modal project-modal';
 mo.setAttribute('role','dialog');mo.setAttribute('aria-modal','true');
 const bullets=str=>str.split('\n').map(line=>{const tl=line.trim();if(tl.startsWith('•'))return '<li>'+esc(tl.substring(1).trim())+'</li>';return tl?'<li class="no-bullet">'+esc(tl)+'</li>':''}).join('');
 mo.innerHTML=`<h2>${esc(p.title)}</h2><div class="project-section"><strong>📋 Descrição:</strong><ul class="desc-bullets">${bullets(p.desc)}</ul></div><div class="project-section"><strong>📦 Entregável:</strong><p>${esc(p.deliverable)}</p></div><div class="quiz-actions"><button class="quiz-close-btn" onclick="this.closest('.quiz-overlay').remove()">Fechar</button></div>`;
