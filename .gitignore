@@ -1,0 +1,28 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Editores / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs e temporários
+*.log
+npm-debug.log*
+
+# Dependências (caso um dia entre build/tooling)
+node_modules/
+
+# Claude Code (tooling/artefatos internos)
+.claude/
+.DS_Store
